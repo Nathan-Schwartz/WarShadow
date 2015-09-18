@@ -53,8 +53,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 	console.log(JSON.parse(localStorage.getItem("windowPOS")));
 */
 
-	var smallwindow = false; //This will keep track of the state of the Main window, should not be global
-
+	localStorage.setItem('smallwindow', "false");
 	localStorage.setItem('MainID', " ");
 	localStorage.setItem('HSCounterID', " ");
 	localStorage.setItem('HSChainsID', " ");
@@ -494,14 +493,14 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			It resizes the window to be small enough to hide all buttons and text. 
 			Toggling it again will make the window larger so that all features can be seen.
 		*/
-			if(smallwindow == true){
+			if(localStorage.getItem("smallwindow") == "true"){
 				overwolf.windows.changeSize(localStorage.getItem('MainID'), 160, 490);
-				smallwindow = false;			
-			}else if(smallwindow == false){
+				localStorage.setItem("smallwindow", "false");			
+			}else if(localStorage.getItem("smallwindow") == "false"){
 				overwolf.windows.changeSize(localStorage.getItem('MainID'), 50, 50);
-				smallwindow = true;
+				localStorage.setItem("smallwindow", "true");
 			}else
-				alert("Wtf");
+				alert("Houston we have a problem");
 		};
 
 		function SetMainPos(newState) {
@@ -514,7 +513,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 											JSON.parse(localStorage.getItem("windowPOS")).main[0], 
 											JSON.parse(localStorage.getItem("windowPOS")).main[1]
 											); 
-					smallwindow = true;
+					localStorage.setItem("smallwindow", "true");
 				}
 			}, 1000); //200 min as of 8/25 (before external .js)
 		};
