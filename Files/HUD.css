@@ -1,0 +1,168 @@
+﻿
+html {
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+body{
+	color: rgb(250,250,250);
+	font-family: Arial;
+				
+	text-shadow:
+		-1px -1px 0 #000,  
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+
+
+div.smoke{
+	color: red;
+	font-family: Arial;	
+	text-shadow:
+		-1px -1px 0 #000,  
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+
+h2{
+	color: rgb(250,250,250);
+	font-family: Arial;
+				
+	text-shadow:
+		-1px -1px 0 #000,  
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+
+.resizeGrip {
+	background: transparent;
+	/*border: 1px transparent;*/
+	border:none;
+	position: absolute;
+}
+
+#content {
+	position: absolute;
+	top:5px;
+	bottom: 5px;
+	left: 5px;
+	right: 5px;
+	padding: 5px;
+}
+
+#resizeGripTop {
+	height: 5px;
+	top: 0;
+	left: 5px;
+	right: 5px;
+	cursor: ns-resize;
+}
+
+#resizeGripBottom {
+	height: 5px;
+	bottom: 0;
+	left: 5px;
+	right: 5px;
+	cursor: ns-resize;
+}
+
+#resizeGripLeft {
+	width: 5px;
+	left: 0;
+	top: 5px;
+	bottom: 5px;
+	cursor: ew-resize;
+}
+
+#resizeGripRight {
+	width: 5px;
+	right: 0;
+	top: 5px;
+	bottom: 5px;
+	cursor: ew-resize;
+}
+
+#resizeGripTopLeft {
+	width: 5px;
+	height: 5px;
+	top: 0;
+	left: 0;
+	cursor: nwse-resize;
+}
+
+#resizeGripBottomLeft {
+	width: 5px;
+	height: 5px;
+	bottom: 0;
+	left: 0;
+	cursor: nesw-resize;
+}
+
+#resizeGripTopRight {
+	width: 5px;
+	height: 5px;
+	top: 0;
+	right: 0;
+	cursor: nesw-resize;
+}
+
+#resizeGripBottomRight {
+	width: 5px;
+	height: 5px;
+	bottom: 0;
+	right: 0;
+	cursor: nwse-resize;
+}
+
+
+
+
+.icon{ /*		image formatting for Headshots Chains Average, KDR, Headshots Counter and Percent		*/
+display: inline;
+width: 40px;
+height: 35px;
+top: 2px;
+left: 2px;
+position: absolute;
+}
+
+.result{ /*		output formatting for Headshots Chains Average, KDR, Headshots Counter and Percent		*/
+display: inline;
+z-index:1;
+top:10px;
+left: 50px;
+position: absolute;
+}
+
+
+#Smoke{ /*		image formatting used for SmokeTimer		*/
+display: inline;
+width: 20px;
+height: 40px;
+top: 10px;
+left: 30px;
+}
+
+#moresmoke{ /*		output formatting for SmokeTimer		*/
+display: inline;
+z-index:1;
+left: 10px;
+bottom:10px;
+position: relative;
+}
+
+#evenmoresmoke{
+z-index:1;
+right: 10px;
+bottom:30px;
+position: relative;
+}
+

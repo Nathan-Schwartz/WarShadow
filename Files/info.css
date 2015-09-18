@@ -1,0 +1,41 @@
+html {
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.05);
+}
+
+h1 {
+	color: rgb(43,39,39);
+}
+
+ul{
+list-style-type:none
+}
+
+body {
+	color: rgb(5,5,5);
+	font-family: Arial;
+}
+
+#title{
+left:20px;
+position: relative;
+}
+
+#content {
+	position: absolute;
+	top:5px;
+	bottom: 5px;
+	left: 5px;
+	right: 5px;
+	padding: 0px;
+	overflow: scroll;
+}
+
+#chart{
+	/*width: 600px; 
+	height: 300px;*/
+	position: relative;
+	right: 60px
+}

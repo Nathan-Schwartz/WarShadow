@@ -1,0 +1,18 @@
+{
+  "Fast Anti-directional Mine Shoes": { "Mine Delay":"TRUE", "Sprint_speed_add":0, "Sprint_dur_add":0, "":0, "Slide_dist_add":0, "":0, "Crouch_speed_add":0, "Damage_reduc_perc":20, "silent":"FALSE"},
+  "Gumboots": { "Mine Delay":"TRUE", "Sprint_speed_add":0, "Sprint_dur_add":0, "":0, "Slide_dist_add":0, "":0, "Crouch_speed_add":0, "Damage_reduc_perc":20, "silent":"FALSE"},
+  "Sapper Shoes": { "Mine Delay":"TRUE", "Sprint_speed_add":0, "Sprint_dur_add":0, "":0, "Slide_dist_add":0, "":0, "Crouch_speed_add":0, "Damage_reduc_perc":20, "silent":"FALSE"},
+  "Default Boots": { "Mine Delay":"FALSE", "Sprint_speed_add":0, "Sprint_dur_add":0, "":0, "Slide_dist_add":0, "":0, "Crouch_speed_add":0, "Damage_reduc_perc":0, "silent":"FALSE"},
+  "Fast Shoes": { "Mine Delay":"FALSE", "Sprint_speed_add":25, "Sprint_dur_add":0, "":0, "Slide_dist_add":0, "":0, "Crouch_speed_add":20, "Damage_reduc_perc":0, "silent":"FALSE"},
+  "Protective Boots": { "Mine Delay":"FALSE", "Sprint_speed_add":0, "Sprint_dur_add":0, "":0, "Slide_dist_add":0, "":0, "Crouch_speed_add":0, "Damage_reduc_perc":20, "silent":"FALSE"},
+  "Sprint Shoes": { "Mine Delay":"FALSE", "Sprint_speed_add":0, "Sprint_dur_add":50, "":0, "Slide_dist_add":0, "":0, "Crouch_speed_add":0, "Damage_reduc_perc":0, "silent":"FALSE"},
+  "Light Boots": { "Mine Delay":"FALSE", "Sprint_speed_add":25, "Sprint_dur_add":0, "":0, "Slide_dist_add":0, "":0, "Crouch_speed_add":0, "Damage_reduc_perc":0, "silent":"FALSE"},
+  "Silent Boots": { "Mine Delay":"FALSE", "Sprint_speed_add":0, "Sprint_dur_add":0, "":0, "Slide_dist_add":0, "":0, "Crouch_speed_add":0, "Damage_reduc_perc":0, "silent":"TRUE"},
+  "Spy Shoes": { "Mine Delay":"FALSE", "Sprint_speed_add":0, "Sprint_dur_add":50, "":0, "Slide_dist_add":0, "":0, "Crouch_speed_add":0, "Damage_reduc_perc":0, "silent":"TRUE"},
+  "Sliding Boots": { "Mine Delay":"FALSE", "Sprint_speed_add":15, "Sprint_dur_add":10, "":0, "Slide_dist_add":30, "":0, "Crouch_speed_add":0, "Damage_reduc_perc":0, "silent":"FALSE"},
+  "Elite Crown Boots": { "Mine Delay":"FALSE", "Sprint_speed_add":20, "Sprint_dur_add":35, "":0, "Slide_dist_add":35, "":0, "Crouch_speed_add":35, "Damage_reduc_perc":50, "silent":"FALSE"},
+  "Crown Boots": { "Mine Delay":"TRUE", "Sprint_speed_add":25, "Sprint_dur_add":10, "":0, "Slide_dist_add":0, "":0, "Crouch_speed_add":0, "Damage_reduc_perc":0, "silent":"FALSE"},
+  "Christmas Boots": { "Mine Delay":"FALSE", "Sprint_speed_add":20, "Sprint_dur_add":0, "":0, "Slide_dist_add":0, "":0, "Crouch_speed_add":0, "Damage_reduc_perc":0, "silent":"FALSE"},
+  "Anti-directional Mine Boots": { "Mine Delay":"TRUE", "Sprint_speed_add":0, "Sprint_dur_add":0, "":0, "Slide_dist_add":0, "":0, "Crouch_speed_add":0, "Damage_reduc_perc":20, "silent":"FALSE"},
+  "Warlord Boots": { "Mine Delay":"FALSE", "Sprint_speed_add":20, "Sprint_dur_add":35, "":0, "Slide_dist_add":0, "":0, "Crouch_speed_add":0, "Damage_reduc_perc":0, "silent":"FALSE"}
+}

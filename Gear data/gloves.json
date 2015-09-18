@@ -1,0 +1,18 @@
+{
+  "Knockdown Gloves": { "Reload":0, "Melee_range_add":0, "Melee_speed_add":0, "Swap_speed_add":0, "knockdown":"TRUE", "Damage_reduc":0, "spread_reduc":0, "recoil_reduc":0},
+  "Engineer Gloves": { "Reload":0.8, "Melee_range_add":0, "Melee_speed_add":0, "Swap_speed_add":0, "knockdown":"FALSE", "Damage_reduc":0, "spread_reduc":0, "recoil_reduc":0},
+  "Mobility Gloves": { "Reload":0.8, "Melee_range_add":0, "Melee_speed_add":0, "Swap_speed_add":20, "knockdown":"FALSE", "Damage_reduc":0, "spread_reduc":0, "recoil_reduc":0},
+  "Multipurpose Gloves": { "Reload":0.8, "Melee_range_add":0, "Melee_speed_add":0, "Swap_speed_add":20, "knockdown":"FALSE", "Damage_reduc":0, "spread_reduc":0, "recoil_reduc":0},
+  "Christmas Gloves": { "Reload":0.8, "Melee_range_add":0, "Melee_speed_add":0, "Swap_speed_add":0, "knockdown":"FALSE", "Damage_reduc":0, "spread_reduc":0, "recoil_reduc":0},
+  "Special Edition Gloves": { "Reload":0, "Melee_range_add":0, "Melee_speed_add":0, "Swap_speed_add":0, "knockdown":"FALSE", "Damage_reduc":0, "spread_reduc":0, "recoil_reduc":0},
+  "Elite Crown Gloves": { "Reload":0.8, "Melee_range_add":0, "Melee_speed_add":0, "Swap_speed_add":20, "knockdown":"FALSE", "Damage_reduc":20, "spread_reduc":15, "recoil_reduc":0},
+  "Crown Gloves": { "Reload":0.8, "Melee_range_add":0, "Melee_speed_add":0, "Swap_speed_add":20, "knockdown":"FALSE", "Damage_reduc":20, "spread_reduc":0, "recoil_reduc":0},
+  "Assault Gloves": { "Reload":0, "Melee_range_add":0, "Melee_speed_add":0, "Swap_speed_add":20, "knockdown":"FALSE", "Damage_reduc":0, "spread_reduc":0, "recoil_reduc":0},
+  "Carbon Fibre Gloves": { "Reload":0.8, "Melee_range_add":20, "Melee_speed_add":35, "Swap_speed_add":0, "knockdown":"FALSE", "Damage_reduc":0, "spread_reduc":0, "recoil_reduc":0},
+  "Combat Gloves": { "Reload":0.8, "Melee_range_add":0, "Melee_speed_add":0, "Swap_speed_add":0, "knockdown":"TRUE", "Damage_reduc":0, "spread_reduc":0, "recoil_reduc":0},
+  "Melee hit Gloves": { "Reload":0, "Melee_range_add":20, "Melee_speed_add":35, "Swap_speed_add":0, "knockdown":"FALSE", "Damage_reduc":0, "spread_reduc":0, "recoil_reduc":0},
+  "Protective Gloves": { "Reload":0, "Melee_range_add":0, "Melee_speed_add":0, "Swap_speed_add":0, "knockdown":"FALSE", "Damage_reduc":20, "spread_reduc":0, "recoil_reduc":0},
+  "Default Gloves": { "Reload":0, "Melee_range_add":0, "Melee_speed_add":0, "Swap_speed_add":0, "knockdown":"FALSE", "Damage_reduc":0, "spread_reduc":0, "recoil_reduc":0},
+  "Light Gloves": { "Reload":0.8, "Melee_range_add":0, "Melee_speed_add":0, "Swap_speed_add":0, "knockdown":"FALSE", "Damage_reduc":0, "spread_reduc":0, "recoil_reduc":0},
+  "Warlord Gloves": { "Reload":0.85, "Melee_range_add":0, "Melee_speed_add":0, "Swap_speed_add":25, "knockdown":"FALSE", "Damage_reduc":0, "spread_reduc":0, "recoil_reduc":15}
+}

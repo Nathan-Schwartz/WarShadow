@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+	<head> 
+		<link rel="stylesheet" href="style.css" />
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		
+		<title>WarFriend</title>
+	</head>
+			
+
+	<body>
+		<div class="resizeGrip" id="resizeGripTopLeft"></div>
+		<div class="resizeGrip" id="resizeGripTop"></div>
+		<div class="resizeGrip" id="resizeGripTopRight"></div>
+		<div class="resizeGrip" id="resizeGripRight"></div>
+		<div class="resizeGrip" id="resizeGripBottomRight"></div>
+		<div class="resizeGrip" id="resizeGripBottom" ></div>
+		<div class="resizeGrip" id="resizeGripBottomLeft"></div>
+		<div class="resizeGrip" id="resizeGripLeft"></div>
+		<div id="content">
+
+		<img src="../IconMouseNormal.png" id="resize" alt="logo">
+		<img src="../minimize.png" id="close" alt="close">
+		<img src="../info.png" id="info" alt="info">
+		
+		<!-- What I am doing with line breaks is terribly abusive and immoral. I apologize in advance and refuse to fix it.-->
+		<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+			<u><b>Select Features:</b> </u> <br><br> <br><br>
+			<input type="checkbox" id="Stats"> StatCrack <br>
+			<input type="checkbox" id="HSNum"> # of Headshots <br>
+			<input type="checkbox" id="HSPerc"> % of Headshots <br>
+			<input type="checkbox" id="HSChain"> HS Chain Avg <br>
+			<input type="checkbox" id="STimer"> Smoke timer <br>
+			<input type="checkbox" id="KDRate"> KDR tracker <br>
+			<input type="checkbox" id="crosshair"> X-hair <br>
+			<input type="checkbox" id="autoon"> Auto-capture <br><br><br><br>
+			
+			<button id="record" class="button"> Recording </button><br><br>
+			<div id="Roptions">
+				<button id="turnOn" class="subbutton"> Start Recording </button><br><br>
+				<button id="capture" class="subbutton"> Capture </button> <br><br>
+				<button id="turnOff" class="subbutton"> Stop Recording </button> <br><br>
+				<button id="RsettingWin" class="subbutton"> Settings </button> <br><br><br>
+			</div>
+			
+			
+		<button id="SubmitVideo" class="button">Submit Video</button>	<br> <br>
+		<button id="getWindowID" class="button">Increment Kill</button> <br> <br> <br> <br>
+			
+			<button id="showcontent" class="button"><b>Content by me</b></button> <br><br><br>
+		<div id="contentbuttons">	
+			<button id="cold" class="subbutton">Cold Peak</button> <br><br>
+			<button id="tower" class="subbutton">Tower & Basics</button> <br><br>
+			<button id="gear" class="subbutton">Gear Comparisons</button> <br>
+		</div>
+			<script type="text/javascript" src="index.js"></script>
+			
+	</body>
+	
+</html>
