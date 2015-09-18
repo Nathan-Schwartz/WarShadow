@@ -1,9 +1,0 @@
-[
-{"key":"Warlord","HP_regen":8,"Damage_reduc":.4,"Mine":"FALSE","Flash":"FALSE"},
-{"key":"Elite Crown","HP_regen":8,"Damage_reduc":.3,"Mine":"FALSE","Flash":"TRUE"},
-{"key":"Dread mask","HP_regen":0,"Damage_reduc":.55,"Mine":"FALSE","Flash":"TRUE"},
-{"key":"Tactical","HP_regen":0,"Damage_reduc":.8,"Mine":"FALSE","Flash":"TRUE"},
-{"key":"Sapper","HP_regen":0,"Damage_reduc":.8,"Mine":"TRUE","Flash":"FALSE"},
-{"key":"Advanced","HP_regen":0,"Damage_reduc":.8,"Mine":"FALSE","Flash":"FALSE"},
-{"key":"Default","HP_regen":0,"Damage_reduc":.9,"Mine":"FALSE","Flash":"FALSE"},
-{"key":"npc","HP_regen":0,"Damage_reduc":1,"Mine":"FALSE","Flash":"FALSE"}]
