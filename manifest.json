@@ -14,7 +14,7 @@
 		"start_window":"MainWindow",
 		"windows":{
 			"MainWindow":{
-					"file":"Files/index.html",
+					"file":"Files/main.html",
 					"transparent":true,
 					"resizable":true,
 					"size":{"width":65, "height":50},

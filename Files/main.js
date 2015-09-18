@@ -53,7 +53,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 	console.log(JSON.parse(localStorage.getItem("windowPOS")));
 */
 
-	var smallwindow = false; //This will keep track of the state of the Main window
+	var smallwindow = false; //This will keep track of the state of the Main window, should not be global
 
 	localStorage.setItem('MainID', " ");
 	localStorage.setItem('HSCounterID', " ");
@@ -134,7 +134,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 
 		
 		function getWindowID(){
-		//This function's only purpose is to do bug testing
+		//This function's only purpose is to do bug testing and it is not related to window ID at all
 			var HS = localStorage.getItem('Headshots');
 			var Kills = localStorage.getItem('Kills');
 			
@@ -185,63 +185,59 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 				overwolf.windows.restore(localStorage.getItem(ID)); //now that I know the window is running, open it.
 			
 			}else{
-				overwolf.windows.getWindowState(localStorage.getItem(ID), 
-					function(value){
-						//console.log(value);
-						if(name == "Crosshair") //this is here so that if I bind the crosshair window to a hotkey and set the hotkey to ADS it can open/close faster
-							if(value.window_state != "minimized")
-								overwolf.windows.minimize(localStorage.getItem(ID));
-						else		
-							if(value.window_state != "closed")
-								overwolf.windows.close(localStorage.getItem(ID));
-					}
-				);
+				if(name == "Crosshair") //this is here so that if I bind the crosshair window to a hotkey and set the hotkey to ADS it can open/close faster
+					overwolf.windows.minimize(localStorage.getItem(ID));
+				
+				else{		
+					overwolf.windows.close(localStorage.getItem(ID));
+				}
 			}
 		};
 
 		function refreshHUD(){
 		//This function makes sure that all HUD elements are in the state they should be.
+		//There is no way this is the most efficient method but i don't know what that would be yet. Switches seem unlikely
 			if (document.getElementById('HSNum').checked)
 				refreshHelper(true,"HSCounter","HSCounterID");	
 				
-			else
+			else if (!document.getElementById('HSNum').checked)
 				refreshHelper(false,"HSCounter","HSCounterID");
 		
 						
 			if (document.getElementById('HSChain').checked)
 				refreshHelper(true,"HSChains",'HSChainsID');
 				
-			else
+			else if (!document.getElementById('HSChain').checked)
 				refreshHelper(false,"HSChains",'HSChainsID');
 					
 			if (document.getElementById('HSPerc').checked)
 				refreshHelper(true,"HSPercent",'HSPercentID');	
 			
-			else
+			else if (!document.getElementById('HSPerc').checked)
 				refreshHelper(false,"HSPercent",'HSPercentID');
 			
 
 			if (document.getElementById('STimer').checked)
 				refreshHelper(true,"SmokeTimer",'SmokeTimerID');
 					
-			else
+			else if (!document.getElementById('STimer').checked)
 				refreshHelper(false,"SmokeTimer",'SmokeTimerID');
 
-			if (document.getElementById('Stat').checked)
+			if (document.getElementById('Stats').checked)
 				refreshHelper(true,"StatCrack",'StatCrackID');
 
-			else
+			else if (!document.getElementById('Stats').checked)
 				refreshHelper(false,"StatCrack",'StatCrackID');
 				
 			if (document.getElementById('KDRate').checked)
 				refreshHelper(true,"KDR",'KDRID');
 
-			else
+			else if (!document.getElementById('KDRate').checked)
 				refreshHelper(false,"KDR",'KDRID');
 				
 			if (document.getElementById('crosshair').checked)
 				refreshHelper(true, 'Crosshair', 'CrosshairID');
-			else
+			else if (!document.getElementById('crosshair').checked)
 				refreshHelper(false, 'Crosshair', 'CrosshairID');
 				
 			/*if (document.getElementById('record').checked)
