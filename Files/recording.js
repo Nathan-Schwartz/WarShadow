@@ -1,5 +1,5 @@
 
-		function updateSettings(){
+		function updateSettings(){//Update localStorage with newest settings
 			var temp = JSON.parse(localStorage.getItem("Rsettings"));
 			
 			temp.Rgrab = document.getElementById("grablength").value;
@@ -149,7 +149,7 @@
 		};
 
 
-		function loadSettings(){
+		function loadSettings(){//Load window with the most recent settings
 			var temp = JSON.parse(localStorage.getItem("Rsettings"));
 			
 			document.getElementById("grablength").value = temp.Rgrab;
@@ -317,7 +317,6 @@
 			
 			
 //		Menu Listeners
-		//resize and drag
 		document.getElementById("resizeGripTopLeft").onmousedown = function(){('TopLeft');};
 		document.getElementById("resizeGripTop").onmousedown = function(){dragResize('Top');};
 		document.getElementById("resizeGripTopRight").onmousedown = function(){dragResize('TopRight');};
@@ -326,15 +325,11 @@
 		document.getElementById("resizeGripBottom").onmousedown = function(){dragResize('Bottom');};
 		document.getElementById("resizeGripBottomLeft").onmousedown = function(){dragResize('BottomLeft');};
 		document.getElementById("resizeGripLeft").onmousedown = function(){dragResize('Left');};
-	//	document.getElementById("content").onmousedown = function(){dragMove();};
 		
-		//menu buttons
-	//	document.getElementById("resize").ondblclick = function(){ResizeMain();};
-		//document.getElementById("close").onclick = function(){closeWindow();};
+		//menu button
 		document.getElementById("showfeatures").onclick = function(){togglefeatures();};
 		
 		//menu checkboxes //
-	
 		document.getElementById("closeOnEnd").onchange = function(){updateSettings();};
 		document.getElementById("grablength").onchange = function(){updateSettings();};
 		document.getElementById("kill").onchange = function(){updateSettings();};
@@ -352,16 +347,10 @@
 		document.getElementById("minekill").onchange = function(){updateSettings();};
 		document.getElementById("defibkill").onchange = function(){updateSettings();};
 		document.getElementById("combokill").onchange = function(){updateSettings();};
-		document.getElementById("Cuddling").onchange = function(){updateSettings();};//alert(document.getElementById("Cuddling").value);};
-		document.getElementById("Foreplay").onchange = function(){updateSettings();};//alert(document.getElementById("Foreplay").value);};
+		document.getElementById("Cuddling").onchange = function(){updateSettings();};
+		document.getElementById("Foreplay").onchange = function(){updateSettings();};
 		
-		//replay testing
-	/*	document.getElementById("turnOff").onclick = function(){testTurnOff();}; //if(document.getElementById('turnOff').checked)
-		document.getElementById("turnOn").onclick = function(){testTurnOn();}; //if(document.getElementById("turnOn").checked)
-		document.getElementById("capture").onclick = function(){testCapture(15000,-1);};
-		document.getElementById("getstate").onclick = function(){testGetState();};
-		document.getElementById("start").onclick = function(){testStartCapture();};
-		document.getElementById("finish").onclick = function(){testFinishCapture();};*/
+
 			
 			
 			

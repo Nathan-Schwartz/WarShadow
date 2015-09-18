@@ -8,7 +8,6 @@
 
 .resizeGrip {
 	background: transparent;
-	/*border: 1px transparent;*/
 	border:none;
 	position: absolute;
 }

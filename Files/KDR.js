@@ -1,6 +1,5 @@
 
 			function dragMove(){
-			//alert("tried to dragmove");
 				overwolf.windows.getCurrentWindow(function(result){
 					if (result.status=="success"){
 						overwolf.windows.dragMove(result.window.id);
@@ -26,8 +25,6 @@
 						test.kdr[0] = results.window.left;
 						test.kdr[1] = results.window.top;
 						localStorage.setItem("windowPOS", JSON.stringify(test));
-						//alert(test.hscounter[0]);
-						//alert(results.window.left);
 					}
 				);
 			};

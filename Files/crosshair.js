@@ -14,8 +14,6 @@ function updatePOS(name) {
 				test.crosshair[0] = results.window.left;
 				test.crosshair[1] = results.window.top;
 				localStorage.setItem("windowPOS", JSON.stringify(test));
-				//alert(test.hscounter[0]);
-				//alert(results.window.left);
 		}
 	);
 };

@@ -78,6 +78,26 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 		localStorage.setItem('5chain',0);
 		localStorage.setItem('PVPKills',0);
 		localStorage.setItem('PVPDeaths',0);
+		
+		/*
+		
+		user wants to reset settings?
+		
+		var windowPOS = {
+		//pixels from top and left. [left,top]
+		kdr:[0,0], 
+		info:[0,0], 
+		hspercent:[0,0],
+		smoketimer:[0,0],
+		hschains:[0,0],
+		hscounter:[0,0],
+		main:[0,0],
+		crosshair:[0,0]
+		};
+		localStorage.setItem('windowPOS', JSON.stringify(windowPOS));
+		
+		
+		*/
 	};
 	
 		
@@ -239,23 +259,8 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 				refreshHelper(true, 'Crosshair', 'CrosshairID');
 			else if (!document.getElementById('crosshair').checked)
 				refreshHelper(false, 'Crosshair', 'CrosshairID');
-				
-			/*if (document.getElementById('record').checked)
-				refreshHelper(true, 'Recording', 'RecordingID');
-			else
-				refreshHelper(false, 'Recording', 'RecordingID');*/
 		};
 
-		
-		/*
-
-		function SubmitVideo(){
-		//wasted space at the moment
-			overwolf.windows.getOpenWindows(function(result){
-				console.log(result); 
-			});
-		};
-*/
 
 			
 			function nameHandler(name){
@@ -475,8 +480,6 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 					test.main[0] = results.window.left;
 					test.main[1] = results.window.top;
 					localStorage.setItem("windowPOS", JSON.stringify(test));
-					//alert(test.hscounter[0]);
-					//alert(results.window.left);
 				}
 			);
 		};
@@ -657,7 +660,7 @@ function testCapture(before, after){
 			function(results){
 				console.log(results);
 				if(results.status== "success"){
-					overwolf.media.replays.finishCapture(results.url, //try to send the whole object next time if this isn't working 100%
+					overwolf.media.replays.finishCapture(results.url,
 						function(results){
 							console.log(results);
 							if(results.status== "success"){
@@ -758,8 +761,6 @@ function testCapture(before, after){
 		);
 		
 		//If game ends or changes close the program
-		
-	
 		overwolf.games.onGameInfoUpdated.addListener(
 			function(resultA){
 				var test = JSON.parse(localStorage.getItem("Rsettings"));

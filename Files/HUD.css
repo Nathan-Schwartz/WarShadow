@@ -19,7 +19,7 @@ body{
 
 
 
-div.smoke{
+div.smoke{ /* This makes the "NOW" alert in the smoke window big and red*/
 	color: red;
 	font-family: Arial;	
 	text-shadow:
@@ -143,7 +143,7 @@ position: absolute;
 }
 
 
-#Smoke{ /*		image formatting used for SmokeTimer		*/
+#smoke_image{ /*		image formatting used for SmokeTimer		*/
 display: inline;
 width: 20px;
 height: 40px;
@@ -151,7 +151,7 @@ top: 10px;
 left: 30px;
 }
 
-#moresmoke{ /*		output formatting for SmokeTimer		*/
+#smoke_content{ /*		output formatting for SmokeTimer		*/
 display: inline;
 z-index:1;
 left: 10px;
@@ -159,7 +159,7 @@ bottom:10px;
 position: relative;
 }
 
-#evenmoresmoke{
+#smoke_alert{ /* This positions the "NOW" alert in the smoke feature*/
 z-index:1;
 right: 10px;
 bottom:30px;

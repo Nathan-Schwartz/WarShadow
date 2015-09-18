@@ -14,8 +14,6 @@
 						test.hschains[0] = results.window.left;
 						test.hschains[1] = results.window.top;
 						localStorage.setItem("windowPOS", JSON.stringify(test));
-						//alert(test.hscounter[0]);
-						//alert(results.window.left);
 					}
 				);
 			};
@@ -42,7 +40,7 @@
 		
 			function avgChain(){
 				var headshots = parseInt(localStorage.getItem("Headshots"));
-				var twochain = parseInt(localStorage.getItem('TWWWOOOOCHAAAAAIIIIIIIINNNNNZZZZZ'));
+				var twochain = parseInt(localStorage.getItem('TWWWOOOOCHAAAAAIIIIIIIINNNNNZZZZZ')); //sorry, had to.
 				var threechain = parseInt(localStorage.getItem('3chain'));
 				var fourchain = parseInt(localStorage.getItem('4chain'));
 				var fivechain = parseInt(localStorage.getItem('5chain'));

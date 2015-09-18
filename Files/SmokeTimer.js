@@ -14,21 +14,19 @@
 				});
 			};
 			
-			function updatePOS(name) {
+			function updatePOS(name) { //Updates window position as stored in localStorage
 				overwolf.windows.obtainDeclaredWindow(name,
 					function(results){
 						var test = JSON.parse(localStorage.getItem("windowPOS"));
 						test.smoketimer[0] = results.window.left;
 						test.smoketimer[1] = results.window.top;
 						localStorage.setItem("windowPOS", JSON.stringify(test));
-						//alert(test.hscounter[0]);
-						//alert(results.window.left);
 					}
 				);
 			};
 			
 			
-			function SetSTPos(newState, ID) {
+			function SetSTPos(newState, ID) {//initializes window position and size, called after short delay to allow for loading times. Not optimal way to choose wait time
 				setTimeout(function(){
 					if(newState == -1){
 						overwolf.windows.changePosition(ID, 
@@ -48,10 +46,10 @@
 				setInterval(
 					function () {
 						timer--;
-						document.getElementById("moresmoke").innerHTML = timer-1;
+						document.getElementById("smoke_content").innerHTML = timer-1;
 				
 						if (timer < 2) {
-							document.getElementById("moresmoke").innerHTML = "<div id='evenmoresmoke' class='smoke'>NOW</div>";
+							document.getElementById("smoke_content").innerHTML = "<div id='smoke_alert' class='smoke'>NOW</div>";
 							if(timer < 1)
 								closeWindow();
 						}
@@ -65,5 +63,6 @@
 		startTimer(15);
 		
 		
-		document.getElementById("Smoke").ondblclick = function(){updatePOS("SmokeTimer");};
+		document.getElementById("smoke_image").ondblclick = function(){updatePOS("SmokeTimer");};
 		document.getElementById("content").onmousedown = function(){dragMove();};
+		
