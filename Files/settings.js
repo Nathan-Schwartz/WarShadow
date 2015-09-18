@@ -1,6 +1,6 @@
 
 		function updateSettings(){//Update localStorage with newest settings
-			var temp = JSON.parse(localStorage.getItem("Rsettings"));
+			var temp = JSON.parse(localStorage.getItem("Settings"));
 			
 			temp.Rgrab = document.getElementById("grablength").value;
 			temp.Rcuddling = document.getElementById("Cuddling").value;
@@ -145,12 +145,12 @@
 				temp.Rnade = 5;
 			}
 			
-			localStorage.setItem("Rsettings", JSON.stringify(temp));
+			localStorage.setItem("Settings", JSON.stringify(temp));
 		};
 
 
 		function loadSettings(){//Load window with the most recent settings
-			var temp = JSON.parse(localStorage.getItem("Rsettings"));
+			var temp = JSON.parse(localStorage.getItem("Settings"));
 			
 			document.getElementById("grablength").value = temp.Rgrab;
 			document.getElementById("Cuddling").value = temp.Rcuddling;
@@ -291,8 +291,8 @@
 		//This function is in all window's files. It initializes size and position.
 			setTimeout(function(){
 				if(newState == -1){
-					overwolf.windows.changeSize(localStorage.getItem('WCMainID'), 400, 600);
-					overwolf.windows.changePosition(localStorage.getItem('WCMainID'), 100, 100); 
+					overwolf.windows.changeSize(localStorage.getItem('SettingsID'), 400, 600);
+					overwolf.windows.changePosition(localStorage.getItem('SettingsID'), 200,100); 
 				}
 			}, 1000); //200 min as of 8/25 (before external .js)
 		};
@@ -312,7 +312,7 @@
 
 			 document.getElementById('features').style.display = 'none'; //block
 			 loadSettings();
-			//$(document).ready(SetWCMainPos(-1)); //Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
+			$(document).ready(SetWCMainPos(-1)); //Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
 			
 			
 			

@@ -14,8 +14,8 @@ if(!localStorage.getItem('windowPOS')){ //If this is the first launch, initializ
 	localStorage.setItem('windowPOS', JSON.stringify(windowPOS));
 }
 
-if(!localStorage.getItem('Rsettings')){
-	var Rsettings = {
+if(!localStorage.getItem('Settings')){
+	var Settings = {
 		Rforeplay: " ",
 		Rcuddling: " ",
 		Rgrab: " ", //parseint( , 10);
@@ -36,7 +36,7 @@ if(!localStorage.getItem('Rsettings')){
 		Rcombokill: false,
 		Rclose: true
 	};
-	localStorage.setItem('Rsettings', JSON.stringify(Rsettings));
+	localStorage.setItem('Settings', JSON.stringify(Settings));
 }
 		
 /*
@@ -63,7 +63,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 	localStorage.setItem('InfoID', " ");
 	localStorage.setItem('KDRID', " ");
 	localStorage.setItem('CrosshairID'," ");
-	localStorage.setItem('RecordingID', " ");
+	localStorage.setItem('SettingsID', " ");
 	localStorage.setItem('StatCrackID', " ");
 	
 	
@@ -164,7 +164,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			localStorage.setItem('Headshots', HS);
 			localStorage.setItem('Kills', Kills);
 			
-			var test = JSON.parse(localStorage.getItem("Rsettings"));
+			var test = JSON.parse(localStorage.getItem("Settings"));
 			console.log(test);
 		}
 
@@ -265,10 +265,15 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			
 			function nameHandler(name){
 			
-				//	var temp = JSON.parse(localStorage.getItem("Rsettings"));
-
+				/*
+					Should i leave each statment to call the localstorage item individually?
+		
+				Otherwise i could do this 			var temp = JSON.parse(localStorage.getItem("Settings"));
+				and make the code easier to read.
+				Would retrieving the whole object slow down the process to a noticable degree?
+				*/
 				if (name == "kill"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rkill == true)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rkill == true)){
 					alert("Kill works");
 					//testCapture(12000, 3000);
 					//testCapture(6000, -1);
@@ -279,7 +284,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 					localStorage.setItem('Kills', Kills);
 					
 				}else if (name == "defibrillator_kill"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rdefib == true)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rdefib == true)){
 					//testCapture(12000, 3000);
 					alert("defib works");
 					}
@@ -289,10 +294,12 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 					localStorage.setItem('Defibs', Defibs);
 					
 				}else if (name == "kill_headshot"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rheadshot == 1)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rheadshot == 1)){
 						//alert("single headshot works");
 						var count = 0;
-						var interval = setInterval( //The event is triggered before the achievement appears on the screen so we wait one second, then take a couple.
+						var interval = setInterval( 
+						//The capture function is particular in that it can grab past recordings easily but it takes forever to grab future time and it only allows one "grab" at a time. 
+						//thats why I made a "wait" timer and increased past grab duration. I intend to implement the user input time buffers here instead of the capture, but it has its challenges.
 							function () {
 								if(count=1)
 									console.log("single");
@@ -315,12 +322,12 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 					
 				
 				}else if (name == "kill_melee"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rmelee == 1)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rmelee == 1)){
 						alert("single melee works");
 					}
 					
 				}else if (name == "headshots_in_a_row_2"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rheadshot == 2)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rheadshot == 2)){
 						alert("double melee/2 chain works");
 					}
 					
@@ -329,16 +336,16 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 					localStorage.setItem('TWWWOOOOCHAAAAAIIIIIIIINNNNNZZZZZ', TwoHeadshots);
 				
 				}else if(name == "double_kill"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rdoublekill == true)) {
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rdoublekill == true)) {
 						alert("double kill works");
 					}
 					
 				}else if (name == "melee_kills_in_a_row_1"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rmelee == 2)){					
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rmelee == 2)){					
 						alert("butcher works");
 					}
 					/*var count = 0;
-					var interval = setInterval( //The event is triggered before the achievement appears on the screen so we wait one second, then take a couple.
+					var interval = setInterval( 
 						function () {
 							if(count=1)
 								console.log("2 hs");
@@ -352,7 +359,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 					2000);*/
 				
 				}else if (name == "headshots_in_a_row_3"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rheadshot == 3)) {
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rheadshot == 3)) {
 						alert("3chain works"); 
 					}
 				//testCapture(12000, 18000);
@@ -363,17 +370,17 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 					localStorage.setItem('3chain', ThreeHeadshots);
 					
 				}else if (name == "pvp_triple_kill") { 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rtriplekill == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rdoublekill == false)) {	
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rtriplekill == true)&&(JSON.parse(localStorage.getItem("Settings")).Rdoublekill == false)) {	
 						alert("triple kill works");
 					}
 				
 				}else if(name == "melee_kills_in_a_row_2"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rmelee == 3)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rmelee == 3)){
 						alert("bloody butcher works");
 					}
 					
 				}else if(name == "headshots_in_a_row_4"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rheadshot == 4)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rheadshot == 4)){
 						alert("4 chain works");
 					}
 					//testCapture(16000, 160000);
@@ -384,7 +391,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 					localStorage.setItem('4chain', FourHeadshots);
 					
 				}else if (name == "headshots_in_a_row_5"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rheadshot == 5)) { 
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rheadshot == 5)) { 
 						alert("annhilator works");
 					}
 					//testCapture(20000,14000);
@@ -397,12 +404,12 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 					
 					
 				}else if (name == "melee_kills_in_a_row_3"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rmelee == 5)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rmelee == 5)){
 						alert("hellbutcher works");
 					}
 				
 				}else if (name == "achievement_gained"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rachievepic == true)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rachievepic == true)){
 						var count = 0;
 						var interval = setInterval( //The event is triggered before the achievement appears on the screen so we wait one second, then take a couple.
 							function () {
@@ -422,42 +429,42 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 							}, 
 						1000);
 					}
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rachievevid == true)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rachievevid == true)){
 						testCapture(30000,30000);
 					}
 
 				}else if (name == "pvp_flag_kill"){	
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rflagkill == true)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rflagkill == true)){
 					}
 				}else if (name == "claymore_kill"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rminekill == true)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rminekill == true)){
 						alert("mine kills works");
 					}
 					//testCapture(12000, 1000);
 				}else if (name == "two_at_once_kill"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rperfkill == true)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rperfkill == true)){
 						alert("Perf works");
 					}
 					//testCapture(12000, 5000);
 				}else if (name == "kill_grenade"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rnade == 1)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rnade == 1)){
 						alert("single grenade works");
 					}
 					
 				}else if (name == "grenade_kills_in_a_row_1"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rnade == 2)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rnade == 2)){
 						alert("grenadier works");
 					}
 				}else if (name == "grenade_kills_in_a_row_2"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rnade == 3)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rnade == 3)){
 						alert("mega grenadier works");
 					}
 				}else if (name == "grenade_kills_in_a_row_3"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rnade == 5)){
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rnade == 5)){
 						alert("ubergrenadier works");
 					}
 				}else if (name == "in_knock_back_kill"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Rsettings")).Rseverekill)){	
+					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rseverekill)){	
 						alert("severe works");
 					}
 				}
@@ -516,7 +523,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			}else
 				alert("Wtf");
 		};
-			
+
 		function SetMainPos(newState) {
 		//This function is in all window's files. It initializes size and position.
 			setTimeout(function(){
@@ -576,12 +583,12 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 						"enabled": true
 					}
 				},
-				//in absence of video settings here, recording will use setting config from overwolf capture settings.
+				/*in absence of video settings here, recording will use setting config from overwolf capture settings.
 				"video": {
 					//"auto_calc_kbps": false,
 					"fps": 30,
 					"width": 1280,
-					"height": 720,
+					"height": 720,*/
 					/*"max_kbps": 1500,
 					"encoder": {
 						"name": "overwolf.streaming.enums.StreamEncoder.X264",
@@ -591,7 +598,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 							"keyframe_interval": 2
 						}
 					}*/
-				},
+				//},
 				"peripherals": {
 					"capture_mouse_cursor": "both"
 				}
@@ -625,17 +632,17 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 function testCapture(before, after){
 	
 	if(after == -1){
-		if(isNaN(parseInt(JSON.parse(localStorage.getItem("Rsettings")).Rgrab))){
+		if(isNaN(parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab))){
 			alert("you entered a bad value")
 		}
 		else{
-			before = before + (parseInt(JSON.parse(localStorage.getItem("Rsettings")).Rgrab)*1000);
+			before = before + (parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000);
 			overwolf.media.replays.capture(before, after, 
 				function(result){if(result) console.log(result);},
 				function(results){
 					console.log(results);
 					if(results.status== "success"){
-						overwolf.media.replays.finishCapture(results.url, //try to send the whole object next time if this isn't working 100%
+						overwolf.media.replays.finishCapture(results.url,
 							function(results){
 								console.log(results);
 								if(results.status== "success"){
@@ -652,8 +659,8 @@ function testCapture(before, after){
 	}
 	else{
 
-		after = after + (parseInt(JSON.parse(localStorage.getItem("Rsettings")).Rcuddling)*1000); 
-		before = before + (parseInt(JSON.parse(localStorage.getItem("Rsettings")).Rforeplay)*1000); 
+		after = after + (parseInt(JSON.parse(localStorage.getItem("Settings")).Rcuddling)*1000); 
+		before = before + (parseInt(JSON.parse(localStorage.getItem("Settings")).Rforeplay)*1000); 
 	
 		overwolf.media.replays.capture(before, after, 
 			function(result){if(result) console.log(result);},
@@ -677,6 +684,17 @@ function testCapture(before, after){
 };
 		
 		
+			
+//		Game Events
+		overwolf.games.events.onNewEvents.addListener(
+			function (value) {
+				var i = 0;
+				for(; i < value.events.length; i++){
+					console.log("Event: " + value.events[i].name);
+					nameHandler(value.events[i].name);
+				}
+			}
+		);
 
 	
 		
@@ -691,9 +709,10 @@ function testCapture(before, after){
 				getWinID("KDR",'KDRID');
 				getWinID("StatCrack",'StatCrackID');
 				getWinID("Crosshair",'CrosshairID');
-				getWinID("Recording",'RecordingID');
+				getWinID("Settings",'SettingsID');
 				getWinID("StatCrack",'StatCrackID');
-			$(document).ready(SetMainPos(-1)); //Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
+			$(document).ready(SetMainPos(-1)); // This triggers too early for it to work if I don't include the wait time. Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
+
 			document.getElementById('contentbuttons').style.display = 'none';
 			document.getElementById('Roptions').style.display = 'none';		
 			/*
@@ -733,8 +752,9 @@ function testCapture(before, after){
 		document.getElementById("gear").onclick = function(){gear();};
 		document.getElementById("info").onclick = function(){refreshHelper(true, 'Info', 'InfoID');};
 		document.getElementById("record").onclick = function(){showOptions();};
-		document.getElementById("RsettingWin").onclick = function(){refreshHelper(true, 'Recording', 'RecordingID');};
 		document.getElementById("showcontent").onclick = function(){showContent();};
+		document.getElementById("settingsWin").onclick = function(){refreshHelper(true, 'Settings', 'SettingsID');};
+		
 		
 		//menu checkboxes
 		document.getElementById("HSNum").onchange = function(){refreshHUD();};
@@ -747,8 +767,8 @@ function testCapture(before, after){
 		document.getElementById("Stats").onchange = function(){refreshHelper(true,"StatCrack",'StatCrackID');};
 		
 		//replay testing
-		document.getElementById("turnOff").onclick = function(){testTurnOff();}; //if(document.getElementById('turnOff').checked)
-		document.getElementById("turnOn").onclick = function(){testTurnOn();}; //if(document.getElementById("turnOn").checked)
+		document.getElementById("turnOff").onclick = function(){testTurnOff();};
+		document.getElementById("turnOn").onclick = function(){testTurnOn();};
 		document.getElementById("capture").onclick = function(){testCapture(1,-1);};
 		
 		
@@ -763,8 +783,8 @@ function testCapture(before, after){
 		//If game ends or changes close the program
 		overwolf.games.onGameInfoUpdated.addListener(
 			function(resultA){
-				var test = JSON.parse(localStorage.getItem("Rsettings"));
-				console.log(test);
+				var test = JSON.parse(localStorage.getItem("Settings"));
+		//		console.log(test);
 				if(test.Rclose == true){
 					if(resultA.runningChanged == true){
 						overwolf.games.getRunningGameInfo(
@@ -799,92 +819,6 @@ function testCapture(before, after){
 			}
 		);
 			
-			
-//		Game Events
-		overwolf.games.events.onNewEvents.addListener(
-			function (value) {
-				var i = 0;
-				for(; i < value.events.length; i++){
-					console.log("Event: " + value.events[i].name);
-					nameHandler(value.events[i].name);
-				}
-			}
-		);
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-	/*
-
-	
-	function TestWriteFileToDesktop() {
-			var myJSON = {
-				"best": true,
-				"test": "true",
-				"test3": false
-			}
-			var myString = JSON.stringify(myJSON, null, '\t');
-			var fileName = plugin().DESKTOP + "\\" + "TestFile.json";
-			plugin().setFile(fileName, myString, function(result) {
-			});
-		}
-	
-3. getTextFile - reads a file's contents and returns as text.
-Use the second parameter to indicate if the file is in UCS-2 (2 bytes per char) and
-it will automatically do the UTF8 conversion.  Otherwise, returns in UTF8
-
-```
-plugin().getTextFile(
-  plugin().PROGRAMFILES + "/overwolf/Overwolf.exe.config", 
-  false, // not a UCS-2 file
-  function(status, data) {
-          
-  if (!status) {
-    console.log("failed to get Overwolf.exe.config contents");
-  } else {
-    console.log(data);
-  }
-});
-```
-        
-function TestWriteFileToDesktop() {
-			var myJSON = {
-				"best": true,
-				"test": "true",
-				"test3": false
-			}
-			var myString = JSON.stringify(myJSON, null, '\t');
-			var fileName = plugin().DESKTOP + "\\" + "TestFile.json";
-			plugin().setFile(fileName, myString, function(result) {
-				addMessage("Set File Test: " + result);
-			});
-		}
-	
-	
-	
-	*/
-			
-			
-			
 			
 			

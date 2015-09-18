@@ -147,6 +147,18 @@ body
 	text-decoration: none;
 }
 
+
+#settingsWin{
+	background-size: 15px 15px;
+	background-repeat:no-repeat;
+	width: 15px;
+	height:15px;
+	position: absolute;
+	top:2px;
+	left:101px;
+	z-index:1;
+}
+
 #info{
 	background-size: 15px 15px;
 	background-repeat:no-repeat;

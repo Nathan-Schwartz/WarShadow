@@ -385,8 +385,7 @@ function getVests(){
 		console.log(myA);
 
 
-google.load('visualization', '1', {packages: ['corechart', 'line']});
-//google.setOnLoadCallback(graphIT);
+	google.load('visualization', '1', {packages: ['corechart', 'line']});
 
 	function graphIT() {
 
@@ -479,7 +478,7 @@ function updateData(elementNum, rec){
 	var Repelshot = false;
 	var Hdamage_reduc = 0;
 				
-	var vestsArr = getVests();//{"key":"default","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0,"Special":"none"},
+	var vestsArr = getVests();//format {"key":"default","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0,"Special":"none"},
 	for(var i = 0; i < vestsArr.length; i++){
 		if(vestsArr[i].key == document.getElementById("enemyVest1").value){
 			//console.log(vestsArr[i].key); //.name
@@ -488,15 +487,10 @@ function updateData(elementNum, rec){
 			if(vestsArr[i].Repel_shot == "TRUE")
 				Repelshot = true;
 			vestHP = parseInt(vestsArr[i].HP);
-						
-						
-			//console.log("RFP = " + RFP);
-			//console.log("HP = "+ vestHP);
-			//console.log("repel shot = " + Repelshot);
 		}
 	}
 				
-	var helmsArr = getHelmets(); //{"key":"Advanced","HP_regen":0,"Damage_reduc":20,"Mine":"FALSE","Flash":"FALSE"},
+	var helmsArr = getHelmets(); //format {"key":"Advanced","HP_regen":0,"Damage_reduc":20,"Mine":"FALSE","Flash":"FALSE"},
 	for(var i = 0; i < helmsArr.length; i++){
 		if(helmsArr[i].key == document.getElementById("enemyHelmet1").value){
 			console.log(helmsArr[i].key); //name
@@ -706,7 +700,7 @@ function TTKvest(damage_default, min_default, attachment_equipped, RFProt, dista
 	
 	
 	
-function repairCalc(){
+function repairCalc(){//barely started
 	
 	var vestsArr = getVests();//{"key":"default","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0,"Special":"none", Repair_num:},
 	for(var i = 0; i < vestsArr.length; i++){
@@ -716,9 +710,6 @@ function repairCalc(){
 						
 		}
 	}
-	
-		
-		
 };
 	
 	
@@ -730,6 +721,8 @@ function repairCalc(){
 	
 	
 	
+	//I am trying to make the checkbox menu intuitive, but to do so I need to pop all of the "extra" 2nd dimensional array elements because google charts is picky.
+	//My newest idea is to make a "checked box" counter to figure out how many coordinates I need in the array and then just run the pop loop until that number is reached.
 	
 	
 	

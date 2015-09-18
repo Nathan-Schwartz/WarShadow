@@ -88,8 +88,8 @@
 				"show_in_taskbar": false
 			},
 			
-			"Recording":{
-					"file":"Files/recording.html",
+			"Settings":{
+					"file":"Files/settings.html",
 					"transparent":false,
 					"resizable":true,
 					"size":{"width":300, "height":600}
