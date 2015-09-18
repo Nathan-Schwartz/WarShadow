@@ -78,26 +78,6 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 		localStorage.setItem('5chain',0);
 		localStorage.setItem('PVPKills',0);
 		localStorage.setItem('PVPDeaths',0);
-		
-		/*
-		
-		user wants to reset settings?
-		
-		var windowPOS = {
-		//pixels from top and left. [left,top]
-		kdr:[0,0], 
-		info:[0,0], 
-		hspercent:[0,0],
-		smoketimer:[0,0],
-		hschains:[0,0],
-		hscounter:[0,0],
-		main:[0,0],
-		crosshair:[0,0]
-		};
-		localStorage.setItem('windowPOS', JSON.stringify(windowPOS));
-		
-		
-		*/
 	};
 	
 		

@@ -1,4 +1,29 @@
 
+	function resetLS(){
+		localStorage.setItem('Kills', 0); 
+		localStorage.setItem('Headshots', 0); 
+		localStorage.setItem('Defibs', 0);
+		localStorage.setItem('TWWWOOOOCHAAAAAIIIIIIIINNNNNZZZZZ',0);
+		localStorage.setItem('3chain',0);
+		localStorage.setItem('4chain',0);
+		localStorage.setItem('5chain',0);
+		localStorage.setItem('PVPKills',0);
+		localStorage.setItem('PVPDeaths',0);
+		
+		var windowPOS = {
+			kdr:[0,0], 
+			info:[0,0], 
+			hspercent:[0,0],
+			smoketimer:[0,0],
+			hschains:[0,0],
+			hscounter:[0,0],
+			main:[0,0],
+			crosshair:[0,0]
+		};
+		
+		localStorage.setItem('windowPOS', JSON.stringify(windowPOS));
+	};
+
 		function updateSettings(){//Update localStorage with newest settings
 			var temp = JSON.parse(localStorage.getItem("Settings"));
 			
@@ -328,6 +353,7 @@
 		
 		//menu button
 		document.getElementById("showfeatures").onclick = function(){togglefeatures();};
+		document.getElementById("resetLS").onclick = function(){resetLS();};
 		
 		//menu checkboxes //
 		document.getElementById("closeOnEnd").onchange = function(){updateSettings();};

@@ -715,11 +715,24 @@ function repairCalc(){//barely started
 	
 	
 	
+
+function addHTML(message) {
+	var obj = document.createElement("tr");
+	obj.innerHTML = message;
+	document.querySelector('#table').appendChild(obj);
+}
+	
+function printTable(iter, gear){
+	if(iter%2 == 1)
+		addHTML("<tr><td>" + gear[iter].key + "</td><td>"+ gear[iter].Damage_reduc + "</td><td>" + gear[iter].HP_regen + "</td></tr>");
+	else
+		addHTML("<tr class='alt'><td>" + gear[iter].key + "</td><td>"+ gear[iter].Damage_reduc + "</td><td>" + gear[iter].HP_regen + "</td></tr>");
+}
 	
 	
-	
-	
-	
+	for(var i = 0; i < getHelmets().length; i++){
+		printTable(i, getHelmets());
+	}
 	
 	//I am trying to make the checkbox menu intuitive, but to do so I need to pop all of the "extra" 2nd dimensional array elements because google charts is picky.
 	//My newest idea is to make a "checked box" counter to figure out how many coordinates I need in the array and then just run the pop loop until that number is reached.
