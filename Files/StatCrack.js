@@ -309,31 +309,31 @@ function getWeapons(){
 function getVests(){
 	
 	var vests = [
-{"key":"default","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":0,"Shop_name":"shared_vest_01"},
-{"key":"antimelee","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":811,"Shop_name":"shared_vest_05"},
-{"key":"atlant","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":2288,"Shop_name":"sniper_vest_01"},
-{"key":"antiexplo","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":913,"Shop_name":"shared_vest_03"},
-{"key":"assault","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":1859,"Shop_name":"shared_vest_09"},
-{"key":"strikeforce","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":2288,"Shop_name":"soldier_vest_01"},
-{"key":"titan2","HP":225,"RFProtection":"FALSE","Repel_shot":"TRUE","Repair_num":807,"Shop_name":"shared_vest_07"},
-{"key":"antisniper","HP":225,"RFProtection":"FALSE","Repel_shot":"TRUE","Repair_num":819,"Shop_name":"engineer_vest_01"},
-{"key":"specialrm","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":819,"Shop_name":"medic_vest_02"},
-{"key":"plate","HP":225,"RFProtection":"FALSE","Repel_shot":"TRUE","Repair_num":2288,"Shop_name":"engineer_vest_02"},
-{"key":"hawk","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":4070,"Shop_name":"sniper_vest_03"},
-{"key":"scout","HP":225,"RFProtection":"TRUE","Repel_shot":"TRUE","Repair_num":2288,"Shop_name":"medic_vest_01"},
-{"key":"specialsniper","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":819,"Shop_name":"sniper_vest_02"},
-{"key":"crown","HP":250,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":9616,"Shop_name":"shared_vest_crown_02"},
-{"key":"rhino","HP":255,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":4070,"Shop_name":"medic_vest_03"},
-{"key":"komodo","HP":255,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":4070,"Shop_name":"engineer_vest_03"},
-{"key":"christmas","HP":260,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":2288,"Shop_name":"shared_vest_xmas_01"},
-{"key":"frontline","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":3288,"Shop_name":"shared_vest_02"},
-{"key":"WarlordM","HP":275,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":9620,"Shop_name":"medic_vest_04"},
-{"key":"WarlordRES","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":9620,"Shop_name":"engineer_vest_04"},
-{"key":"none","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":9620,"Shop_name":"soldier_vest_04"},
-{"key":"none","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":9620,"Shop_name":"sniper_vest_04"},
-{"key":"corundum","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":1859,"Shop_name":"shared_vest_04"},
-{"key":"python","HP":275,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":4070,"Shop_name":"soldier_vest_03"},
-{"key":"extrastrong","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":913,"Shop_name":"shared_vest_06"}];
+{"key":"Default","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":0,"Shop_name":"shared_vest_01"},
+{"key":"Anti-Melee","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":811,"Shop_name":"shared_vest_05"},
+{"key":"Atlant","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":2288,"Shop_name":"sniper_vest_01"},
+{"key":"Anti-Explosive","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":913,"Shop_name":"shared_vest_03"},
+{"key":"Assault","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":1859,"Shop_name":"shared_vest_09"},
+{"key":"Strikeforce","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":2288,"Shop_name":"soldier_vest_01"},
+{"key":"Titan-II","HP":225,"RFProtection":"FALSE","Repel_shot":"TRUE","Repair_num":807,"Shop_name":"shared_vest_07"},
+{"key":"Anti-Sniper","HP":225,"RFProtection":"FALSE","Repel_shot":"TRUE","Repair_num":819,"Shop_name":"engineer_vest_01"},
+{"key":"Special Medic/Rifle","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":819,"Shop_name":"medic_vest_02"},
+{"key":"Plate","HP":225,"RFProtection":"FALSE","Repel_shot":"TRUE","Repair_num":2288,"Shop_name":"engineer_vest_02"},
+{"key":"Hawk","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":4070,"Shop_name":"sniper_vest_03"},
+{"key":"Scout","HP":225,"RFProtection":"TRUE","Repel_shot":"TRUE","Repair_num":2288,"Shop_name":"medic_vest_01"},
+{"key":"Special Sniper","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":819,"Shop_name":"sniper_vest_02"},
+{"key":"Crown","HP":250,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":9616,"Shop_name":"shared_vest_crown_02"},
+{"key":"Rhino","HP":255,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":4070,"Shop_name":"medic_vest_03"},
+{"key":"Komodo","HP":255,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":4070,"Shop_name":"engineer_vest_03"},
+{"key":"Christmas","HP":260,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":2288,"Shop_name":"shared_vest_xmas_01"},
+{"key":"Frontline","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":3288,"Shop_name":"shared_vest_02"},
+{"key":"Warlord Medic","HP":275,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":9620,"Shop_name":"medic_vest_04"},
+{"key":"Warlord Engi","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":9620,"Shop_name":"engineer_vest_04"},
+{"key":"Warlord Rifle","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":9620,"Shop_name":"soldier_vest_04"},
+{"key":"Warlord Sniper","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":9620,"Shop_name":"sniper_vest_04"},
+{"key":"Corundum","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":1859,"Shop_name":"shared_vest_04"},
+{"key":"Python","HP":275,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":4070,"Shop_name":"soldier_vest_03"},
+{"key":"Extra Strong","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":913,"Shop_name":"shared_vest_06"}];
 	
 	return vests;	
 }
@@ -444,8 +444,6 @@ function getVests(){
 		chart.draw(data, options);
 	  //chart.draw(data, google.charts.Line.convertOptions(options));
 	}
-
-	
 	
 	
 	

@@ -18,7 +18,7 @@ if(!localStorage.getItem('Settings')){
 	var Settings = {
 		Rforeplay: " ",
 		Rcuddling: " ",
-		Rgrab: " ", //parseint( , 10);
+		Rgrab: " ",
 		Rkill: false, 
 		Rheadshot: 1, 
 		Rnade: 1,
@@ -692,6 +692,10 @@ function testCapture(before, after){
 				getWinID("StatCrack",'StatCrackID');
 			$(document).ready(SetMainPos(-1)); // This triggers too early for it to work if I don't include the wait time. Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
 
+			$("#flip").click(function(){
+				$("#panel").slideToggle("fast");
+			});
+			
 			document.getElementById('contentbuttons').style.display = 'none';
 			document.getElementById('Roptions').style.display = 'none';		
 			/*

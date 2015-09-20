@@ -127,8 +127,16 @@ body
 	font-family: Arial;
 	color: #ffffff;
 	text-decoration: none;
+
 }
 
+/*
+[class$="button"]:active{
+	transform: rotateY(360deg);
+    transform-style: preserve-3d;
+	transition-duration: .5s;
+}
+*/
 .subbutton{
  
     text-align: center;

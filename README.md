@@ -1,13 +1,13 @@
 # WarShadow
 
 This is my first HTML/CSS/JS project ever! I will be submitting it to the Overwolf app challenge sponsored by Nvidia  (ending Nov 29) in the Warface divisions. 
-The code is a bit messy and I'm working on adding comments and refactoring it. I was initially mainly concerned with adding new features. 
+The code is a bit messy and I'm working on adding comments, refactoring, and re-organizing it. I am planning to break up the horrendously big files and implement a module loader like Require.js soon. Initially, I was primarily concerned with adding new features and I didn't know about AMD. 
 
 Most of the features function as I expect them to, but some of them are unfinished (notably the Statcrack feature). The competition is around 25% over so I still have time to finish it.
 
 I have switched my focus from producing features to learning more about Javascript and improving the existing code so that it is cleaner and more intuitive to navigate.
 
-If you have not worked with Overwolf development before, here is a quick guide to installing this app.
+If you have not worked with Overwolf development before, here is a quick guide to installing this app (I'm pretty sure it is only for windows).
 Install the developer version of Overwolf found here: http://download.overwolf.com/OverwolfInstallerDevelopers.exe
 
 Install my app:
