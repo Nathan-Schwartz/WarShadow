@@ -1,4 +1,4 @@
-define(['jQuery','gearData','windowCoreFunctions', 'updateData'],function($,gData,wCore, upDat){//implement wCore
+define(['jquery','gearData','windowCoreFunctions', 'updateData', 'jsapi'],function($, gData,wCore, upDat, gAPI){//implement wCore
 			
 		document.getElementById("distance").onchange = function(){
 			if(isNaN(parseFloat(document.getElementById("distance").value))){
@@ -25,10 +25,9 @@ define(['jQuery','gearData','windowCoreFunctions', 'updateData'],function($,gDat
 		console.log(myA);
 
 
-	google.load('visualization', '1', {packages: ['corechart', 'line']});
+	gAPI.google.load('visualization', '1', {packages: ['corechart', 'line']});
 
-	
-	
+
 	
 	
 function repairCalc(){//barely started
@@ -168,6 +167,19 @@ document.getElementById("distance").onchange = function(){upDat.updateData(1, tr
 			
 
 document.getElementById("content").onmousedown = function(){wCore.dragMove();};
+
+$('.tabs .tab-links a').on('click', function(e)  {
+        var currentAttrValue = $(this).attr('href');
+ 
+        // Show/Hide Tabs
+        $('.tabs ' + currentAttrValue).show().siblings().hide();
+ 
+        // Change/remove current tab to active
+        $(this).parent('li').addClass('active').siblings().removeClass('active');
+ 
+        e.preventDefault();
+    });
+
 
 
 });

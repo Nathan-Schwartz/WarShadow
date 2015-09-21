@@ -3,12 +3,13 @@
 	<head> 
 		<link rel="stylesheet" href="../css/info.css" />
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type"><!--data-main="../scripts/requireConfig"-->
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		
-		<script  src="../scripts/lib/require.js"></script>
-		
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1" >
+		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
+		<script>
+require(['requireConfig', 'jsapi'], function(){
+	require(['statcrack']);
+});
+</script>
 		
 		<title>StatCrack</title>
 	</head>
@@ -18,15 +19,15 @@
 		<div id="content">
 	
 	
-<div class="container">
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#menu1">Damage</a></li>
-    <li><a data-toggle="tab" href="#menu2">Repair</a></li>
-    <li><a data-toggle="tab" href="#menu3">Gear</a></li>
+<div class="tabs">
+  <ul class="tab-links">
+    <li class="active"><a href="#tab1">Damage</a></li>
+    <li><a href="#tab2">Repair</a></li>
+    <li><a href="#tab3">Gear</a></li>
   </ul>
 
   <div class="tab-content">
-    <div id="menu1" class="tab-pane fade in active">
+    <div id="tab1" class="tab active">
       <h3>Damage Stats</h3>
 		<b> Graph Options </b> <br>
 		Distance to display (max is 100): <input type="text" id="distance" value="50"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select data to display:
@@ -1286,7 +1287,7 @@ Attachment:
   <br><br><br><br>
   
     </div>
-    <div id="menu2" class="tab-pane fade">
+    <div id="tab2" class="tab">
       <h3>Repair Stats</h3>
   
   Warface Money Booster (%): <input type="text" id="booster"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" id="firstWin">&nbsp;&nbsp;First win bonus <br><br>
@@ -1647,7 +1648,7 @@ Melee Weapon:
 
  
     </div>
-    <div id="menu3" class="tab-pane fade">
+    <div id="tab3" class="tab">
       <h3>Gear Stats</h3>
      
 </head>
@@ -1676,15 +1677,7 @@ I plan to output some of the gear data to a table like this. A JS function itera
 <div id="KD" class="result"></div>
 
 </div>
-<script>
-require(['requireConfig'], function(){
-	require(['bootstrap'], function(){
-		require(['jsapi'], function(){
-			require(['statcrack'], function(){});
-		});
-	});
-});
-</script>
+
 </body>
 </html>
 

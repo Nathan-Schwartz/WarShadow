@@ -1,5 +1,5 @@
 		
-	define(['jQuery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording'], function($ ,gEvent, wCore, rHUD, rec){ 
+	define(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording'], function($ ,gEvent, wCore, rHUD, rec){ 
 		
 		
 	
@@ -280,7 +280,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 				getWinID("Crosshair",'CrosshairID');
 				getWinID("Settings",'SettingsID');
 				getWinID("StatCrack",'StatCrackID');
-			//$(document).ready(SetMainPos(-1)); // This triggers too early for it to work if I don't include the wait time. Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
+			$(document).ready(SetMainPos(-1)); // This triggers too early for it to work if I don't include the wait time. Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
 
 			/*$("#flip").click(function(){
 				$("#panel").slideToggle("fast");

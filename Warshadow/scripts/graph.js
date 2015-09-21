@@ -1,4 +1,5 @@
-define(function () {
+
+	define(['jsapi'],function(gAPI){
 
 function graphIT() {
 
@@ -21,7 +22,7 @@ function graphIT() {
 		};
 		console.log(options);
 		
-		var data = new google.visualization.DataTable();
+		var data = new gAPI.google.visualization.DataTable();
 		data.addColumn('number', 'X');
 		data.addColumn('number', document.getElementById("weaponSelect1").value);
 		
@@ -53,7 +54,7 @@ function graphIT() {
 		
 		data.addRows(myA);
 		
-		var chart = new google.visualization.LineChart(document.getElementById('chart'));
+		var chart = new gAPI.google.visualization.LineChart(document.getElementById('chart'));
 		chart.draw(data, options);
 	  //chart.draw(data, google.charts.Line.convertOptions(options));
 	}

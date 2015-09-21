@@ -2,14 +2,12 @@
 
 
 
-requirejs.config({
+require.config({
 		baseUrl: "../scripts",
-		paths: {
-			
-			bootstrap: '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js',
-			jsapi: '//www.google.com/jsapi',
-			jQuery: ['lib/jquery-2.1.4.min'],
-			underscore: 'lib/underscore',
+		
+		paths: {	
+			jsapi : ['//www.google.com/jsapi', ''],
+			jquery: 'lib/jquery-2.1.4.min',
 			smoke: 'SmokeTimer',
 			statcrack: 'StatCrack',
 			windowCoreFunctions: 'windowCoreFunctions',

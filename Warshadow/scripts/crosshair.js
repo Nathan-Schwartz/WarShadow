@@ -1,5 +1,5 @@
 	
-	define(['jQuery', 'windowCoreFunctions'], function($, wCore){
+	define(['jquery', 'windowCoreFunctions'], function($, wCore){
 
 
 

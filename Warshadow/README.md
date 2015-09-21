@@ -1,6 +1,6 @@
 # WarShadow
 
-This branch is unique from the others because I have started implementing require.js. I am still having some issues with it but its only been a day so I'll get it :)
+This branch is unique from the others because I have started implementing require.js. I am still having some issues with the google charts API and the StatCrack tab system but its only been a day so I'll get it :)
 I plan to implemenet underscore.js after I am comfortable with the require.js aspect of it.
 
 
