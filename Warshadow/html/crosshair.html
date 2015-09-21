@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+	<head> 
+		<link rel="stylesheet" href="../css/crosshair.css" />
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
+		<title>Crosshair</title>
+	</head>
+
+	<body>
+		<div id="content">
+		
+		<div id="preview"> </div>
+		
+		<div id="form">
+		<img id="cross">
+
+				<select id="drop">
+					<option value="none">Choose a reticle</option>
+					<option id="scope" value="scope">Thin Scope</option>
+					<option id="cyan" value="cyan">Cyan 45 degree</option>
+				</select>
+				<br>
+				<button id="hide">Select</button>
+		</div> 
+		
+		</div>
+	<script>
+	require(["requireConfig"], function(){
+					require(["crosshair"]);
+				});
+			
+	</script>
+	</body>
+</html>
+	
+		

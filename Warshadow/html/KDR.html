@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<link rel="stylesheet" href="../css/HUD.css" />
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
+		<title>HS #</title>
+	</head>
+
+	<body>
+		<div id="content">
+		<!--button id="close"></button-->
+		
+		<img src="../images/perf.png" id="KDRimage" class="icon" alt="KDR_icon" >
+		<div id="KD" class="result"></div>
+
+		</div>
+		<script>
+		require(["requireConfig"], function(){
+					require(["KDR"]);
+				});
+			
+		</script>
+	</body>
+</html>

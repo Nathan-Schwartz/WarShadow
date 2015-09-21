@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+	<head> 
+		<link rel="stylesheet" href="../css/HUD.css" />
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
+		<title>SmokeTimer</title>
+
+	</head>
+
+	<body>
+		<div id="content">
+		
+		<img src="../images/Smoke_Grenade_Render.png" id="smoke_image" alt="Smoke-icon">
+		<h1 id="smoke_content"></h1>
+
+		</div>
+		<script>
+		require(["requireConfig"], function(){
+					require(["smoke"]);
+				});
+		</script>
+	</body>
+</html>
