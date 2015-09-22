@@ -1,4 +1,4 @@
-define(['jquery','gearData','windowCoreFunctions', 'updateData', 'jsapi'],function($, gData,wCore, upDat, gAPI){//implement wCore
+define(['jquery','gearData','windowCoreFunctions', 'updateData'],function($, gData,wCore, upDat){//implement wCore
 			
 		document.getElementById("distance").onchange = function(){
 			if(isNaN(parseFloat(document.getElementById("distance").value))){
@@ -25,7 +25,7 @@ define(['jquery','gearData','windowCoreFunctions', 'updateData', 'jsapi'],functi
 		console.log(myA);
 
 
-	gAPI.google.load('visualization', '1', {packages: ['corechart', 'line']});
+	
 
 
 	

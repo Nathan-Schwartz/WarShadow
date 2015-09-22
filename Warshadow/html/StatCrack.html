@@ -5,11 +5,7 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type"><!--data-main="../scripts/requireConfig"-->
 		<meta name="viewport" content="width=device-width, initial-scale=1" >
 		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
-		<script>
-require(['requireConfig', 'jsapi'], function(){
-	require(['statcrack']);
-});
-</script>
+		
 		
 		<title>StatCrack</title>
 	</head>
@@ -1677,7 +1673,11 @@ I plan to output some of the gear data to a table like this. A JS function itera
 <div id="KD" class="result"></div>
 
 </div>
-
+<script>
+require(['requireConfig'], function(){
+	require(['statcrack']);
+});
+</script>
 </body>
 </html>
 

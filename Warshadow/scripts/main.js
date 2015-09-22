@@ -224,7 +224,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 											); 
 					localStorage.setItem("smallwindow", "true");
 				}
-			}, 1000); //200 min as of 8/25 (before external .js)
+			}, 0); //200 ms as of 8/25 (before external .js) 1000 ms at 9/15 ()before modules) 0 ms at 9/21 (after modules)
 		};
 			
 		
