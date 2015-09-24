@@ -1,9 +1,8 @@
 
-	define(['jsapi'],function(gAPI){
-
-	gAPI.google.load('visualization', '1', {packages: ['corechart', 'line']});
+define(['goog!visualization,1,packages:[corechart,line]'], function(){
+	//gAPI.google.load('visualization', '1', {packages: ['corechart', 'line']});
 	
-function graphIT() {
+function graphIT(myData) {//I just added data, its should leave though
 
 		var options = {
 			legend: { position: 'bottom' },
@@ -24,7 +23,7 @@ function graphIT() {
 		};
 		console.log(options);
 		
-		var data = new gAPI.google.visualization.DataTable();
+		var data = new google.visualization.DataTable();
 		data.addColumn('number', 'X');
 		data.addColumn('number', document.getElementById("weaponSelect1").value);
 		
@@ -53,10 +52,9 @@ function graphIT() {
 			options.vAxis.title = "Shots to kill";
 		}
 		
+		data.addRows(myData);
 		
-		data.addRows(myA);
-		
-		var chart = new gAPI.google.visualization.LineChart(document.getElementById('chart'));
+		var chart = new google.visualization.LineChart(document.getElementById('chart'));
 		chart.draw(data, options);
 	  //chart.draw(data, google.charts.Line.convertOptions(options));
 	}
