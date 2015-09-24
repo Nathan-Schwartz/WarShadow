@@ -224,34 +224,8 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 											); 
 					localStorage.setItem("smallwindow", "true");
 				}
-			}, 0); //200 ms as of 8/25 (before external .js) 1000 ms at 9/15 ()before modules) 0 ms at 9/21 (after modules)
+			}, 100); //200 ms as of 8/25 (before external .js) 1000 ms at 9/15 ()before modules) 0 ms at 9/21 (after modules)
 		};
-			
-		
-			
-			
-			//These were made for debugging
-			/*overwolf.games.onGameInfoUpdated.addListener(
-				function (value) {
-				console.log('onGameInfoUpdated');
-				console.log(value);
-				}
-			);
-			
-			overwolf.games.events.onInfoUpdates.addListener(
-				function (value) {
-				console.log('onInfoUpdates');
-				console.log(value);
-				}
-			);
-			
-			overwolf.games.events.onNewEvents.addListener(
-				function (value) {
-				console.log('onNewEvents');
-				console.log(value);
-				}
-			);*/
-		
 		
 			
 //		Game Events Listener
@@ -286,8 +260,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 				$("#panel").slideToggle("fast");
 			});*/
 			
-			document.getElementById('contentbuttons').style.display = 'none';
-			document.getElementById('Roptions').style.display = 'none';		
+				
 			/*
 			overwolf.settings.registerHotKey(
 			"crosshair",

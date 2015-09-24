@@ -6,7 +6,11 @@ require.config({
 		baseUrl: "../scripts",
 		
 		paths: {	
-			jsapi : ['//www.google.com/jsapi', ''],
+			//jsapi : ['//www.google.com/jsapi'],
+		
+                   async : 'lib/async',
+                   goog : 'lib/goog',
+                   propertyParser : 'lib/propertyParser',
 			jquery: 'lib/jquery-2.1.4.min',
 			smoke: 'SmokeTimer',
 			statcrack: 'StatCrack',
@@ -26,6 +30,10 @@ require.config({
 			updateData: 'updateData',
 			calcData: 'calcData',
 			graph: 'graph',
-			KDR: 'KDR'
+			KDR: 'KDR',
+			arrayData : 'arrayData',
+			sync: 'sync',
+			gearDisplay: 'gearDisplay',
+			repairCalc: 'repairCalc',
 		}
 });
