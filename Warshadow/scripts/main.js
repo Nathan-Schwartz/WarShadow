@@ -9,23 +9,26 @@
 if(!localStorage.getItem('windowPOS')){ //If this is the first launch, initialize array that stores window position coordinates
 	var windowPOS = {
 		//pixels from top and left. [left,top]
-		kdr:[0,0], 
-		info:[0,0], 
-		hspercent:[0,0],
-		smoketimer:[0,0],
-		hschains:[0,0],
-		hscounter:[0,0],
-		main:[0,0],
-		crosshair:[0,0]
+		kdr:[50,200], 
+		info:[50,200], 
+		hspercent:[50,200],
+		smoketimer:[50,200],
+		hschains:[50,200],
+		hscounter:[50,200],
+		main:[50,200],
+		crosshair:[50,200]
 	};
 	localStorage.setItem('windowPOS', JSON.stringify(windowPOS));
 }
 
+
+//localStorage.removeItem('Settings');
+
 if(!localStorage.getItem('Settings')){
 	var Settings = {
-		Rforeplay: " ",
-		Rcuddling: " ",
-		Rgrab: " ",
+		Rforeplay: "5",
+		Rcuddling: "5",
+		Rgrab: "60",
 		Rkill: false, 
 		Rheadshot: 1, 
 		Rnade: 1,
@@ -42,22 +45,25 @@ if(!localStorage.getItem('Settings')){
 		Rachievepic: false,
 		Rcombokill: false,
 		Rclose: true,
-		/*windowPOS : {
-		//pixels from top and left. [left,top]
-		kdr:[0,0], 
-		info:[0,0], 
-		hspercent:[0,0],
-		smoketimer:[0,0],
-		hschains:[0,0],
-		hscounter:[0,0],
-		main:[0,0],
-		crosshair:[0,0]
-		}*/
+		windowPOS : {
+		kdr:[50,200], 
+		info:[50,200], 
+		hspercent:[50,200],
+		smoketimer:[50,200],
+		hschains:[50,200],
+		hscounter:[50,200],
+		main:[50,200],
+		crosshair:[50,200]
+		}
 	};
 	localStorage.setItem('Settings', JSON.stringify(Settings));
-	
 	console.log("Settings: " + localStorage.getItem('Settings'));
 }
+		
+		/*var test = JSON.parse(localStorage.getItem("Settings"));
+		console.log(test);
+		console.log(test.windowPOS.main[0]);
+		console.log(test.windowPOS.main[1]);*/
 		
 /*
 outputting
@@ -65,7 +71,8 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 	console.log(test.crosshair[0]); Rclose
 */
 	
-/*mutating values	
+/*
+mutating values	
 var test = JSON.parse(localStorage.getItem("windowPOS"));
 	test.crosshair[0] = 2463572565;
 	
@@ -74,16 +81,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 */
 
 	localStorage.setItem('smallwindow', "false");
-	localStorage.setItem('MainID', " ");
-	localStorage.setItem('HSCounterID', " ");
-	localStorage.setItem('HSChainsID', " ");
-	localStorage.setItem('SmokeTimerID', " ");
-	localStorage.setItem('HSPercentID', " ");
-	localStorage.setItem('InfoID', " ");
-	localStorage.setItem('KDRID', " ");
-	localStorage.setItem('CrosshairID'," ");
-	localStorage.setItem('SettingsID', " ");
-	localStorage.setItem('StatCrackID', " ");
+
 	
 	
 
@@ -129,42 +127,6 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=352301863"); //coldpeak
 		};
 
-		
-		function getWindowID(){
-		//This function's only purpose is to do bug testing and it is not related to window ID at all
-			var HS = localStorage.getItem('Headshots');
-			var Kills = localStorage.getItem('Kills');
-			
-			HS++;
-			Kills++;
-			console.log(Kills);
-			localStorage.setItem('Headshots', HS);
-			localStorage.setItem('Kills', Kills);
-			
-			var test = JSON.parse(localStorage.getItem("Settings"));
-			console.log(test);
-		}
-
-
-			/*
-			var currentdate = new Date(); 
-			var datetime = "Last Sync: " + currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/" 
-                + currentdate.getFullYear() + " @ "  
-                + currentdate.getHours() + ":"  
-                + currentdate.getMinutes() + ":" 
-                + currentdate.getSeconds();
-			
-			alert(datetime);*/
-		
-		
-
-
-			
-			
-
-
-		
 
 
 		function updatePOS(name) {
@@ -179,23 +141,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			);
 		};
 	
-		function showContent(){
-			if(document.getElementById('contentbuttons').style.display != 'none'){
-				document.getElementById('contentbuttons').style.display = 'none';
-			} else {
-				document.getElementById('contentbuttons').style.display = 'block';
-			}
-		};
-	
-		function showOptions(){
-			if(document.getElementById('Roptions').style.display != 'none'){
-				document.getElementById('Roptions').style.display = 'none';
-			} else {
-				document.getElementById('Roptions').style.display = 'block';
-			}
-		};
-	
-	
+
 	
 		function ResizeMain(){
 		/*This function will trigger upon clicking the icon in the main windows top-left corner
@@ -203,13 +149,15 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			Toggling it again will make the window larger so that all features can be seen.
 		*/
 			if(localStorage.getItem("smallwindow") == "true"){
-				overwolf.windows.changeSize(localStorage.getItem('MainID'), 160, 490);
+				overwolf.windows.changeSize(localStorage.getItem('MainID'), 160, 455);
 				localStorage.setItem("smallwindow", "false");			
 			}else if(localStorage.getItem("smallwindow") == "false"){
 				overwolf.windows.changeSize(localStorage.getItem('MainID'), 50, 50);
 				localStorage.setItem("smallwindow", "true");
 			}else
 				alert("Houston we have a problem");
+			
+			
 		};
 
 		function SetMainPos(newState) {
@@ -224,7 +172,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 											); 
 					localStorage.setItem("smallwindow", "true");
 				}
-			}, 100); //200 ms as of 8/25 (before external .js) 1000 ms at 9/15 ()before modules) 0 ms at 9/21 (after modules)
+			}, 150); //200 ms as of 8/25 (before external .js) 1000 ms at 9/15 ()before modules) 0 ms at 9/21 (after modules)
 		};
 		
 			
@@ -240,7 +188,6 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 		);
 
 	
-		
 			resetLocals();
 				//Get ID's of each window
 				getWinID("MainWindow",'MainID');
@@ -256,25 +203,18 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 				getWinID("StatCrack",'StatCrackID');
 			$(document).ready(SetMainPos(-1)); // This triggers too early for it to work if I don't include the wait time. Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
 
-			/*$("#flip").click(function(){
-				$("#panel").slideToggle("fast");
-			});*/
+			//Slider for recording
+			$("#record").click(function(){
+				$("#Roptions").slideToggle(200);
+			});
 			
-				
-			/*
-			overwolf.settings.registerHotKey(
-			"crosshair",
-				function(result) {
-					console.log(result);
-					if (result.status == "success") {
-						alert("This is my cool action!");
-					}
-					else{
-						console.log(result);
-					}
-				}
-			);*/
-			
+			//Slider for content
+			$("#showcontent").click(function(){
+				$("#contentbuttons").slideToggle(200);
+			});
+
+
+		
 			
 //		Menu Listeners
 		//resize and drag
@@ -291,16 +231,13 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 		//menu buttons
 		document.getElementById("resize").ondblclick = function(){updatePOS("MainWindow"); ResizeMain();};
 		document.getElementById("close").onclick = function(){wCore.closeWindow();};
-		document.getElementById("SubmitVideo").onclick = function(){SubmitVideo();};
-		document.getElementById("getWindowID").onclick = function(){getWindowID();};
+	//	document.getElementById("SubmitVideo").onclick = function(){SubmitVideo();};
 		document.getElementById("cold").onclick = function(){cold();};
 		document.getElementById("tower").onclick = function(){tower();};
 		document.getElementById("gear").onclick = function(){gear();};
 		document.getElementById("info").onclick = function(){rHUD.refreshHelper(true, 'Info', 'InfoID');};
-		document.getElementById("record").onclick = function(){showOptions();};
-		document.getElementById("showcontent").onclick = function(){showContent();};
 		document.getElementById("settingsWin").onclick = function(){rHUD.refreshHelper(true, 'Settings', 'SettingsID');};
-		
+		document.getElementById("Stats").onclick = function(){rHUD.refreshHelper(true,"StatCrack",'StatCrackID');};
 		
 		//menu checkboxes
 		document.getElementById("HSNum").onchange = function(){rHUD.refreshHUD();};
@@ -310,14 +247,12 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 		document.getElementById("KDRate").onchange = function(){rHUD.refreshHUD();};
 		document.getElementById("crosshair").onchange = function(){rHUD.refreshHUD();};
 		document.getElementById("autoon").onchange = function(){rec.turnOn();};
-		document.getElementById("Stats").onchange = function(){rHUD.refreshHelper(true,"StatCrack",'StatCrackID');};
 		
 		//replay testing
 		document.getElementById("turnOff").onclick = function(){rec.turnOff();};
 		document.getElementById("turnOn").onclick = function(){rec.turnOn();};
 		document.getElementById("capture").onclick = function(){rec.capture(1,-1);};
-		
-		console.log(rec);
+
 		
 		//Restore all windows together
 		overwolf.windows.onMainWindowRestored.addListener(

@@ -49,7 +49,6 @@ function initStats(){
 {"key":"Christmas Boots","Repair_num":1622,"Shop_name":"shared_shoes_xmas_01"},
 {"key":"Anti-directional Mine Boots","Repair_num":1622,"Shop_name":"soldier_shoes_02"},
 {"key":"Warlord Boots","Repair_num":1248,"Shop_name":"shared_shoes_09"}];
-	
 	localStorage.setItem('boots', JSON.stringify(boots));
 
 

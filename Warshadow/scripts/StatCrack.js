@@ -1,6 +1,6 @@
-define(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'gearDisplay'],function($, gData,wCore, upDat, arrayData, sync, gDisplay){//implement wCore
+define(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'gearDisplay', 'htmlInjection'],function($, gData,wCore, upDat, arrayData, sync, gDisplay, inject){//implement wCore
 			
-		
+		inject.injectHTML();
 
 
 
@@ -69,6 +69,7 @@ define(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 's
 				}
 			};
 			
+	//jQuery for tab implementation		
 	$(document).ready(function() {
 		$('.tabs .tab-links a').on('click', function(e)  {
 			var currentAttrValue = $(this).attr('href');
@@ -109,7 +110,7 @@ document.getElementById("distance").onchange = function(){
 		alert("You entered an invalid distance");
 	}
 	
-	upDat.updateData(0);//needed?
+	upDat.updateData(0);
 };
 
 	if(sync.testPlugin()){

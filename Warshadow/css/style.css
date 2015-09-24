@@ -12,9 +12,18 @@
 	display: none;	
 }
 
+.button:hover, .subbutton:hover{
+ transform: rotateY(10deg); 
+	
+}
+
+.button:active, .subbutton:active{
+ transform: rotateY(20deg); 
+ 
+}
+
 .resizeGrip {
 	background: transparent;
-	/*border: 1px transparent;*/
 	border:none;
 	position: absolute;
 }
@@ -118,12 +127,6 @@ body
     width:140px;
 	border:none;
 	background: #585e61;
-/*	 background: #a8a8a8;
-  background-image: -webkit-linear-gradient(top, #a8a8a8, #525252);
-  background-image: -moz-linear-gradient(top, #a8a8a8, #525252);
-  background-image: -ms-linear-gradient(top, #a8a8a8, #525252);
-  background-image: -o-linear-gradient(top, #a8a8a8, #525252);
-  background-image: linear-gradient(to bottom, #a8a8a8, #525252);*/
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	border-radius: 0px;
@@ -133,16 +136,11 @@ body
 	font-family: Arial;
 	color: #ffffff;
 	text-decoration: none;
+	outline: none;
 
 }
 
-/*
-[class$="button"]:active{
-	transform: rotateY(360deg);
-    transform-style: preserve-3d;
-	transition-duration: .5s;
-}
-*/
+
 .subbutton{
  
     text-align: center;
@@ -159,6 +157,7 @@ body
 	font-family: Arial;
 	color: #ffffff;
 	text-decoration: none;
+	outline: none;
 }
 
 

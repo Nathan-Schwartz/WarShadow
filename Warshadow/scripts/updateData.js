@@ -4,17 +4,15 @@ define(['gearData', 'calcData', 'graph', 'arrayData'], function(gData, cData, gr
 
 	function updateData(elementNum){
 
-		var weapon = " ";
-		var attach = " ";
+		var weapon = "";
+		var attach = "";
 		var arrnum = elementNum;
 		var myA = arrayData.getArray();
-		//console.log(myA);
 		var dataLimit = 2; 
 		
 		//This will stop the function from trying to enter too much data into the array. Google Charts is very strict about how much is in the array.
 		if(document.getElementById("showsecond").checked == true){
 			dataLimit++;
-			//alert("this works recursively");
 			if(document.getElementById("showthird").checked == true){
 				dataLimit++;
 				if(document.getElementById("showfourth").checked == true){
@@ -27,7 +25,6 @@ define(['gearData', 'calcData', 'graph', 'arrayData'], function(gData, cData, gr
 		
 		//if the weapon being updated is unselected don't let it graph data or update array
 		if(dataLimit <= arrnum){
-		//alert('failsafe triggered');
 			return;
 		}
 		

@@ -1,8 +1,8 @@
 
 define(['goog!visualization,1,packages:[corechart,line]'], function(){
-	//gAPI.google.load('visualization', '1', {packages: ['corechart', 'line']});
+	//gAPI.google.load('visualization', '1', {packages: ['corechart', 'line']}); //syntax before implementing Require.js plugin
 	
-function graphIT(myData) {//I just added data, its should leave though
+function graphIT(myData) {
 
 		var options = {
 			legend: { position: 'bottom' },
@@ -56,7 +56,7 @@ function graphIT(myData) {//I just added data, its should leave though
 		
 		var chart = new google.visualization.LineChart(document.getElementById('chart'));
 		chart.draw(data, options);
-	  //chart.draw(data, google.charts.Line.convertOptions(options));
+	  //chart.draw(data, google.charts.Line.convertOptions(options)); //syntax for the beta version
 	}
 	
 	return{graphIT:graphIT};

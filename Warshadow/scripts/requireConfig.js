@@ -35,5 +35,6 @@ require.config({
 			sync: 'sync',
 			gearDisplay: 'gearDisplay',
 			repairCalc: 'repairCalc',
+			htmlInjection: 'htmlInjection',
 		}
 });
