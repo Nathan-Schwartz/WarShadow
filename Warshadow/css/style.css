@@ -5,6 +5,12 @@
 	background: rgba(255, 255, 255, 0.05);
 }
 
+#contentbuttons{
+	display: none;
+}
+#Roptions{
+	display: none;	
+}
 
 .resizeGrip {
 	background: transparent;

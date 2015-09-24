@@ -107,6 +107,19 @@ list-style-type:none
 /*end tabs*/
 
 
+#secondweapon{
+	display : none;
+}
+#thirdweapon {
+	display : none;
+}
+#fourthweapon {
+	display : none;
+}
+#fifthweapon{
+	display : none;
+}
+
 body {
 	color: rgb(5,5,5);
 	font-family: Arial;

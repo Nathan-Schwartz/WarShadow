@@ -5,7 +5,15 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type"><!--data-main="../scripts/requireConfig"-->
 		<meta name="viewport" content="width=device-width, initial-scale=1" >
 		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
-		
+		<script>
+		  navigator.plugins.refresh(false);
+	  </script>
+
+    <embed  id="plugin" 
+            type="application/x-io-plugin"
+            width=0px 
+            height=0px>
+    </embed>
 		
 		<title>StatCrack</title>
 	</head>
@@ -21,10 +29,11 @@
     <li><a href="#tab2">Repair</a></li>
     <li><a href="#tab3">Gear</a></li>
   </ul>
-
+<hr>
   <div class="tab-content">
     <div id="tab1" class="tab active">
-      <h3>Damage Stats</h3>
+	<div id="pluginoutput"></div>
+      <h3>Damage Stats <br> FIX THE updateData(0) FUNCTION!!!! <br> special thanks to cryloic and luciderous for approving this presentation of data.</h3>
 		<b> Graph Options </b> <br>
 		Distance to display (max is 100): <input type="text" id="distance" value="50"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select data to display:
 		<select id="selectGData">
@@ -50,36 +59,35 @@
 		</select> &nbsp;&nbsp;&nbsp;&nbsp;
 		Enemy Vest:
 		<select id="enemyVest1">
-				<option value="default"> Default </option> <br>
-				<option value="atlant"> Atlant </option><br>
-				<option value="antimelee"> Anti-Melee </option> <br>
-				<option value="antiexplo"> Anti-Explosive </option><br>
-				<option value="assault"> Assault </option><br>
-				<option value="frontline"> Frontline </option> <br>
-				<option value="komodo"> Komodo </option><br>
-				<option value="rhino"> Rhino </option><br>
-				<option value="plate"> Plate </option><br>
-				<option value="titan2"> Titan-II </option><br>
-				<option value="crown"> Crown </option><br>
-				<option value="strikeforce"> Strikeforce </option> <br>
-				<option value="corundum"> Corundum </option> <br>
-				<option value="scout"> Scout </option><br>
-				<option value="python"> Python </option><br>
-				<option value="extrastrong"> Extra Strong </option><br>
-				<option value="specialrm"> Special Rifle </option><br>
-				<option value="specialrm"> Special Medic </option><br>
-				<option value="specialsniper"> Special Sniper </option> <br>
-				<option value="hawk"> Hawk </option><br>
-				<option value="antisniper"> Anti-Sniper </option><br>
-				<option value="christmas"> Christmas </option><br>
-				<option value="WarlordM"> Warlord Medic </option><br>
-				<option value="WarlordRES"> Warlord Rifle </option><br>
-				<option value="WarlordRES"> Warlord Engi </option><br>
-				<option value="WarlordRES"> Warlord Sniper </option><br>
-				<option value="NPCass"> NPC CQB/Assault/Sniper </option><br>
-				<option value="NPCdemo"> NPC Demoman</option><br>
-				<option value="NPCspec"> NPC Spec-Ops </option> <br>
-				<option value="specsil"> NPC Africa Shock Trooper </option><br>				
+			<option value="Default">Default</option> <br>
+			<option value="Anti-Melee">Anti-Melee</option> <br>
+			<option value="Atlant">Atlant</option> <br>
+			<option value="Anti-Explosive">Anti-Explosive</option> <br>
+			<option value="Assault">Assault</option> <br>
+			<option value="Strikeforce">Strikeforce</option> <br>
+			<option value="Titan-II">Titan-II</option> <br>
+			<option value="Anti-Sniper">Anti-Sniper</option> <br>
+			<option value="Special Medic/Rifle">Special Medic/Rifle</option> <br>
+			<option value="Plate">Plate</option> <br>
+			<option value="Hawk">Hawk</option> <br>
+			<option value="Scout">Scout</option> <br>
+			<option value="Special Sniper">Special Sniper</option> <br>
+			<option value="Crown">Crown</option> <br>
+			<option value="Rhino">Rhino</option> <br>
+			<option value="Komodo">Komodo</option> <br>
+			<option value="Christmas">Christmas</option> <br>
+			<option value="Frontline">Frontline</option> <br>
+			<option value="Warlord Medic">Warlord Medic</option> <br>
+			<option value="Warlord Engi">Warlord Engi</option> <br>
+			<option value="Warlord Rifle">Warlord Rifle</option> <br>
+			<option value="Warlord Sniper">Warlord Sniper</option> <br>
+			<option value="Corundum">Corundum</option> <br>
+			<option value="Python">Python</option> <br>
+			<option value="Extra Strong">Extra Strong</option> <br>
+			<option value="NPCass"> NPC CQB/Assault/Sniper </option><br>
+			<option value="NPCdemo"> NPC Demoman</option><br>
+			<option value="NPCspec"> NPC Spec-Ops </option> <br>
+			<option value="specsil"> NPC Africa Shock Trooper </option><br>	
 		</select> <br><br>
 		
 		
@@ -1269,20 +1277,19 @@ Attachment:
 </select> <br> <br>  
   
   </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
   <br><br><br><br>
   
     </div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
     <div id="tab2" class="tab">
       <h3>Repair Stats</h3>
   
@@ -1647,18 +1654,16 @@ Melee Weapon:
     <div id="tab3" class="tab">
       <h3>Gear Stats</h3>
      
-</head>
-<body>
-I plan to output some of the gear data to a table like this. A JS function iterates through an array and adds rows to this table. In the future I will edit the data so its user friendly.
-<table id="table">
-  <tr>
-    <th>Helmets</th>
-    <th>Head resistance</th>
-    <th>HP regen</th>
-  </tr>
- 
-  </tr>
-</table>
+	</head>
+	<body>
+	I plan to output some of the gear data to a table like this. A JS function iterates through an array and adds rows to this table. In the future I will edit the data so its user friendly.
+	<table id="table">
+		<tr>
+			<th>Helmets</th>
+			<th>Head resistance</th>
+			<th>HP regen</th>
+		</tr>
+	</table>
 
 	 
 	 
