@@ -1,6 +1,6 @@
 define(function () {
 
-function getHelmets(){
+function initStats(){
 	var helmets = [
 {"key":"Warlord","HP_regen":8,"Damage_reduc":0.4,"Mine":"FALSE","Flash":"FALSE","Repair_num":500,"Shop_name":"medic_helmet_07"},
 {"key":"Elite Crown","HP_regen":8,"Damage_reduc":0.3,"Mine":"FALSE","Flash":"TRUE","Repair_num":1170,"Shop_name":"medic_helmet_crown_02"},
@@ -10,13 +10,9 @@ function getHelmets(){
 {"key":"Advanced","HP_regen":0,"Damage_reduc":0.8,"Mine":"FALSE","Flash":"FALSE","Repair_num":624,"Shop_name":"medic_helmet_03"},
 {"key":"Default","HP_regen":0,"Damage_reduc":0.9,"Mine":"FALSE","Flash":"FALSE","Repair_num":0,"Shop_name":"medic_helmet_01"},
 {"key":"npc","HP_regen":0,"Damage_reduc":1,"Mine":"FALSE","Flash":"FALSE","Repair_num":0,"Shop_name":"none"}];
+	localStorage.setItem('helmets', JSON.stringify(helmets));
 	
-	return helmets;
-}
 
-
-
-function getGloves(){
 	var gloves =[
 {"key":"Knockdown Gloves","Repair_num":532,"Shop_name":"soldier_hands_01"},
 {"key":"Engineer Gloves","Repair_num":1700,"Shop_name":"engineer_hands_01"},
@@ -33,11 +29,10 @@ function getGloves(){
 {"key":"Default Gloves","Repair_num":0,"Shop_name":"shared_hands_01"},
 {"key":"Light Gloves","Repair_num":1700,"Shop_name":"medic_hands_01"},
 {"key":"Warlord Gloves","Repair_num":6010,"Shop_name":"shared_hands_07"}]
-	return gloves;
-}
+	localStorage.setItem('gloves', JSON.stringify(gloves));
 
 
-function getBoots(){
+
 	var boots = [
 {"key":"Fast Anti-directional Mine Shoes","Repair_num":2040,"Shop_name":"engineer_shoes_01"},
 {"key":"Gumboots","Repair_num":1622,"Shop_name":"soldier_shoes_02"},
@@ -55,13 +50,12 @@ function getBoots(){
 {"key":"Anti-directional Mine Boots","Repair_num":1622,"Shop_name":"soldier_shoes_02"},
 {"key":"Warlord Boots","Repair_num":1248,"Shop_name":"shared_shoes_09"}];
 	
-	return boots;
-}
+	localStorage.setItem('boots', JSON.stringify(boots));
 
-function getKnives(){
+
 	var knives = [
 {"key":"Executor knife","Repair_num":0,"Shop_name":"kn01_default"},
-{"key":"Ultra Marine","Repair_num":448,"Shop_name":"kn02_shop"},
+{"key":"Ultra Marine","Repair_num":448,"Shop_name":"kn02"},
 {"key":"NY Ultra Marine","Repair_num":442,"Shop_name":"kn02_cny01_shop"},
 {"key":"Icicle Knife","Repair_num":442,"Shop_name":"kn02_xmas_shop"},
 {"key":"Black Hawk","Repair_num":5200,"Shop_name":"kn03_shop"},
@@ -85,10 +79,9 @@ function getKnives(){
 {"key":"Classic Soviet Knife","Repair_num":600,"Shop_name":"kn43_vdv_shop"},
 {"key":"Digger of Doom","Repair_num":2184,"Shop_name":"kn44_fld01_shop"}];
 	
-	return knives;
-}
+	localStorage.setItem('knives', JSON.stringify(knives));
 
-function getWeapons(){
+
 	var weapons = [
 {"key":"Exar-L PDW Gold","Damage":80,"RPM":730,"Damage_reduc":3,"Min_damage":35,"Min_range":10.5,"Class":"E","Archetype":"R","Camo":"Vanilla","Repair_num":5100,"Shop_name":"smg31_gold01_shop"},
 {"key":"Exar-L PDW","Damage":80,"RPM":730,"Damage_reduc":3,"Min_damage":35,"Min_range":9.5,"Class":"E","Archetype":"R","Camo":"Vanilla","Repair_num":5100,"Shop_name":"smg31_shop"},
@@ -303,14 +296,9 @@ function getWeapons(){
 {"key":"FCG-R3 Sneakpeak","Damage":800,"RPM":40,"Damage_reduc":0.08,"Min_damage":800,"Min_range":500,"Class":"special","Archetype":"special","Camo":"Sneakpeak","Repair_num":0,"Shop_name":"rg01_zsd01_shop"},
 {"key":"R32A1 Sneakpeak","Damage":100,"RPM":60,"Damage_reduc":2,"Min_damage":11,"Min_range":70,"Class":"special","Archetype":"special","Camo":"Sneakpeak","Repair_num":2496,"Shop_name":"gl01_shop"},
 {"key":"AR88 Sneakpeak","Damage":75,"RPM":500,"Damage_reduc":1.2,"Min_damage":45,"Min_range":13,"Class":"R","Archetype":"R","Camo":"Sneakpeak","Repair_num":24960,"Shop_name":"ar41_shop"}];
+	localStorage.setItem('weapons', JSON.stringify(weapons));
 
 
-	return weapons;	
-}
-
-
-function getVests(){
-	
 	var vests = [
 {"key":"Default","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":0,"Shop_name":"shared_vest_01"},
 {"key":"Anti-Melee","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":811,"Shop_name":"shared_vest_05"},
@@ -337,18 +325,100 @@ function getVests(){
 {"key":"Corundum","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":1859,"Shop_name":"shared_vest_04"},
 {"key":"Python","HP":275,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":4070,"Shop_name":"soldier_vest_03"},
 {"key":"Extra Strong","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":913,"Shop_name":"shared_vest_06"}];
+	localStorage.setItem('vests', JSON.stringify(vests));
 	
-	return vests;	
+	localStorage.setItem('dataLoaded',true);//I really hate to put this in here, but if I checked the existance of other locals I was getting fatal parsing errors
 }
 
 
+function getHelmets(){
+	return JSON.parse(localStorage.getItem("helmets"));
+}
+
+function getGloves(){	
+	return JSON.parse(localStorage.getItem("gloves"));
+}	
+
+function getBoots(){
+	return JSON.parse(localStorage.getItem("boots"));
+}
+
+function getKnives(){
+	return JSON.parse(localStorage.getItem("knives"));
+}
+
+function getWeapons(){
+	return JSON.parse(localStorage.getItem("weapons"));
+}
+
+function getVests(){
+	return JSON.parse(localStorage.getItem("vests"));
+}
+
+
+
+function setHelmets(arr){
+	JSON.stringify(localStorage.setItem("helmets", arr));
+}
+
+function setGloves(arr){	
+	JSON.stringify(localStorage.setItem("gloves", arr));
+}	
+
+function setBoots(arr){
+	JSON.stringify(localStorage.setItem("boots", arr));
+}
+
+function setKnives(arr){
+	JSON.stringify(localStorage.setItem("knives", arr));
+}
+
+function setWeapons(arr){
+	JSON.stringify(localStorage.setItem("weapons", arr));
+}
+
+function setVests(arr){
+	JSON.stringify(localStorage.setItem("vests", arr));
+}
+
 	return {
+		initStats : initStats,
+		
 		getHelmets:getHelmets,
 		getGloves:getGloves,
 		getBoots:getBoots,
 		getKnives:getKnives,
 		getWeapons:getWeapons,
-		getVests:getVests
+		getVests:getVests,
+		
+		setHelmets:setHelmets,
+		setGloves:setGloves,
+		setBoots:setBoots,
+		setKnives:setKnives,
+		setWeapons:setWeapons,
+		setVests:setVests
 	};
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
