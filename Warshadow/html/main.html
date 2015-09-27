@@ -23,34 +23,34 @@
 		<img src="../images/minimize.png" id="close" alt="close">
 		<img src="../images/info.png" id="info" alt="info">
 		<img src="../images/options1.png" id="settingsWin" alt="settings">
-		<!-- What I did with line breaks is terribly abusive and immoral. I used to be scared of CSS so I shortened the height of line breaks to space out the menu.-->
-		<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+		
+		<br> <br>  <br>
+		<!--img src="" id="loading" alt="loading"-->
 
-			<u><b>Select Features:</b> </u> <br><br> <br><br>
+			<u><b>Select Features:</b> </u> <br>
 			<input type="checkbox" class="checkbox" id="HSNum"> # of Headshots <br>
 			<input type="checkbox" class="checkbox" id="HSPerc"> % of Headshots <br>
 			<input type="checkbox" class="checkbox" id="HSChain"> HS Chain Avg <br>
-			<input type="checkbox" class="checkbox" id="STimer"> Smoke timer <br>
 			<input type="checkbox" class="checkbox" id="KDRate"> KDR tracker <br>
-			<input type="checkbox" class="checkbox" id="crosshair"> X-hair <br>
-			<input type="checkbox" class="checkbox" id="autoon"> Auto-capture <br><br><br><br>
+			<!--input type="checkbox" class="checkbox" id="crosshair"> X-hair <br-->
+			<input type="checkbox" class="checkbox" id="autoon"> Auto-capture <br>
 			
-			<button id="Stats" class="button"> StatCrack </button><br><br>
-			<button id="record" class="button"> Recording </button><br><br>
+			<div class="feedback" id="Rloading">Enabling Recording</div>
+			<div class="feedback" id="Wloading">Launching . . .</div>
+			
+			<button id="Stats" class="button"> StatCrack </button>
+			<button class="button" id="STimer"> Smoke timer </button>
+			<button id="record" class="button"> Recording</button>
 			<div id="Roptions">
-				<button id="turnOn" class="subbutton"> Start Recording </button><br><br>
-				<button id="capture" class="subbutton"> Capture </button> <br><br>
-				<button id="turnOff" class="subbutton"> Stop Recording </button> <br><br><br>
+				<button id="turnOn" class="subbutton"> Start Recording </button>
+				<button id="capture" class="subbutton"> Capture </button> 
+				<button id="turnOff" class="subbutton"> Stop Recording </button>
 			</div>
 			
-			
-		<!--button id="SubmitVideo" class="button">Submit Video</button>	<br> <br> <br> <br-->
-			
-			<button id="showcontent" class="button"><b>Content by me</b></button> <br><br>
+			<button id="showcontent" class="button"><b>Guides I wrote</b></button>
 		<div id="contentbuttons">	
-			<button id="cold" class="subbutton">Cold Peak</button> <br><br>
-			<button id="tower" class="subbutton">Tower & Basics</button> <br><br>
-			<button id="gear" class="subbutton">Gear Comparisons</button> <br>
+			<button id="cold" class="subbutton">Cold Peak</button> 
+			<button id="tower" class="subbutton">Tower & Basics</button>
 		</div>
 			<script>
 

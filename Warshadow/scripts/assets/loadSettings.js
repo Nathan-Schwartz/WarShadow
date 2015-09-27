@@ -1,6 +1,7 @@
 define(function () {
 
 		function loadSettings(){//Load window with the most recent settings
+		
 			var temp = JSON.parse(localStorage.getItem("Settings"));
 			
 			document.getElementById("grablength").value = temp.Rgrab;
@@ -63,11 +64,11 @@ define(function () {
 			}
 			
 			
-			if(temp.Rcombokill == true){
+			/*if(temp.Rcombokill == true){
 				document.getElementById("combokill").checked = true;
 			}else{
 				document.getElementById("combokill").checked = false;
-			}
+			}*/
 			
 			if(temp.Rdoublekill == true){
 				document.getElementById("doublekill").checked = true;

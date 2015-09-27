@@ -11,6 +11,29 @@
 #Roptions{
 	display: none;	
 }
+/*
+#loading{
+	
+	-webkit-transform: rotate(450deg);
+ -moz-transform: rotate(450deg);
+ -o-transform: rotate(450deg);
+  transform: rotate(450deg);
+ -webkit-transition-duration: 5s;
+ -moz-transition-duration: 5s;
+ -o-transition-duration: 5s;
+  transition-duration: 5s;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	
+}*/
+
+.feedback{
+	display: none;
+	color: red;
+	text-shadow:none;
+}
+
 
 .button:hover, .subbutton:hover{
  transform: rotateY(10deg); 
@@ -34,7 +57,6 @@ h1 {
 
 body 
 {
-	line-height: 25%;
 	color: rgb(250,250,250);
 	font-family: Arial;	
 	text-shadow:
@@ -44,6 +66,13 @@ body
 		1px 1px 0 #000;
 		}
 
+#turnOff{
+	margin-bottom: 5px;
+}
+
+#Stats{
+	margin-top:10px;
+}
 
 #content {
 	position: absolute;
@@ -121,7 +150,6 @@ body
 
 
 .button{
- 
     text-align: center;
     padding: 3px; 
     width:140px;
@@ -137,7 +165,7 @@ body
 	color: #ffffff;
 	text-decoration: none;
 	outline: none;
-
+	margin: 2px;
 }
 
 
@@ -158,6 +186,7 @@ body
 	color: #ffffff;
 	text-decoration: none;
 	outline: none;
+	margin: 2px;
 }
 
 
@@ -202,3 +231,5 @@ top:2px;
 left:135px;
 z-index:1;
 }
+
+

@@ -1,8 +1,7 @@
 define(function () {
 
 function initStats(){
-	var helmets = [
-{"key":"Warlord","HP_regen":8,"Damage_reduc":0.4,"Mine":"FALSE","Flash":"FALSE","Repair_num":500,"Shop_name":"medic_helmet_07"},
+	var helmets = [{"key":"Warlord","HP_regen":8,"Damage_reduc":0.4,"Mine":"FALSE","Flash":"FALSE","Repair_num":500,"Shop_name":"medic_helmet_07"},
 {"key":"Elite Crown","HP_regen":8,"Damage_reduc":0.3,"Mine":"FALSE","Flash":"TRUE","Repair_num":1170,"Shop_name":"medic_helmet_crown_02"},
 {"key":"Dread mask","HP_regen":0,"Damage_reduc":0.55,"Mine":"FALSE","Flash":"TRUE","Repair_num":1430,"Shop_name":"shared_helmet_hlw_03"},
 {"key":"Tactical","HP_regen":0,"Damage_reduc":0.8,"Mine":"FALSE","Flash":"TRUE","Repair_num":819,"Shop_name":"medic_helmet_02"},
@@ -13,47 +12,44 @@ function initStats(){
 	localStorage.setItem('helmets', JSON.stringify(helmets));
 	
 
-	var gloves =[
-{"key":"Knockdown Gloves","Repair_num":532,"Shop_name":"soldier_hands_01"},
-{"key":"Engineer Gloves","Repair_num":1700,"Shop_name":"engineer_hands_01"},
-{"key":"Mobility Gloves","Repair_num":1700,"Shop_name":"soldier_hands_03"},
-{"key":"Multipurpose Gloves","Repair_num":1700,"Shop_name":"sniper_hands_01"},
-{"key":"Christmas Gloves","Repair_num":624,"Shop_name":"shared_hands_xmas_01"},
-{"key":"Special Edition Gloves","Repair_num":0,"Shop_name":"shared_hands_promo_01"},
-{"key":"Elite Crown Gloves","Repair_num":1700,"Shop_name":"shared_hands_crown_02"},
-{"key":"Assault Gloves","Repair_num":532,"Shop_name":"shared_hands_06"},
-{"key":"Carbon Fibre Gloves","Repair_num":930,"Shop_name":"shared_hands_05"},
-{"key":"Combat Gloves","Repair_num":658,"Shop_name":"shared_hands_04"},
-{"key":"Melee hit Gloves","Repair_num":760,"Shop_name":"shared_hands_03"},
-{"key":"Protective Gloves","Repair_num":405,"Shop_name":"shared_hands_02"},
-{"key":"Default Gloves","Repair_num":0,"Shop_name":"shared_hands_01"},
-{"key":"Light Gloves","Repair_num":1700,"Shop_name":"medic_hands_01"},
-{"key":"Warlord Gloves","Repair_num":6010,"Shop_name":"shared_hands_07"}]
+	var gloves = [{"key":"Knockdown Gloves","recoil_reduc":0,"Knockdown":"TRUE","Damage_reduc":0,"Reload":0,"Melee_range":0,"Melee_speed":0,"Swap_speed":0,"Spread_reduc":0,"Repair_num":532,"Shop_name":"@ui_armor_soldier_hands_01_name"},
+{"key":"Engineer Gloves","recoil_reduc":0,"Knockdown":"FALSE","Damage_reduc":0,"Reload":0.8,"Melee_range":0,"Melee_speed":0,"Swap_speed":0,"Spread_reduc":0,"Repair_num":1700,"Shop_name":"@ui_armor_engineer_hands_01_name"},
+{"key":"Mobility Gloves","recoil_reduc":0,"Knockdown":"FALSE","Damage_reduc":0,"Reload":0.8,"Melee_range":0,"Melee_speed":0,"Swap_speed":1.2,"Spread_reduc":0,"Repair_num":1700,"Shop_name":"@ui_armor_soldier_hands_03_name"},
+{"key":"Multipurpose Gloves","recoil_reduc":0,"Knockdown":"FALSE","Damage_reduc":0,"Reload":0.8,"Melee_range":0,"Melee_speed":0,"Swap_speed":1.2,"Spread_reduc":0,"Repair_num":1700,"Shop_name":"@ui_armor_sniper_hands_01_name"},
+{"key":"Christmas Gloves","recoil_reduc":0,"Knockdown":"FALSE","Damage_reduc":0,"Reload":0.8,"Melee_range":0,"Melee_speed":0,"Swap_speed":0,"Spread_reduc":0,"Repair_num":624,"Shop_name":"@ui_armor_shared_hands_xmas_01_name"},
+{"key":"Special Edition Gloves","recoil_reduc":0,"Knockdown":"FALSE","Damage_reduc":0,"Reload":0,"Melee_range":0,"Melee_speed":0,"Swap_speed":0,"Spread_reduc":0,"Repair_num":0,"Shop_name":"@ui_armor_shared_hands_promo_01_name"},
+{"key":"Elite Crown Gloves","recoil_reduc":0,"Knockdown":"FALSE","Damage_reduc":0.8,"Reload":0.8,"Melee_range":0,"Melee_speed":0,"Swap_speed":1.2,"Spread_reduc":0.85,"Repair_num":1700,"Shop_name":"@ui_armor_shared_hands_crown_02_name"},
+{"key":"Assault Gloves","recoil_reduc":0,"Knockdown":"FALSE","Damage_reduc":0,"Reload":0,"Melee_range":0,"Melee_speed":0,"Swap_speed":1.2,"Spread_reduc":0,"Repair_num":532,"Shop_name":"@ui_armor_shared_hands_06_name"},
+{"key":"Carbon Fibre Gloves","recoil_reduc":0,"Knockdown":"FALSE","Damage_reduc":0,"Reload":0.8,"Melee_range":1.2,"Melee_speed":1.35,"Swap_speed":0,"Spread_reduc":0,"Repair_num":930,"Shop_name":"@ui_armor_shared_hands_05_name"},
+{"key":"Combat Gloves","recoil_reduc":0,"Knockdown":"TRUE","Damage_reduc":0,"Reload":0.8,"Melee_range":0,"Melee_speed":0,"Swap_speed":0,"Spread_reduc":0,"Repair_num":658,"Shop_name":"@ui_armor_shared_hands_04_name"},
+{"key":"Melee hit Gloves","recoil_reduc":0,"Knockdown":"FALSE","Damage_reduc":0,"Reload":0,"Melee_range":1.2,"Melee_speed":1.35,"Swap_speed":0,"Spread_reduc":0,"Repair_num":760,"Shop_name":"@ui_armor_shared_hands_03_name"},
+{"key":"Protective Gloves","recoil_reduc":0,"Knockdown":"FALSE","Damage_reduc":0.8,"Reload":0,"Melee_range":0,"Melee_speed":0,"Swap_speed":0,"Spread_reduc":0,"Repair_num":405,"Shop_name":"@ui_armor_shared_hands_02_name"},
+{"key":"Default Gloves","recoil_reduc":0,"Knockdown":"FALSE","Damage_reduc":0,"Reload":0,"Melee_range":0,"Melee_speed":0,"Swap_speed":0,"Spread_reduc":0,"Repair_num":0,"Shop_name":"@ui_armor_shared_hands_01_name"},
+{"key":"Light Gloves","recoil_reduc":0,"Knockdown":"FALSE","Damage_reduc":0,"Reload":0.8,"Melee_range":0,"Melee_speed":0,"Swap_speed":0,"Spread_reduc":0,"Repair_num":1700,"Shop_name":"@ui_armor_medic_hands_01_name"},
+{"key":"Warlord Gloves","recoil_reduc":0.85,"Knockdown":"FALSE","Damage_reduc":0,"Reload":0.85,"Melee_range":0,"Melee_speed":0,"Swap_speed":1.25,"Spread_reduc":0,"Repair_num":6010,"Shop_name":"@ui_armor_shared_hands_07_name"}];
 	localStorage.setItem('gloves', JSON.stringify(gloves));
 
 
 
-	var boots = [
-{"key":"Fast Anti-directional Mine Shoes","Repair_num":2040,"Shop_name":"engineer_shoes_01"},
-{"key":"Gumboots","Repair_num":1622,"Shop_name":"soldier_shoes_02"},
-{"key":"Sapper Shoes","Repair_num":2040,"Shop_name":"sniper_shoes_01"},
-{"key":"Default Boots","Repair_num":0,"Shop_name":"shared_shoes_01"},
-{"key":"Fast Shoes","Repair_num":2040,"Shop_name":"shared_shoes_02"},
-{"key":"Protective Boots","Repair_num":355,"Shop_name":"shared_shoes_03"},
-{"key":"Sprint Shoes","Repair_num":930,"Shop_name":"shared_shoes_04"},
-{"key":"Light Boots","Repair_num":1622,"Shop_name":"shared_shoes_05"},
-{"key":"Silent Boots","Repair_num":845,"Shop_name":"shared_shoes_06"},
-{"key":"Spy Shoes","Repair_num":2040,"Shop_name":"shared_shoes_07"},
-{"key":"Sliding Boots","Repair_num":1622,"Shop_name":"shared_shoes_08"},
-{"key":"Crown Boots","Repair_num":1622,"Shop_name":"shared_shoes_crown_02"},
-{"key":"Christmas Boots","Repair_num":1622,"Shop_name":"shared_shoes_xmas_01"},
-{"key":"Anti-directional Mine Boots","Repair_num":1622,"Shop_name":"soldier_shoes_02"},
-{"key":"Warlord Boots","Repair_num":1248,"Shop_name":"shared_shoes_09"}];
+	var boots = [{"key":"Fast Anti-directional Mine Shoes","Damage_reduc_perc":0.8,"Mine_delay":"TRUE","Crouch_speed":0,"Sprint_speed":0,"Sprint_dur":0,"Slide_dist":0,"Silent":"FALSE","Repair_num":2040,"Shop_name":"@ui_armor_engineer_shoes_01_name"},
+{"key":"Gumboots","Damage_reduc_perc":0.8,"Mine_delay":"TRUE","Crouch_speed":0,"Sprint_speed":0,"Sprint_dur":0,"Slide_dist":0,"Silent":"FALSE","Repair_num":1622,"Shop_name":"@ui_armor_soldier_shoes_02_name"},
+{"key":"Sapper Shoes","Damage_reduc_perc":0.8,"Mine_delay":"TRUE","Crouch_speed":0,"Sprint_speed":0,"Sprint_dur":0,"Slide_dist":0,"Silent":"FALSE","Repair_num":2040,"Shop_name":"@ui_armor_sniper_shoes_01_name"},
+{"key":"Default Boots","Damage_reduc_perc":0,"Mine_delay":"FALSE","Crouch_speed":0,"Sprint_speed":0,"Sprint_dur":0,"Slide_dist":0,"Silent":"FALSE","Repair_num":0,"Shop_name":"@ui_armor_shared_shoes_01_name"},
+{"key":"Fast Shoes","Damage_reduc_perc":0,"Mine_delay":"FALSE","Crouch_speed":20,"Sprint_speed":1.25,"Sprint_dur":0,"Slide_dist":0,"Silent":"FALSE","Repair_num":2040,"Shop_name":"@ui_armor_shared_shoes_02_name"},
+{"key":"Protective Boots","Damage_reduc_perc":0.8,"Mine_delay":"FALSE","Crouch_speed":0,"Sprint_speed":0,"Sprint_dur":0,"Slide_dist":0,"Silent":"FALSE","Repair_num":355,"Shop_name":"@ui_armor_shared_shoes_03_name"},
+{"key":"Sprint Shoes","Damage_reduc_perc":0,"Mine_delay":"FALSE","Crouch_speed":0,"Sprint_speed":0,"Sprint_dur":1.5,"Slide_dist":0,"Silent":"FALSE","Repair_num":930,"Shop_name":"@ui_armor_shared_shoes_04_name"},
+{"key":"Light Boots","Damage_reduc_perc":0,"Mine_delay":"FALSE","Crouch_speed":0,"Sprint_speed":1.25,"Sprint_dur":0,"Slide_dist":0,"Silent":"FALSE","Repair_num":1622,"Shop_name":"@ui_armor_shared_shoes_05_name"},
+{"key":"Silent Boots","Damage_reduc_perc":0,"Mine_delay":"FALSE","Crouch_speed":0,"Sprint_speed":0,"Sprint_dur":0,"Slide_dist":0,"Silent":"TRUE","Repair_num":845,"Shop_name":"@ui_armor_shared_shoes_06_name"},
+{"key":"Spy Shoes","Damage_reduc_perc":0,"Mine_delay":"FALSE","Crouch_speed":0,"Sprint_speed":0,"Sprint_dur":1.5,"Slide_dist":0,"Silent":"TRUE","Repair_num":2040,"Shop_name":"@ui_armor_shared_shoes_07_name"},
+{"key":"Sliding Boots","Damage_reduc_perc":0,"Mine_delay":"FALSE","Crouch_speed":0,"Sprint_speed":1.15,"Sprint_dur":1.1,"Slide_dist":1.3,"Silent":"FALSE","Repair_num":1622,"Shop_name":"@ui_armor_shared_shoes_08_name"},
+{"key":"Crown Boots","Damage_reduc_perc":0,"Mine_delay":"TRUE","Crouch_speed":0,"Sprint_speed":1.25,"Sprint_dur":1.1,"Slide_dist":0,"Silent":"FALSE","Repair_num":1622,"Shop_name":"@ui_armor_shared_shoes_crown_02_name"},
+{"key":"Christmas Boots","Damage_reduc_perc":0,"Mine_delay":"FALSE","Crouch_speed":0,"Sprint_speed":1.2,"Sprint_dur":0,"Slide_dist":0,"Silent":"FALSE","Repair_num":1622,"Shop_name":"@ui_armor_shared_shoes_xmas_01_name"},
+{"key":"Anti-directional Mine Boots","Damage_reduc_perc":0.8,"Mine_delay":"TRUE","Crouch_speed":0,"Sprint_speed":0,"Sprint_dur":0,"Slide_dist":0,"Silent":"FALSE","Repair_num":1622,"Shop_name":"@ui_armor_soldier_shoes_02_name"},
+{"key":"Warlord Boots","Damage_reduc_perc":0.5,"Mine_delay":"","Crouch_speed":0,"Sprint_speed":1.2,"Sprint_dur":1.35,"Slide_dist":0,"Silent":"FALSE","Repair_num":1248,"Shop_name":"@ui_armor_shared_shoes_09_name"}];
 	localStorage.setItem('boots', JSON.stringify(boots));
 
 
-	var knives = [
-{"key":"Executor knife","Repair_num":0,"Shop_name":"kn01_default"},
+	var knives = [{"key":"Executor knife","Repair_num":0,"Shop_name":"kn01_default"},
 {"key":"Ultra Marine","Repair_num":448,"Shop_name":"kn02"},
 {"key":"NY Ultra Marine","Repair_num":442,"Shop_name":"kn02_cny01_shop"},
 {"key":"Icicle Knife","Repair_num":442,"Shop_name":"kn02_xmas_shop"},
@@ -77,12 +73,10 @@ function initStats(){
 {"key":"Hammer","Repair_num":442,"Shop_name":"kn42_ww2_shop"},
 {"key":"Classic Soviet Knife","Repair_num":600,"Shop_name":"kn43_vdv_shop"},
 {"key":"Digger of Doom","Repair_num":2184,"Shop_name":"kn44_fld01_shop"}];
-	
 	localStorage.setItem('knives', JSON.stringify(knives));
 
 
-	var weapons = [
-{"key":"Exar-L PDW Gold","Damage":80,"RPM":730,"Damage_reduc":3,"Min_damage":35,"Min_range":10.5,"Class":"E","Archetype":"R","Camo":"Vanilla","Repair_num":5100,"Shop_name":"smg31_gold01_shop"},
+	var weapons = [{"key":"Exar-L PDW Gold","Damage":80,"RPM":730,"Damage_reduc":3,"Min_damage":35,"Min_range":10.5,"Class":"E","Archetype":"R","Camo":"Vanilla","Repair_num":5100,"Shop_name":"smg31_gold01_shop"},
 {"key":"Exar-L PDW","Damage":80,"RPM":730,"Damage_reduc":3,"Min_damage":35,"Min_range":9.5,"Class":"E","Archetype":"R","Camo":"Vanilla","Repair_num":5100,"Shop_name":"smg31_shop"},
 {"key":"Karkom SMG","Damage":75,"RPM":840,"Damage_reduc":3,"Min_damage":38,"Min_range":11,"Class":"E","Archetype":"E","Camo":"Vanilla","Repair_num":6990,"Shop_name":"smg10_shop"},
 {"key":"Micro Oren","Damage":61,"RPM":1000,"Damage_reduc":3.6,"Min_damage":31,"Min_range":6.5,"Class":"E","Archetype":"E","Camo":"Vanilla","Repair_num":6240,"Shop_name":"smg02_shop"},
@@ -298,37 +292,44 @@ function initStats(){
 	localStorage.setItem('weapons', JSON.stringify(weapons));
 
 
-	var vests = [
-{"key":"Default","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":0,"Shop_name":"shared_vest_01"},
-{"key":"Anti-Melee","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":811,"Shop_name":"shared_vest_05"},
-{"key":"Atlant","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":2288,"Shop_name":"sniper_vest_01"},
-{"key":"Anti-Explosive","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":913,"Shop_name":"shared_vest_03"},
-{"key":"Assault","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":1859,"Shop_name":"shared_vest_09"},
-{"key":"Strikeforce","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":2288,"Shop_name":"soldier_vest_01"},
-{"key":"Titan-II","HP":225,"RFProtection":"FALSE","Repel_shot":"TRUE","Repair_num":807,"Shop_name":"shared_vest_07"},
-{"key":"Anti-Sniper","HP":225,"RFProtection":"FALSE","Repel_shot":"TRUE","Repair_num":819,"Shop_name":"engineer_vest_01"},
-{"key":"Special Medic/Rifle","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":819,"Shop_name":"medic_vest_02"},
-{"key":"Plate","HP":225,"RFProtection":"FALSE","Repel_shot":"TRUE","Repair_num":2288,"Shop_name":"engineer_vest_02"},
-{"key":"Hawk","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":4070,"Shop_name":"sniper_vest_03"},
-{"key":"Scout","HP":225,"RFProtection":"TRUE","Repel_shot":"TRUE","Repair_num":2288,"Shop_name":"medic_vest_01"},
-{"key":"Special Sniper","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":819,"Shop_name":"sniper_vest_02"},
-{"key":"Crown","HP":250,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":9616,"Shop_name":"shared_vest_crown_02"},
-{"key":"Rhino","HP":255,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":4070,"Shop_name":"medic_vest_03"},
-{"key":"Komodo","HP":255,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":4070,"Shop_name":"engineer_vest_03"},
-{"key":"Christmas","HP":260,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":2288,"Shop_name":"shared_vest_xmas_01"},
-{"key":"Frontline","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":3288,"Shop_name":"shared_vest_02"},
-{"key":"Warlord Medic","HP":275,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":9620,"Shop_name":"medic_vest_04"},
-{"key":"Warlord Engi","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":9620,"Shop_name":"engineer_vest_04"},
-{"key":"Warlord Rifle","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":9620,"Shop_name":"soldier_vest_04"},
-{"key":"Warlord Sniper","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":9620,"Shop_name":"sniper_vest_04"},
-{"key":"Corundum","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":1859,"Shop_name":"shared_vest_04"},
-{"key":"Python","HP":275,"RFProtection":"TRUE","Repel_shot":"FALSE","Repair_num":4070,"Shop_name":"soldier_vest_03"},
-{"key":"Extra Strong","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Repair_num":913,"Shop_name":"shared_vest_06"}];
+	var vests = [{"key":"Default","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0,"Special":"none","Repair_num":0,"Shop_name":"@ui_armor_shared_vest_01_name"},
+{"key":"Anti-Melee","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0.2,"Special":"none","Repair_num":811,"Shop_name":"@ui_armor_shared_vest_05_name"},
+{"key":"Atlant","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0.25,"Melee_res":0,"Special":"none","Repair_num":2288,"Shop_name":"@ui_armor_sniper_vest_01_name"},
+{"key":"Anti-Explosive","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0.25,"Melee_res":0,"Special":"none","Repair_num":913,"Shop_name":"@ui_armor_shared_vest_03_name"},
+{"key":"Assault","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0.2,"Special":"none","Repair_num":1859,"Shop_name":"@ui_armor_shared_vest_09_name"},
+{"key":"Strikeforce","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0.25,"Melee_res":0,"Special":"none","Repair_num":2288,"Shop_name":"@ui_armor_soldier_vest_01_name"},
+{"key":"Titan-II","HP":225,"RFProtection":"FALSE","Repel_shot":"TRUE","Armor_per_sec":0,"Explo_res":0.25,"Melee_res":0,"Special":"none","Repair_num":807,"Shop_name":"@ui_armor_shared_vest_07_name"},
+{"key":"Anti-Sniper","HP":225,"RFProtection":"FALSE","Repel_shot":"TRUE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0,"Special":"none","Repair_num":819,"Shop_name":"@ui_armor_engineer_vest_01_name"},
+{"key":"Special Medic/Rifle","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0,"Special":"none","Repair_num":819,"Shop_name":"@ui_armor_medic_vest_02_name"},
+{"key":"Plate","HP":225,"RFProtection":"FALSE","Repel_shot":"TRUE","Armor_per_sec":0,"Explo_res":0.25,"Melee_res":0,"Special":"none","Repair_num":2288,"Shop_name":"@ui_armor_engineer_vest_02_name"},
+{"key":"Hawk","HP":225,"RFProtection":"TRUE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0.3,"Melee_res":0.2,"Special":"10% faster swap","Repair_num":4070,"Shop_name":"@ui_armor_sniper_vest_03_name"},
+{"key":"Scout","HP":225,"RFProtection":"TRUE","Repel_shot":"TRUE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0,"Special":"none","Repair_num":2288,"Shop_name":"@ui_armor_medic_vest_01_name"},
+{"key":"Special Sniper","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0,"Special":"none","Repair_num":819,"Shop_name":"@ui_armor_sniper_vest_02_name"},
+{"key":"Crown","HP":250,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":3,"Explo_res":0.25,"Melee_res":0,"Special":"none","Repair_num":9616,"Shop_name":"@ui_armor_shared_vest_crown_02_name"},
+{"key":"Rhino","HP":255,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0.3,"Melee_res":0.2,"Special":"none","Repair_num":4070,"Shop_name":"@ui_armor_medic_vest_03_name"},
+{"key":"Komodo","HP":255,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0.3,"Melee_res":0,"Special":"none","Repair_num":4070,"Shop_name":"@ui_armor_engineer_vest_03_name"},
+{"key":"Christmas","HP":260,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0.25,"Melee_res":0,"Special":"none","Repair_num":2288,"Shop_name":"@ui_armor_shared_vest_xmas_01_name"},
+{"key":"Frontline","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":4,"Explo_res":0,"Melee_res":0,"Special":"none","Repair_num":3288,"Shop_name":"@ui_armor_shared_vest_02_name"},
+{"key":"Warlord Medic","HP":275,"RFProtection":"TRUE","Repel_shot":"FALSE","Armor_per_sec":8,"Explo_res":0,"Melee_res":0,"Special":"none","Repair_num":9620,"Shop_name":"@ui_armor_medic_vest_04_name"},
+{"key":"Warlord Engi","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":8,"Explo_res":0,"Melee_res":0,"Special":"none","Repair_num":9620,"Shop_name":"@ui_armor_engineer_vest_04_name"},
+{"key":"Warlord Rifle","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":8,"Explo_res":0,"Melee_res":0,"Special":"10% faster reload","Repair_num":9620,"Shop_name":"@ui_armor_soldier_vest_04_name"},
+{"key":"Warlord Sniper","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":8,"Explo_res":0.3,"Melee_res":0,"Special":"none","Repair_num":9620,"Shop_name":"@ui_armor_sniper_vest_04_name"},
+{"key":"Corundum","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0.2,"Special":"none","Repair_num":1859,"Shop_name":"@ui_armor_shared_vest_04_name"},
+{"key":"Python","HP":275,"RFProtection":"TRUE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0.3,"Melee_res":0,"Special":"none","Repair_num":4070,"Shop_name":"@ui_armor_soldier_vest_03_name"},
+{"key":"Extra Strong","HP":275,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0,"Special":"none","Repair_num":913,"Shop_name":"@ui_armor_shared_vest_06_name"}];
 	localStorage.setItem('vests', JSON.stringify(vests));
-	
-	localStorage.setItem('dataLoaded',true);//I really hate to put this in here, but if I checked the existance of other locals I was getting fatal parsing errors
-}
+};
 
+
+
+function clearStats(){
+	localStorage.removeItem("helmets");
+	localStorage.removeItem("gloves");
+	localStorage.removeItem("boots");
+	localStorage.removeItem("knives");
+	localStorage.removeItem("weapons");
+	localStorage.removeItem("vests");
+};
 
 function getHelmets(){
 	return JSON.parse(localStorage.getItem("helmets"));
@@ -336,52 +337,52 @@ function getHelmets(){
 
 function getGloves(){	
 	return JSON.parse(localStorage.getItem("gloves"));
-}	
+};
 
 function getBoots(){
 	return JSON.parse(localStorage.getItem("boots"));
-}
+};
 
 function getKnives(){
 	return JSON.parse(localStorage.getItem("knives"));
-}
+};
 
 function getWeapons(){
 	return JSON.parse(localStorage.getItem("weapons"));
-}
+};
 
 function getVests(){
 	return JSON.parse(localStorage.getItem("vests"));
-}
-
+};
 
 
 function setHelmets(arr){
 	JSON.stringify(localStorage.setItem("helmets", arr));
-}
+};
 
 function setGloves(arr){	
 	JSON.stringify(localStorage.setItem("gloves", arr));
-}	
+};
 
 function setBoots(arr){
 	JSON.stringify(localStorage.setItem("boots", arr));
-}
+};
 
 function setKnives(arr){
 	JSON.stringify(localStorage.setItem("knives", arr));
-}
+};
 
 function setWeapons(arr){
 	JSON.stringify(localStorage.setItem("weapons", arr));
-}
+};
 
 function setVests(arr){
 	JSON.stringify(localStorage.setItem("vests", arr));
-}
+};
 
 	return {
 		initStats : initStats,
+		clearStats:clearStats,
 		
 		getHelmets:getHelmets,
 		getGloves:getGloves,

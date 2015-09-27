@@ -80,9 +80,9 @@ define(function () {
 				temp.Rheadshot = 5;
 			}
 			
-			if(document.getElementById("combokill").checked){temp.Rcombokill = true;
+			/*if(document.getElementById("combokill").checked){temp.Rcombokill = true;
 			}else{temp.Rcombokill = false;
-			}
+			}*/
 			
 			if(document.getElementById("doublekill").checked){
 				temp.Rdoublekill = true;

@@ -3,20 +3,20 @@
 		
 		
 	
-		
+		//overwolf.windows.changeSize(localStorage.getItem('MainID'), 2, 2);
 		
 		
 if(!localStorage.getItem('windowPOS')){ //If this is the first launch, initialize array that stores window position coordinates
 	var windowPOS = {
 		//pixels from top and left. [left,top]
-		kdr:[50,200], 
-		info:[50,200], 
-		hspercent:[50,200],
-		smoketimer:[50,200],
-		hschains:[50,200],
-		hscounter:[50,200],
+		kdr:[50,150], 
+		info:[250,200], 
+		hspercent:[50,150],
+		smoketimer:[50,150],
+		hschains:[50,150],
+		hscounter:[50,150],
 		main:[50,200],
-		crosshair:[50,200]
+		crosshair:[50,150]
 	};
 	localStorage.setItem('windowPOS', JSON.stringify(windowPOS));
 }
@@ -114,11 +114,6 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 
 
 			
-			
-		function gear(){
-			window.open("https://docs.google.com/spreadsheets/d/1IznIOkCVcsjEiZ3u3T_CRMMWZRd5V_35uvwkYSea-T8/edit#gid=1755591787"); //gear statistics
-		};
-			
 		function tower(){
 			window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=299691346"); // tower
 		};
@@ -149,7 +144,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			Toggling it again will make the window larger so that all features can be seen.
 		*/
 			if(localStorage.getItem("smallwindow") == "true"){
-				overwolf.windows.changeSize(localStorage.getItem('MainID'), 160, 455);
+				overwolf.windows.changeSize(localStorage.getItem('MainID'), 160, 460);
 				localStorage.setItem("smallwindow", "false");			
 			}else if(localStorage.getItem("smallwindow") == "false"){
 				overwolf.windows.changeSize(localStorage.getItem('MainID'), 50, 50);
@@ -160,19 +155,19 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			
 		};
 
-		function SetMainPos(newState) {
+		function SetMainPos() {
 		//This function is in all window's files. It initializes size and position.
-			setTimeout(function(){
-				if(newState == -1){
+		
+			overwolf.windows.changePosition(
+					localStorage.getItem('MainID'), 
+					JSON.parse(localStorage.getItem("windowPOS")).main[0], 
+					JSON.parse(localStorage.getItem("windowPOS")).main[1]
+			); 
+				setTimeout(function(){
 					overwolf.windows.changeSize(localStorage.getItem('MainID'), 50, 50);
-					overwolf.windows.changePosition(
-											localStorage.getItem('MainID'), 
-											JSON.parse(localStorage.getItem("windowPOS")).main[0], 
-											JSON.parse(localStorage.getItem("windowPOS")).main[1]
-											); 
 					localStorage.setItem("smallwindow", "true");
-				}
-			}, 150); //200 ms as of 8/25 (before external .js) 1000 ms at 9/15 ()before modules) 0 ms at 9/21 (after modules)
+				
+				}, 100); //200 ms as of 8/25 (before external .js) 1000 ms at 9/15 ()before modules) 0 ms at 9/21 (after modules)
 		};
 		
 			
@@ -201,7 +196,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 				getWinID("Crosshair",'CrosshairID');
 				getWinID("Settings",'SettingsID');
 				getWinID("StatCrack",'StatCrackID');
-			$(document).ready(SetMainPos(-1)); // This triggers too early for it to work if I don't include the wait time. Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
+			$(document).ready(SetMainPos()); // This triggers too early for it to work if I don't include the wait time. Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
 
 			//Slider for recording
 			$("#record").click(function(){
@@ -213,8 +208,27 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 				$("#contentbuttons").slideToggle(200);
 			});
 
-
+			//Tell user that it is starting the recording feature
+			$("#autoon").click(function(){
+				if(document.getElementById("autoon").checked == true){
+					$("#Rloading").slideToggle(200);
+					setTimeout(function(){
+							$("#loading").slideToggle(200);
+					}, 1000);
+					
+				}
+			});
 		
+			//Tell user that window is launching
+			/*$("#autoon").click(function(){
+				if(document.getElementById("autoon").checked == true){
+					$("#Rloading").slideToggle(200);
+					setTimeout(function(){
+							$("#loading").slideToggle(200);
+					}, 1000);
+					
+				}
+			});*/
 			
 //		Menu Listeners
 		//resize and drag
@@ -230,23 +244,24 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 		
 		//menu buttons
 		document.getElementById("resize").ondblclick = function(){updatePOS("MainWindow"); ResizeMain();};
-		document.getElementById("close").onclick = function(){wCore.closeWindow();};
+		document.getElementById("close").onclick = function(){wCore.minimizeWindow();};
 	//	document.getElementById("SubmitVideo").onclick = function(){SubmitVideo();};
 		document.getElementById("cold").onclick = function(){cold();};
 		document.getElementById("tower").onclick = function(){tower();};
-		document.getElementById("gear").onclick = function(){gear();};
 		document.getElementById("info").onclick = function(){rHUD.refreshHelper(true, 'Info', 'InfoID');};
 		document.getElementById("settingsWin").onclick = function(){rHUD.refreshHelper(true, 'Settings', 'SettingsID');};
 		document.getElementById("Stats").onclick = function(){rHUD.refreshHelper(true,"StatCrack",'StatCrackID');};
+		document.getElementById("STimer").onclick = function(){rHUD.refreshHelper(true,"SmokeTimer",'SmokeTimerID');};
+		
 		
 		//menu checkboxes
 		document.getElementById("HSNum").onchange = function(){rHUD.refreshHUD();};
 		document.getElementById("HSPerc").onchange = function(){rHUD.refreshHUD();};
 		document.getElementById("HSChain").onchange = function(){rHUD.refreshHUD();};
-		document.getElementById("STimer").onchange = function(){rHUD.refreshHUD();};
+		
 		document.getElementById("KDRate").onchange = function(){rHUD.refreshHUD();};
-		document.getElementById("crosshair").onchange = function(){rHUD.refreshHUD();};
-		document.getElementById("autoon").onchange = function(){rec.turnOn();};
+		//document.getElementById("crosshair").onchange = function(){rHUD.refreshHUD();};
+		document.getElementById("autoon").onchange = function(){rec.turnOn();};// !!!!! only if checked?
 		
 		//replay testing
 		document.getElementById("turnOff").onclick = function(){rec.turnOff();};
@@ -257,7 +272,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 		//Restore all windows together
 		overwolf.windows.onMainWindowRestored.addListener(
 			function (value) {
-				refreshHUD();
+				rHUD.refreshHUD();
 			}
 		);
 		

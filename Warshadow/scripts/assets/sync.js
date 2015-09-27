@@ -81,6 +81,7 @@ function getText(){// !!!!!! implemenent failsafes for A) not a directory     B)
 								console.log(arrHelm[j1].Repair_num); 
 								console.log(newData[i][1]);
 								arrHelm[j1].Repair_num = Number(newData[i][1]);
+								//newData[i][1] = 0;
 								break
 							}
 						}
@@ -94,6 +95,7 @@ function getText(){// !!!!!! implemenent failsafes for A) not a directory     B)
 								console.log(arrWeap[j2].Repair_num);
 								console.log(newData[i][1]);
 								arrWeap[j2].Repair_num = Number(newData[i][1]);
+								//newData[i][1] = 0;
 								break
 							}
 						}
@@ -107,6 +109,7 @@ function getText(){// !!!!!! implemenent failsafes for A) not a directory     B)
 								console.log(arrGlov[j3].Repair_num);
 								console.log(newData[i][1]);
 								arrGlov[j3].Repair_num = Number(newData[i][1]);
+								//newData[i][1] = 0;
 								break
 							}
 						}
@@ -120,6 +123,7 @@ function getText(){// !!!!!! implemenent failsafes for A) not a directory     B)
 								console.log(arrVest[j4].Repair_num);
 								console.log(newData[i][1]);
 								arrVest[j4].Repair_num = Number(newData[i][1]);
+								//newData[i][1] = 0;
 								break
 							}
 						}
@@ -132,6 +136,7 @@ function getText(){// !!!!!! implemenent failsafes for A) not a directory     B)
 								console.log(arrBoot[j5].Repair_num);
 								console.log(newData[i][1]);
 								arrBoot[j5].Repair_num = Number(newData[i][1]);
+								//newData[i][1] = 0;
 								break
 							}
 						}
@@ -144,23 +149,32 @@ function getText(){// !!!!!! implemenent failsafes for A) not a directory     B)
 								console.log(arrKniv[j6].Repair_num);
 								console.log(newData[i][1]);
 								arrKniv[j6].Repair_num = Number(newData[i][1]);
+								//newData[i][1] = 0;
 								break
 							}
 						}
 					}
 					//update current stats
+					/*var leftout = [];
+					for(var newiter = 0; newiter < newData.length; newiter++){
+						if(newData[newiter][1] != 0)
+							leftout.push(newData[newiter]);
+					}
+					console.log(leftout);
+					*/
 					console.log(arrHelm);
 					console.log(arrBoot);
 					console.log(arrVest);
 					console.log(arrWeap);
 					
-					
-					/*gData.setKnives(arrKniv);
+					/*
+					gData.setKnives(arrKniv);
 					gData.setBoots(arrBoot);
 					gData.setVests(arrVest);
 					gData.setGloves(arrGlov);
 					gData.setWeapons(arrWeap);
-					gData.setHelmets(arrHelm);*/
+					gData.setHelmets(arrHelm);
+					*/
 			}
         });
 }

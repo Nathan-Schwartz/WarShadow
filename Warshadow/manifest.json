@@ -17,9 +17,9 @@
 					"file":"html/main.html",
 					"transparent":true,
 					"resizable":true,
-					"size":{"width":65, "height":50},
-					"min_size":{"width":25, "height":25},
-					"max_size":{"width":300, "height":800}
+					"size":{"width":1, "height":1},
+					"min_size":{"width":0,"height":0},
+					"show_in_taskbar": true
 					
 			},
 			"HSCounter":{

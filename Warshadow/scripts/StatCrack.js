@@ -1,7 +1,9 @@
 define(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'gearDisplay', 'htmlInjection'],function($, gData,wCore, upDat, arrayData, sync, gDisplay, inject){//implement wCore
 			
 		inject.injectHTML();
-
+		gData.initStats();
+		
+			
 
 
 			document.getElementById("showsecond").onchange = function(){
@@ -84,12 +86,15 @@ define(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 's
 		});
 	});
 	
+		if(sync.testPlugin()){
+		//sync.getText();
+	}else
+		console.log("failed to get plugin");
 	
 	arrayData.initializeArray();
-	
+
 			
-			
-document.getElementById("weaponSelect1").onchange = function(){upDat.updateData(1);};
+document.getElementById("weaponSelect1").onchange = function(){upDat.updateData(1); setTimeout(function(){$("#chart").slideDown(400);}, 100); };
 document.getElementById("weaponSelect2").onchange = function(){upDat.updateData(2);};
 document.getElementById("weaponSelect3").onchange = function(){upDat.updateData(3);};
 document.getElementById("weaponSelect4").onchange = function(){upDat.updateData(4);};
@@ -112,11 +117,5 @@ document.getElementById("distance").onchange = function(){
 	
 	upDat.updateData(0);
 };
-
-	if(sync.testPlugin()){
-		//sync.getText();
-	}else
-		console.log("failed to get plugin");
-	gData.initStats();
 
 });

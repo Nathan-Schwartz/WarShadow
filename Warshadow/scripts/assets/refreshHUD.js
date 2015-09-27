@@ -54,13 +54,6 @@ define(function () {
 			
 			else if (!document.getElementById('HSPerc').checked)
 				refreshHelper(false,"HSPercent",'HSPercentID');
-			
-
-			if (document.getElementById('STimer').checked)
-				refreshHelper(true,"SmokeTimer",'SmokeTimerID');
-					
-			else if (!document.getElementById('STimer').checked)
-				refreshHelper(false,"SmokeTimer",'SmokeTimerID');
 
 			if (document.getElementById('Stats').checked)
 				refreshHelper(true,"StatCrack",'StatCrackID');

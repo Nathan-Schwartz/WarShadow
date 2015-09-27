@@ -3,20 +3,30 @@ define(['goog!visualization,1,packages:[corechart,line]'], function(){
 	//gAPI.google.load('visualization', '1', {packages: ['corechart', 'line']}); //syntax before implementing Require.js plugin
 	
 function graphIT(myData) {
-
+// fontName: <string>,color: <string>,fontSize: 20,
 		var options = {
 			legend: { position: 'bottom' },
+			backgroundColor: {stroke: 'black',strokeWidth: 3, fill: '#F9F9F9'},
+			forceIframe: true,
+			enableInteractivity: true,
+			chartArea: {top:50, left: 150, height:'75%', width:'75%'}, 
 			hAxis: {
 				title: 'Distance (m)',
 				minValue:0,
 				viewWindow: {max: parseFloat(document.getElementById("distance").value)},
-				ticks: [10,20, 30, 40, 50, 60, 70, 80, 90, 100]
+				ticks: [10,20, 30, 40, 50, 60, 70, 80, 90, 100],
+				textStyle: {italic: true },
+				titleTextStyle: {fontSize: 20,bold: true, fontSize: 16 }
 			},
 			vAxis: {
 				title: 'Damage',
 				minValue: 0,
+				textStyle: {italic: true },
+				titleTextStyle: {fontSize: 20,bold: true, fontSize: 16 }
 			},
-		
+			legend:{position: 'top', 
+					textStyle: {bold: true},
+					alignment: 'center'},
 			width: 900,
 			height: 500,
 			colors: ['#a52714', '#097138']//, '#000080','#8B008B', '#FFFF00']

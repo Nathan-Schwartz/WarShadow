@@ -32,19 +32,22 @@
 <hr>
   <div class='tab-content'>
     <div id='tab1' class='tab active'>
-	<div id='pluginoutput'></div>
-      <h3>Damage Stats <br> special thanks to cryloic and luciderous for approving this presentation of data.</h3>
-		<b> Graph Options </b> <br>
-		Distance to display (max is 100): <input type='text' id='distance' value='50'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select data to display:
+
+	  <fieldset>
+		<legend><b>  Graph Options </b></legend><br>
+		Distance to display (max is 100): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select data to display:<br><input type='text' id='distance' value='50'> 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<select id='selectGData'>
 				<option value='Ddamage'> Damage </option> <br>
 				<option value='DttkH'> Time to kill (Headshots) </option><br>
 				<option value='DttkV'> Time to kill (Bodyshots) </option><br>
 				<option value='DntkH'> Bullets to kill (Headshots) </option><br>
 				<option value='DntkV'> Bullets to kill (Bodyshots) </option><br>
-		</select> <br><br>
+		</select> 
+	</fieldset> 
 		
-		<b>Enemy Options</b><br>
+		<fieldset id="enemyfield">
+		<legend><b>Enemy Options</b></legend><br>
 		
 				Enemy Helmet:
 		<select id='enemyHelmet1'>
@@ -56,7 +59,7 @@
 				<option value='Warlord'> Warlord </option> <br>
 				<option value='Elite Crown'> Elite Crown </option><br>
 				<option value='npc'> NPC helmet </option><br>
-		</select> &nbsp;&nbsp;&nbsp;&nbsp;
+		</select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		Enemy Vest:
 		<select id='enemyVest1'>
 			<option value='Default'>Default</option> <br>
@@ -88,12 +91,14 @@
 			<option value='NPCdemo'> NPC Demoman</option><br>
 			<option value='NPCspec'> NPC Spec-Ops </option> <br>
 			<option value='specsil'> NPC Africa Shock Trooper </option><br>	
-		</select> <br><br>
+		</select>
+		</fieldset>
 		
 		
-			  <div id='chart'></div><br><br>
+			  <div id='chart'></div>
 		
-		<b>Weapon Options</b><br>
+<fieldset id="weaponfield">
+		<legend> <b>Weapon Options</b></legend><br>
 		Weapon:
 		<select id='weaponSelect1'><!-- There is a slight delay while the rest of the list is injected so this item is essentially fake and will be used to make the transition less noticable -->
 		<option value='none'> Select a weapon &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option><br>
@@ -175,8 +180,6 @@ Attachment:
 </select> <br>
   
   
-  
-  
 <input type='checkbox' id='showfifth'> Add Weapon to compare <br>
   </div>
   
@@ -198,7 +201,8 @@ Attachment:
 <option value='specsil'> Specialized Silencer </option><br>
 </select> <br> <br>  
   
-  </div>
+  </div></fieldset>
+		
 
   <br><br><br><br>
   
@@ -578,7 +582,7 @@ Melee Weapon:
      
 	</head>
 	<body>
-	I plan to output some of the gear data to a table like this. A JS function iterates through an array and adds rows to this table. In the future I will edit the data so its user friendly.
+	Fix data representation for %s. Also maybe use an X instead of TRUE, nothing for false, and nothing for "none"
 	<table class="table" id='Htable'>
 		<tr>
 			<th>Helmet Name</th>
@@ -592,9 +596,13 @@ Melee Weapon:
 	<table class="table" id='Vtable'>
 		<tr>
 			<th>Vests Name</th>
+			<th>Health Points</th>
 			<th> Damage reduction per bullet </th>
 			<th>Armor regen/second</th>
 			<th>Repel bullets</th>
+			<th>Explosive reduction</th>
+			<th>Melee reduction</th>
+			<th>Special</th>
 		</tr>
 	</table><br><br>
 	
@@ -602,15 +610,26 @@ Melee Weapon:
 		<tr>
 			<th>Glove Name</th>
 			<th> Damage resistance</th>
-			<th>HP regen/second</th>
+			<th>Reload</th>
+			<th>Weapon Switch speed</th>
+			<th>Melee Range</th>
+			<th>Melee Speed</th>
+			<th>Recoil Reduction</th>
+			<th>Spread Reduction</th>
+			<th>Knock Down</th>
 		</tr>
 	</table><br><br>
 	
 	<table class="table" id='Btable'>
 		<tr>
-			<th>Helmet Name</th>
-			<th> Damage resistance</th>
-			<th>HP regen/second</th>
+			<th>Boot Name</th>
+			<th>Damage resistance</th>
+			<th>Mine</th>
+			<th>Silent</th>
+			<th>Sprint Speed</th>
+			<th>Sprint Duration</th>
+			<th>Slide distance</th>
+			<th>Crouch speed</th>
 		</tr>
 	</table><br><br>
 	

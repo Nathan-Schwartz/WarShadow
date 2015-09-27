@@ -20,6 +20,16 @@ function closeWindow(){
 	);
 };
 
+function minimizeWindow(){
+	overwolf.windows.getCurrentWindow(
+		function(result){
+			if (result.status=="success"){
+				overwolf.windows.minimize(result.window.id);
+			}
+		}
+	);
+};
+
 function dragResize(edge){
 	overwolf.windows.getCurrentWindow(
 		function(result){
@@ -33,7 +43,8 @@ function dragResize(edge){
 	return{
 		dragResize : dragResize,
 		closeWindow : closeWindow,
-		dragMove : dragMove
+		dragMove : dragMove,
+		minimizeWindow:minimizeWindow
 	};
 		
 });

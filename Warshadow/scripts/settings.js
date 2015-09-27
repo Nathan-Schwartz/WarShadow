@@ -1,5 +1,5 @@
 
-	define(['windowCoreFunctions', 'loadSettings','updateSettings'], function(wCore, updateS, loadS){
+	define(['jquery','windowCoreFunctions', 'loadSettings','updateSettings'], function($,wCore, loadS, updateS){
 
 	function resetLS(){
 		localStorage.setItem('Kills', 0); 
@@ -81,7 +81,7 @@
 		document.getElementById("Meleelength").onchange = function(){updateS.updateSettings();};
 		document.getElementById("minekill").onchange = function(){updateS.updateSettings();};
 		document.getElementById("defibkill").onchange = function(){updateS.updateSettings();};
-		document.getElementById("combokill").onchange = function(){updateS.updateSettings();};
+		//document.getElementById("combokill").onchange = function(){updateS.updateSettings();};
 		document.getElementById("Cuddling").onchange = function(){updateS.updateSettings();};
 		document.getElementById("Foreplay").onchange = function(){updateS.updateSettings();};
 		
