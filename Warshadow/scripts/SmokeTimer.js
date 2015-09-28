@@ -28,7 +28,6 @@
 			
 			
 			function startTimer(timer) {
-				//var timer = 15;
 				setInterval(
 					function () {
 						timer--;
@@ -46,7 +45,7 @@
 			
 	
 		SetSTPos(-1, localStorage.getItem('SmokeTimerID'));
-		startTimer(15);
+		startTimer(14);
 		
 		
 		document.getElementById("smoke_image").ondblclick = function(){updatePOS("SmokeTimer");};

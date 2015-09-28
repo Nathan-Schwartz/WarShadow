@@ -2,18 +2,18 @@ define(function () {
 
 	function turnOn(){
 		overwolf.media.replays.turnOn(
-			{"settings": {
+			{/*"settings": {
 				"audio": {
 					"mic": {
-						"volume": 100,
-						"enabled": true
+						"volume": 100
+						
 					},
 					"game": {
-						"volume": 75,
-						"enabled": true
+						"volume": 75
+						// !!!! Why doesn't sound work
 					}
 				},
-				/*in absence of video settings here, recording will use setting config from overwolf capture settings.
+				//in absence of video settings here, recording will use setting config from overwolf capture settings.
 				"video": {
 					"auto_calc_kbps": false,
 					"fps": 30,
@@ -28,18 +28,19 @@ define(function () {
 							"keyframe_interval": 2
 						}
 					}
-				},*/
+				},
 				"peripherals": {
 					"capture_mouse_cursor": "both"
-				}
-			}}, 
+				}*/
+			}, 
 			function(result) {
 				console.log(result);
 				if(result.status== "success"){
 			
 				}else{
 					if(result.error != "Already turned on."){
-						alert("I'm sorry, the background process for the capturing feature wasn't able to work properly. Overwolf says the error is: " + result.error);
+						alert("I'm sorry, the recording feature wasn't able to start properly. Overwolf says the error is: " + result.error);
+						document.getElementById("autoon").checked = false;
 					}
 				}
 			}	
@@ -58,10 +59,26 @@ define(function () {
 			}
 		);
 	};	
+	
+var url = "";	
+	
+function startCapture(){
+	overwolf.media.replays.startCapture(35000, 
+		function(result){
+			console.log(result);
+			url = result.url;
+		}
+	);
+};
+
+function finishCapture(){
+	overwolf.media.replays.finishCapture(url, function(result){console.log(result);});
+	
+};
 		
 function capture(before, after){
 	
-	if(after == -1){
+	if(after == -1){ //I call this function with a -1 every time for "manual capture" 
 		if(isNaN(parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab))){
 			alert("You entered an invalid Capture duration");
 		}
@@ -70,11 +87,11 @@ function capture(before, after){
 			overwolf.media.replays.capture(before, after, 
 				function(result){if(result) console.log(result);},
 				function(results){
-					console.log(results);
+					//console.log(results);
 					if(results.status== "success"){
 						overwolf.media.replays.finishCapture(results.url,
 							function(results){
-								console.log(results);
+								//console.log(results);
 								if(results.status== "success"){
 									//alert("success");
 								}else{
@@ -87,8 +104,8 @@ function capture(before, after){
 			);
 		}
 	}
-	else{	
-		overwolf.media.replays.capture(before, after, 
+	else{
+		overwolf.media.replays.capture(before, after,
 			function(result){if(result) console.log(result);},
 			function(results){
 				console.log(results);
@@ -101,18 +118,20 @@ function capture(before, after){
 							}else{
 								//alert(results.error);
 							}
-						}	
-					);				
+						}
+					);			
 				}
 			}
 		);
-	}	
+	}
 };
 
 	return{
 		capture:capture,
 		turnOff:turnOff,
-		turnOn:turnOn
+		turnOn:turnOn,
+		startCapture:startCapture,
+		finishCapture:finishCapture,
 	};
 
 });

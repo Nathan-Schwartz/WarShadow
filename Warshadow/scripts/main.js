@@ -5,7 +5,8 @@
 	
 		//overwolf.windows.changeSize(localStorage.getItem('MainID'), 2, 2);
 		
-		
+localStorage.removeItem('windowPOS');
+
 if(!localStorage.getItem('windowPOS')){ //If this is the first launch, initialize array that stores window position coordinates
 	var windowPOS = {
 		//pixels from top and left. [left,top]
@@ -17,8 +18,9 @@ if(!localStorage.getItem('windowPOS')){ //If this is the first launch, initializ
 		hscounter:[50,150],
 		main:[50,200],
 		crosshair:[50,150]
-	};
+	};// !!!! I need to move this to 'Settings'
 	localStorage.setItem('windowPOS', JSON.stringify(windowPOS));
+	console.log("windowPOS: " + localStorage.getItem('windowPOS'));
 }
 
 
@@ -26,13 +28,16 @@ if(!localStorage.getItem('windowPOS')){ //If this is the first launch, initializ
 
 if(!localStorage.getItem('Settings')){
 	var Settings = {
+		restoreOnTab: true,
+		minimizeOnTab: false,
+		closeOnEnd: true,
 		Rforeplay: "5",
 		Rcuddling: "5",
 		Rgrab: "60",
 		Rkill: false, 
-		Rheadshot: 1, 
-		Rnade: 1,
-		Rmelee: 1,
+		Rheadshot: 0, 
+		Rnade: 0,
+		Rmelee: 0,
 		Rdoublekill: false,
 		Rtriplekill: false,
 		Rminekill: false,
@@ -44,7 +49,6 @@ if(!localStorage.getItem('Settings')){
 		Rachievevid: false,
 		Rachievepic: false,
 		Rcombokill: false,
-		Rclose: true,
 		windowPOS : {
 		kdr:[50,200], 
 		info:[50,200], 
@@ -58,6 +62,14 @@ if(!localStorage.getItem('Settings')){
 	};
 	localStorage.setItem('Settings', JSON.stringify(Settings));
 	console.log("Settings: " + localStorage.getItem('Settings'));
+	if (confirm("Welcome to WarShadow! Would you like to go on the exclusive, one-time-only '5-click' tour?") == false)
+		alert("Too bad! It will be good for you. :)")// You get the 6-click tour.
+	
+	alert("To expand the main menu, simply double click on the Warface Logo.");
+	alert("WarShadow will remember where you like your windows. All you have to do is double click the image in any window to save it as your preferred location!");
+	alert("To automatically record your best moments, turn on Auto-Capture. Customize your recordings through Settings!");
+	alert("If you want to calculate repairs, pick a loadout, or learn which weapon is best for you, check out StatCrack.");
+	alert("Click on the 'info' button if you want a refresher or if you want to learn more!");
 }
 		
 		/*var test = JSON.parse(localStorage.getItem("Settings"));
@@ -80,12 +92,12 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 	console.log(JSON.parse(localStorage.getItem("windowPOS")));
 */
 
-	localStorage.setItem('smallwindow', "false");
+	localStorage.setItem('smallwindow', false); // !!!! since this is in a module I could store it in the "global namespace" without issue cuz it isn't really.
 
 	
 	
 
-	function resetLocals(){
+	function resetCounters(){
 		localStorage.setItem('Kills', 0); 
 		localStorage.setItem('Headshots', 0); 
 		localStorage.setItem('Defibs', 0);
@@ -139,16 +151,17 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 
 	
 		function ResizeMain(){
-		/*This function will trigger upon clicking the icon in the main windows top-left corner
+		/*
+			This function will trigger upon clicking the icon in the main windows top-left corner
 			It resizes the window to be small enough to hide all buttons and text. 
 			Toggling it again will make the window larger so that all features can be seen.
 		*/
-			if(localStorage.getItem("smallwindow") == "true"){
+			if(JSON.parse(localStorage.getItem("smallwindow")) === true){
 				overwolf.windows.changeSize(localStorage.getItem('MainID'), 160, 460);
-				localStorage.setItem("smallwindow", "false");			
-			}else if(localStorage.getItem("smallwindow") == "false"){
+				localStorage.setItem("smallwindow", false);			
+		}else if(JSON.parse(localStorage.getItem("smallwindow")) === false){
 				overwolf.windows.changeSize(localStorage.getItem('MainID'), 50, 50);
-				localStorage.setItem("smallwindow", "true");
+				localStorage.setItem("smallwindow", true);
 			}else
 				alert("Houston we have a problem");
 			
@@ -183,7 +196,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 		);
 
 	
-			resetLocals();
+			resetCounters(); // !!!! I could just declare the counters in a seperate file and create increment and reset methods
 				//Get ID's of each window
 				getWinID("MainWindow",'MainID');
 				getWinID("HSCounter",'HSCounterID');
@@ -207,28 +220,6 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			$("#showcontent").click(function(){
 				$("#contentbuttons").slideToggle(200);
 			});
-
-			//Tell user that it is starting the recording feature
-			$("#autoon").click(function(){
-				if(document.getElementById("autoon").checked == true){
-					$("#Rloading").slideToggle(200);
-					setTimeout(function(){
-							$("#loading").slideToggle(200);
-					}, 1000);
-					
-				}
-			});
-		
-			//Tell user that window is launching
-			/*$("#autoon").click(function(){
-				if(document.getElementById("autoon").checked == true){
-					$("#Rloading").slideToggle(200);
-					setTimeout(function(){
-							$("#loading").slideToggle(200);
-					}, 1000);
-					
-				}
-			});*/
 			
 //		Menu Listeners
 		//resize and drag
@@ -253,14 +244,13 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 		document.getElementById("Stats").onclick = function(){rHUD.refreshHelper(true,"StatCrack",'StatCrackID');};
 		document.getElementById("STimer").onclick = function(){rHUD.refreshHelper(true,"SmokeTimer",'SmokeTimerID');};
 		
-		
 		//menu checkboxes
 		document.getElementById("HSNum").onchange = function(){rHUD.refreshHUD();};
 		document.getElementById("HSPerc").onchange = function(){rHUD.refreshHUD();};
 		document.getElementById("HSChain").onchange = function(){rHUD.refreshHUD();};
 		
 		document.getElementById("KDRate").onchange = function(){rHUD.refreshHUD();};
-		//document.getElementById("crosshair").onchange = function(){rHUD.refreshHUD();};
+		document.getElementById("crosshair").onchange = function(){document.getElementById('crosshair').checked ? rec.startCapture() : rec.finishCapture();};
 		document.getElementById("autoon").onchange = function(){rec.turnOn();};// !!!!! only if checked?
 		
 		//replay testing
@@ -276,12 +266,13 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			}
 		);
 		
+		
 		//If game ends or changes close the program
 		overwolf.games.onGameInfoUpdated.addListener(
 			function(resultA){
 				var test = JSON.parse(localStorage.getItem("Settings"));
 		//		console.log(test);
-				if(test.Rclose == true){
+				if(test.closeOnEnd == true){
 					if(resultA.runningChanged == true){
 						overwolf.games.getRunningGameInfo(
 							function (resultB){
@@ -293,24 +284,43 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 					if(resultA.gameChanged == true){
 						overwolf.games.getRunningGameInfo(
 							function (resultC){
-								if(resultC.id != 7784)
-									overwolf.windows.close(localStorage.getItem('MainID'));//game closed
+								//alert(resultC.id);
+								if(resultC.id != 77844)
+									overwolf.windows.close(localStorage.getItem('MainID'));//wrong game opened
 							}
 						);
 					}
-					if(resultA.focusChanged == true){
-						overwolf.games.getRunningGameInfo(
-							function (resultD){
-								if(resultD.isInFocus == true){
+				}
+				if(resultA.focusChanged == true){
+					overwolf.games.getRunningGameInfo(
+						function (resultD){
+							if(resultD.isInFocus == true){
+								if(test.restoreOnTab == true){
 									//game is in focus!!!!!
-									//restoring main window will trigger a rHUD.refreshHUD() call made above
-								}else{
-									//game is out of focus!!!!!
-									//minimize all?
+									overwolf.windows.restore(localStorage.getItem('MainID'));
+									rHUD.refreshHUD();
+									 
+									//console.log(overwolf.windows.getWindowState(localStorage.getItem('MainID'))); //!!!!!!!!!!!!!! returning undefined
+								}
+							}else{
+								if(test.minimizeOnTab == true){
+									//game is out of focus
+									//minimize all
+									
+									overwolf.windows.minimize(localStorage.getItem('SmokeTimerID'));
+									overwolf.windows.minimize(localStorage.getItem('HSCounterID'));
+									overwolf.windows.minimize(localStorage.getItem('HSChainsID'));
+									overwolf.windows.minimize(localStorage.getItem('HSPercentID'));
+									overwolf.windows.minimize(localStorage.getItem('KDRID'));
+									overwolf.windows.minimize(localStorage.getItem('InfoID'));
+									
+									overwolf.windows.minimize(localStorage.getItem('MainID'));
+									overwolf.windows.minimize(localStorage.getItem('SettingsID'));
+									overwolf.windows.minimize(localStorage.getItem('StatCrackID'));
 								}
 							}
-						);
-					}
+						}
+					);
 				}
 			}
 		);

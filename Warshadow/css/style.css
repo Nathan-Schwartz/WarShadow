@@ -232,4 +232,8 @@ left:135px;
 z-index:1;
 }
 
+#loading{
+	display: none;
+}
+
 

@@ -33,8 +33,8 @@
   <div class='tab-content'>
     <div id='tab1' class='tab active'>
 
-	  <fieldset>
-		<legend><b>  Graph Options </b></legend><br>
+	  <fieldset class="standard">
+		<legend><b>  Graph Options </b></legend><br>					<!-- !!!!!!I'm sorry for these atrocious spaces but fieldsets suck for setting position. Yes I did try absolute and giving all the parent divs a position.-->
 		Distance to display (max is 100): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select data to display:<br><input type='text' id='distance' value='50'> 
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<select id='selectGData'>
@@ -46,7 +46,7 @@
 		</select> 
 	</fieldset> 
 		
-		<fieldset id="enemyfield">
+		<fieldset class="standard">
 		<legend><b>Enemy Options</b></legend><br>
 		
 				Enemy Helmet:
@@ -97,12 +97,12 @@
 		
 			  <div id='chart'></div>
 		
-<fieldset id="weaponfield">
+<fieldset class="standard">
 		<legend> <b>Weapon Options</b></legend><br>
 		Weapon:
 		<select id='weaponSelect1'><!-- There is a slight delay while the rest of the list is injected so this item is essentially fake and will be used to make the transition less noticable -->
 		<option value='none'> Select a weapon &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option><br>
-		</select> &nbsp;&nbsp;&nbsp;&nbsp;
+		</select> &nbsp;&nbsp;&nbsp;&nbsp;<!--  this is not ok. Need to take out all the spaces in this file. -->
 
 
 Attachment:
@@ -217,8 +217,9 @@ Attachment:
 	
 	
     <div id='tab2' class='tab'>
-      <h3>Repair Stats</h3>
-  
+
+  <fieldset class="standard">
+  <legend> <b>Game Variables</b> </legend>
   Warface Money Booster (%): <input type='text' id='booster'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type='checkbox' id='firstWin'>&nbsp;&nbsp;First win bonus <br><br>
   
 Mission:  
@@ -230,7 +231,10 @@ Mission:
 <option value='Marathon'> Marathon </option><br>
 </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Game length (min): <input type='text' id='duration'> <br><br>
   
+  </fieldset>
   
+  <fieldset class="standard">
+	<legend><b> Armor </b> </legend>
   
   Helmet:
 <select id='RChelmet'>
@@ -313,7 +317,10 @@ Boots:
 <option value='Anti-directional Mine Boots'>Anti-directional Mine Boots </option><br>
 <option value='Warlord Boots'>Warlord Boots </option><br>
 </select> <br><br>
+</fieldset>
 
+<fieldset class="standard">
+	<legend><b> Weapons </b></legend>
 
 Primary Weapon:
 <select id='RCprimary'>
@@ -573,7 +580,7 @@ Melee Weapon:
 <option value='Digger of Doom'>Digger of Doom</option><br>
 </select><br>
 
-
+</fieldset>
 
  
     </div>
@@ -590,6 +597,7 @@ Melee Weapon:
 			<th>HP regen/second</th>
 			<th>Flash</th>
 			<th>Mine</th>
+			<th>Repair (10 hr)</th>
 		</tr>
 	</table><br><br>
 
@@ -598,11 +606,12 @@ Melee Weapon:
 			<th>Vests Name</th>
 			<th>Health Points</th>
 			<th> Damage reduction per bullet </th>
-			<th>Armor regen/second</th>
 			<th>Repel bullets</th>
+			<th>Armor regen/second</th>
 			<th>Explosive reduction</th>
 			<th>Melee reduction</th>
 			<th>Special</th>
+			<th>Repair (10 hr)</th>
 		</tr>
 	</table><br><br>
 	
@@ -617,6 +626,7 @@ Melee Weapon:
 			<th>Recoil Reduction</th>
 			<th>Spread Reduction</th>
 			<th>Knock Down</th>
+			<th>Repair (10 hr)</th>
 		</tr>
 	</table><br><br>
 	
@@ -630,6 +640,7 @@ Melee Weapon:
 			<th>Sprint Duration</th>
 			<th>Slide distance</th>
 			<th>Crouch speed</th>
+			<th>Repair (10 hr)</th>
 		</tr>
 	</table><br><br>
 	

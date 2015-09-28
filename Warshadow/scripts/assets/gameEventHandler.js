@@ -6,18 +6,14 @@
 		/*The capture function is particular in that it can grab past recordings easily but it takes forever to grab future time (because it has to wait to record it) 
 		and it only allows one recording to grab footage at a time. For this reason its beneficial to only grab past time. I use the setTimeout function for this purpose.
 		*/
-			var after = Number(JSON.parse(localStorage.getItem("Settings")).Rcuddling)*1000; 
-			var before = Number(JSON.parse(localStorage.getItem("Settings")).Rforeplay)*1000; 
-	
-				/*
-					Should i leave each statment to call the localstorage item individually?
 		
-				Otherwise i could do this 			var temp = JSON.parse(localStorage.getItem("Settings"));
-				and make the code easier to read.
-				Would retrieving the whole object slow down the process noticably?
-				*/
+			var temp = JSON.parse(localStorage.getItem("Settings")); // !!!! need to test that this is working properly. this comment was made after consolidating localstorage calls to a temp variable
+			
+			var after = temp.Rcuddling*1000; 
+			var before = temp.Rforeplay*1000; 
+	
 				if (name == "kill"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rkill == true)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rkill == true)){
 					//alert("Kill works");
 					setTimeout(function(){
 							console.log("single");
@@ -30,7 +26,7 @@
 					localStorage.setItem('Kills', Kills);
 					
 				}else if (name == "defibrillator_kill"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rdefib == true)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rdefib == true)){
 						//alert("defib works");
 						setTimeout(function(){
 							console.log("single");
@@ -43,7 +39,7 @@
 					localStorage.setItem('Defibs', Defibs);
 					*/
 				}else if (name == "kill_headshot"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rheadshot == 1)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rheadshot == 1)){
 						//alert("single headshot works");
 						setTimeout(function(){
 							console.log("single");
@@ -56,7 +52,7 @@
 					localStorage.setItem('Headshots', Headshots);
 				
 				}else if (name == "kill_melee"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rmelee == 1)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rmelee == 1)){
 						//alert("single melee works");
 						setTimeout(function(){
 							console.log("single");
@@ -65,7 +61,7 @@
 					}
 					
 				}else if (name == "headshots_in_a_row_2"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rheadshot == 2)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rheadshot == 2)){
 						//alert("double melee/2 chain works");
 						setTimeout(function(){
 							console.log("single");
@@ -78,7 +74,7 @@
 					localStorage.setItem('TWWWOOOOCHAAAAAIIIIIIIINNNNNZZZZZ', TwoHeadshots);
 				
 				}else if(name == "double_kill"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rdoublekill == true)) {
+					if((document.getElementById("autoon").checked == true)&&(temp.Rdoublekill == true)) {
 						//alert("double kill works");
 						setTimeout(function(){
 							console.log("single");
@@ -87,7 +83,7 @@
 					}
 					
 				}else if (name == "melee_kills_in_a_row_1"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rmelee == 2)){					
+					if((document.getElementById("autoon").checked == true)&&(temp.Rmelee == 2)){					
 						//alert("butcher works");
 						setTimeout(function(){
 							console.log("single");
@@ -97,7 +93,7 @@
 		
 				
 				}else if (name == "headshots_in_a_row_3"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rheadshot == 3)) {
+					if((document.getElementById("autoon").checked == true)&&(temp.Rheadshot == 3)) {
 						//alert("3chain works"); 
 						setTimeout(function(){
 							console.log("single");
@@ -110,7 +106,7 @@
 					localStorage.setItem('3chain', ThreeHeadshots);
 					
 				}else if (name == "pvp_triple_kill") { 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rtriplekill == true)&&(JSON.parse(localStorage.getItem("Settings")).Rdoublekill == false)) {	
+					if((document.getElementById("autoon").checked == true)&&(temp.Rtriplekill == true)&&(temp.Rdoublekill == false)) {	
 						//alert("triple kill works");
 						setTimeout(function(){
 							console.log("single");
@@ -119,7 +115,7 @@
 					}
 				
 				}else if(name == "melee_kills_in_a_row_2"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rmelee == 3)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rmelee == 3)){
 						//alert("bloody butcher works");
 						setTimeout(function(){
 							console.log("single");
@@ -128,7 +124,7 @@
 					}
 					
 				}else if(name == "headshots_in_a_row_4"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rheadshot == 4)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rheadshot == 4)){
 						//alert("4 chain works");
 						setTimeout(function(){
 							console.log("single");
@@ -136,12 +132,12 @@
 						}, 3000 + after);
 					}
 					
-					var TwoHeadshots = localStorage.getItem('4chain');
+					var FourHeadshots = localStorage.getItem('4chain');
 					FourHeadshots++;
 					localStorage.setItem('4chain', FourHeadshots);
 					
 				}else if (name == "headshots_in_a_row_5"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rheadshot == 5)) { 
+					if((document.getElementById("autoon").checked == true)&&(temp.Rheadshot == 5)) { 
 						//alert("annhilator works");
 						setTimeout(function(){
 							console.log("single");
@@ -149,13 +145,13 @@
 						}, 3000 + after);
 					}				
 					
-					var TwoHeadshots = localStorage.getItem('5chain');
+					var FiveHeadshots = localStorage.getItem('5chain');
 					FiveHeadshots++;
 					localStorage.setItem('5chain', FiveHeadshots);
 					
 					
 				}else if (name == "melee_kills_in_a_row_3"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rmelee == 5)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rmelee == 5)){
 						//alert("hellbutcher works");
 						setTimeout(function(){
 							console.log("single");
@@ -164,7 +160,7 @@
 					}
 				
 				}else if (name == "achievement_gained"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rachievepic == true)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rachievepic == true)){
 						var count = 0;
 						var interval = setInterval( //The event is triggered before the achievement appears on the screen so we wait one second, then take a couple.
 							function () {
@@ -184,19 +180,19 @@
 							}, 
 						1000);
 					}
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rachievevid == true)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rachievevid == true)){
 						rec.capture(30000,30000);
 					}
 
 				}else if (name == "pvp_flag_kill"){	
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rflagkill == true)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rflagkill == true)){
 						setTimeout(function(){
 							console.log("single");
 							rec.capture(6000+ before + after, 1);
 						}, 3000 + after);
 					}
 				}else if (name == "claymore_kill"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rminekill == true)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rminekill == true)){
 						//alert("mine kills works");
 						setTimeout(function(){
 							console.log("single");
@@ -204,7 +200,7 @@
 						}, 3000 + after);
 					}
 				}else if (name == "two_at_once_kill"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rperfkill == true)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rperfkill == true)){
 						//alert("Perf works");
 						setTimeout(function(){
 							console.log("single");
@@ -213,7 +209,7 @@
 					}
 	
 				}else if (name == "kill_grenade"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rnade == 1)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rnade == 1)){
 						//alert("single grenade works");
 						setTimeout(function(){
 							console.log("single");
@@ -222,7 +218,7 @@
 					}
 					
 				}else if (name == "grenade_kills_in_a_row_1"){
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rnade == 2)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rnade == 2)){
 						//alert("grenadier works");
 						setTimeout(function(){
 							console.log("single");
@@ -230,7 +226,7 @@
 						}, 3000 + after);
 					}
 				}else if (name == "grenade_kills_in_a_row_2"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rnade == 3)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rnade == 3)){
 						//alert("mega grenadier works");
 						setTimeout(function(){
 							console.log("single");
@@ -238,7 +234,7 @@
 						}, 3000 + after);
 					}
 				}else if (name == "grenade_kills_in_a_row_3"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rnade == 5)){
+					if((document.getElementById("autoon").checked == true)&&(temp.Rnade == 5)){
 						//alert("ubergrenadier works");
 						setTimeout(function(){
 							console.log("single");
@@ -246,7 +242,7 @@
 						}, 3000 + after);
 					}
 				}else if (name == "in_knock_back_kill"){ 
-					if((document.getElementById("autoon").checked == true)&&(JSON.parse(localStorage.getItem("Settings")).Rseverekill)){	
+					if((document.getElementById("autoon").checked == true)&&(temp.Rseverekill)){	
 						//alert("severe works");
 						setTimeout(function(){
 							console.log("single");
@@ -256,7 +252,6 @@
 				}
 				/*
 					combo kill Rcombokill: false
-		
 					kill_in_slide Rslidekill: false,
 				*/
 			};

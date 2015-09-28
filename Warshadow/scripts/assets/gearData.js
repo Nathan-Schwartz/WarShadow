@@ -45,7 +45,7 @@ function initStats(){
 {"key":"Crown Boots","Damage_reduc_perc":0,"Mine_delay":"TRUE","Crouch_speed":0,"Sprint_speed":1.25,"Sprint_dur":1.1,"Slide_dist":0,"Silent":"FALSE","Repair_num":1622,"Shop_name":"@ui_armor_shared_shoes_crown_02_name"},
 {"key":"Christmas Boots","Damage_reduc_perc":0,"Mine_delay":"FALSE","Crouch_speed":0,"Sprint_speed":1.2,"Sprint_dur":0,"Slide_dist":0,"Silent":"FALSE","Repair_num":1622,"Shop_name":"@ui_armor_shared_shoes_xmas_01_name"},
 {"key":"Anti-directional Mine Boots","Damage_reduc_perc":0.8,"Mine_delay":"TRUE","Crouch_speed":0,"Sprint_speed":0,"Sprint_dur":0,"Slide_dist":0,"Silent":"FALSE","Repair_num":1622,"Shop_name":"@ui_armor_soldier_shoes_02_name"},
-{"key":"Warlord Boots","Damage_reduc_perc":0.5,"Mine_delay":"","Crouch_speed":0,"Sprint_speed":1.2,"Sprint_dur":1.35,"Slide_dist":0,"Silent":"FALSE","Repair_num":1248,"Shop_name":"@ui_armor_shared_shoes_09_name"}];
+{"key":"Warlord Boots","Damage_reduc_perc":0.5,"Mine_delay":"FALSE","Crouch_speed":0,"Sprint_speed":1.2,"Sprint_dur":1.35,"Slide_dist":0,"Silent":"FALSE","Repair_num":1248,"Shop_name":"@ui_armor_shared_shoes_09_name"}];
 	localStorage.setItem('boots', JSON.stringify(boots));
 
 
@@ -290,7 +290,7 @@ function initStats(){
 {"key":"R32A1 Sneakpeak","Damage":100,"RPM":60,"Damage_reduc":2,"Min_damage":11,"Min_range":70,"Class":"special","Archetype":"special","Camo":"Sneakpeak","Repair_num":2496,"Shop_name":"gl01_shop"},
 {"key":"AR88 Sneakpeak","Damage":75,"RPM":500,"Damage_reduc":1.2,"Min_damage":45,"Min_range":13,"Class":"R","Archetype":"R","Camo":"Sneakpeak","Repair_num":24960,"Shop_name":"ar41_shop"}];
 	localStorage.setItem('weapons', JSON.stringify(weapons));
-
+// !!!!missing shotguns
 
 	var vests = [{"key":"Default","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0,"Special":"none","Repair_num":0,"Shop_name":"@ui_armor_shared_vest_01_name"},
 {"key":"Anti-Melee","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0.2,"Special":"none","Repair_num":811,"Shop_name":"@ui_armor_shared_vest_05_name"},

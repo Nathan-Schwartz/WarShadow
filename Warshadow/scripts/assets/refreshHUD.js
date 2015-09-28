@@ -24,53 +24,17 @@ define(function () {
 				overwolf.windows.restore(localStorage.getItem(ID)); //now that I know the window is running, open it.
 			
 			}else{
-				if(name == "Crosshair") //this is here so that if I bind the crosshair window to a hotkey and set the hotkey to ADS it can open/close faster
-					overwolf.windows.minimize(localStorage.getItem(ID));
-				
-				else{		
-					overwolf.windows.close(localStorage.getItem(ID));
-				}
+				overwolf.windows.close(localStorage.getItem(ID));
 			}
 		};
 
 		function refreshHUD(){
 		//This function makes sure that all HUD elements are in the state they should be.
-		//There is no way this is the most efficient method but i don't know what that would be yet. Switches seem unlikely
-			if (document.getElementById('HSNum').checked)
-				refreshHelper(true,"HSCounter","HSCounterID");	
-				
-			else if (!document.getElementById('HSNum').checked)
-				refreshHelper(false,"HSCounter","HSCounterID");
 		
-						
-			if (document.getElementById('HSChain').checked)
-				refreshHelper(true,"HSChains",'HSChainsID');
-				
-			else if (!document.getElementById('HSChain').checked)
-				refreshHelper(false,"HSChains",'HSChainsID');
-					
-			if (document.getElementById('HSPerc').checked)
-				refreshHelper(true,"HSPercent",'HSPercentID');	
-			
-			else if (!document.getElementById('HSPerc').checked)
-				refreshHelper(false,"HSPercent",'HSPercentID');
-
-			if (document.getElementById('Stats').checked)
-				refreshHelper(true,"StatCrack",'StatCrackID');
-
-			else if (!document.getElementById('Stats').checked)
-				refreshHelper(false,"StatCrack",'StatCrackID');
-				
-			if (document.getElementById('KDRate').checked)
-				refreshHelper(true,"KDR",'KDRID');
-
-			else if (!document.getElementById('KDRate').checked)
-				refreshHelper(false,"KDR",'KDRID');
-				
-			if (document.getElementById('crosshair').checked)
-				refreshHelper(true, 'Crosshair', 'CrosshairID');
-			else if (!document.getElementById('crosshair').checked)
-				refreshHelper(false, 'Crosshair', 'CrosshairID');
+			document.getElementById('HSNum').checked ? refreshHelper(true,"HSCounter",'HSCounterID') : refreshHelper(false,"HSCounter","HSCounterID");
+			document.getElementById('HSChain').checked ? refreshHelper(true,"HSChains",'HSChainsID') : refreshHelper(false,"HSChains",'HSChainsID');
+			document.getElementById('HSPerc').checked ? refreshHelper(true,"HSPercent",'HSPercentID') : refreshHelper(false,"HSPercent",'HSPercentID');
+			document.getElementById('KDRate').checked ? refreshHelper(true,"KDR",'KDRID') : refreshHelper(false,"KDR",'KDRID');
 		};
 		
 		return {

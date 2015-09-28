@@ -13,16 +13,16 @@
 		localStorage.setItem('PVPDeaths',0);
 		
 		var windowPOS = {
-			kdr:[0,0], 
-			info:[0,0], 
-			hspercent:[0,0],
-			smoketimer:[0,0],
-			hschains:[0,0],
-			hscounter:[0,0],
-			main:[0,0],
-			crosshair:[0,0]
+		//pixels from top and left. [left,top]
+		kdr:[50,150], 
+		info:[250,200], 
+		hspercent:[50,150],
+		smoketimer:[50,150],
+		hschains:[50,150],
+		hscounter:[50,150],
+		main:[50,200],
+		crosshair:[50,150]
 		};
-		
 		localStorage.setItem('windowPOS', JSON.stringify(windowPOS));
 	};
 
@@ -40,19 +40,6 @@
 		};
 
 
-
-		function togglefeatures(){
-			if(document.getElementById('features').style.display != 'block'){
-				document.getElementById('features').style.display = 'block'; 
-			}else if(document.getElementById('features').style.display == 'block') {
-				document.getElementById('features').style.display = 'none'; 
-			}
-		};
-
-
-
-
-			 document.getElementById('features').style.display = 'none'; //block
 			 loadS.loadSettings();
 			$(document).ready(SetWCMainPos(-1)); //Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
 			
@@ -62,9 +49,15 @@
 
 		//menu buttons
 		document.getElementById("showfeatures").onclick = function(){togglefeatures();};
+		$("#showfeatures").click(function(){
+				$("#triggers").slideToggle(200);
+				$("#showfeatures").slideToggle(200)
+			});
 		document.getElementById("resetLS").onclick = function(){resetLS();};
 		
 		//menu checkboxes //
+		document.getElementById("minimizeOnTab").onchange = function(){updateS.updateSettings();};
+		document.getElementById("restoreOnTab").onchange = function(){updateS.updateSettings();};
 		document.getElementById("closeOnEnd").onchange = function(){updateS.updateSettings();};
 		document.getElementById("grablength").onchange = function(){updateS.updateSettings();};
 		document.getElementById("kill").onchange = function(){updateS.updateSettings();};

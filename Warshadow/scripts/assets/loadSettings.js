@@ -4,104 +4,27 @@ define(function () {
 		
 			var temp = JSON.parse(localStorage.getItem("Settings"));
 			
+		
+				document.getElementById('restoreOnTab').checked = (temp.restoreOnTab?true: false);
+				document.getElementById('minimizeOnTab').checked = (temp.minimizeOnTab?true:false);
+				document.getElementById('closeOnEnd').checked = (temp.restoreOnTab?true:false);
+				document.getElementById("kill").checked = (temp.Rkill?true:false);
+				document.getElementById("defibkill").checked = (temp.Rdefib?true:false);
+				document.getElementById("severekill").checked = (temp.Rseverekill?true:false);
+				document.getElementById("slidekill").checked = (temp.Rslidekill?true:false);
+				document.getElementById("perfkill").checked = (temp.Rperfkill?true:false);
+				document.getElementById("flagkill").checked = (temp.Rflagkill?true:false);
+				document.getElementById("minekill").checked = (temp.Rminekill?true:false);
+				document.getElementById("doublekill").checked = (temp.Rdoublekill?true:false);
+				document.getElementById("triplekill").checked = (temp.Rtriplekill?true:false);
+				document.getElementById("screenshot").checked = (temp.Rachievepic?true:false);
+				document.getElementById("achievevid").checked = (temp.Rachievevid?true:false);
+				document.getElementById("achievevid").checked = (temp.Rachievevid?true:false);
+				//document.getElementById("combokill").checked = (temp.Rcombokill?true:false);
+			
 			document.getElementById("grablength").value = temp.Rgrab;
 			document.getElementById("Cuddling").value = temp.Rcuddling;
 			document.getElementById("Foreplay").value = temp.Rforeplay;
-			
-			
-			
-			if(temp.Rclose == true)
-				document.getElementById("closeOnEnd").checked = true;
-			else
-				document.getElementById("closeOnEnd").checked = false;
-			
-			
-			if(temp.Rkill == true){
-				document.getElementById("kill").checked = true;
-			}else{
-				document.getElementById("kill").checked = false;
-			}
-			
-			if(temp.Rdefib == true){
-				document.getElementById("defibkill").checked = true;
-			}else{
-				document.getElementById("defibkill").checked = false;
-			}
-			
-			
-			if(temp.Rseverekill == true){
-				document.getElementById("severekill").checked = true;
-			}else{
-				document.getElementById("severekill").checked = false;
-			}
-			
-			
-			if(temp.Rslidekill == true){
-				document.getElementById("slidekill").checked = true;
-			}else{
-				document.getElementById("slidekill").checked = false;
-			}
-			
-			
-			if(temp.Rperfkill == true){
-				document.getElementById("perfkill").checked = true;
-			}else{
-				document.getElementById("perfkill").checked = false;
-			}
-			
-			
-			if(temp.Rflagkill == true){
-				document.getElementById("flagkill").checked = true;
-			}else{
-				document.getElementById("flagkill").checked = false;
-			}
-			
-			
-			if(temp.Rminekill == true){
-				document.getElementById("minekill").checked = true;
-			}else{
-				document.getElementById("minekill").checked = false;
-			}
-			
-			
-			/*if(temp.Rcombokill == true){
-				document.getElementById("combokill").checked = true;
-			}else{
-				document.getElementById("combokill").checked = false;
-			}*/
-			
-			if(temp.Rdoublekill == true){
-				document.getElementById("doublekill").checked = true;
-			}else{
-				document.getElementById("doublekill").checked = false;
-			}
-			
-			if(temp.Rtriplekill == true){
-				document.getElementById("triplekill").checked = true;
-			}else{
-				document.getElementById("triplekill").checked = false;
-			}
-			
-			if(temp.Rachievepic == true){
-				document.getElementById("screenshot").checked = true;
-			}else{
-				document.getElementById("screenshot").checked = false;
-			}
-			
-			if(temp.Rachievevid == true){
-				document.getElementById("achievevid").checked = true;
-			}else{
-				document.getElementById("achievevid").checked = false;
-			}
-			
-			
-			if(temp.Rachievevid == true){
-				document.getElementById("achievevid").checked = true;
-			}else{
-				document.getElementById("achievevid").checked = false;
-			}
-			
-			
 			
 			if(temp.Rheadshot == 1){
 				document.getElementById("HSlength").value = "headshot";
@@ -114,8 +37,6 @@ define(function () {
 			}else if(temp.Rheadshot == 5){
 				document.getElementById("HSlength").value = "fiveheadshots";
 			}
-			
-			
 			
 			if(temp.Rmelee == 1){
 				document.getElementById("Meleelength").value = "meleekill";

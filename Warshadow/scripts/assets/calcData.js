@@ -2,7 +2,7 @@
 /*--------------------MAAATTHHHH TIMEEEEEE----------------------------		
 			
 Pseudocode in excel logic (its cuz I used the same logic when I built a comparable calculator in google docs, but it was server sided so all users would have to take turns selecting selecting weapons.	
-I also put on the stat sheet and in Warface Forums that I expected Overwolf App developers to contact me if they intended to use my project in their apps. If you see anyone with a google doc link that doesn't work, 
+I also put on the stat sheet and in Warface Forums that I expected Overwolf App developers to contact me if they intended to use my project in their apps. If you see anyone with a google doc link that doesn't work (in another project), 
 its most likely because I relocated the google sheet and only gave the new address to people who asked permission to use it.
 
 Milliseconds between bullets = 	60000/rpm
@@ -13,41 +13,9 @@ Damage Used = 	if(Experimental_Damage <min_damage(modded), min damage(modded), E
 point_blank_silencer_mod = 	If(Silencer= shared, .85, if(Silencer= specialized, .9, if(Silencer= none = 1)))
 vest_mod = 	if(vest absorbs 10 damage, 10, 0)
 min_damage(modded) = 	gun_min damage * point_blank_silencer_mod - vest_mod
-
-
-
-
-function MaxRange1hkhs(min_range, min_damage_modded, damage_lost_meter, default_damage, silencer_damage_meter_mult, silencer_damage_mult, hp, helmet_res, helmet_superior, hs_mult) {						
-						
-  var damage_reduction = 0;						
-  var distance = min_range;       //all distances before this will be redundant						
-  var testDamage = 0;             //applies distance and silencer modifications						
-  						
-  if(helmet_superior == 1){ //makes 1hk impossible						
-    return "Not with Superior helm.";						
-  }						
-  						
-  if (default_damage*silencer_damage_mult*hs_mult < hp){ //if damage at point blank range is not enough to kill, end it						
-    return "Gun is too weak.";						
-  }						
-  						
-  if(min_damage_modded*hs_mult >= hp){ //Will always 1hk headshot						
-  return "Infinite.";						
-  }						
-  						
-  do{    						
-  distance += 2;   //begin past gun_range because if 1hk at point blank range wasn't possible the function would have ended. I use 2 because it takes less time to calculate.						
-    						
-  damage_reduction = (distance - min_range) * damage_lost_meter * silencer_damage_meter_mult;						
-  testDamage = (default_damage - damage_reduction) * silencer_damage_mult * helmet_res * hs_mult;						
- 						
-  }while(testDamage >= hp);//if it becomes lower than hp it will no longer 1hk						
-						
-     return distance-1;  //because of this the true distance to 1hk headshot is = the result of this function, or it is 1 meter further.						
-}			
-
-
 */
+
+//sorry for the switch in naming style, it was easier for me to look at since the names are all technical and errors would largely go unnoticed.
 
 define(function () {
 

@@ -10,42 +10,30 @@
 			
 
 	<body>
-		<div class="resizeGrip" id="resizeGripTopLeft"></div>
-		<div class="resizeGrip" id="resizeGripTop"></div>
-		<div class="resizeGrip" id="resizeGripTopRight"></div>
-		<div class="resizeGrip" id="resizeGripRight"></div>
-		<div class="resizeGrip" id="resizeGripBottomRight"></div>
-		<div class="resizeGrip" id="resizeGripBottom" ></div>
-		<div class="resizeGrip" id="resizeGripBottomLeft"></div>
-		<div class="resizeGrip" id="resizeGripLeft"></div>
-		<div id="content">
 
-		<img src="../images/IconMouseNormal.png" id="resize" alt="logo">
+		<img src="../images/25hg.png" id="banner" alt="logo">
+	<div id="allSettings">
+	<fieldset class="settings">
+		<legend><b>General Options:</b></legend><br>
+	
+	
 
-<div id="content">		
-		 <br> <br> 
-
-				
-
-<br><br><br>
-
-<b>General Options:</b><br>
-			
-<div id="GenOptions">
-	<input type="checkbox" id="closeOnEnd" checked> Close WarShadow when <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I'm done playing <br><br>
+	<input type="checkbox" id="closeOnEnd"> Close WarShadow when I'm done playing <br><br>
 		
-	<button id="resetLS" class="button"> Reset Windows & Counters </button><br><br>
-			
-			
-			
-</div>
+	<input type="checkbox" id="minimizeOnTab"> Minimize WarShadow when I tab out of Warface <br><br>
+	
+	<input type="checkbox" id="restoreOnTab"> Bring WarShadow to the front when I tab into Warface<br><br>
+	
+	<button id="resetLS" class="button"> Reset Windows & Counters </button>
+	
+	
+	</fieldset>
 
-
-<b> AutoCapture Recording Options</b>
-		<div id="mode">
+<fieldset class="settings">
+		<legend><b> AutoCapture Recording Options</b></legend>
 			<br>
 				
-				Time before first kill:
+				Time before first kill: <br>
 			<select id="Foreplay">
 				<option value="5"> 5 seconds </option> <br>
 				<option value="10"> 10 seconds </option> <br>
@@ -55,7 +43,7 @@
 				<option value="60"> 1 minute </option> <br>
 			</select> 
 				<br><br>
-				Time after event: 
+				Time after event: <br> 
 			<select id="Cuddling">
 				<option value="5"> 5 seconds </option> <br>
 				<option value="10"> 10 seconds </option> <br>
@@ -67,11 +55,12 @@
 				<br><br>
 				
 				
-				<button id="showfeatures" class="button"> Triggers </button>	<br><br>
 				
-			<div id="features">
-			 <br> 
-			<b> Minimum HS Combo</b> 
+		<div id="triggers">
+		
+		<fieldset class="embeddedSettings">
+		<legend><b>Triggers </b></legend><br>
+			 Minimum HS Combo <br>
 			<select id="HSlength">
 				<option value="none"> Don't Record</option> <br>
 				<option value="headshot"> 1</option> <br>
@@ -81,7 +70,7 @@
 				<option value="fiveheadshots"> 5 </option> <br>
 			</select> <br> <br>
 			
-			<b> Minimum Nade Combo</b>
+			 Minimum Nade Combo<br>
 			<select id="Grenlength">
 				<option value="none"> Don't Record </option> <br>
 				<option value="grenadekill"> Single </option><br>
@@ -90,14 +79,14 @@
 				<option value="grenadeTHREEkill"> Uber Grenadier </option><br>
 			</select> <br><br>
 			
-			<b> Minimum Melee Combo </b> 
+			 Minimum Melee Combo <br>
 			<select id="Meleelength">
-				<option value="none"> Don't Record </option> <br> <!--selected='selected'-->
+				<option value="none"> Don't Record </option> <br>
 				<option value="meleekill"> Single </option><br>
 				<option value="meleeONEkill"> Butcher </option><br>
 				<option value="meleeTWOkill"> Bloody Butcher </option><br>
 				<option value="meleeTHREEkill"> Hell Butcher </option><br>
-			</select> <br> 
+			</select> <br> <br>
 
 				<input type="checkbox" id="kill"> Kill <br>
 				<input type="checkbox" id="defibkill"> Defib Kill <br>
@@ -112,19 +101,20 @@
 				<input type="checkbox" id="flagkill"> Flag-bearer Kill (PvP)<br> <br>
 				<input type="checkbox" id="achievevid" checked> Record Achievements <br>
 				<input type="checkbox" id="screenshot" checked> Screenshot Achievements <br><br>
-
-			</div>	
+			</fieldset>
 		</div>
 		
+			<button id="showfeatures" class="button"> Show Triggers </button>	
 		
-			<b>Manual Capture Recording Options:</b>
+		</fieldset>
+		
+			<fieldset class="settings">
+		<legend><b>Manual Capture Recording Options:</b></legend>
 			<br>
 			
-			<div id="manualOptions">
 			Capture Length (seconds): <br> <input type="text" id="grablength" value="60"><br>
-			</div>
-			
-			
+			</fieldset>
+			<br><br>
 </div>
 			<script>
 			require(["requireConfig"], function(){
