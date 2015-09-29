@@ -211,6 +211,8 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 				getWinID("StatCrack",'StatCrackID');
 			$(document).ready(SetMainPos()); // This triggers too early for it to work if I don't include the wait time. Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
 
+			// !!!! Either make the height of the window change with the sliders, or make it not slide.
+			
 			//Slider for recording
 			$("#record").click(function(){
 				$("#Roptions").slideToggle(200);

@@ -8,31 +8,7 @@ function testPlugin(){
 	return (plugin() == null)? false : true;
 };
 
-
-    // !!!!!! implemenent failsafes for A) not a directory     B) not a file    C) user doesn't want to sync
-    /*  plugin().isDirectory(
-        plugin().PROFILE + "/Saved Games/My Games/WarfaceWest/QueryCache", 
-        function(status) {
-			if(status===true)
-			
-				plugin().fileExists(
-					plugin().PROFILE + "/Saved Games/My Games/WarfaceWest/QueryCache/shop_get_offers.xml", 
-					function(status) {
-						if(status === true) {
-							alert("WOOT WOOT");
-						}	
-			
-				});
-		});
-		*/
-
-
-function getText(){
-	plugin().getTextFile(
-			plugin().PROFILE + 
-			"/Saved Games/My Games/WarfaceWest/QueryCache/shop_get_offers.xml", 
-			false, // not a widechars file (i.e. not ucs-2)
-			function(status, data) {
+function syncRepairs(status, data) {
 			
             if (status !== "success") {
 				console.log("failed");
@@ -48,8 +24,7 @@ function getText(){
 						newData.push([$(this).attr("name"), JSON.parse($(this).attr("repair_cost"))]);
 					}
 				});
-				//console.log(xmlDoc);
-				console.log(newData);
+					console.log(newData);
 				
 					localStorage.setItem("xml", JSON.stringify(newData));
 					console.log(JSON.parse(localStorage.getItem("xml")));
@@ -69,87 +44,68 @@ function getText(){
 						for(var j1 = 0; j1 < arrHelm.length; j1++){
 							if(arrHelm[j1].Shop_name == newData[i][0]){
 								//console.log(arrHelm[j1].key);
-								//console.log(arrHelm[j1].Repair_num); 
-								//console.log(newData[i][1]);
 								arrHelm[j1].Repair_num = newData[i][1];
 								newData[i][1] = 0;
 								break
 							}
 						}
-					
-					 
-					
+			
 					//Check to see if the repair values in the xml file correlates to weapons
 						for(var j2 = 0; j2 < arrWeap.length; j2++){
 							if(arrWeap[j2].Shop_name == newData[i][0]){
 								//console.log(arrWeap[j2].key);
-								//console.log(arrWeap[j2].Repair_num);
-								//console.log(newData[i][1]);
 								arrWeap[j2].Repair_num = newData[i][1];
 								newData[i][1] = 0;
 								break
 							}
 						}
 					
-					
-					
 					//Check to see if the repair values in the xml file correlates to gloves
 						for(var j3 = 0; j3 < arrGlov.length; j3++){
 							if(arrGlov[j3].Shop_name == newData[i][0]){
 								//console.log(arrGlov[j3].key);
-								//console.log(arrGlov[j3].Repair_num);
-								//console.log(newData[i][1]);
 								arrGlov[j3].Repair_num = newData[i][1];
 								newData[i][1] = 0;
 								break
 							}
 						}
-					
-					
 
 					//Check to see if the repair values in the xml file correlates to vests
 						for(var j4 = 0; j4 < arrVest.length; j4++){
 							if(arrVest[j4].Shop_name == newData[i][0]){
 								//console.log(arrVest[j4].key);
-								//console.log(arrVest[j4].Repair_num);
-								//console.log(newData[i][1]);
 								arrVest[j4].Repair_num = newData[i][1];
 								newData[i][1] = 0;
 								break
 							}
 						}
 
-					
 					//Check to see if the repair values in the xml file correlates to boots
 						for(var j5 = 0; j5 < arrBoot.length; j5++){
 							if(arrBoot[j5].Shop_name == newData[i][0]){
 								//console.log(arrBoot[j5].key);
-								//console.log(arrBoot[j5].Repair_num);
-								//console.log(newData[i][1]);
 								arrBoot[j5].Repair_num = newData[i][1];
 								newData[i][1] = 0;
 								break
 							}
 						}
 					
-					
 					//Check to see if the repair values in the xml file correlates to knives
 						for(var j6 = 0; j6 < arrKniv.length; j6++){
 							if(arrKniv[j6].Shop_name == newData[i][0]){
 								//console.log(arrKniv[j6].key);
-								//console.log(arrKniv[j6].Repair_num);
-								//console.log(newData[i][1]);
 								arrKniv[j6].Repair_num = newData[i][1];
 								newData[i][1] = 0;
 								break
 							}
 						}
 					}
+					
 					//update current stats
 					var leftout = [];
 					for(var newiter = 0; newiter < newData.length; newiter++){
 						if(newData[newiter][1] != 0)
-							leftout.push(newData[newiter]);
+							leftout.push(newData[newiter][0]);
 					}
 					console.log("leftout:");
 					console.log(leftout);
@@ -168,17 +124,44 @@ function getText(){
 					arrVest = gData.getVests();
 					arrBoot = gData.getBoots();
 					
-					console.log(arrHelm);
+					/*console.log(arrHelm);
 					console.log(arrBoot);
 					console.log(arrVest);
 					console.log(arrWeap);
 					console.log(arrGlov);
-					console.log(arrKniv);
+					console.log(arrKniv);*/
+					
+					console.log("sync completed");
 					
 			}
-		}
-	);
+		};
+
+
+    // !!!!!! implemenent failsafes for A) not a directory     B) not a file    C) user doesn't want to sync
+    /*  
+		*/
+
+
+function getText(){
+	plugin().fileExists(
+		plugin().PROFILE + "/Saved Games/My Games/WarfaceWest/QueryCache/shop_get_offers.xml", 
+		function(status) {
+			if(status === true){
+				file = true;
+				plugin().getTextFile(
+					plugin().PROFILE + 
+					"/Saved Games/My Games/WarfaceWest/QueryCache/shop_get_offers.xml", 
+					false, // not a widechars file (i.e. not ucs-2)
+					function(status, data) {
+						syncRepairs(status, data);
+					}
+				);
+			} else{
+				// !!!! put a copy of shop_get_offers.xml in the install folder just in case. Figure out how to load it.
+			}
+		});
 };
+
 	return{
 		testPlugin: testPlugin,
 		getText: getText

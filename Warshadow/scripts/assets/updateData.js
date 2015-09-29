@@ -63,7 +63,7 @@ define(['gearData', 'calcData', 'graph', 'arrayData'], function(gData, cData, gr
 				
 		var vestsArr = gData.getVests();//format {"key":"default","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0,"Special":"none"},
 		for(var i = 0; i < vestsArr.length; i++){
-			console.log(document.getElementById("enemyVest1").value);
+		//	console.log(document.getElementById("enemyVest1").value);
 			if(vestsArr[i].key == document.getElementById("enemyVest1").value){
 				if(vestsArr[i].RFProtection == "TRUE")
 					RFP = true;

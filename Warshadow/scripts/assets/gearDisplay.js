@@ -40,7 +40,8 @@ function printTable(id, iter, gear){
 			addHTML(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ Math.round((1-gear[iter].Damage_reduc) * 100) + "%" + " </td><td align='center'>" + gear[iter].HP_regen + "</td><td align='center'>" + (gear[iter].Flash == "TRUE" ? "X" : "") +"</td><td align='center'>"+ (gear[iter].Mine == "TRUE" ? "X" : "") + /*"</td><td>" + gear[iter].Repair_num+ */"</td></tr>");
 
 	}else if(id == 'Vests'){
-		addHTML(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ gear[iter].HP +"</td><td align='center'>"+ (gear[iter].RFProtection == "TRUE" ? "10" : "") + " </td><td align='center'>" + (gear[iter].Repel_shot == "TRUE" ? "X" : "")+ "</td><td align='center'>" + (gear[iter].Armor_per_sec == 0 ? "" : gear[iter].Armor_per_sec)+ "</td><td align='center'>" + (gear[iter].Explo_res== 0 ? "" : gear[iter].Explo_res*100 + "%" )+ "</td><td align='center'>" + (gear[iter].Melee_res== 0 ? "" : gear[iter].Melee_res*100 + "%" ) +"</td><td>" + (gear[iter].Special == "none" ? "" : gear[iter].Special) + /*"</td><td>" + gear[iter].Repair_num+*/ "</td></tr>");
+		if(gear[iter].Shop_name != "none")
+			addHTML(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ gear[iter].HP +"</td><td align='center'>"+ (gear[iter].RFProtection == "TRUE" ? "10" : "") + " </td><td align='center'>" + (gear[iter].Repel_shot == "TRUE" ? "X" : "")+ "</td><td align='center'>" + (gear[iter].Armor_per_sec == 0 ? "" : gear[iter].Armor_per_sec)+ "</td><td align='center'>" + (gear[iter].Explo_res== 0 ? "" : gear[iter].Explo_res*100 + "%" )+ "</td><td align='center'>" + (gear[iter].Melee_res== 0 ? "" : gear[iter].Melee_res*100 + "%" ) +"</td><td>" + (gear[iter].Special == "none" ? "" : gear[iter].Special) + /*"</td><td>" + gear[iter].Repair_num+*/ "</td></tr>");
 	}else if(id == 'Gloves'){
 		addHTML(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ (Math.round(1-gear[iter].Damage_reduc) * 100 == 100? "" : Math.round((1-gear[iter].Damage_reduc) * 100) + "% ") + " </td><td align='center'>" + (gear[iter].Reload==0 ? "" : gear[iter].Reload) + "</td><td align='center'>" + (gear[iter].Swap_speed== 0 ? "" : gear[iter].Swap_speed) +"</td><td align='center'>" + (gear[iter].Melee_range== 0 ? "" : gear[iter].Melee_range) + "</td><td align='center'>" + (gear[iter].Melee_speed== 0 ? "" : gear[iter].Melee_speed) + "</td><td align='center'>" + (gear[iter].recoil_reduc== 0 ? "" : gear[iter].recoil_reduc) + "</td><td align='center'>" + (gear[iter].Spread_reduc== 0 ? "" : gear[iter].Spread_reduc) + "</td><td align='center'>" + (gear[iter].Knockdown == "TRUE" ? "X" : "") + /*"</td><td>" + gear[iter].Repair_num+ */ "</td></tr>");
 	}else if(id == 'Boots'){
@@ -54,7 +55,8 @@ function printComparison(id, iter, gear){
 			addCOMP(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + gear[iter].Repair_num+ "</td></tr>");
 
 	}else if(id == 'Vests'){
-		addCOMP(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+gear[iter].Repair_num+ "</td></tr>");
+		if(gear[iter].Shop_name != "none")
+			addCOMP(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+gear[iter].Repair_num+ "</td></tr>");
 	}else if(id == 'Gloves'){
 		addCOMP(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ gear[iter].Repair_num+  "</td></tr>");
 	}else if(id == 'Boots'){
@@ -63,6 +65,7 @@ function printComparison(id, iter, gear){
 		if(gear[iter].Class == "A")
 			addCOMP("Secondary","<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + gear[iter].Repair_num+ "</td></tr>");
 		else
+			//if(document.getElementById('RCprimary').value == ) !!!! Check the value against keys and then check the class, if R is selected only display Rifles (and so forth), if none is selected display all.
 			addCOMP("Primary","<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + gear[iter].Repair_num+ "</td></tr>");
 	}else if(id == 'Knives'){
 		addCOMP(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + gear[iter].Repair_num+ "</td></tr>");
