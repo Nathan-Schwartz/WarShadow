@@ -217,10 +217,42 @@ Attachment:
 	
 	
     <div id='tab2' class='tab'>
+	
+	
+<fieldset id="sidebar"><legend><b>Comparisons</b></legend> <!-- !!!!wrap in divs-->
+<table id="sideHelm" class="table">
+<tr><th>Helmet Name</th> <th>Repair</th></tr>
+</table>
 
-  <fieldset class="standard">
+<table id="sideVest" class="table">
+<tr><th>Vest Name</th> <th>Repair</th></tr>
+</table>
+
+<table id="sideGlove" class="table">
+<tr><th>Glove Name</th> <th>Repair</th></tr>
+</table>
+
+<table id="sideBoot" class="table">
+<tr><th>Boot Name</th> <th>Repair</th></tr>
+</table>
+
+<table id="sidePrimary" class="table">
+<tr><th>Name</th> <th>Repair</th></tr>
+</table>
+
+<table id="sideSecondary" class="table">
+<tr><th>Name</th> <th>Repair</th></tr>
+</table>
+
+<table id="sideKnife" class="table">
+<tr><th>Name</th> <th>Repair</th></tr>
+</table>
+
+</fieldset>
+
+  <fieldset class="repair">
   <legend> <b>Game Variables</b> </legend>
-  Warface Money Booster (%): <input type='text' id='booster'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type='checkbox' id='firstWin'>&nbsp;&nbsp;First win bonus <br><br>
+  Money Booster (%):  <input type='text' id='booster'>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='checkbox' id='firstWin'>&nbsp;&nbsp;First win bonus <br><br>
   
 Mission:  
 <select id='missionType'>
@@ -229,11 +261,11 @@ Mission:
 <option value='Hardcore'> Hardcore </option><br>
 <option value='Tower'> Tower </option><br>
 <option value='Marathon'> Marathon </option><br>
-</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Game length (min): <input type='text' id='duration'> <br><br>
+</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Game length (min): <input type='text' id='duration'>
   
   </fieldset>
   
-  <fieldset class="standard">
+  <fieldset class="repair">
 	<legend><b> Armor </b> </legend>
   
   Helmet:
@@ -246,9 +278,9 @@ Mission:
 <option value='Dread mask'> Dread Mask </option><br>
 <option value='Warlord'> Warlord </option> <br>
 <option value='Elite Crown'> Elite Crown </option><br>
-</select> &nbsp;&nbsp;&nbsp;&nbsp;
+</select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-Vest:
+Vest:&nbsp;&nbsp;
 <select id='RCvest'>
 <option value='rental'> Any Rental </option><br>
 <option value='Default'>Default</option> <br>
@@ -296,7 +328,7 @@ Gloves:
 <option value='Default Gloves'>Default Gloves </option><br>
 <option value='Light Gloves'>Light Gloves </option><br>
 <option value='Warlord Gloves'>Warlord Gloves </option><br>
-</select>&nbsp;&nbsp;&nbsp;&nbsp;
+</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 Boots:
 <select id='RCboots'>
@@ -319,10 +351,10 @@ Boots:
 </select> <br><br>
 </fieldset>
 
-<fieldset class="standard">
+<fieldset class="repair">
 	<legend><b> Weapons </b></legend>
 
-Primary Weapon:
+Primary:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <select id='RCprimary'>
 <option value='rental'> Any Rental </option><br>
 <option value='none'> Select a weapon </option><br>
@@ -504,7 +536,7 @@ Primary Weapon:
 <option value='AR88 Sneakpeak'>AR88 Sneakpeak </option><br>
 </select> <br><br>
 
-Secondary Weapon:
+Secondary:
 <select id='RCsecondary'>
 <option value='rental'> Any Rental </option><br>
 <option value='STCC'>STCC </option><br>
@@ -551,7 +583,7 @@ Secondary Weapon:
 <option value='Bellum Sneakpeak'>Bellum Sneakpeak </option><br>
 </select> <br><br>
 
-Melee Weapon:
+Melee:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <select id='RCmelee'>
 <option value='rental'> Any Rental </option><br>
 <option value='Executor knife'>Executor knife</option><br>
@@ -582,6 +614,9 @@ Melee Weapon:
 
 </fieldset>
 
+<fieldset id="repCalc" class="repair"><legend><b>Calculations</b></legend>
+
+</fieldset>
  
     </div>
     <div id='tab3' class='tab'>
@@ -597,7 +632,7 @@ Melee Weapon:
 			<th>HP regen/second</th>
 			<th>Flash</th>
 			<th>Mine</th>
-			<th>Repair (10 hr)</th>
+			<!--th>Repair (10 hr)</th-->
 		</tr>
 	</table><br><br>
 
@@ -611,7 +646,7 @@ Melee Weapon:
 			<th>Explosive reduction</th>
 			<th>Melee reduction</th>
 			<th>Special</th>
-			<th>Repair (10 hr)</th>
+			<!--th>Repair (10 hr)</th-->
 		</tr>
 	</table><br><br>
 	
@@ -626,7 +661,7 @@ Melee Weapon:
 			<th>Recoil Reduction</th>
 			<th>Spread Reduction</th>
 			<th>Knock Down</th>
-			<th>Repair (10 hr)</th>
+			<!--th>Repair (10 hr)</th-->
 		</tr>
 	</table><br><br>
 	
@@ -640,7 +675,7 @@ Melee Weapon:
 			<th>Sprint Duration</th>
 			<th>Slide distance</th>
 			<th>Crouch speed</th>
-			<th>Repair (10 hr)</th>
+			<!--th>Repair (10 hr)</th-->
 		</tr>
 	</table><br><br>
 	

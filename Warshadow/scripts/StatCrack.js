@@ -86,14 +86,84 @@ define(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 's
 		});
 	});
 	
-		if(sync.testPlugin()){
-		//sync.getText();
-	}else
-		console.log("failed to get plugin");
+	sync.testPlugin() ? sync.getText(): console.log("failed to get plugin");
 	
 	arrayData.initializeArray();
-
+	
 			
+$('#RChelmet').mouseenter(function(){
+	$("#sideHelm").show();
+	$("#sideVest").hide();
+	$("#sideGlove").hide();
+	$("#sideBoot").hide();
+	$("#sidePrimary").hide();
+	$("#sideSecondary").hide();
+	$("#sideKnife").hide();
+});
+
+$('#RCvest').mouseenter(function(){
+	$('#sideHelm').hide();
+	$("#sideVest").show();
+	$("#sideGlove").hide();
+	$("#sideBoot").hide();
+	$("#sidePrimary").hide();
+	$("#sideSecondary").hide();
+	$("#sideKnife").hide();
+});
+
+$('#RCgloves').mouseenter(function(){
+	$('#sideHelm').hide();
+	$("#sideVest").hide();
+	$("#sideGlove").show();
+	$("#sideBoot").hide();
+	$("#sidePrimary").hide();
+	$("#sideSecondary").hide();
+	$("#sideKnife").hide();
+});
+
+$('#RCboots').mouseenter(function(){
+	$('#sideHelm').hide();
+	$("#sideVest").hide();
+	$("#sideGlove").hide();
+	$("#sideBoot").show();
+	$("#sidePrimary").hide();
+	$("#sideSecondary").hide();
+	$("#sideKnife").hide();
+});
+
+$('#RCprimary').mouseenter(function(){
+	$('#sideHelm').hide();
+	$("#sideVest").hide();
+	$("#sideGlove").hide();
+	$("#sideBoot").hide();
+	$("#sidePrimary").show();
+	$("#sideSecondary").hide();
+	$("#sideKnife").hide();
+});
+
+$('#RCsecondary').mouseenter(function(){
+	$('#sideHelm').hide();
+	$("#sideVest").hide();
+	$("#sideGlove").hide();
+	$("#sideBoot").hide();
+	$("#sidePrimary").hide();
+	$("#sideSecondary").show();
+	$("#sideKnife").hide();
+});
+
+$('#RCmelee').mouseenter(function(){
+	$('#sideHelm').hide();
+	$("#sideVest").hide();
+	$("#sideGlove").hide();
+	$("#sideBoot").hide();
+	$("#sidePrimary").hide();
+	$("#sideSecondary").hide();
+	$("#sideKnife").show();
+});
+
+
+//document.getElementById("RChelmet").onmouseover = function() {document.getElementById("sideHelm").style.display = 'block';};
+	
 document.getElementById("weaponSelect1").onchange = function(){upDat.updateData(1); setTimeout(function(){$("#chart").slideDown(400);}, 100); };
 document.getElementById("weaponSelect2").onchange = function(){upDat.updateData(2);};
 document.getElementById("weaponSelect3").onchange = function(){upDat.updateData(3);};
