@@ -357,27 +357,27 @@ function getVests(){
 
 
 function setHelmets(arr){
-	JSON.stringify(localStorage.setItem("helmets", arr));
+	localStorage.setItem("helmets", JSON.stringify(arr));
 };
 
 function setGloves(arr){	
-	JSON.stringify(localStorage.setItem("gloves", arr));
+	localStorage.setItem("gloves", JSON.stringify(arr));
 };
 
 function setBoots(arr){
-	JSON.stringify(localStorage.setItem("boots", arr));
+	localStorage.setItem("boots", JSON.stringify(arr));
 };
 
 function setKnives(arr){
-	JSON.stringify(localStorage.setItem("knives", arr));
+	localStorage.setItem("knives", JSON.stringify(arr));
 };
 
 function setWeapons(arr){
-	JSON.stringify(localStorage.setItem("weapons", arr));
+	localStorage.setItem("weapons", JSON.stringify(arr));
 };
 
 function setVests(arr){
-	JSON.stringify(localStorage.setItem("vests", arr));
+	localStorage.setItem("vests", JSON.stringify(arr));
 };
 
 	return {

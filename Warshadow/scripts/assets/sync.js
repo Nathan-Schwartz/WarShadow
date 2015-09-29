@@ -9,38 +9,25 @@ function testPlugin(){
 };
 
 
-/*
-      plugin().fileExists(
-        plugin().PROGRAMFILES + "/overwolf/Overwolf.exe.config", 
-        function(status) {
-        
-          if (status === true) {
-            addMessage(
-              plugin().PROGRAMFILES + 
-              "/overwolf/Overwolf.exe.config" + 
-              " exists on disk!");
-          } else {
-            addMessage(
-              plugin().PROGRAMFILES + 
-              "/overwolf/Overwolf.exe.config" + 
-              " does NOT exist on disk!");
-          }
-        });*/
-    
+    // !!!!!! implemenent failsafes for A) not a directory     B) not a file    C) user doesn't want to sync
     /*  plugin().isDirectory(
         plugin().PROFILE + "/Saved Games/My Games/WarfaceWest/QueryCache", 
         function(status) {
-			addMessage(plugin().PROFILE + "/queryCache" + ((status===true)?" exists and is a directory":" is not a directory or does NOT exist!"));
+			if(status===true)
 			
-			plugin().listDirectoryContents(plugin().PROGRAMFILES + ((status===true)?"/overwolf":""), function(status, data) {
-				addMessage("listDirectoryContents: " + ((status===true)?"success":"failed"));
-				if (status===true)
-					addMessage(JSON.stringify(JSON.parse(data), null, '\t'));	// JSON compat test
-			});
-        });*/
+				plugin().fileExists(
+					plugin().PROFILE + "/Saved Games/My Games/WarfaceWest/QueryCache/shop_get_offers.xml", 
+					function(status) {
+						if(status === true) {
+							alert("WOOT WOOT");
+						}	
+			
+				});
+		});
+		*/
 
 
-function getText(){// !!!!!! implemenent failsafes for A) not a directory     B) not a file    C) user doesn't want to sync    D) user wants to pick custom location 
+function getText(){
 	plugin().getTextFile(
 			plugin().PROFILE + 
 			"/Saved Games/My Games/WarfaceWest/QueryCache/shop_get_offers.xml", 
@@ -167,24 +154,31 @@ function getText(){// !!!!!! implemenent failsafes for A) not a directory     B)
 					console.log("leftout:");
 					console.log(leftout);
 					
-					/*
-					console.log(arrHelm);
-					console.log(arrBoot);
-					console.log(arrVest);
-					console.log(arrWeap);
-					*/
-					/*
 					gData.setKnives(arrKniv);
 					gData.setBoots(arrBoot);
 					gData.setVests(arrVest);
 					gData.setGloves(arrGlov);
 					gData.setWeapons(arrWeap);
 					gData.setHelmets(arrHelm);
-					*/
+			
+					arrWeap = gData.getWeapons();
+					arrGlov = gData.getGloves();
+					arrKniv = gData.getKnives();
+					arrHelm = gData.getHelmets();
+					arrVest = gData.getVests();
+					arrBoot = gData.getBoots();
+					
+					console.log(arrHelm);
+					console.log(arrBoot);
+					console.log(arrVest);
+					console.log(arrWeap);
+					console.log(arrGlov);
+					console.log(arrKniv);
+					
 			}
-        });
-}
-	
+		}
+	);
+};
 	return{
 		testPlugin: testPlugin,
 		getText: getText
