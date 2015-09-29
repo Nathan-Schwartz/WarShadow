@@ -7,7 +7,7 @@
 		and it only allows one recording to grab footage at a time. For this reason its beneficial to only grab past time. I use the setTimeout function for this purpose.
 		*/
 		
-			var temp = JSON.parse(localStorage.getItem("Settings")); // !!!! need to test that this is working properly. this comment was made after consolidating localstorage calls to a temp variable
+			var temp = JSON.parse(localStorage.getItem("Settings"));// if there are errors for recording various actions check the calls to localstorage. I just consolidated them to the temp variable
 			
 			var after = temp.Rcuddling*1000; 
 			var before = temp.Rforeplay*1000; 

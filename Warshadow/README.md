@@ -1,9 +1,5 @@
 # WarShadow
 
-This branch is unique from the others because I have started implementing require.js. I am still having some issues with the google charts API and the StatCrack tab system but its only been a day so I'll get it :)
-I plan to implemenet underscore.js after I am comfortable with the require.js aspect of it.
-
-
 This is my first HTML/CSS/JS project ever! I will be submitting it to the Overwolf app challenge sponsored by Nvidia  (ending Nov 29) in the Warface divisions. 
 The code is a bit messy and I'm working on adding comments, refactoring, and re-organizing it. I am planning to break up the horrendously big files and implement a module loader like Require.js soon. Initially, I was primarily concerned with adding new features and I didn't know about AMD. 
 
