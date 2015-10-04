@@ -5,7 +5,7 @@
 	
 		//overwolf.windows.changeSize(localStorage.getItem('MainID'), 2, 2);
 		
-localStorage.removeItem('windowPOS');
+//localStorage.removeItem('windowPOS');
 
 if(!localStorage.getItem('windowPOS')){ //If this is the first launch, initialize array that stores window position coordinates
 	var windowPOS = {
@@ -252,7 +252,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 		document.getElementById("HSChain").onchange = function(){rHUD.refreshHUD();};
 		
 		document.getElementById("KDRate").onchange = function(){rHUD.refreshHUD();};
-		document.getElementById("crosshair").onchange = function(){document.getElementById('crosshair').checked ? rec.startCapture() : rec.finishCapture();};
+	//	document.getElementById("crosshair").onchange = function(){document.getElementById('crosshair').checked ? rec.startCapture() : rec.finishCapture();};
 		document.getElementById("autoon").onchange = function(){rec.turnOn();};// !!!!! only if checked?
 		
 		//replay testing

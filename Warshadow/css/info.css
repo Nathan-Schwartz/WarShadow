@@ -205,6 +205,14 @@ margin: 0;
 	bottom: 30px;
 }
 
+select{
+	width:200px;
+}
+
+#weaponSelect1{
+	width:250px;
+}
+
 #secondweapon{
 	display : none;
 }

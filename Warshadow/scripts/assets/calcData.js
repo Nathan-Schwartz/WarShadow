@@ -19,18 +19,18 @@ min_damage(modded) = 	gun_min damage * point_blank_silencer_mod - vest_mod
 
 define(function () {
 
-function NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot){
+function NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, pellets){ // !!!! pellets
 	var tank = 0;
 	
 	if(Repelshot == true)
 		tank = 1;
 	
-	var NTK = (  (vestHP / damageCalc(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter)) - tank  );
+	var NTK = (  (vestHP / damageCalc(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets)) - tank  );
 	NTK = Math.ceil(NTK);
 	return NTK;
 }
 
-function NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype){
+function NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, pelleets){ // !!! pellets
 	var HSmult = 5;
 	
 	if(weapon_archetype == "E")
@@ -44,7 +44,7 @@ function NTKhead(damage_default, min_default, attachment_equipped, RFProt, dista
 	console.log("weapon_archetype = " + weapon_archetype);
 
 	
-	var NTK = vestHP / (damageCalc(damage_default, min_default, attachment_equipped, false, distance_selected, weapon_range, weapon_class, damage_lost_p_meter) * Hdamage_reduc * HSmult);
+	var NTK = vestHP / (damageCalc(damage_default, min_default, attachment_equipped, false, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets) * Hdamage_reduc * HSmult);
 	NTK = Math.ceil(NTK);
 	console.log(NTK);
 	return NTK;
@@ -67,9 +67,11 @@ function TTKvest(damage_default, min_default, attachment_equipped, RFProt, dista
 
 	
 
-	function damageCalc(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter){
+	function damageCalc(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets){
 	//This is the main damage function, the ones below are just helpers
-
+console.log("pellets: " + pellets);
+	
+	
 		var silencer_reduc_mult = 1;
 		var silencer_fall_off_mult = 1;
 		var vest_reduc = 0;
@@ -91,13 +93,41 @@ function TTKvest(damage_default, min_default, attachment_equipped, RFProt, dista
 		}else if(attachment_equipped == "suppressor")
 			weaponrange = weapon_range*1.2;
 		
-		test_damage = ((damage_default - damageFallOff(distance_selected, weaponrange, weapon_class, damage_lost_p_meter, silencer_fall_off_mult)) * silencer_reduc_mult) - vest_reduc;
-		//console.log("testdamage" + test_damage);
-		if(test_damage <= minDamage(min_default, vest_reduc, silencer_reduc_mult))
-			return minDamage(min_default, vest_reduc, silencer_reduc_mult);
+				//console.log("testdamage" + test_damage);
+		
+		if(weapon_class == 'M'){
+		/*
+		Shotgun calculations
+		
+		This will be annoying and more complicated unfortunately
+		
+		Minimum damage won't apply 90% of the time because its rare to hit with all pellets
+		Its hard to calculate damage accurately. All I can do realistically is compare shotguns against other shotguns.
+		
+		My current Idea is to estimate how many pellets hit and reduce the % as distance increases. Then multiply damage per pellet by the % of pellets that hit.
+		I'm not sure how to estimate % of pellets that hit at a given range, but i'll do some testing.
+		
+		Headshots calculations are gonna be totally messed up because even less pellets hit the head.
+		To compensate i guess i could just reduce by more %
+		
+		*/
+			damage_default = damage_default/pellets;
+			damage_lost_p_meter = damage_lost_p_meter/pellets
+			test_damage_per_pellet = ((damage_default - damageFallOff(distance_selected, weaponrange, weapon_class, damage_lost_p_meter, silencer_fall_off_mult)) * silencer_reduc_mult);//vest reduc should not apply to individual pellets
+			console.log("test damage per pellet: " + test_damage_per_pellet);
+			var pellets_hit_bogus = Math.round(pellets * (100 - distance_selected)/100);//This is some bogus hocus pocus I made up to try to estimate how many pellets will hit a target at given range
 			
-		else
-			return test_damage;
+			return ((test_damage_per_pellet * pellets_hit_bogus) - vest_reduc) < 0 ? 0 : ((test_damage_per_pellet * pellets_hit_bogus) - vest_reduc); //If damage is less than a single pellet return single pellet
+			
+		}else{
+			test_damage = ((damage_default - damageFallOff(distance_selected, weaponrange, weapon_class, damage_lost_p_meter, silencer_fall_off_mult)) * silencer_reduc_mult) - vest_reduc;
+
+			if(test_damage <= minDamage(min_default, vest_reduc, silencer_reduc_mult))
+				return minDamage(min_default, vest_reduc, silencer_reduc_mult);
+			
+			else
+				return test_damage;
+		}
 	}
 			
 	function minDamage(min_default, vest_reduc, silencer_reduc_mult){

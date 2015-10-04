@@ -63,7 +63,7 @@ define(function () {
 var url = "";	
 	
 function startCapture(){
-	overwolf.media.replays.startCapture(35000, 
+	overwolf.media.replays.startCapture(500000, 
 		function(result){
 			console.log(result);
 			url = result.url;
@@ -83,8 +83,7 @@ function capture(before, after){
 			alert("You entered an invalid Capture duration");
 		}
 		else{
-			before = before + (parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000);
-			overwolf.media.replays.capture(before, after, 
+			overwolf.media.replays.capture(before + (parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000), after, 
 				function(result){if(result) console.log(result);},
 				function(results){
 					//console.log(results);

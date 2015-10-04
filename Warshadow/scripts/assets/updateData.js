@@ -91,19 +91,19 @@ define(['gearData', 'calcData', 'graph', 'arrayData'], function(gData, cData, gr
 					
 					else{
 						if(document.getElementById("selectGData").value == "Ddamage"){
-							myA[iters][arrnum] = cData.damageCalc(parseFloat(weaponArr[i].Damage), parseFloat(weaponArr[i].Min_damage), document.getElementById(attach).value, RFP, iters,parseFloat(weaponArr[i].Min_range), weaponArr[i].Class, parseFloat(weaponArr[i].Damage_reduc));
+							myA[iters][arrnum] = cData.damageCalc(parseFloat(weaponArr[i].Damage), parseFloat(weaponArr[i].Min_damage), document.getElementById(attach).value, RFP, iters,parseFloat(weaponArr[i].Min_range), weaponArr[i].Class, parseFloat(weaponArr[i].Damage_reduc), weaponArr[i].Class == 'M' ? parseInt(weaponArr[i].Pellets) : 1);
 						
 						}else if(document.getElementById("selectGData").value == "DttkH"){
 							myA[iters][arrnum] = cData.TTKhead(parseFloat(weaponArr[i].Damage), parseFloat(weaponArr[i].Min_damage), document.getElementById(attach).value, RFP, iters,parseFloat(weaponArr[i].Min_range), weaponArr[i].Class, parseFloat(weaponArr[i].Damage_reduc), vestHP, Hdamage_reduc, weaponArr[i].Archetype, parseFloat(weaponArr[i].RPM));
 					
 						}else if(document.getElementById("selectGData").value == "DntkH"){
-							myA[iters][arrnum] = cData.NTKhead(parseFloat(weaponArr[i].Damage), parseFloat(weaponArr[i].Min_damage), document.getElementById(attach).value, RFP, iters,parseFloat(weaponArr[i].Min_range), weaponArr[i].Class, parseFloat(weaponArr[i].Damage_reduc), vestHP, Hdamage_reduc, weaponArr[i].Archetype);					
+							myA[iters][arrnum] = cData.NTKhead(parseFloat(weaponArr[i].Damage), parseFloat(weaponArr[i].Min_damage), document.getElementById(attach).value, RFP, iters,parseFloat(weaponArr[i].Min_range), weaponArr[i].Class, parseFloat(weaponArr[i].Damage_reduc), vestHP, Hdamage_reduc, weaponArr[i].Archetype, weaponArr[i].Class == 'M' ? parseInt(weaponArr[i].Pellets) : 1);					
 					
 						}else if(document.getElementById("selectGData").value == "DttkV"){
 							myA[iters][arrnum] = cData.TTKvest(parseFloat(weaponArr[i].Damage), parseFloat(weaponArr[i].Min_damage), document.getElementById(attach).value, RFP, iters,parseFloat(weaponArr[i].Min_range), weaponArr[i].Class, parseFloat(weaponArr[i].Damage_reduc), vestHP, Repelshot, parseFloat(weaponArr[i].RPM));
 					
 						}else if(document.getElementById("selectGData").value == "DntkV"){
-							myA[iters][arrnum] = cData.NTKvest(parseFloat(weaponArr[i].Damage), parseFloat(weaponArr[i].Min_damage), document.getElementById(attach).value, RFP, iters,parseFloat(weaponArr[i].Min_range), weaponArr[i].Class, parseFloat(weaponArr[i].Damage_reduc), vestHP, Repelshot);
+							myA[iters][arrnum] = cData.NTKvest(parseFloat(weaponArr[i].Damage), parseFloat(weaponArr[i].Min_damage), document.getElementById(attach).value, RFP, iters,parseFloat(weaponArr[i].Min_range), weaponArr[i].Class, parseFloat(weaponArr[i].Damage_reduc), vestHP, Repelshot, weaponArr[i].Class == 'M' ? parseInt(weaponArr[i].Pellets) : 1);
 				
 						}else{
 							console.log("incorrect value caught by selectGData: " + document.getElementById("selectGData").value );

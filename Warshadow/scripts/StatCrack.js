@@ -92,43 +92,43 @@ define(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 's
 	
 			
 $('#RChelmet').mouseenter(function(){
-	$("#sideHelm").show();
 	$("#sideVest").hide();
 	$("#sideGlove").hide();
 	$("#sideBoot").hide();
 	$("#sidePrimary").hide();
 	$("#sideSecondary").hide();
 	$("#sideKnife").hide();
+	$("#sideHelm").show();
 });
 
 $('#RCvest').mouseenter(function(){
 	$('#sideHelm').hide();
-	$("#sideVest").show();
 	$("#sideGlove").hide();
 	$("#sideBoot").hide();
 	$("#sidePrimary").hide();
 	$("#sideSecondary").hide();
 	$("#sideKnife").hide();
+	$("#sideVest").show();
 });
 
 $('#RCgloves').mouseenter(function(){
 	$('#sideHelm').hide();
 	$("#sideVest").hide();
-	$("#sideGlove").show();
 	$("#sideBoot").hide();
 	$("#sidePrimary").hide();
 	$("#sideSecondary").hide();
 	$("#sideKnife").hide();
+	$("#sideGlove").show();
 });
 
 $('#RCboots').mouseenter(function(){
 	$('#sideHelm').hide();
 	$("#sideVest").hide();
 	$("#sideGlove").hide();
-	$("#sideBoot").show();
 	$("#sidePrimary").hide();
 	$("#sideSecondary").hide();
 	$("#sideKnife").hide();
+	$("#sideBoot").show();
 });
 
 $('#RCprimary').mouseenter(function(){
@@ -136,9 +136,9 @@ $('#RCprimary').mouseenter(function(){
 	$("#sideVest").hide();
 	$("#sideGlove").hide();
 	$("#sideBoot").hide();
-	$("#sidePrimary").show();
 	$("#sideSecondary").hide();
 	$("#sideKnife").hide();
+	$("#sidePrimary").show();
 });
 
 $('#RCsecondary').mouseenter(function(){
@@ -147,8 +147,8 @@ $('#RCsecondary').mouseenter(function(){
 	$("#sideGlove").hide();
 	$("#sideBoot").hide();
 	$("#sidePrimary").hide();
-	$("#sideSecondary").show();
 	$("#sideKnife").hide();
+	$("#sideSecondary").show();
 });
 
 $('#RCmelee').mouseenter(function(){
@@ -164,7 +164,7 @@ $('#RCmelee').mouseenter(function(){
 
 //document.getElementById("RChelmet").onmouseover = function() {document.getElementById("sideHelm").style.display = 'block';};
 	
-document.getElementById("weaponSelect1").onchange = function(){upDat.updateData(1); setTimeout(function(){$("#chart").slideDown(400);}, 100); };
+document.getElementById("weaponSelect1").onchange = function(){upDat.updateData(1); setTimeout(function(){$("#chart").show();}, 100); };
 document.getElementById("weaponSelect2").onchange = function(){upDat.updateData(2);};
 document.getElementById("weaponSelect3").onchange = function(){upDat.updateData(3);};
 document.getElementById("weaponSelect4").onchange = function(){upDat.updateData(4);};
@@ -181,9 +181,8 @@ document.getElementById("selectGData").onchange = function(){upDat.updateData(0)
 document.getElementById("enemyVest1").onchange = function(){upDat.updateData(0);};//upDat.updateData(1, true);upDat.updateData(2, true);upDat.updateData(3, true);upDat.updateData(4, true);upDat.updateData(5, true);};
 document.getElementById("enemyHelmet1").onchange = function(){upDat.updateData(0);};//upDat.updateData(1, true);upDat.updateData(2, true);upDat.updateData(3, true);upDat.updateData(4, true);upDat.updateData(5, true);};
 document.getElementById("distance").onchange = function(){
-	if(isNaN(parseFloat(document.getElementById("distance").value))){
-		alert("You entered an invalid distance");
-	}
+	if(isNaN(parseInt(document.getElementById("distance").value)) || parseInt(document.getElementById("distance").value) > 100 || parseInt(document.getElementById("distance").value) <= 0)
+			alert("You entered an invalid distance");
 	
 	upDat.updateData(0);
 };
