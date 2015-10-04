@@ -30,7 +30,7 @@ function NTKvest(damage_default, min_default, attachment_equipped, RFProt, dista
 	return NTK;
 }
 
-function NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, pelleets){ // !!! pellets
+function NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, pellets){ // !!! pellets
 	var HSmult = 5;
 	
 	if(weapon_archetype == "E")
@@ -51,17 +51,17 @@ function NTKhead(damage_default, min_default, attachment_equipped, RFProt, dista
 	}
 	
 
-function TTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, RPM){
+function TTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, RPM, pellets){
 
 	var milliseconds_between_shots = 60000/RPM;
 	
-	return (NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype)* milliseconds_between_shots) - milliseconds_between_shots;
+	return (NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, pellets)* milliseconds_between_shots) - milliseconds_between_shots;
 	
 }
 
-function TTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, RPM){
+function TTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, RPM, pellets){
 	var milliseconds_between_shots = 60000/RPM;
-	return (NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot)* milliseconds_between_shots) - milliseconds_between_shots;
+	return (NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot)* milliseconds_between_shots, pellets) - milliseconds_between_shots;
 }
 
 
@@ -111,18 +111,21 @@ console.log("pellets: " + pellets);
 		To compensate i guess i could just reduce by more %
 		
 		*/
+			var minDamage_per_pellet = minDamage(min_default, vest_reduc, silencer_reduc_mult)/pellets;
 			damage_default = damage_default/pellets;
 			damage_lost_p_meter = damage_lost_p_meter/pellets
 			test_damage_per_pellet = ((damage_default - damageFallOff(distance_selected, weaponrange, weapon_class, damage_lost_p_meter, silencer_fall_off_mult)) * silencer_reduc_mult);//vest reduc should not apply to individual pellets
 			console.log("test damage per pellet: " + test_damage_per_pellet);
 			var pellets_hit_bogus = Math.round(pellets * (100 - distance_selected)/100);//This is some bogus hocus pocus I made up to try to estimate how many pellets will hit a target at given range
 			
+			test_damage_per_pellet = test_damage_per_pellet < minDamage_per_pellet ? minDamage_per_pellet : test_damage_per_pellet; //don't let individual pellets go below minimum damage
+			
 			return ((test_damage_per_pellet * pellets_hit_bogus) - vest_reduc) < 0 ? 0 : ((test_damage_per_pellet * pellets_hit_bogus) - vest_reduc); //If damage is less than a single pellet return single pellet
 			
 		}else{
 			test_damage = ((damage_default - damageFallOff(distance_selected, weaponrange, weapon_class, damage_lost_p_meter, silencer_fall_off_mult)) * silencer_reduc_mult) - vest_reduc;
 
-			if(test_damage <= minDamage(min_default, vest_reduc, silencer_reduc_mult))
+			if(test_damage <= minDamage(min_default, vest_reduc, silencer_reduc_mult)) 
 				return minDamage(min_default, vest_reduc, silencer_reduc_mult);
 			
 			else
