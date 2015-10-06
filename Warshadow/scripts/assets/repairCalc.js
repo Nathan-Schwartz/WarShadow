@@ -15,8 +15,7 @@ function repairCalc(){
 	}
 	var duration = durArr[0]; //Seconds enterred by user
 	var repair_mult = duration/36000; //since repair values are based on 10 hours of gameplay this is what we will multiply repair cost by to adjust for the session length
-// !!!! this needs to be accessible to gearDisplay in order to affect the charts
-
+	//localStorage.setItem('repairMult', repair_mult);
 	
 	function outputCosts(obj){
 		if(obj.length == 3){
@@ -39,6 +38,12 @@ function repairCalc(){
 	}
 
 	// !!!! add up the repair costs and display total. Then calculate mission rewards. Then compare the two. Output in calculation box.
+	
+	
+	
+	
+	
+	
 	var charts = {
 		Vests: [gData.getVests(), 'RCvest', 'vesCost'],
 		Helmets: [gData.getHelmets(), 'RChelmet', 'helCost'],
@@ -54,7 +59,23 @@ function repairCalc(){
 	outputCosts(charts.Boots);
 	outputCosts(charts.Weapons);
 	outputCosts(charts.Knives);
-
+	
+	document.getElementById('totCost').innerText = (
+		parseInt(document.getElementById('vesCost').innerText) +
+		parseInt(document.getElementById('helCost').innerText) +
+		parseInt(document.getElementById('gloCost').innerText) +
+		parseInt(document.getElementById('booCost').innerText) +
+		parseInt(document.getElementById('priCost').innerText) +
+		parseInt(document.getElementById('secCost').innerText) +
+		parseInt(document.getElementById('melCost').innerText)
+	);
+	
+	document.getElementById('net').innerText = (parseInt(document.getElementById('income').innerText) - parseInt(document.getElementById('totCost').innerText));
+	document.getElementById('netFW').innerText = (parseInt(document.getElementById('incomeFW').innerText) - parseInt(document.getElementById('totCost').innerText));
+			
+	
+	
+	
 };
 
 	return{

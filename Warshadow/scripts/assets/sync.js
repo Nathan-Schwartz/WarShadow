@@ -44,7 +44,7 @@ function syncRepairs(status, data) {
 						for(var j1 = 0; j1 < arrHelm.length; j1++){
 							if(arrHelm[j1].Shop_name == newData[i][0]){
 								//console.log(arrHelm[j1].key);
-								arrHelm[j1].Repair_num = newData[i][1];
+								arrHelm[j1].Repair_num = Math.round(newData[i][1] / 10)*10;
 								newData[i][1] = 0;
 								break
 							}
@@ -54,7 +54,7 @@ function syncRepairs(status, data) {
 						for(var j2 = 0; j2 < arrWeap.length; j2++){
 							if(arrWeap[j2].Shop_name == newData[i][0]){
 								//console.log(arrWeap[j2].key);
-								arrWeap[j2].Repair_num = newData[i][1];
+								arrWeap[j2].Repair_num = Math.round(newData[i][1] / 10)*10;
 								newData[i][1] = 0;
 								break
 							}
@@ -64,7 +64,7 @@ function syncRepairs(status, data) {
 						for(var j3 = 0; j3 < arrGlov.length; j3++){
 							if(arrGlov[j3].Shop_name == newData[i][0]){
 								//console.log(arrGlov[j3].key);
-								arrGlov[j3].Repair_num = newData[i][1];
+								arrGlov[j3].Repair_num = Math.round(newData[i][1] / 10)*10;
 								newData[i][1] = 0;
 								break
 							}
@@ -74,7 +74,7 @@ function syncRepairs(status, data) {
 						for(var j4 = 0; j4 < arrVest.length; j4++){
 							if(arrVest[j4].Shop_name == newData[i][0]){
 								//console.log(arrVest[j4].key);
-								arrVest[j4].Repair_num = newData[i][1];
+								arrVest[j4].Repair_num = Math.round(newData[i][1] / 10)*10;
 								newData[i][1] = 0;
 								break
 							}
@@ -84,7 +84,7 @@ function syncRepairs(status, data) {
 						for(var j5 = 0; j5 < arrBoot.length; j5++){
 							if(arrBoot[j5].Shop_name == newData[i][0]){
 								//console.log(arrBoot[j5].key);
-								arrBoot[j5].Repair_num = newData[i][1];
+								arrBoot[j5].Repair_num = Math.round(newData[i][1] / 10)*10;
 								newData[i][1] = 0;
 								break
 							}
@@ -94,7 +94,7 @@ function syncRepairs(status, data) {
 						for(var j6 = 0; j6 < arrKniv.length; j6++){
 							if(arrKniv[j6].Shop_name == newData[i][0]){
 								//console.log(arrKniv[j6].key);
-								arrKniv[j6].Repair_num = newData[i][1];
+								arrKniv[j6].Repair_num = Math.round(newData[i][1] / 10)*10;
 								newData[i][1] = 0;
 								break
 							}

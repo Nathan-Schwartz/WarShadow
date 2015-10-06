@@ -27,6 +27,14 @@ body {
 .cost{
 	color: #00FF00;
 }
+.income{
+	color: #330099;
+}
+
+.net{
+	color: #990000;
+	font-weight: bold;
+}
 
 .embeddedSettings{
 	margin-top:15px;
@@ -35,14 +43,14 @@ body {
 	
 }
 #repCalc{
-	height: 120px;
+	height: 150px;
 }
 #sidebar{
 	margin-top:15px;
 	border-color: #E1E1E1;
 	border-radius:3px;
 	width: 270px;
-	height: 500px;
+	height: 530px;
 	position:absolute;
 	top: 15px;
 	left:650px;
@@ -217,7 +225,7 @@ select{
 	width:250px;
 }
 
-#secondweapon, #thirdweapon, #fourthweapon, #fifthweapon, #sideHelm, #sideVest, #sideGlove, #sideBoot, #sidePrimary, #sideSecondary, #sideKnife, #triggers, #sideShotgun,#sideRifle, #sideSMG, #sideSniper{
+#secondweapon, #thirdweapon, #fourthweapon, #fifthweapon, #sideHelm, #sideVest, #sideGlove, #sideBoot, #sidePrimary, #sideSecondary, #sideKnife, #triggers, #sideShotgun,#sideRifle, #sideSMG, #sideSniper, #sideRewards{
 	display : none;
 }
 

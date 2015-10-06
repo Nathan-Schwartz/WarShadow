@@ -220,62 +220,58 @@ Attachment:
 	
 	
 <fieldset id="sidebar"><legend><b>Comparisons</b></legend>
+<table id="sideRewards" class="table">
+</table>
+
 <table id="sideHelm" class="table">
-<tr><th>Helmet Name</th> <th>Repair</th></tr>
 </table>
 
 <table id="sideVest" class="table">
-<tr><th>Vest Name</th> <th>Repair</th></tr>
 </table>
 
 <table id="sideGlove" class="table">
-<tr><th>Glove Name</th> <th>Repair</th></tr>
 </table>
 
 <table id="sideBoot" class="table">
-<tr><th>Boot Name</th> <th>Repair</th></tr>
 </table>
 
 <table id="sidePrimary" class="table">
-<tr><th>Name</th> <th>Repair</th></tr>
 </table>
 
 <table id="sideSMG" class="table">
-<tr><th>Name</th> <th>Repair</th></tr>
 </table>
 
 <table id="sideRifle" class="table">
-<tr><th>Name</th> <th>Repair</th></tr>
 </table>
 
 <table id="sideSniper" class="table">
-<tr><th>Name</th> <th>Repair</th></tr>
 </table>
 
 <table id="sideShotgun" class="table">
-<tr><th>Name</th> <th>Repair</th></tr>
 </table>
 
 <table id="sideSecondary" class="table">
-<tr><th>Name</th> <th>Repair</th></tr>
 </table>
 
 <table id="sideKnife" class="table">
-<tr><th>Name</th> <th>Repair</th></tr>
 </table>
 
 </fieldset>
 
   <fieldset class="repair">
   <legend> <b>Game Variables</b> </legend>
-  Money Booster (%):  <input type='text' id='booster'>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='checkbox' id='firstWin'>&nbsp;&nbsp;First win bonus <br><br>
+ Money Rewards (%):  <input type='text' id='booster' value='100'><br><br>
   
 Mission:  
-<select id='missionType'>
-<option value='Regular'> Regular </option><br>
-<option value='Skilled'> Skilled </option> <br>
-<option value='Hardcore'> Hardcore </option><br>
-<option value='Tower'> Tower </option><br>
+<select id='missionType'> Insane
+<option value='Easy'> Easy </option><br>
+<option value='Normal'> Normal </option><br>
+<option value='Normal Africa'> Normal Africa </option> <br>
+<option value='Hard'> Hard </option><br>
+<option value='Hard Africa'> Hard Africa </option><br>
+<option value='Insane'> Insane </option><br>
+<option value='Insane Africa'> Insane Africa </option><br>
+<option value='Tower'> Tower HQ </option><br>
 <option value='Marathon'> Marathon </option><br>
 </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Game length (min): <input type='text' id='duration' value="10">
   
@@ -704,6 +700,12 @@ Melee:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </fieldset>
 
 <fieldset id="repCalc" class="repair"><legend><b>Calculations</b></legend>
+<b>Total Cost:</b> <span class="cost" id="totCost"></span> <br><br>
+<b>Money Gained: </b><br>Normal:<span id="income" class="income" ></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; First win:<span class="income" id="incomeFW"></span><br><br>
+<b>Profit</b><br>
+Normal:<span id="net" class="net" ></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; First win:<span class="net" id="netFW"></span>
+
+
 
 </fieldset>
  
@@ -713,7 +715,7 @@ Melee:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      
 	</head>
 	<body>
-	Fix data representation for %s. Also maybe use an X instead of TRUE, nothing for false, and nothing for "none"
+	Fix data representation for mults
 	<table class="table" id='Htable'>
 		<tr>
 			<th>Helmet Name</th>
