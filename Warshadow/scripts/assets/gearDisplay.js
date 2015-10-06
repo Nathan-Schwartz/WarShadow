@@ -17,6 +17,14 @@ function addCOMP(id,message) {
 		document.querySelector('#sideSecondary').appendChild(obj);
 	}else if(id == "Knives"){
 		document.querySelector('#sideKnife').appendChild(obj);
+	}else if(id == "Medic"){
+		document.querySelector('#sideShotgun').appendChild(obj);
+	}else if(id == "Rifle"){
+		document.querySelector('#sideRifle').appendChild(obj);
+	}else if(id == "Engineer"){
+		document.querySelector('#sideSMG').appendChild(obj);
+	}else if(id == "Sniper"){
+		document.querySelector('#sideSniper').appendChild(obj);
 	}
 };
 
@@ -62,11 +70,21 @@ function printComparison(id, iter, gear){
 	}else if(id == 'Boots'){
 		addCOMP(id,"<tr class='alt'><td>" + gear[iter].key +"</td><td align='center'>"+ gear[iter].Repair_num+ "</td></tr>");
 	}else if(id== 'Weapons'){
-		if(gear[iter].Class == "A")
+		if(gear[iter].Class == "A"){//secondary
 			addCOMP("Secondary","<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + gear[iter].Repair_num+ "</td></tr>");
-		else
-			//if(document.getElementById('RCprimary').value == ) !!!! Check the value against keys and then check the class, if R is selected only display Rifles (and so forth), if none is selected display all.
-			addCOMP("Primary","<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + gear[iter].Repair_num+ "</td></tr>");
+		}else{//primary
+			if(gear[iter].Class == "M"){
+				addCOMP("Medic","<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + gear[iter].Repair_num+ "</td></tr>");
+			}else if(gear[iter].Class == "R"){
+				addCOMP("Rifle","<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + gear[iter].Repair_num+ "</td></tr>");
+			}else if(gear[iter].Class == "E"){
+				addCOMP("Engineer","<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + gear[iter].Repair_num+ "</td></tr>");
+			}else if(gear[iter].Class == "S"){
+				addCOMP("Sniper","<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + gear[iter].Repair_num+ "</td></tr>");
+			}		
+		addCOMP("Primary","<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + gear[iter].Repair_num+ "</td></tr>");
+			
+		}
 	}else if(id == 'Knives'){
 		addCOMP(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + gear[iter].Repair_num+ "</td></tr>");
 	}
@@ -101,9 +119,8 @@ function printer(obj){
 	compPrinter(charts.Gloves);
 	compPrinter(charts.Boots);
 	compPrinter(charts.Helmets);
-	compPrinter(charts.Weapons);
 	compPrinter(charts.Knives);
-
-
-
+	compPrinter(charts.Weapons);
+	
 });
+

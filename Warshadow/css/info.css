@@ -24,6 +24,10 @@ body {
 	font-family: Arial;
 }
 
+.cost{
+	color: #00FF00;
+}
+
 .embeddedSettings{
 	margin-top:15px;
 	border-color: #E1E1E1;
@@ -213,38 +217,7 @@ select{
 	width:250px;
 }
 
-#secondweapon{
-	display : none;
-}
-#thirdweapon {
-	display : none;
-}
-#fourthweapon {
-	display : none;
-}
-#fifthweapon{
-	display : none;
-}
-
-#sideHelm{
-	display : none;
-}
-#sideVest{
-	display : none;
-}
-#sideGlove{
-	display : none;
-}
-#sideBoot{
-	display : none;
-}
-#sidePrimary{
-	display : none;
-}
-#sideSecondary{
-	display : none;
-}
-#sideKnife{
+#secondweapon, #thirdweapon, #fourthweapon, #fifthweapon, #sideHelm, #sideVest, #sideGlove, #sideBoot, #sidePrimary, #sideSecondary, #sideKnife, #triggers, #sideShotgun,#sideRifle, #sideSMG, #sideSniper{
 	display : none;
 }
 
@@ -274,10 +247,6 @@ position: relative;
 #resetLS{
 	margin: 0 auto;
 	display: block;
-}
-
-#triggers{
-	display:none;
 }
 
 #steps{

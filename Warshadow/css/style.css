@@ -11,22 +11,7 @@
 #Roptions{
 	display: none;	
 }
-/*
-#loading{
-	
-	-webkit-transform: rotate(450deg);
- -moz-transform: rotate(450deg);
- -o-transform: rotate(450deg);
-  transform: rotate(450deg);
- -webkit-transition-duration: 5s;
- -moz-transition-duration: 5s;
- -o-transition-duration: 5s;
-  transition-duration: 5s;
-	display: block;
-    margin-left: auto;
-    margin-right: auto;
-	
-}*/
+
 
 .feedback{
 	display: none;

@@ -101,7 +101,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 		localStorage.setItem('Kills', 0); 
 		localStorage.setItem('Headshots', 0); 
 		localStorage.setItem('Defibs', 0);
-		localStorage.setItem('TWWWOOOOCHAAAAAIIIIIIIINNNNNZZZZZ',0);
+		localStorage.setItem('TWWWOOOOCHAAAAAIIIIIIIINNNNNZZZZZ',0);  //sorry, had to.
 		localStorage.setItem('3chain',0);
 		localStorage.setItem('4chain',0);
 		localStorage.setItem('5chain',0);
@@ -253,7 +253,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 		
 		document.getElementById("KDRate").onchange = function(){rHUD.refreshHUD();};
 	//	document.getElementById("crosshair").onchange = function(){document.getElementById('crosshair').checked ? rec.startCapture() : rec.finishCapture();};
-		document.getElementById("autoon").onchange = function(){rec.turnOn();};// !!!!! only if checked?
+		document.getElementById("autoon").onchange = function(){rec.turnOn();};
 		
 		//replay testing
 		document.getElementById("turnOff").onclick = function(){rec.turnOff();};
@@ -298,11 +298,11 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 						function (resultD){
 							if(resultD.isInFocus == true){
 								if(test.restoreOnTab == true){
-									//game is in focus!!!!!
+									//game is in focus
 									overwolf.windows.restore(localStorage.getItem('MainID'));
 									rHUD.refreshHUD();
 									 
-									//console.log(overwolf.windows.getWindowState(localStorage.getItem('MainID'))); //!!!!!!!!!!!!!! returning undefined
+									//console.log(overwolf.windows.getWindowState(localStorage.getItem('MainID'))); //!!! returning undefined
 								}
 							}else{
 								if(test.minimizeOnTab == true){

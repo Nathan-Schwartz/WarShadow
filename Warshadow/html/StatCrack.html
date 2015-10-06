@@ -219,7 +219,7 @@ Attachment:
     <div id='tab2' class='tab'>
 	
 	
-<fieldset id="sidebar"><legend><b>Comparisons</b></legend> <!-- !!!!wrap in divs-->
+<fieldset id="sidebar"><legend><b>Comparisons</b></legend>
 <table id="sideHelm" class="table">
 <tr><th>Helmet Name</th> <th>Repair</th></tr>
 </table>
@@ -237,6 +237,22 @@ Attachment:
 </table>
 
 <table id="sidePrimary" class="table">
+<tr><th>Name</th> <th>Repair</th></tr>
+</table>
+
+<table id="sideSMG" class="table">
+<tr><th>Name</th> <th>Repair</th></tr>
+</table>
+
+<table id="sideRifle" class="table">
+<tr><th>Name</th> <th>Repair</th></tr>
+</table>
+
+<table id="sideSniper" class="table">
+<tr><th>Name</th> <th>Repair</th></tr>
+</table>
+
+<table id="sideShotgun" class="table">
 <tr><th>Name</th> <th>Repair</th></tr>
 </table>
 
@@ -261,7 +277,7 @@ Mission:
 <option value='Hardcore'> Hardcore </option><br>
 <option value='Tower'> Tower </option><br>
 <option value='Marathon'> Marathon </option><br>
-</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Game length (min): <input type='text' id='duration'>
+</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Game length (min): <input type='text' id='duration' value="10">
   
   </fieldset>
   
@@ -308,7 +324,9 @@ Vest:&nbsp;&nbsp;
 <option value='Corundum'>Corundum</option> <br>
 <option value='Python'>Python</option> <br>
 <option value='Extra Strong'>Extra Strong</option> <br>
-</select> <br><br>
+</select> <br>
+<span class="cost"  id="helCost"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cost"  id="vesCost"></span>
+<br>
 
 Gloves:
 <select id='RCgloves'>
@@ -348,7 +366,9 @@ Boots:
 <option value='Christmas Boots'>Christmas Boots </option><br>
 <option value='Anti-directional Mine Boots'>Anti-directional Mine Boots </option><br>
 <option value='Warlord Boots'>Warlord Boots </option><br>
-</select> <br><br>
+</select> <br>
+<span class="cost"  id="gloCost"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cost"  id="booCost"></span>
+<br>
 </fieldset>
 
 <fieldset class="repair">
@@ -406,7 +426,7 @@ Primary:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <option value='SMG-19 Wisent'>SMG-19 Wisent </option><br>
 <option value='GU1'>GU1 </option><br>
 <option value='GU1 Brazil'>GU1 Brazil </option><br>
-<option value='Gu1 Christmas'>Gu1 Christmas </option><br>
+<option value='Gu1 Christmas'>GU1 Christmas </option><br>
 <option value='GU1 Crown'>GU1 Crown </option><br>
 <option value='GU1 NY'>GU1 NY </option><br>
 <option value='ZX84 SMG'>ZX84 SMG </option><br>
@@ -603,7 +623,7 @@ Primary:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <option value='FCG-R3 Sneakpeak'> Railgun: FCG-R3 Sneakpeak </option><br>
 <option value='HMGL32A7 Oblivion Sneakpeak'>Grenade Launcher: HMGL32A7 Oblivion Sneakpeak </option><br>
 <option value='R32A1 Sneakpeak'>Grenade Launcher: R32A1 Sneakpeak </option><br>
-</select> &nbsp;&nbsp;<div id="priCost"> </div><br><br>
+</select> &nbsp;&nbsp;<span class="cost"  id="priCost"> </span><br><br>
 
 Secondary:
 <select id='RCsecondary'>
@@ -650,7 +670,7 @@ Secondary:
 <option value='M93R'>M93R </option><br>
 <option value='M1895 Sneakpeak'>M1895 Sneakpeak </option><br>
 <option value='Bellum Sneakpeak'>Bellum Sneakpeak </option><br>
-</select> &nbsp;&nbsp;<div id="secCost"> </div><br><br>
+</select> &nbsp;&nbsp;<span class="cost"  id="secCost"> </span><br><br>
 
 Melee:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <select id='RCmelee'>
@@ -679,7 +699,7 @@ Melee:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <option value='Hammer'>Hammer</option><br>
 <option value='Classic Soviet Knife'>Classic Soviet Knife</option><br>
 <option value='Digger of Doom'>Digger of Doom</option><br>
-</select>&nbsp;&nbsp;<div id="melCost"> </div><br>
+</select>&nbsp;&nbsp;&nbsp;<span class="cost"  id="melCost"> </span><br>
 
 </fieldset>
 

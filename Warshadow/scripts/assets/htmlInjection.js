@@ -51,7 +51,7 @@ document.getElementById("weaponSelect1").innerHTML = "<option value='none'> Sele
 "<option value='SMG-19 Wisent'>SMG-19 Wisent </option><br>" +
 "<option value='GU1'>GU1 </option><br>" +
 "<option value='GU1 Brazil'>GU1 Brazil </option><br>" +
-"<option value='Gu1 Christmas'>Gu1 Christmas </option><br>" +
+"<option value='Gu1 Christmas'>GU1 Christmas </option><br>" +
 "<option value='GU1 Crown'>GU1 Crown </option><br>" +
 "<option value='GU1 NY'>GU1 NY </option><br>" +
 "<option value='ZX84 SMG'>ZX84 SMG </option><br>" +

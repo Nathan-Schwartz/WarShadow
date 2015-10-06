@@ -1,11 +1,8 @@
-define(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'gearDisplay', 'htmlInjection'],function($, gData,wCore, upDat, arrayData, sync, gDisplay, inject){//implement wCore
+define(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'gearDisplay', 'htmlInjection', 'repairCalc'],function($, gData,wCore, upDat, arrayData, sync, gDisplay, inject, rCalc){//implement wCore
 			
-		inject.injectHTML();
-		gData.initStats();
-		
-			
-
-
+	inject.injectHTML();
+	gData.initStats();
+	rCalc.repairCalc();
 			document.getElementById("showsecond").onchange = function(){
 				if(document.getElementById("showsecond").checked){
 					document.getElementById('secondweapon').style.display = 'block';
@@ -99,6 +96,10 @@ $('#RChelmet').mouseenter(function(){
 	$("#sideSecondary").hide();
 	$("#sideKnife").hide();
 	$("#sideHelm").show();
+	$("#sideShotgun").hide();
+	$("#sideRifle").hide();
+	$("#sideSMG").hide();
+	$("#sideSniper").hide();
 });
 
 $('#RCvest').mouseenter(function(){
@@ -109,6 +110,10 @@ $('#RCvest').mouseenter(function(){
 	$("#sideSecondary").hide();
 	$("#sideKnife").hide();
 	$("#sideVest").show();
+	$("#sideShotgun").hide();
+	$("#sideRifle").hide();
+	$("#sideSMG").hide();
+	$("#sideSniper").hide();
 });
 
 $('#RCgloves').mouseenter(function(){
@@ -119,6 +124,10 @@ $('#RCgloves').mouseenter(function(){
 	$("#sideSecondary").hide();
 	$("#sideKnife").hide();
 	$("#sideGlove").show();
+	$("#sideShotgun").hide();
+	$("#sideRifle").hide();
+	$("#sideSMG").hide();
+	$("#sideSniper").hide();
 });
 
 $('#RCboots').mouseenter(function(){
@@ -129,6 +138,10 @@ $('#RCboots').mouseenter(function(){
 	$("#sideSecondary").hide();
 	$("#sideKnife").hide();
 	$("#sideBoot").show();
+	$("#sideShotgun").hide();
+	$("#sideRifle").hide();
+	$("#sideSMG").hide();
+	$("#sideSniper").hide();
 });
 
 $('#RCprimary').mouseenter(function(){
@@ -138,7 +151,73 @@ $('#RCprimary').mouseenter(function(){
 	$("#sideBoot").hide();
 	$("#sideSecondary").hide();
 	$("#sideKnife").hide();
-	$("#sidePrimary").show();
+	$("#sideShotgun").hide();
+	$("#sideRifle").hide();
+	$("#sideSMG").hide();
+	$("#sideSniper").hide();
+	$("#sidePrimary").hide();
+
+	if((document.getElementById("RCprimary").value == "none")||(document.getElementById("RCprimary").value == "rental")){
+		$("#sidePrimary").show();
+	}else{
+		var weapons = gData.getWeapons();
+		var found = false;
+		for(var i = 0; i < weapons.length; i ++){
+			if(weapons[i].key == document.getElementById("RCprimary").value){
+				if(weapons[i].Class == "M"){
+					$("#sideShotgun").show();
+				}else if(weapons[i].Class == "E"){
+					$("#sideSMG").show();
+				}else if(weapons[i].Class == "R"){
+					$("#sideRifle").show();
+				}else if(weapons[i].Class == "S"){
+					$("#sideSniper").show();
+				}
+				found = true;
+				break;
+			}
+		}
+		if(!found) //just in case there is a weird value; It would be almost impossible though.
+			$("#sidePrimary").show();
+	}
+});
+
+$('#RCprimary').change(function(){
+	$('#sideHelm').hide();
+	$("#sideVest").hide();
+	$("#sideGlove").hide();
+	$("#sideBoot").hide();
+	$("#sideSecondary").hide();
+	$("#sideKnife").hide();
+	$("#sideShotgun").hide();
+	$("#sideRifle").hide();
+	$("#sideSMG").hide();
+	$("#sideSniper").hide();
+	$("#sidePrimary").hide();
+
+	if((document.getElementById("RCprimary").value == "none")||(document.getElementById("RCprimary").value == "rental")){
+		$("#sidePrimary").show();
+	}else{
+		var weapons = gData.getWeapons();
+		var found = false;
+		for(var i = 0; i < weapons.length; i ++){
+			if(weapons[i].key == document.getElementById("RCprimary").value){
+				if(weapons[i].Class == "M"){
+					$("#sideShotgun").show();
+				}else if(weapons[i].Class == "E"){
+					$("#sideSMG").show();
+				}else if(weapons[i].Class == "R"){
+					$("#sideRifle").show();
+				}else if(weapons[i].Class == "S"){
+					$("#sideSniper").show();
+				}
+				found = true;
+				break;
+			}
+		}
+		if(!found) //just in case there is a weird value; It would be almost impossible though.
+			$("#sidePrimary").show();
+	}
 });
 
 $('#RCsecondary').mouseenter(function(){
@@ -149,6 +228,10 @@ $('#RCsecondary').mouseenter(function(){
 	$("#sidePrimary").hide();
 	$("#sideKnife").hide();
 	$("#sideSecondary").show();
+	$("#sideShotgun").hide();
+	$("#sideRifle").hide();
+	$("#sideSMG").hide();
+	$("#sideSniper").hide();
 });
 
 $('#RCmelee').mouseenter(function(){
@@ -159,11 +242,20 @@ $('#RCmelee').mouseenter(function(){
 	$("#sidePrimary").hide();
 	$("#sideSecondary").hide();
 	$("#sideKnife").show();
+	$("#sideShotgun").hide();
+	$("#sideRifle").hide();
+	$("#sideSMG").hide();
+	$("#sideSniper").hide();
 });
 
 
-//document.getElementById("RChelmet").onmouseover = function() {document.getElementById("sideHelm").style.display = 'block';};
-	
+
+		
+$('#RChelmet, #RCvest, #RCgloves, #RCboots, #RCprimary, #RCsecondary, #RCmelee, #duration').change(function(){
+	//alert("changed");
+	rCalc.repairCalc();
+});
+
 document.getElementById("weaponSelect1").onchange = function(){upDat.updateData(1); setTimeout(function(){$("#chart").show();}, 100); };
 document.getElementById("weaponSelect2").onchange = function(){upDat.updateData(2);};
 document.getElementById("weaponSelect3").onchange = function(){upDat.updateData(3);};

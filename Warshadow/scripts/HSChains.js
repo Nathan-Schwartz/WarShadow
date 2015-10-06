@@ -30,7 +30,7 @@
 			function avgChain(){
 				//the commented out stuff was before they redid killfeed
 				var headshots = parseInt(localStorage.getItem("Headshots"));
-				var twochain = parseInt(localStorage.getItem('TWWWOOOOCHAAAAAIIIIIIIINNNNNZZZZZ')); //sorry, had to.
+				var twochain = parseInt(localStorage.getItem('TWWWOOOOCHAAAAAIIIIIIIINNNNNZZZZZ'));
 				var threechain = parseInt(localStorage.getItem('3chain'));
 				var fourchain = parseInt(localStorage.getItem('4chain'));
 				var fivechain = parseInt(localStorage.getItem('5chain'));
@@ -46,7 +46,6 @@
 				var NumberofChains = NumberofSingleHS + NumberofChainsPRESINGLE; //add the number of singles to the number of chains cuz we are counting them.
 				
 				var AverageChainLength = headshots / NumberofChains;
-				//console.log(AverageChainLength);
 				AverageChainLength = Math.round( AverageChainLength * 100 ) / 100; //round to .01
 				
 				return Math.round( AverageChainLength* 100 ) / 100; //round to .01
@@ -55,7 +54,7 @@
 			SetHSNPos(-1, localStorage.getItem('HSChainsID'));
 			
 			window.addEventListener('storage', function( storageEvent ){
-					document.getElementById("HSchains").innerHTML = avgChain() + " Avg"; // !!!! I think it is counting each headshot individually and then additionally counting the combo
+					document.getElementById("HSchains").innerHTML = avgChain() + " Avg";
 			});
 			
 			document.getElementById("content").onmousedown = function(){wCore.dragMove();};

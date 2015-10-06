@@ -76,7 +76,7 @@ function initStats(){
 {"key":"Digger of Doom","Repair_num":2184,"Shop_name":"kn44_fld01_shop"}];
 	localStorage.setItem('knives', JSON.stringify(knives));
 
-// !!!Remove Name and Camo?
+
 	var weapons = [{"key":"Exar-L PDW Gold","Damage":80,"RPM":730,"Damage_reduc":3,"Repair_num":5100,"Min_damage":35,"Min_range":10.5,"Class":"E","Archetype":"R","Shop_name":"smg31_gold01_shop","File_name":"@smg31_gold01_shop_name"},
 {"key":"Exar-L PDW","Damage":80,"RPM":730,"Damage_reduc":3,"Repair_num":5100,"Min_damage":35,"Min_range":9.5,"Class":"E","Archetype":"R","Shop_name":"smg31_shop","File_name":"@smg31_shop_name"},
 {"key":"Karkom SMG","Damage":75,"RPM":840,"Damage_reduc":3,"Repair_num":6990,"Min_damage":38,"Min_range":11,"Class":"E","Archetype":"E","Shop_name":"smg10_shop","File_name":"@smg10_shop_name"},
@@ -158,7 +158,7 @@ function initStats(){
 {"key":"S18G","Damage":50,"RPM":700,"Damage_reduc":3,"Repair_num":4680,"Min_damage":32,"Min_range":9,"Class":"A","Archetype":"A","Shop_name":"pt21_shop","File_name":"@pt21_shop_name"},
 {"key":"Shark-443","Damage":105,"RPM":290,"Damage_reduc":1.2,"Repair_num":3900,"Min_damage":32,"Min_range":11,"Class":"A","Archetype":"A","Shop_name":"pt27_shop","File_name":"@pt27_shop_name"},
 {"key":"R1911","Damage":120,"RPM":290,"Damage_reduc":3,"Repair_num":20000,"Min_damage":50,"Min_range":8,"Class":"A","Archetype":"A","Shop_name":"pt16_shop","File_name":"@pt16_shop_name"},
-{"key":"Eagle Eye","Damage":125,"RPM":270,"Damage_reduc":3,"Repair_num":20000,"Min_damage":50,"Min_range":10,"Class":"A","Archetype":"A","Shop_name":"pt01_default","File_name":"@pt01_default_name"},
+{"key":"Eagle Eye","Damage":125,"RPM":270,"Damage_reduc":3,"Repair_num":4000,"Min_damage":50,"Min_range":10,"Class":"A","Archetype":"A","Shop_name":"pt01_default","File_name":"@pt01_default_name"},
 {"key":"Eagle Eye Gold","Damage":125,"RPM":270,"Damage_reduc":3,"Repair_num":4000,"Min_damage":50,"Min_range":11,"Class":"A","Archetype":"A","Shop_name":"pt01_gold01_shop","File_name":"@pt01_gold01_shop_name"},
 {"key":"Hex Autorevolver","Damage":140,"RPM":215,"Damage_reduc":1.2,"Repair_num":2184,"Min_damage":32,"Min_range":12,"Class":"A","Archetype":"A","Shop_name":"pt26_shop","File_name":"@pt26_shop_name"},
 {"key":"P-57","Damage":100,"RPM":300,"Damage_reduc":1.2,"Repair_num":4680,"Min_damage":32,"Min_range":12,"Class":"A","Archetype":"A","Shop_name":"pt22_shop","File_name":"@pt22_shop_name"},
@@ -169,7 +169,7 @@ function initStats(){
 {"key":"Aquatic Assassin","Damage":140,"RPM":150,"Damage_reduc":1.2,"Repair_num":3900,"Min_damage":40,"Min_range":16,"Class":"A","Archetype":"A","Shop_name":"pt29_fld01_shop","File_name":"@pt29_fld01_shop_name"},
 {"key":"Abada 266mm","Damage":135,"RPM":170,"Damage_reduc":3,"Repair_num":4000,"Min_damage":30,"Min_range":16,"Class":"A","Archetype":"A","Shop_name":"pt25_shop","File_name":"@pt25_shop_name"},
 {"key":"GU5","Damage":65,"RPM":330,"Damage_reduc":1.2,"Repair_num":930,"Min_damage":32,"Min_range":9.5,"Class":"A","Archetype":"A","Shop_name":"pt08_shop","File_name":"@pt08_shop_name"},
-{"key":"MD9","Damage":70,"RPM":300,"Damage_reduc":1.2,"Repair_num":10500,"Min_damage":32,"Min_range":9.8,"Class":"A","Archetype":"A","Shop_name":"pt19_shop","File_name":"@pt19_shop_name"},
+{"key":"MD9","Damage":70,"RPM":300,"Damage_reduc":1.2,"Repair_num":10500,"Min_damage":32,"Min_range":9.8,"Class":"A","Archetype":"A","Shop_name":"pt07_shop","File_name":"@pt19_shop_name"},
 {"key":"Q-92","Damage":65,"RPM":290,"Damage_reduc":1.2,"Repair_num":5200,"Min_damage":32,"Min_range":12,"Class":"A","Archetype":"A","Shop_name":"pt23_shop","File_name":"@pt23_shop_name"},
 {"key":"High Power Pistol","Damage":60,"RPM":410,"Damage_reduc":1.2,"Repair_num":0,"Min_damage":32,"Min_range":12,"Class":"A","Archetype":"A","Shop_name":"pt05_shop","File_name":"@pt05_shop_name"},
 {"key":"M93R","Damage":50,"RPM":350,"Damage_reduc":1.2,"Repair_num":2184,"Min_damage":32,"Min_range":8,"Class":"A","Archetype":"A","Shop_name":"pt15_shop","File_name":"@pt15_shop_name"},

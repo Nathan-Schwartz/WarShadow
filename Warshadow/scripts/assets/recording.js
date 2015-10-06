@@ -10,7 +10,7 @@ define(function () {
 					},
 					"game": {
 						"volume": 75
-						// !!!! Why doesn't sound work
+						// !!! Fix when they patch the bug for settings file stuff
 					}
 				},
 				//in absence of video settings here, recording will use setting config from overwolf capture settings.

@@ -19,7 +19,7 @@ min_damage(modded) = 	gun_min damage * point_blank_silencer_mod - vest_mod
 
 define(function () {
 
-function NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, pellets){ // !!!! pellets
+function NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, pellets){
 	var tank = 0;
 	
 	if(Repelshot == true)
@@ -30,7 +30,7 @@ function NTKvest(damage_default, min_default, attachment_equipped, RFProt, dista
 	return NTK;
 }
 
-function NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, pellets){ // !!! pellets
+function NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, pellets){
 	var HSmult = 5;
 	
 	if(weapon_archetype == "E")
@@ -54,14 +54,13 @@ function NTKhead(damage_default, min_default, attachment_equipped, RFProt, dista
 function TTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, RPM, pellets){
 
 	var milliseconds_between_shots = 60000/RPM;
-	
 	return (NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, pellets)* milliseconds_between_shots) - milliseconds_between_shots;
 	
 }
 
 function TTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, RPM, pellets){
 	var milliseconds_between_shots = 60000/RPM;
-	return (NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot)* milliseconds_between_shots, pellets) - milliseconds_between_shots;
+	return (NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, pellets)* milliseconds_between_shots) - milliseconds_between_shots;
 }
 
 

@@ -37,7 +37,7 @@ function syncRepairs(status, data) {
 					arrVest = gData.getVests();
 					arrBoot = gData.getBoots();
 
-					for(var i = 0; i < newData.length; i++){   // !!!!!! make a change log?
+					for(var i = 0; i < newData.length; i++){   // !!! make a change log?
 					
 					
 					//Check to see if the repair values in the xml file correlates to helmets
@@ -137,7 +137,7 @@ function syncRepairs(status, data) {
 		};
 
 
-    // !!!!!! implemenent failsafes for A) not a directory     B) not a file    C) user doesn't want to sync
+    // !!! implemenent failsafes for user doesn't want to sync              put a copy of shop_get_offers.xml in the install folder just in case? Would have to figure out how to load it.
     /*  
 		*/
 
@@ -157,7 +157,7 @@ function getText(){
 					}
 				);
 			} else{
-				// !!!! put a copy of shop_get_offers.xml in the install folder just in case. Figure out how to load it.
+				alert("I'm sorry, my app failed to update current repair costs. If you would like to sync repair costs, please make sure you have Warface installed. If you do, please locate the get_shop_offers.xml file on your computer and move it to 'Users/<your-name-here>/Saved Games/WarfaceWest/QueryCache/'. It will be necessary to copy in a new shop_get_offers.xml whenever you want to update the data again. The game will update the file on each launch.");
 			}
 		});
 };
