@@ -4,7 +4,6 @@
 
 require.config({
 		baseUrl: "../scripts",
-		
 		paths: {	
                    async : 'lib/async',
                    goog : 'lib/goog',

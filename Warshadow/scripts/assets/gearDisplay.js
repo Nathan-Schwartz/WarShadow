@@ -1,6 +1,15 @@
 define(['gearData'], function(gData) {
+// !!! figure out real purpose of gearDisplay vs repairCalc as far as outputs. Some functions should probably be encapsulated externally.
 
-
+var charts = {
+		Vests: ['Vests', gData.getVests()],
+		Helmets: ['Helmets', gData.getHelmets()],
+		Gloves: ['Gloves', gData.getGloves()],
+		Boots: ['Boots', gData.getBoots()],
+		Weapons: ['Weapons', gData.getWeapons()],
+		Knives: ['Knives', gData.getKnives()]
+		};	
+		
 function addCOMP(id,message) {
 	var obj = document.createElement("tr");
 	obj.innerHTML = message;
@@ -147,25 +156,15 @@ function compPrinter(obj){
 }
 
 function printer(obj){
-	for(var i = 0; i < obj[1].length; i++){
+	for(var i = 0; i < obj[1].length; i++){ // !!!!do i need to shim?
 		printTable(obj[0],i, obj[1]);
 	}
 };
 
-	var charts = {
-		Vests: ['Vests', gData.getVests()],
-		Helmets: ['Helmets', gData.getHelmets()],
-		Gloves: ['Gloves', gData.getGloves()],
-		Boots: ['Boots', gData.getBoots()],
-		Weapons: ['Weapons', gData.getWeapons()],
-		Knives: ['Knives', gData.getKnives()]
-		};
+// !!!! Look into Modal windows
+// !!!! I removed the document.ready things for jQuery, do i need them still?
 		
-		printer(charts.Vests);
-		printer(charts.Gloves);
-		printer(charts.Boots);
-		printer(charts.Helmets);
-		rewardCalc();
+		
 		
 		function rewardCalc(){
 			var booster = parseInt(document.getElementById("booster").value)/100;
@@ -173,7 +172,7 @@ function printer(obj){
 			document.getElementById('sideRewards').innerHTML = "";
 		
 			addHTML("Rewards","<tr><th> Mission </th><th align='center'> Rewards  </th><th align='center'> First Win</th></tr>");
-			addHTML("Rewards","<tr><td> Easy </td><td align='center'> "+parseInt(160*booster) + "  </td><td align='center'> "+ parseInt(400*booster)+ "  </td></tr>"); // !!!! put tested initiation rewards here too
+			addHTML("Rewards","<tr><td> Easy </td><td align='center'> "+parseInt(201*booster) + "  </td><td align='center'> "+ parseInt(400*booster)+ "  </td></tr>"); // !!!! put tested initiation rewards here too
 			addHTML("Rewards","<tr><td> Normal </td><td align='center'> "+parseInt(160*booster) + "   </td><td align='center'> "+ parseInt(400*booster)+ "  </td></tr>");
 			addHTML("Rewards","<tr><td> Normal Africa </td><td align='center'> "+parseInt(232*booster) + "    </td><td align='center'> "+ parseInt(472*booster)+ "  </td></tr>");
 			addHTML("Rewards","<tr><td> Hard </td><td align='center'> "+ parseInt(256*booster)+ "   </td><td align='center'> "+ parseInt(576*booster)+ "  </td></tr>");
@@ -183,7 +182,6 @@ function printer(obj){
 			addHTML("Rewards","<tr><td> Tower HQ </td><td align='center'> "+parseInt(1760*booster) + "   </td></tr>");
 			addHTML("Rewards","<tr><td> Marathon </td><td align='center'> "+parseInt(4480*booster) + "  </td></tr>");
 			
-			//update payout <span>
 				if(document.getElementById('missionType').value == "Easy"){
 					document.getElementById('incomeFW').style.display = "inline";
 					document.getElementById('netFW').style.display = "inline";
@@ -243,7 +241,19 @@ function printer(obj){
 			
 		};
 		
+	function calc(){
+		recalc();
+		
+		printer(charts.Vests);
+		printer(charts.Gloves);
+		printer(charts.Boots);
+		printer(charts.Helmets);
+		rewardCalc();
+		
+	}	
+		
 	function recalc(){
+		
 		clearOld();
 		initializeLabels();
 		compPrinter(charts.Vests);
@@ -256,7 +266,9 @@ function printer(obj){
 	
 	return{
 		recalc:recalc,
-		rewardCalc:rewardCalc
+		rewardCalc:rewardCalc,
+		calc:calc
+		
 	}
 });
 

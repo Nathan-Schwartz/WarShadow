@@ -1,11 +1,7 @@
 		
 	define(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording'], function($ ,gEvent, wCore, rHUD, rec){ 
 		
-		
-	
-		//overwolf.windows.changeSize(localStorage.getItem('MainID'), 2, 2);
-		
-//localStorage.removeItem('windowPOS');
+/*localStorage.removeItem('windowPOS');
 
 if(!localStorage.getItem('windowPOS')){ //If this is the first launch, initialize array that stores window position coordinates
 	var windowPOS = {
@@ -21,8 +17,7 @@ if(!localStorage.getItem('windowPOS')){ //If this is the first launch, initializ
 	};// !!!! I need to move this to 'Settings'
 	localStorage.setItem('windowPOS', JSON.stringify(windowPOS));
 	console.log("windowPOS: " + localStorage.getItem('windowPOS'));
-}
-
+}*/
 
 //localStorage.removeItem('Settings');
 
@@ -49,27 +44,14 @@ if(!localStorage.getItem('Settings')){
 		Rachievevid: false,
 		Rachievepic: false,
 		Rcombokill: false,
-		windowPOS : {
-		kdr:[50,200], 
-		info:[50,200], 
-		hspercent:[50,200],
-		smoketimer:[50,200],
-		hschains:[50,200],
-		hscounter:[50,200],
-		main:[50,200],
-		crosshair:[50,200]
-		}
 	};
 	localStorage.setItem('Settings', JSON.stringify(Settings));
 	console.log("Settings: " + localStorage.getItem('Settings'));
-	if (confirm("Welcome to WarShadow! Would you like to go on the exclusive, one-time-only '5-click' tour?") == false)
-		alert("Too bad! It will be good for you. :)")// You get the 6-click tour.
-	
-	alert("To expand the main menu, simply double click on the Warface Logo.");
-	alert("WarShadow will remember where you like your windows. All you have to do is double click the image in any window to save it as your preferred location!");
-	alert("To automatically record your best moments, turn on Auto-Capture. Customize your recordings through Settings!");
-	alert("If you want to calculate repairs, pick a loadout, or learn which weapon is best for you, check out StatCrack.");
-	alert("Click on the 'info' button if you want a refresher or if you want to learn more!");
+	if (confirm("Welcome to WarShadow! Would you like to go on the exclusive, one-time-only '3-click' tour?") == true){
+		alert("To collapse the main menu, simply double click on the Warface Logo.");
+		alert("To automatically record your best moments, turn on Auto-Capture. Customize your recordings through Settings!");
+		alert("Click on the 'info' button to learn more!"); // !!! These will need updating.
+	}
 }
 		
 		/*var test = JSON.parse(localStorage.getItem("Settings"));
@@ -92,10 +74,11 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 	console.log(JSON.parse(localStorage.getItem("windowPOS")));
 */
 
-	localStorage.setItem('smallwindow', false); // !!!! since this is in a module I could store it in the "global namespace" without issue cuz it isn't really.
+	var smallwindow = true;
 
-	
-	
+	// !!!! Don't allow invalid user input
+	// !!!! Make window dragging unniversal
+	// !!!!! launch_events & in_game_only & ignore_keyboard_events in manifest? permissions and dependancies? launch not working
 
 	function resetCounters(){
 		localStorage.setItem('Kills', 0); 
@@ -134,21 +117,6 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=352301863"); //coldpeak
 		};
 
-
-
-		function updatePOS(name) {
-		//This function is used in every window's file. It saves the x and y offset of the windows position from the top left corner.
-			overwolf.windows.obtainDeclaredWindow(name,
-				function(results){
-					var test = JSON.parse(localStorage.getItem("windowPOS"));
-					test.main[0] = results.window.left;
-					test.main[1] = results.window.top;
-					localStorage.setItem("windowPOS", JSON.stringify(test));
-				}
-			);
-		};
-	
-
 	
 		function ResizeMain(){
 		/*
@@ -156,34 +124,18 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			It resizes the window to be small enough to hide all buttons and text. 
 			Toggling it again will make the window larger so that all features can be seen.
 		*/
-			if(JSON.parse(localStorage.getItem("smallwindow")) === true){
+			if(smallwindow === true){
 				overwolf.windows.changeSize(localStorage.getItem('MainID'), 160, 460);
-				localStorage.setItem("smallwindow", false);			
-		}else if(JSON.parse(localStorage.getItem("smallwindow")) === false){
+				smallwindow=false;			
+		}else if(smallwindow === false){
 				overwolf.windows.changeSize(localStorage.getItem('MainID'), 50, 50);
-				localStorage.setItem("smallwindow", true);
+				smallwindow=true;
 			}else
 				alert("Houston we have a problem");
 			
 			
 		};
-
-		function SetMainPos() {
-		//This function is in all window's files. It initializes size and position.
-		
-			overwolf.windows.changePosition(
-					localStorage.getItem('MainID'), 
-					JSON.parse(localStorage.getItem("windowPOS")).main[0], 
-					JSON.parse(localStorage.getItem("windowPOS")).main[1]
-			); 
-				setTimeout(function(){
-					overwolf.windows.changeSize(localStorage.getItem('MainID'), 50, 50);
-					localStorage.setItem("smallwindow", "true");
-				
-				}, 100); //200 ms as of 8/25 (before external .js) 1000 ms at 9/15 ()before modules) 0 ms at 9/21 (after modules)
-		};
-		
-			
+	
 //		Game Events Listener
 		overwolf.games.events.onNewEvents.addListener(
 			function (value) {
@@ -195,7 +147,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			}
 		);
 
-	
+			//$(document).ready(SetMainPos()); // This triggers too early for it to work if I don't include the wait time. Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
 			resetCounters(); // !!!! I could just declare the counters in a seperate file and create increment and reset methods
 				//Get ID's of each window
 				getWinID("MainWindow",'MainID');
@@ -209,8 +161,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 				getWinID("Crosshair",'CrosshairID');
 				getWinID("Settings",'SettingsID');
 				getWinID("StatCrack",'StatCrackID');
-			$(document).ready(SetMainPos()); // This triggers too early for it to work if I don't include the wait time. Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
-
+			
 			// !!!! Either make the height of the window change with the sliders, or make it not slide.
 			
 			//Slider for recording
@@ -236,7 +187,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 		document.getElementById("content").onmousedown = function(){wCore.dragMove();};
 		
 		//menu buttons
-		document.getElementById("resize").ondblclick = function(){updatePOS("MainWindow"); ResizeMain();};
+		document.getElementById("resize").ondblclick = function(){/*updatePOS("MainWindow");*/ ResizeMain();};
 		document.getElementById("close").onclick = function(){wCore.minimizeWindow();};
 	//	document.getElementById("SubmitVideo").onclick = function(){SubmitVideo();};
 		document.getElementById("cold").onclick = function(){cold();};

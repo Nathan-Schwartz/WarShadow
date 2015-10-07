@@ -1,7 +1,7 @@
 
 	define(['jquery','windowCoreFunctions', 'loadSettings','updateSettings'], function($,wCore, loadS, updateS){
 
-	function resetLS(){
+	function resetLS(){ // !!!! its time to make these stored in a module with accessors and mutators.
 		localStorage.setItem('Kills', 0); 
 		localStorage.setItem('Headshots', 0); 
 		localStorage.setItem('Defibs', 0);
@@ -11,39 +11,9 @@
 		localStorage.setItem('5chain',0);
 		localStorage.setItem('PVPKills',0);
 		localStorage.setItem('PVPDeaths',0);
-		
-		var windowPOS = {
-		//pixels from top and left. [left,top]
-		kdr:[50,150], 
-		info:[250,200], 
-		hspercent:[50,150],
-		smoketimer:[50,150],
-		hschains:[50,150],
-		hscounter:[50,150],
-		main:[50,200],
-		crosshair:[50,150]
-		};
-		localStorage.setItem('windowPOS', JSON.stringify(windowPOS));
 	};
 
-
-		
-		
-		function SetWCMainPos(newState) {
-		//This function is in all window's files. It initializes size and position.
-			setTimeout(function(){
-				if(newState == -1){
-					overwolf.windows.changeSize(localStorage.getItem('SettingsID'), 400, 600);
-					overwolf.windows.changePosition(localStorage.getItem('SettingsID'), 200,100); 
-				}
-			}, 1000); //200 min as of 8/25 (before external .js)
-		};
-
-
-			 loadS.loadSettings();
-			$(document).ready(SetWCMainPos(-1)); //Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
-			
-			
+	loadS.loadSettings();	
 			
 //		Menu Listeners
 
@@ -63,7 +33,7 @@
 		document.getElementById("kill").onchange = function(){updateS.updateSettings();};
 		document.getElementById("doublekill").onchange = function(){updateS.updateSettings();};
 		document.getElementById("triplekill").onchange = function(){updateS.updateSettings();};
-		document.getElementById("slidekill").onchange = function(){updateS.updateSettings();};
+		//document.getElementById("slidekill").onchange = function(){updateS.updateSettings();};
 		document.getElementById("perfkill").onchange = function(){updateS.updateSettings();};
 		document.getElementById("flagkill").onchange = function(){updateS.updateSettings();};
 		document.getElementById("screenshot").onchange = function(){updateS.updateSettings();};

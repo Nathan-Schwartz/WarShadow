@@ -10,6 +10,16 @@
 		"icon_gray":"images/IconMouseNormal.png",
 		"description":"Demo App"
 	},
+	"permissions": ["Streaming","Hotkeys","GameInfo", "Media", "Microphone", "GameControl", "Extensions", "DesktopStreaming" ],
+	"launch_events": [
+    {
+        "event": "GameLaunch",
+        "event_data": {
+            "game_ids": [7784]
+        },
+        "start_minimized": true
+    }
+	],
 	"data": {
 		"start_window":"MainWindow",
 		"windows":{
@@ -17,7 +27,7 @@
 					"file":"html/main.html",
 					"transparent":true,
 					"resizable":true,
-					"size":{"width":1, "height":1},
+					"size":{"width":160, "height":400},
 					"min_size":{"width":0,"height":0},
 					"show_in_taskbar": true
 					

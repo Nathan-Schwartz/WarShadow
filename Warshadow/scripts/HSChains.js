@@ -1,31 +1,5 @@
 	
 	define(['windowCoreFunctions'], function(wCore){
-	
-			
-			function updatePOS(name) {
-				overwolf.windows.obtainDeclaredWindow(name,
-					function(results){
-						var test = JSON.parse(localStorage.getItem("windowPOS"));
-						test.hschains[0] = results.window.left;
-						test.hschains[1] = results.window.top;
-						localStorage.setItem("windowPOS", JSON.stringify(test));
-					}
-				);
-			};
-			
-
-		
-			function SetHSNPos(newState, ID) {
-				setTimeout(function(){
-					if(newState == -1){
-						overwolf.windows.changePosition(ID, 
-												JSON.parse(localStorage.getItem("windowPOS")).hschains[0], 
-												JSON.parse(localStorage.getItem("windowPOS")).hschains[1]
-												);
-						overwolf.windows.changeSize(ID, 140, 50);
-					}
-				}, 300);
-			};
 		
 			function avgChain(){
 				//the commented out stuff was before they redid killfeed
@@ -51,13 +25,9 @@
 				return Math.round( AverageChainLength* 100 ) / 100; //round to .01
 			}
 		
-			SetHSNPos(-1, localStorage.getItem('HSChainsID'));
-			
 			window.addEventListener('storage', function( storageEvent ){
 					document.getElementById("HSchains").innerHTML = avgChain() + " Avg";
 			});
 			
 			document.getElementById("content").onmousedown = function(){wCore.dragMove();};
-			document.getElementById("HSCimage").ondblclick = function(){updatePOS("HSChains");};
-
 });

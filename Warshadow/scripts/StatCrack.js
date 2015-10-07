@@ -1,9 +1,10 @@
-define(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'gearDisplay', 'htmlInjection', 'repairCalc'],function($, gData,wCore, upDat, arrayData, sync, gDisplay, inject, rCalc){//implement wCore
+define(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'gearDisplay', 'htmlInjection', 'repairCalc'],function($, gData, wCore, upDat, arrayData, sync, gDisplay, inject, rCalc){//implement wCore
 			
 	inject.injectHTML();
 	gData.initStats();
+	console.log(gData.getWeapons());
 	rCalc.repairCalc();;
-	gDisplay.recalc(); //used to be dependant on rCalc's localstorage set. Might be more efficient that way
+	gDisplay.calc(); //used to be dependant on rCalc's localstorage set. Might be more efficient that way
 			
 			
 			document.getElementById("showsecond").onchange = function(){
@@ -91,83 +92,42 @@ define(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 's
 	
 	arrayData.initializeArray();
 	
-			
+	var currentTable = ""; // !!! when calling .show, set currentTable = selector string
+
+	
+	
+	
+	
 $('#RChelmet').mousedown(function(){
-	$("#sideRewards").hide();
-	$("#sideVest").hide();
-	$("#sideGlove").hide();
-	$("#sideBoot").hide();
-	$("#sidePrimary").hide();
-	$("#sideSecondary").hide();
-	$("#sideKnife").hide();
-	$("#sideShotgun").hide();
-	$("#sideRifle").hide();
-	$("#sideSMG").hide();
-	$("#sideSniper").hide();
+	$(currentTable).hide();
+	currentTable = '#sideHelm';
 	$("#sideHelm").show();
 });
 
 $('#RCvest').mousedown(function(){
-	$("#sideRewards").hide();
-	$('#sideHelm').hide();
-	$("#sideGlove").hide();
-	$("#sideBoot").hide();
-	$("#sidePrimary").hide();
-	$("#sideSecondary").hide();
-	$("#sideKnife").hide();
-	$("#sideShotgun").hide();
-	$("#sideRifle").hide();
-	$("#sideSMG").hide();
-	$("#sideSniper").hide();
+	$(currentTable).hide();
+	currentTable = '#sideVest';
 	$("#sideVest").show();
 });
 
 $('#RCgloves').mousedown(function(){
-	$("#sideRewards").hide();
-	$('#sideHelm').hide();
-	$("#sideVest").hide();
-	$("#sideBoot").hide();
-	$("#sidePrimary").hide();
-	$("#sideSecondary").hide();
-	$("#sideKnife").hide();
-	$("#sideShotgun").hide();
-	$("#sideRifle").hide();
-	$("#sideSMG").hide();
-	$("#sideSniper").hide();
+	$(currentTable).hide();
+	currentTable = '#sideGlove';
 	$("#sideGlove").show();
 });
 
 $('#RCboots').mousedown(function(){
-	$("#sideRewards").hide();
-	$('#sideHelm').hide();
-	$("#sideVest").hide();
-	$("#sideGlove").hide();
-	$("#sidePrimary").hide();
-	$("#sideSecondary").hide();
-	$("#sideKnife").hide();
-	$("#sideShotgun").hide();
-	$("#sideRifle").hide();
-	$("#sideSMG").hide();
-	$("#sideSniper").hide();
+	$(currentTable).hide();
+	currentTable = '#sideBoot';
 	$("#sideBoot").show();
 });
 
 $('#RCprimary').mousedown(function(){
-	$("#sideRewards").hide();
-	$('#sideHelm').hide();
-	$("#sideVest").hide();
-	$("#sideGlove").hide();
-	$("#sideBoot").hide();
-	$("#sideSecondary").hide();
-	$("#sideKnife").hide();
-	$("#sideShotgun").hide();
-	$("#sideRifle").hide();
-	$("#sideSMG").hide();
-	$("#sideSniper").hide();
-	$("#sidePrimary").hide();
+	$(currentTable).hide();
 
 	if((document.getElementById("RCprimary").value == "none")||(document.getElementById("RCprimary").value == "rental")){
 		$("#sidePrimary").show();
+		currentTable = '#sidePrimary';
 	}else{
 		var weapons = gData.getWeapons();
 		var found = false;
@@ -175,12 +135,16 @@ $('#RCprimary').mousedown(function(){
 			if(weapons[i].key == document.getElementById("RCprimary").value){
 				if(weapons[i].Class == "M"){
 					$("#sideShotgun").show();
+					currentTable = '#sideShotgun';
 				}else if(weapons[i].Class == "E"){
 					$("#sideSMG").show();
+					currentTable = '#sideSMG';
 				}else if(weapons[i].Class == "R"){
 					$("#sideRifle").show();
+					currentTable = '#sideRifle';
 				}else if(weapons[i].Class == "S"){
 					$("#sideSniper").show();
+					currentTable = '#sideSniper';
 				}
 				found = true;
 				break;
@@ -188,25 +152,16 @@ $('#RCprimary').mousedown(function(){
 		}
 		if(!found) //just in case there is a weird value; It would be almost impossible though.
 			$("#sidePrimary").show();
+			currentTable = '#sidePrimary';
 	}
 });
 
 $('#RCprimary').change(function(){ // !!! I could encapsulate the callback so i don't have to copy paste it for change and mouseover
-	$("#sideRewards").hide();
-	$('#sideHelm').hide();
-	$("#sideVest").hide();
-	$("#sideGlove").hide();
-	$("#sideBoot").hide();
-	$("#sideSecondary").hide();
-	$("#sideKnife").hide();
-	$("#sideShotgun").hide();
-	$("#sideRifle").hide();
-	$("#sideSMG").hide();
-	$("#sideSniper").hide();
-	$("#sidePrimary").hide();
+	$(currentTable).hide();
 
 	if((document.getElementById("RCprimary").value == "none")||(document.getElementById("RCprimary").value == "rental")){
 		$("#sidePrimary").show();
+		currentTable = '#sidePrimary';
 	}else{
 		var weapons = gData.getWeapons();
 		var found = false;
@@ -214,12 +169,16 @@ $('#RCprimary').change(function(){ // !!! I could encapsulate the callback so i 
 			if(weapons[i].key == document.getElementById("RCprimary").value){
 				if(weapons[i].Class == "M"){
 					$("#sideShotgun").show();
+					currentTable = '#sideShotgun';
 				}else if(weapons[i].Class == "E"){
 					$("#sideSMG").show();
+					currentTable = '#sideSMG';
 				}else if(weapons[i].Class == "R"){
 					$("#sideRifle").show();
+					currentTable = '#sideRifle';
 				}else if(weapons[i].Class == "S"){
 					$("#sideSniper").show();
+					currentTable = '#sideSniper';
 				}
 				found = true;
 				break;
@@ -227,51 +186,25 @@ $('#RCprimary').change(function(){ // !!! I could encapsulate the callback so i 
 		}
 		if(!found) //just in case there is a weird value; It would be almost impossible though.
 			$("#sidePrimary").show();
+			currentTable = '#sidePrimary';
 	}
 });
 
 $('#RCsecondary').mousedown(function(){
-	$("#sideRewards").hide();
-	$('#sideHelm').hide();
-	$("#sideVest").hide();
-	$("#sideGlove").hide();
-	$("#sideBoot").hide();
-	$("#sidePrimary").hide();
-	$("#sideKnife").hide();
-	$("#sideSecondary").show();//~!!!!
-	$("#sideShotgun").hide();
-	$("#sideRifle").hide();
-	$("#sideSMG").hide();
-	$("#sideSniper").hide();
+	$(currentTable).hide();
+	currentTable = '#sideSecondary';
+	$("#sideSecondary").show();
 });
 
 $('#RCmelee').mousedown(function(){
-	$("#sideRewards").hide();
-	$('#sideHelm').hide();
-	$("#sideVest").hide();
-	$("#sideGlove").hide();
-	$("#sideBoot").hide();
-	$("#sidePrimary").hide();
-	$("#sideSecondary").hide();
+	$(currentTable).hide();
+	currentTable = '#sideKnife';
 	$("#sideKnife").show();
-	$("#sideShotgun").hide();
-	$("#sideRifle").hide();
-	$("#sideSMG").hide();
-	$("#sideSniper").hide();
 });
 
 $('#missionType').mousedown(function(){
-	$('#sideHelm').hide();
-	$("#sideVest").hide();
-	$("#sideGlove").hide();
-	$("#sideBoot").hide();
-	$("#sidePrimary").hide();
-	$("#sideSecondary").hide();
-	$("#sideKnife").hide();
-	$("#sideShotgun").hide();
-	$("#sideRifle").hide();
-	$("#sideSMG").hide();
-	$("#sideSniper").hide();
+	$(currentTable).hide();
+	currentTable = '#sideRewards';
 	$("#sideRewards").show();
 });
 
@@ -302,12 +235,8 @@ $("#duration").change(function(){
 		gDisplay.recalc()
 	}
 });
-
-// !!! calc profit where i output total cost and rewards
 		
 $('#RChelmet, #RCvest, #RCgloves, #RCboots, #RCprimary, #RCsecondary, #RCmelee').change(function(){
-	//alert("changed");
-	
 	rCalc.repairCalc();
 	gDisplay.recalc()
 });
@@ -329,6 +258,5 @@ $("#attachmentSelect5").change(function(){upDat.updateData(5);});
 $("#selectGData").change(function(){upDat.updateData(0);});
 $("#enemyVest1").change(function(){upDat.updateData(0);});
 $("#enemyHelmet1").change(function(){upDat.updateData(0);});
-
 
 });

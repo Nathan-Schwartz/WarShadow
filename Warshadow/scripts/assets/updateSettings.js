@@ -14,7 +14,7 @@ define(function () {
 			temp.Rkill = (document.getElementById("kill").checked?true:false);
 			temp.Rdefib = (document.getElementById("defibkill").checked?true:false);
 			temp.Rseverekill = (document.getElementById("severekill").checked?true:false);
-			temp.Rslidekill = (document.getElementById("slidekill").checked?true:false);
+			//temp.Rslidekill = (document.getElementById("slidekill").checked?true:false);
 			temp.Rperfkill = (document.getElementById("perfkill").checked?true:false);
 			temp.Rflagkill = (document.getElementById("flagkill").checked?true:false);
 			temp.Rminekill = (document.getElementById("minekill").checked?true:false);

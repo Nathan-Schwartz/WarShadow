@@ -11,7 +11,7 @@ define(function () {
 				document.getElementById("kill").checked = (temp.Rkill?true:false);
 				document.getElementById("defibkill").checked = (temp.Rdefib?true:false);
 				document.getElementById("severekill").checked = (temp.Rseverekill?true:false);
-				document.getElementById("slidekill").checked = (temp.Rslidekill?true:false);
+				//document.getElementById("slidekill").checked = (temp.Rslidekill?true:false);
 				document.getElementById("perfkill").checked = (temp.Rperfkill?true:false);
 				document.getElementById("flagkill").checked = (temp.Rflagkill?true:false);
 				document.getElementById("minekill").checked = (temp.Rminekill?true:false);

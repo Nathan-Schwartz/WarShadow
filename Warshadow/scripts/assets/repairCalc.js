@@ -37,13 +37,6 @@ function repairCalc(){
 		}
 	}
 
-	// !!!! add up the repair costs and display total. Then calculate mission rewards. Then compare the two. Output in calculation box.
-	
-	
-	
-	
-	
-	
 	var charts = {
 		Vests: [gData.getVests(), 'RCvest', 'vesCost'],
 		Helmets: [gData.getHelmets(), 'RChelmet', 'helCost'],
@@ -72,9 +65,6 @@ function repairCalc(){
 	
 	document.getElementById('net').innerText = (parseInt(document.getElementById('income').innerText) - parseInt(document.getElementById('totCost').innerText));
 	document.getElementById('netFW').innerText = (parseInt(document.getElementById('incomeFW').innerText) - parseInt(document.getElementById('totCost').innerText));
-			
-	
-	
 	
 };
 

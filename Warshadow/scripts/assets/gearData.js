@@ -381,6 +381,7 @@ function initStats(){
 {"key":"Demoman","HP":250,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0,"Special":"none","Repair_num":0,"Shop_name":"none","File_name":"none"},
 {"key":"Spec-Ops","HP":300,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0,"Special":"none","Repair_num":0,"Shop_name":"none","File_name":"none"}];
 	localStorage.setItem('vests', JSON.stringify(vests));
+	console.log('init Stats finished');
 };
 
 
