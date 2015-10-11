@@ -27,7 +27,7 @@ function graphIT(myData) {
 			legend:{position: 'top', 
 					textStyle: {bold: true},
 					alignment: 'center'},
-			width: 900,
+			width: 975,
 			height: 500,
 			colors: ['#a52714', '#097138']//, '#000080','#8B008B', '#FFFF00']
 		};

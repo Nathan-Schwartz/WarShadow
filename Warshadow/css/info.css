@@ -1,8 +1,5 @@
 html {
-	/*overflow: hidden;
-	overflow: scroll;*/
-	overflow-y: scroll;
-	overflow-x: hidden;
+	overflow: auto;
 	height: 100%;
 	width: 100%;
 	background: rgba(255, 255, 255, 0.05);
@@ -18,7 +15,11 @@ hr{
 }
 
 ul{
-list-style-type:none
+list-style-type:none;
+}
+
+div, span, fieldset, legend{
+	position: relative;
 }
 
 body {
@@ -27,10 +28,12 @@ body {
 }
 
 .cost{
-	color: #00FF00;
+	color: #008000;
+	font-weight: bold;
 }
 .income{
 	color: #330099;
+	font-weight: bold;
 }
 
 .net{
@@ -38,24 +41,18 @@ body {
 	font-weight: bold;
 }
 
-.embeddedSettings{
-	margin-top:15px;
-	border-color: #E1E1E1;
-	border-radius:3px;
-	
-}
+
 #repCalc{
 	height: 150px;
 }
 #sidebar{
-	margin-top:15px;
+	margin-top:0px;
 	border-color: #E1E1E1;
 	border-radius:3px;
 	width: 270px;
-	height: 530px;
+	height: 570px;
 	position:absolute;
-	top: 15px;
-	left:650px;
+	left:710px;
 	overflow: auto;
 }
 
@@ -63,36 +60,55 @@ body {
 	width: 75px;
 }
 
-.settings{
+.embeddedSettings{
 	margin-top:15px;
 	border-color: #E1E1E1;
 	border-radius:3px;
-	width: 310px;
-	
+	margin-left:2px;
+	margin-right:2px;
+	margin-bottom:2px;
+
+}
+#autocapfield{
+		padding: 5px;
+}
+#gensetfield{
+		width: 370px;
+}
+
+.settings{
+	margin-top:15px;
+	margin-left: auto;
+	margin-right: auto;
+	border-color: #E1E1E1;
+	border-radius:3px;
+	width: 360px;
+	padding: 8px;
 }
 .repair{
 	margin-top:15px;
 	border-color: #E1E1E1;
 	border-radius:3px;
-	width: 580px;
+	width: 650px;
 }
 
 .standard{
 	margin-top:15px;
 	border-color: #E1E1E1;
 	border-radius:3px;
-	width: 870px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 950px;
 	
 }
 
+
 .button:hover, .subbutton:hover{
- transform: rotateY(10deg); 
-	
+ transform: rotateY(7deg); 
 }
 
 .button:active, .subbutton:active{
- transform: rotateY(20deg); 
- 
+ transform: rotateY(11deg); 
 }
 
 .button{
@@ -109,7 +125,8 @@ body {
 	box-shadow: 0px 1px 3px #666666;
 	font-family: Arial;
 	color: #ffffff;
-	text-decoration: none;
+	text-decoration: bold;
+	font-weight: bold;
 	outline: none;
 }
 
@@ -205,12 +222,12 @@ body {
 
 
 #banner{
+position: relative;
 width:375px;
 height:90px;
 z-index:1;
 bottom: 10px;
-right: 20px;
-position: relative;
+left: 10px;
 margin: 0;
 }
 
@@ -230,7 +247,7 @@ select{
 	outline-width: thick;
 }
 
-#weaponSelect1{
+.weapon{
 	width:250px;
 }
 
@@ -246,12 +263,12 @@ position: relative;
 
 #content {
 	position: relative;
-	-webkit-user-select: none;
+/*	-webkit-user-select: none;*/
 }
 
 #chart{
 	position: relative;
-	left: 0px;
+	left: 7px;
 	margin:0px;
 	margin-top: 15px;
 	display: none;
@@ -265,10 +282,30 @@ position: relative;
 #resetLS, #openSettings{
 	margin: 0 auto;
 	display: block;
-	width: 300px;
 }
 
 #steps{
 	position: relative;
 	bottom: 15px;
 }
+
+.spaced{
+	display: block;
+	position:relative;
+	left: 400px;
+	bottom: 20px;
+}
+
+.spacedR{
+	display: block;
+	position:relative;
+	left: 360px;
+	bottom: 20px;
+}
+
+.addweapon{
+	display: block;
+	position:relative;
+	bottom: 20px;	
+}
+

@@ -13,21 +13,21 @@
 
 		<img src="../images/25hg.png" id="banner" alt="logo">
 	<div id="allSettings">
-	<fieldset class="settings">
+	<fieldset id="gensetfield" class="settings">
 		<legend><b>General Options:</b></legend><br>
 	
 	
-	<input type="checkbox" id="autoLaunch"> Start Warshadow automatically when I play Warface<br><br>
+	<input type="checkbox" id="autoLaunch"> Start Warshadow when I play Warface<br><br>
 	
 	<input type="checkbox" id="closeOnEnd"> Close WarShadow when I'm done playing <br><br>
 		
 	<input type="checkbox" id="minimizeOnTab"> Minimize WarShadow when I tab out of Warface <br><br>
 	
-	<input type="checkbox" id="restoreOnTab"> Bring WarShadow to the front when I tab into Warface<br><br>
+	<input type="checkbox" id="restoreOnTab"> Restore WarShadow when I tab to Warface<br><br>
 	
 	<input type="checkbox" id="enableRecord"> Enable Recording when Warshadow starts<br><br>
 	
-	<button id='openSettings' class="button"> Edit Video Recording Settings </button><br><br>
+
 	
 	<button id="resetLS" class="button"> Reset Counters </button>
 	
@@ -35,8 +35,12 @@
 	
 	</fieldset>
 
-<fieldset class="settings">
-		<legend><b> AutoCapture Recording Options</b></legend>
+	<fieldset  id="vidsetfield" class="settings"> <legend> <b>Video Recording Settings</b></legend> 
+		<p>To change encoder, resolution, fps, or any other video options click the button below. </p>
+		<button id='openSettings' class="button"> Video Recording Settings </button><br>
+	
+<fieldset id="autocapfield" class="embeddedSettings">
+		<legend><b> AutoCapture Options</b></legend>
 			<br>
 				
 				Time before first kill: <br>
@@ -57,8 +61,7 @@
 				<option value="20"> 20 seconds </option> <br>
 				<option value="30" > 30 seconds </option> <br> 
 				<option value="60"> 1 minute </option> <br>
-			</select> 
-				<br><br>
+			</select> <br><br>
 				
 				
 				
@@ -113,13 +116,13 @@
 			<button id="showfeatures" class="button"> Show Triggers </button>	
 		
 		</fieldset>
-		
+		<br>
 			<fieldset class="settings">
-		<legend><b>Manual Capture Recording Options:</b></legend>
+		<legend><b>Manual Capture Options:</b></legend>
 			<br>
 			
 			Capture Length (seconds): <br> <input type="text" id="grablength" value="60"><br>
-			</fieldset>
+			</fieldset></fieldset>
 			<br><br>
 </div>
 			<script>

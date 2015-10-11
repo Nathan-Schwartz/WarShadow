@@ -76,7 +76,7 @@
 				"file":"html/StatCrack.html",
 				"transparent":false,
 				"resizable":true,
-				"size": {"width": 1000, "height": 800},
+				"size": {"width": 1075, "height": 800},
 				"start_position": {"Top": 100,"Left": 100},
 				"grab_keyboard_focus": true,
 				"show_minimize": false
@@ -108,8 +108,8 @@
 			"Settings":{
 					"file":"html/settings.html",
 					"transparent":false,
-					"resizable":true,
-					"size":{"width":400, "height":600},
+					"resizable":false,
+					"size":{"width":450, "height":600},
 					"grab_keyboard_focus": true,
 					"show_minimize": false
 			},

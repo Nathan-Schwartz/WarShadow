@@ -18,9 +18,7 @@ function syncRepairs(status, data) {
 				
 				$(xmlDoc).children().children().each(function(){
 					if( $(this).attr("durabilityPoints") == 36000){
-						//console.log(typeof $(this).attr("name"));
-						//console.log(typeof JSON.parse($(this).attr("repair_cost")));
-						
+					
 						newData.push([$(this).attr("name"), JSON.parse($(this).attr("repair_cost"))]);
 					}
 				});
@@ -29,7 +27,6 @@ function syncRepairs(status, data) {
 					localStorage.setItem("xml", JSON.stringify(newData));
 					console.log(JSON.parse(localStorage.getItem("xml")));
 					
-					
 					arrWeap = gData.getWeapons();
 					arrGlov = gData.getGloves();
 					arrKniv = gData.getKnives();
@@ -37,7 +34,7 @@ function syncRepairs(status, data) {
 					arrVest = gData.getVests();
 					arrBoot = gData.getBoots();
 
-					for(var i = 0; i < newData.length; i++){   // !!! make a change log?
+					for(var i = 0; i < newData.length; i++){
 					
 					
 					//Check to see if the repair values in the xml file correlates to helmets
@@ -50,7 +47,7 @@ function syncRepairs(status, data) {
 							}
 						}
 			
-					//Check to see if the repair values in the xml file correlates to weapons
+					//Check weapons
 						for(var j2 = 0; j2 < arrWeap.length; j2++){
 							if(arrWeap[j2].Shop_name == newData[i][0]){
 								//console.log(arrWeap[j2].key);
@@ -60,7 +57,7 @@ function syncRepairs(status, data) {
 							}
 						}
 					
-					//Check to see if the repair values in the xml file correlates to gloves
+					//Check gloves
 						for(var j3 = 0; j3 < arrGlov.length; j3++){
 							if(arrGlov[j3].Shop_name == newData[i][0]){
 								//console.log(arrGlov[j3].key);
@@ -70,7 +67,7 @@ function syncRepairs(status, data) {
 							}
 						}
 
-					//Check to see if the repair values in the xml file correlates to vests
+					//Check vests
 						for(var j4 = 0; j4 < arrVest.length; j4++){
 							if(arrVest[j4].Shop_name == newData[i][0]){
 								//console.log(arrVest[j4].key);
@@ -80,7 +77,7 @@ function syncRepairs(status, data) {
 							}
 						}
 
-					//Check to see if the repair values in the xml file correlates to boots
+					//Check boots
 						for(var j5 = 0; j5 < arrBoot.length; j5++){
 							if(arrBoot[j5].Shop_name == newData[i][0]){
 								//console.log(arrBoot[j5].key);
@@ -90,7 +87,7 @@ function syncRepairs(status, data) {
 							}
 						}
 					
-					//Check to see if the repair values in the xml file correlates to knives
+					//Check knives
 						for(var j6 = 0; j6 < arrKniv.length; j6++){
 							if(arrKniv[j6].Shop_name == newData[i][0]){
 								//console.log(arrKniv[j6].key);
@@ -116,7 +113,7 @@ function syncRepairs(status, data) {
 					gData.setGloves(arrGlov);
 					gData.setWeapons(arrWeap);
 					gData.setHelmets(arrHelm);
-			
+					/*
 					arrWeap = gData.getWeapons();
 					arrGlov = gData.getGloves();
 					arrKniv = gData.getKnives();
@@ -124,7 +121,7 @@ function syncRepairs(status, data) {
 					arrVest = gData.getVests();
 					arrBoot = gData.getBoots();
 					
-					/*console.log(arrHelm);
+					console.log(arrHelm);
 					console.log(arrBoot);
 					console.log(arrVest);
 					console.log(arrWeap);
@@ -138,11 +135,8 @@ function syncRepairs(status, data) {
 
 
     // !!! implemenent failsafes for user doesn't want to sync              put a copy of shop_get_offers.xml in the install folder just in case? Would have to figure out how to load it.
-    /*  
-		*/
 
-
-function getText(){
+function getNewData(){
 	plugin().fileExists(
 		plugin().PROFILE + "/Saved Games/My Games/WarfaceWest/QueryCache/shop_get_offers.xml", 
 		function(status) {
@@ -164,7 +158,7 @@ function getText(){
 
 	return{
 		testPlugin: testPlugin,
-		getText: getText
+		getNewData: getNewData
 	};
 	
 });

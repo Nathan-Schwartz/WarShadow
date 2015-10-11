@@ -6,7 +6,7 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 // !!! I should make before/after user text box input
 if(!localStorage.getItem('Settings')){
 	var Settings = {
-		enableRecord: true,
+		enableRecord: false,
 		autoLaunch: true,
 		restoreOnTab: true,
 		minimizeOnTab: true,
@@ -287,17 +287,17 @@ if(launch.autoLaunch == true || (launch.autoLaunch == false && launch.playing ==
 						);
 					}
 				}
-				if(resultA.focusChanged == true){
+				if(resultA.focusChanged === true){ // !!!if open and minimize are disabled, app can disapear behind other apps when tabbed out, and will open in game if not minimized. 
 					overwolf.games.getRunningGameInfo(
 						function (resultD){
-							if(resultD.isInFocus == true){
-								if(test.restoreOnTab == true){
+							if(resultD.isInFocus === true){
+								if(test.restoreOnTab === true){
 									//game is in focus so restore all except settings and statcrack
 									overwolf.windows.restore(localStorage.getItem('MainID'));
 									rHUD.refreshHUD();
 								}
 							}else{
-								if(test.minimizeOnTab == true){
+								if(test.minimizeOnTab === true){
 									//game is out of focus so minimize all
 									
 									overwolf.windows.minimize(localStorage.getItem('SmokeTimerID'));

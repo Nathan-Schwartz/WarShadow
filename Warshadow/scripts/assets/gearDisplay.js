@@ -73,20 +73,17 @@ function printTable(id, iter, gear){
 	
 	
 function printComparison(id, iter, gear){
-	
+	// !!!finding value of mult is the same as in repairCalc.
 	var durString = JSON.stringify(parseFloat(document.getElementById("duration").value));
-	var durArr = durString.split("."); //if there is a decimal value enterred into the duration box split it into two strings.
-	
-	//turn the strings back into numbers
+	var durArr = durString.split("."); 
 	for(var i = 0; i < durArr.length; i++){
 		durArr[i] = parseInt(durArr[i]);
 	}
-	
-	durArr[0] = durArr[0] * 60; //convert the integer section into seconds
+	durArr[0] = durArr[0] * 60;
 	if(durArr.length > 1){
-		durArr[0] = durArr[0] + durArr[1] * 60; //convert the decimal into seconds and add it to the other value
+		durArr[0] = durArr[0] + durArr[1] * 60;
 	}
-	var duration = durArr[0]; //Seconds enterred by user
+	var duration = durArr[0];
 	var mult = duration/36000;
 	
 	if(id == 'Helmets'){

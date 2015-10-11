@@ -2,11 +2,12 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 			
 	inject.injectHTML();
 	gData.initStats();
-	console.log(gData.getWeapons());// !!!! tell user where files save using a call to get overwolf videofolder or w/e
 	rCalc.repairCalc(); // !!!! overwolf.windows.mediaPlayerElement
-	gDisplay.calc(); //used to be dependant on rCalc's localstorage set. Might be more efficient that way
-			
-			
+	gDisplay.calc();
+	arrayData.initializeArray();	
+	sync.testPlugin() ? sync.getNewData(): console.log("failed to get plugin");
+	
+	//jQuery for showing more weapon slots on the graph when a checkbox is clicked
 			document.getElementById("showsecond").onchange = function(){
 				
 				if(document.getElementById("showsecond").checked){
@@ -44,8 +45,7 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 					upDat.updateData(0);
 				}
 			};
-			
-			
+
 			
 			document.getElementById("showfourth").onchange = function(){
 				if(document.getElementById("showfourth").checked){
@@ -88,10 +88,8 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 		});
 	});
 	
-	sync.testPlugin() ? sync.getText(): console.log("failed to get plugin");
-	
-	arrayData.initializeArray();
-	
+
+//jQuery spaghetti for displaying comparison charts
 	var currentTable = "#sideInstruct";
 	
 $('#RChelmet').mousedown(function(){
@@ -200,18 +198,11 @@ $('#RCmelee').mousedown(function(){
 	$("#sideKnife").show();
 });
 
+//Jquery for variables that change repair costs or rewards
 $('#missionType').mousedown(function(){
 	$(currentTable).hide();
 	currentTable = '#sideRewards';
 	$("#sideRewards").show();
-});
-
-
-$("#distance").change(function(){
-	if(isNaN(parseInt(document.getElementById("distance").value)) || parseInt(document.getElementById("distance").value) > 100 || parseInt(document.getElementById("distance").value) <= 0)
-			alert("You entered an invalid distance");
-	
-	upDat.updateData(0);
 });
 
 $("#booster").change(function(){
@@ -240,7 +231,9 @@ $('#RChelmet, #RCvest, #RCgloves, #RCboots, #RCprimary, #RCsecondary, #RCmelee')
 });
 
 
-$("#weaponSelect1").change(function(){upDat.updateData(1); setTimeout(function(){$("#chart").show();}, 100); });
+
+//jQuery for changing variables that affect individual weapons
+$("#weaponSelect1").change(function(){upDat.updateData(1); setTimeout(function(){$("#chart").slideDown();}, 100); });
 $("#weaponSelect2").change(function(){upDat.updateData(2);});
 $("#weaponSelect3").change(function(){upDat.updateData(3);});
 $("#weaponSelect4").change(function(){upDat.updateData(4);});
@@ -253,6 +246,13 @@ $("#attachmentSelect3").change(function(){upDat.updateData(3);});
 $("#attachmentSelect4").change(function(){upDat.updateData(4);});
 $("#attachmentSelect5").change(function(){upDat.updateData(5);});
 
+//Jquery for changing variables that all weapons in graph calculations.
+$("#distance").change(function(){
+	if(isNaN(parseInt(document.getElementById("distance").value)) || parseInt(document.getElementById("distance").value) > 100 || parseInt(document.getElementById("distance").value) <= 0)
+			alert("You entered an invalid distance");
+	
+	upDat.updateData(0);
+});
 $("#selectGData").change(function(){upDat.updateData(0);});
 $("#enemyVest1").change(function(){upDat.updateData(0);});
 $("#enemyHelmet1").change(function(){upDat.updateData(0);});

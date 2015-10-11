@@ -13,7 +13,7 @@ require(['windowCoreFunctions'], function(wCore){
 						wCore.closeWindow();
 				}
 			}, 
-		1000);
+		1000);// !!! blurring if i use 2nd weapon slot beofre first on graph. Also doesn't make line reappear when i reselect a text box even though it saves the weapon choice
 	}
 
 	startTimer(14);

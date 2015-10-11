@@ -15,7 +15,6 @@ function repairCalc(){
 	}
 	var duration = durArr[0]; //Seconds enterred by user
 	var repair_mult = duration/36000; //since repair values are based on 10 hours of gameplay this is what we will multiply repair cost by to adjust for the session length
-	//localStorage.setItem('repairMult', repair_mult);
 	
 	function outputCosts(obj){
 		if(obj.length == 3){

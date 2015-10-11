@@ -34,16 +34,20 @@
     <div id='tab1' class='tab active'>
 
 	  <fieldset class="standard">
-		<legend><b>  Graph Options </b></legend><br>					<!-- !!!!!!I'm sorry for these atrocious spaces but fieldsets suck for setting position. Yes I did try absolute and giving all the parent divs a position.-->
-		Distance to display (max is 100): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select data to display:<br><input type='text' id='distance' value='50'> 
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<legend><b>  Graph Options </b></legend><br>
+		Graph distance: <input type='text' id='distance' value='50'>
+		<span class="spaced">
+		Select data to display:
 		<select id='selectGData'>
 				<option value='Ddamage'> Damage </option> <br>
 				<option value='DttkH'> Time to kill (Headshots) </option><br>
 				<option value='DttkV'> Time to kill (Bodyshots) </option><br>
 				<option value='DntkH'> Bullets to kill (Headshots) </option><br>
 				<option value='DntkV'> Bullets to kill (Bodyshots) </option><br>
-		</select> 
+		</select>
+		</span>
+		(max is 100):
+		
 	</fieldset> 
 		
 		<fieldset class="standard">
@@ -59,7 +63,8 @@
 				<option value='Warlord'> Warlord </option> <br>
 				<option value='Elite Crown'> Elite Crown </option><br>
 				<option value='npc'> NPC helmet </option><br>
-		</select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</select>
+		<span class="spaced">
 		Enemy Vest:
 		<select id='enemyVest1'>
 			<option value='Default'>Default</option> <br>
@@ -92,6 +97,7 @@
 			<option value='Spec-Ops'> NPC Spec-Ops </option> <br>
 			<option value='specsil'> NPC Africa Shock Trooper </option><br>	
 		</select>
+		<span>
 		</fieldset>
 		
 		
@@ -100,119 +106,117 @@
 <fieldset class="standard">
 		<legend> <b>Weapon Options</b></legend><br>
 		Weapon:
-		<select id='weaponSelect1'><!-- There is a slight delay while the rest of the list is injected so this item is essentially fake and will be used to make the transition less noticable -->
+		<select class="weapon" id='weaponSelect1'><!-- There is a slight delay while the rest of the list is injected so this item is essentially fake and will be used to make the transition less noticable -->
 		<option value='none'> Select a weapon </option><br>
-		</select> &nbsp;&nbsp;&nbsp;&nbsp;<!--  this is not ok. Need to take out all the spaces in this file. -->
+		</select> 
 
-
+<span class="spaced">
 Attachment:
 <select id='attachmentSelect1'>
 <option value='none'> No attachment </option> <br>
 <option value='suppressor'> Suppressor </option><br>
 <option value='sharedsil'> Shared Silencer </option><br>
-<option value='specsil'> Specialized Silencer </option><br>
-</select> <br>
+<option value='specsil'> Specialized Silencer </option>
+</select> 
+</span>
 
-  <input type='checkbox' id='showsecond'> Add Weapon to compare <br>
-
+<span class="addweapon">
+<input type='checkbox' id='showsecond'> Add Weapon to compare
+</span>
   
   
   
   
   <div id='secondweapon'>
-<br>
 
 Weapon:
-<select id='weaponSelect2'>
+<select class="weapon" id='weaponSelect2'>
 <option value='none'> Select a weapon </option><br>
-</select> &nbsp;&nbsp;&nbsp;&nbsp;
+</select> 
 
-
+<span class="spaced">
 Attachment:
 <select id='attachmentSelect2'>
 <option value='none'> No attachment </option> <br>
 <option value='suppressor'> Suppressor </option><br>
 <option value='sharedsil'> Shared Silencer </option><br>
-<option value='specsil'> Specialized Silencer </option><br>
+<option value='specsil'> Specialized Silencer </option>
 </select>
-
-<br>
-<input type='checkbox' id='showthird'> Add Weapon to compare <br>
+</span>
+<span class="addweapon">
+<input type='checkbox' id='showthird'> Add Weapon to compare
+</span>
   </div>
   
   
   <div id='thirdweapon'>
-<br>
 
 Weapon:
-<select id='weaponSelect3'>
+<select class="weapon" id='weaponSelect3'> 
 <option value='none'> Select a weapon </option><br>
-</select> &nbsp;&nbsp;&nbsp;&nbsp;
+</select>
 
-
+<span class="spaced">
 Attachment:
 <select id='attachmentSelect3'>
 <option value='none'> No attachment </option> <br>
 <option value='suppressor'> Suppressor </option><br>
 <option value='sharedsil'> Shared Silencer </option><br>
-<option value='specsil'> Specialized Silencer </option><br>
-</select> <br>
- 
-  <input type='checkbox' id='showfourth'> Add Weapon to compare <br>
+<option value='specsil'> Specialized Silencer </option>
+</select>
+</span>
+<span class="addweapon">
+<input type='checkbox' id='showfourth'> Add Weapon to compare
+</span>
   </div>
   
-  
   <div id='fourthweapon'>
-<br>
 
 Weapon:
-<select id='weaponSelect4'>
+<select class="weapon" id='weaponSelect4'>
 <option value='none'> Select a weapon </option><br>
-</select> &nbsp;&nbsp;&nbsp;&nbsp;
+</select>
 
-
+<span class="spaced">
 Attachment:
 <select id='attachmentSelect4'>
 <option value='none'> No attachment </option> <br>
 <option value='suppressor'> Suppressor </option><br>
 <option value='sharedsil'> Shared Silencer </option><br>
-<option value='specsil'> Specialized Silencer </option><br>
-</select> <br>
+<option value='specsil'> Specialized Silencer </option>
+</select>
+</span>
   
-  
-<input type='checkbox' id='showfifth'> Add Weapon to compare <br>
+<span class="addweapon">
+<input type='checkbox' id='showfifth'> Add Weapon to compare
+</span>
   </div>
   
   
   <div id='fifthweapon'>
-<br>
 
 Weapon:
-<select id='weaponSelect5'>
+<select class="weapon" id='weaponSelect5'>
 <option value='none'> Select a weapon </option><br>
-</select> &nbsp;&nbsp;&nbsp;&nbsp;
+</select>
 
-
+<span class="spaced">
 Attachment:
 <select id='attachmentSelect5'>
 <option value='none'> No attachment </option> <br>
 <option value='suppressor'> Suppressor </option><br>
 <option value='sharedsil'> Shared Silencer </option><br>
-<option value='specsil'> Specialized Silencer </option><br>
-</select> <br> <br>  
+<option value='specsil'> Specialized Silencer </option>
+</select>
+</span>
+<br>  
   
   </div></fieldset>
 		
 
   <br><br><br><br>
   
-    </div>
-	
-	
-	
-	
-	
-	
+</div>
 	
 	
 	
@@ -275,12 +279,14 @@ Mission:
 <option value='Insane Africa'> Insane Africa </option><br>
 <option value='Tower'> Tower HQ </option><br>
 <option value='Marathon'> Marathon </option><br>
-</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Game length (min): <input type='text' id='duration' value="10">
-  
+</select>
+<span class="spacedR">
+Game length (min): <input type='text' id='duration' value="10">
+</span>
   </fieldset>
   
   <fieldset class="repair">
-	<legend><b> Armor </b> </legend>
+	<legend><b> Armor </b> </legend><br>
   
   Helmet:
 <select id='RChelmet'>
@@ -292,8 +298,9 @@ Mission:
 <option value='Dread mask'> Dread Mask </option><br>
 <option value='Warlord'> Warlord </option> <br>
 <option value='Elite Crown'> Elite Crown </option><br>
-</select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</select> &nbsp;<span class="cost"  id="helCost"></span>
 
+<span class="spacedR">
 Vest:&nbsp;&nbsp;
 <select id='RCvest'>
 <option value='rental'> Any Rental </option><br>
@@ -322,9 +329,7 @@ Vest:&nbsp;&nbsp;
 <option value='Corundum'>Corundum</option> <br>
 <option value='Python'>Python</option> <br>
 <option value='Extra Strong'>Extra Strong</option> <br>
-</select> <br>
-<span class="cost"  id="helCost"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cost"  id="vesCost"></span>
-<br>
+</select> <span class="cost"  id="vesCost"></span></span>
 
 Gloves:
 <select id='RCgloves'>
@@ -344,8 +349,9 @@ Gloves:
 <option value='Default Gloves'>Default Gloves </option><br>
 <option value='Light Gloves'>Light Gloves </option><br>
 <option value='Warlord Gloves'>Warlord Gloves </option><br>
-</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</select>&nbsp;&nbsp;<span class="cost"  id="gloCost"></span>
 
+<span class="spacedR">
 Boots:
 <select id='RCboots'>
 <option value='rental'> Any Rental </option><br>
@@ -364,9 +370,8 @@ Boots:
 <option value='Christmas Boots'>Christmas Boots </option><br>
 <option value='Anti-directional Mine Boots'>Anti-directional Mine Boots </option><br>
 <option value='Warlord Boots'>Warlord Boots </option><br>
-</select> <br>
-<span class="cost"  id="gloCost"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cost"  id="booCost"></span>
-<br>
+</select> <span class="cost"  id="booCost"></span>
+</span>
 </fieldset>
 
 <fieldset class="repair">
@@ -771,12 +776,6 @@ Normal:&nbsp;&nbsp;&nbsp;<span id="net" class="net" ></span>&nbsp;&nbsp;&nbsp;&n
 			<!--th>Repair (10 hr)</th-->
 		</tr>
 	</table><br><br>
-	
-	
-	 
-	 
-	 
-	 
     </div>
   </div>
 </div>
