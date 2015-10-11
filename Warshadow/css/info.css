@@ -1,6 +1,8 @@
 html {
-	/*overflow: hidden;*/
-	overflow: scroll;
+	/*overflow: hidden;
+	overflow: scroll;*/
+	overflow-y: scroll;
+	overflow-x: hidden;
 	height: 100%;
 	width: 100%;
 	background: rgba(255, 255, 255, 0.05);
@@ -217,8 +219,15 @@ margin: 0;
 	bottom: 30px;
 }
 
+input{
+	outline-color: #262626;
+	outline-width: thick;
+}
+
 select{
 	width:200px;
+	outline-color: #262626;
+	outline-width: thick;
 }
 
 #weaponSelect1{
@@ -237,6 +246,7 @@ position: relative;
 
 #content {
 	position: relative;
+	-webkit-user-select: none;
 }
 
 #chart{
@@ -252,9 +262,10 @@ position: relative;
 	display: block;
 }
 
-#resetLS{
+#resetLS, #openSettings{
 	margin: 0 auto;
 	display: block;
+	width: 300px;
 }
 
 #steps{

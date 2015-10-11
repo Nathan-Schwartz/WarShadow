@@ -1,6 +1,6 @@
 define(function () {
 
-function initStats(){
+function initStats(){// !!! Use built in get/set?
 	var helmets = [{"key":"Warlord","HP_regen":8,"Damage_reduc":0.4,"Mine":"FALSE","Flash":"FALSE","Repair_num":500,"Shop_name":"medic_helmet_07","File_name":"@medic_helmet_07_shop_name"},
 {"key":"Elite Crown","HP_regen":8,"Damage_reduc":0.3,"Mine":"FALSE","Flash":"TRUE","Repair_num":1170,"Shop_name":"medic_helmet_crown_02","File_name":"@medic_helmet_crown_02_shop_name"},
 {"key":"Dread mask","HP_regen":0,"Damage_reduc":0.55,"Mine":"FALSE","Flash":"TRUE","Repair_num":1430,"Shop_name":"shared_helmet_hlw_03","File_name":"@shared_helmet_hlw_03_shop_name"},

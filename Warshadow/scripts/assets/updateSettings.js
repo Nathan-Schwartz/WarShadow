@@ -3,11 +3,13 @@ define(function () {
 
 		function updateSettings(){//Update localStorage with newest settings
 			var temp = JSON.parse(localStorage.getItem("Settings"));
-			
+		
 			temp.Rgrab = document.getElementById("grablength").value;
 			temp.Rcuddling = document.getElementById("Cuddling").value;
 			temp.Rforeplay = document.getElementById("Foreplay").value;
 
+			temp.enableRecord = (document.getElementById("enableRecord").checked?true:false);
+			temp.autoLaunch = (document.getElementById("autoLaunch").checked?true:false);
 			temp.closeOnEnd = (document.getElementById("closeOnEnd").checked?true:false);
 			temp.restoreOnTab = (document.getElementById('restoreOnTab').checked?true:false);
 			temp.minimizeOnTab = (document.getElementById('minimizeOnTab').checked?true:false);

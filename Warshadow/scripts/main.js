@@ -1,30 +1,15 @@
 		
-	define(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording'], function($ ,gEvent, wCore, rHUD, rec){ 
+require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', 'counters'], function($ ,gEvent, wCore, rHUD, rec, counters){ 
 		
-/*localStorage.removeItem('windowPOS');
-
-if(!localStorage.getItem('windowPOS')){ //If this is the first launch, initialize array that stores window position coordinates
-	var windowPOS = {
-		//pixels from top and left. [left,top]
-		kdr:[50,150], 
-		info:[250,200], 
-		hspercent:[50,150],
-		smoketimer:[50,150],
-		hschains:[50,150],
-		hscounter:[50,150],
-		main:[50,200],
-		crosshair:[50,150]
-	};// !!!! I need to move this to 'Settings'
-	localStorage.setItem('windowPOS', JSON.stringify(windowPOS));
-	console.log("windowPOS: " + localStorage.getItem('windowPOS'));
-}*/
-
+			
 //localStorage.removeItem('Settings');
-
+// !!! I should make before/after user text box input
 if(!localStorage.getItem('Settings')){
 	var Settings = {
+		enableRecord: true,
+		autoLaunch: true,
 		restoreOnTab: true,
-		minimizeOnTab: false,
+		minimizeOnTab: true,
 		closeOnEnd: true,
 		Rforeplay: "5",
 		Rcuddling: "5",
@@ -47,50 +32,76 @@ if(!localStorage.getItem('Settings')){
 	};
 	localStorage.setItem('Settings', JSON.stringify(Settings));
 	console.log("Settings: " + localStorage.getItem('Settings'));
-	if (confirm("Welcome to WarShadow! Would you like to go on the exclusive, one-time-only '3-click' tour?") == true){
+	if (confirm("Welcome to WarShadow! Would you like to go on the '3-click' tour?") == true){
 		alert("To collapse the main menu, simply double click on the Warface Logo.");
 		alert("To automatically record your best moments, turn on Auto-Capture. Customize your recordings through Settings!");
 		alert("Click on the 'info' button to learn more!"); // !!! These will need updating.
 	}
 }
+
+localStorage.setItem('recordingOn', false); //This is a side effect of my turnOn() recording function. I use this to determine if recording is being used by another app or by me.
 		
-		/*var test = JSON.parse(localStorage.getItem("Settings"));
-		console.log(test);
-		console.log(test.windowPOS.main[0]);
-		console.log(test.windowPOS.main[1]);*/
 		
-/*
-outputting
-var test = JSON.parse(localStorage.getItem("windowPOS"));
-	console.log(test.crosshair[0]); Rclose
-*/
+		
+//autoLaunch starts minimized so if current window is minimized then it was autolaunched
+//if autolaunched use the FPS listener to initiate window.
+//else check if game is running, if true initiate recording, else use FPS listener method
+
+
+function launchData(){
+	var launchData = new Object;
 	
-/*
-mutating values	
-var test = JSON.parse(localStorage.getItem("windowPOS"));
-	test.crosshair[0] = 2463572565;
+	overwolf.windows.getCurrentWindow(function(data){
+		console.log('currentwindow', data);
+		launchData.autoLaunch = !data.window.isVisible;
+	});
 	
-	localStorage.setItem("windowPOS", JSON.stringify(test))
-	console.log(JSON.parse(localStorage.getItem("windowPOS")));
-*/
+	overwolf.games.getRunningGameInfo(function(data){
+		console.log("runningGameInfo",data);
+		if(data !== null){
+			launchData.focused = data.isInFocus;
+
+			launchData.playing = data.isRunning;
+		}else{
+			launchData.playing = false;
+			launchData.focused = false;
+		}
+		launchData.TEST = 1;
+	});
+	return launchData;
+};
+
+
+/*var launch = (function(){
+	var launchData = new Object;
+	
+	overwolf.windows.getCurrentWindow(function(data){
+		console.log('currentwindow', data);
+		launchData.autoLaunch = !data.window.isVisible;
+	});
+	
+	overwolf.games.getRunningGameInfo(function(data){
+		console.log("runningGameInfo",data);
+		if(data !== null){
+			launchData.focused = data.isInFocus;
+
+			launchData.playing = data.isRunning;
+		}else{
+			launchData.playing = false;
+			launchData.focused = false;
+		}
+		launchData.TEST = 1;
+	});
+	return launchData;
+})();*/
+
+		
 
 	var smallwindow = true;
 
 	// !!!! Don't allow invalid user input
-	// !!!! Make window dragging unniversal
-	// !!!!! launch_events & in_game_only & ignore_keyboard_events in manifest? permissions and dependancies? launch not working
-
-	function resetCounters(){
-		localStorage.setItem('Kills', 0); 
-		localStorage.setItem('Headshots', 0); 
-		localStorage.setItem('Defibs', 0);
-		localStorage.setItem('TWWWOOOOCHAAAAAIIIIIIIINNNNNZZZZZ',0);  //sorry, had to.
-		localStorage.setItem('3chain',0);
-		localStorage.setItem('4chain',0);
-		localStorage.setItem('5chain',0);
-		localStorage.setItem('PVPKills',0);
-		localStorage.setItem('PVPDeaths',0);
-	};
+	// !!!! don't allow text highlighting
+	// !!!!! launch_events & in_game_only & ignore_keyboard_events in manifest? permissions and dependancies?
 	
 		
 		function getWinID(name, ID){
@@ -105,16 +116,14 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 					}
 				}
 			);
-		};
-
-
+		};			
 			
 		function tower(){
 			window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=299691346"); // tower
 		};
 			
 		function cold(){
-			window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=352301863"); //coldpeak
+			window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=352301863"); //coldpeak		
 		};
 
 	
@@ -123,7 +132,8 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			This function will trigger upon clicking the icon in the main windows top-left corner
 			It resizes the window to be small enough to hide all buttons and text. 
 			Toggling it again will make the window larger so that all features can be seen.
-		*/
+*/
+		
 			if(smallwindow === true){
 				overwolf.windows.changeSize(localStorage.getItem('MainID'), 160, 460);
 				smallwindow=false;			
@@ -147,8 +157,50 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			}
 		);
 
-			//$(document).ready(SetMainPos()); // This triggers too early for it to work if I don't include the wait time. Hopefully the jQuery will trigger at a consistent point for different computers, gave it a buffer of 400 MS just in case.
-			resetCounters(); // !!!! I could just declare the counters in a seperate file and create increment and reset methods
+			$(document).ready(function(){
+
+var launch = launchData();
+console.log("launch", launch);
+console.log("autolaunch", launch.autoLaunch, typeof launch.autoLaunch);//these are returning undefined for some reason.
+console.log("playing", launch.playing, typeof launch.playing);
+console.log("TEST", launch.TEST, typeof launch.TEST);
+
+if(launch.autoLaunch == true || (launch.autoLaunch == false && launch.playing == false)){
+	console.log("auto or prelaunch");
+	var alerted = false;
+	overwolf.games.onMajorFrameRateChange.addListener(function(data){
+		console.log("frame rate change data", data);
+
+		if(JSON.parse(localStorage.getItem("Settings")).autoLaunch == false && launch.autoLaunch == true)// !!! if they change it in settings and then there is a FPS spike it would close.
+			overwolf.windows.close(localStorage.getItem('MainID'));
+
+		if(data.fps > 15 && data.fps_status == "Stable" && !alerted){
+			// !!! won't work if not in focus
+			if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
+				rec.turnOn();
+			}
+			alerted = true;
+			overwolf.windows.restore(localStorage.getItem('MainID'));
+		}
+	});
+
+}else if(launch.playing == true){
+	console.log("manual launch in game");
+	if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
+		rec.turnOn();
+	}
+	
+}else{
+	console.log("else");
+	if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
+		rec.turnOn(); 
+	}
+	overwolf.windows.restore(localStorage.getItem('MainID')); 
+}
+// !!! The above should be in a launchController module
+	
+	
+});
 				//Get ID's of each window
 				getWinID("MainWindow",'MainID');
 				getWinID("HSCounter",'HSCounterID');
@@ -187,7 +239,7 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 		document.getElementById("content").onmousedown = function(){wCore.dragMove();};
 		
 		//menu buttons
-		document.getElementById("resize").ondblclick = function(){/*updatePOS("MainWindow");*/ ResizeMain();};
+		document.getElementById("resize").ondblclick = function(){ResizeMain();};
 		document.getElementById("close").onclick = function(){wCore.minimizeWindow();};
 	//	document.getElementById("SubmitVideo").onclick = function(){SubmitVideo();};
 		document.getElementById("cold").onclick = function(){cold();};
@@ -234,31 +286,19 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 							}
 						);
 					}
-					if(resultA.gameChanged == true){
-						overwolf.games.getRunningGameInfo(
-							function (resultC){
-								//alert(resultC.id);
-								if(resultC.id != 77844)
-									overwolf.windows.close(localStorage.getItem('MainID'));//wrong game opened
-							}
-						);
-					}
 				}
 				if(resultA.focusChanged == true){
 					overwolf.games.getRunningGameInfo(
 						function (resultD){
 							if(resultD.isInFocus == true){
 								if(test.restoreOnTab == true){
-									//game is in focus
+									//game is in focus so restore all except settings and statcrack
 									overwolf.windows.restore(localStorage.getItem('MainID'));
 									rHUD.refreshHUD();
-									 
-									//console.log(overwolf.windows.getWindowState(localStorage.getItem('MainID'))); //!!! returning undefined
 								}
 							}else{
 								if(test.minimizeOnTab == true){
-									//game is out of focus
-									//minimize all
+									//game is out of focus so minimize all
 									
 									overwolf.windows.minimize(localStorage.getItem('SmokeTimerID'));
 									overwolf.windows.minimize(localStorage.getItem('HSCounterID'));
@@ -266,7 +306,6 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 									overwolf.windows.minimize(localStorage.getItem('HSPercentID'));
 									overwolf.windows.minimize(localStorage.getItem('KDRID'));
 									overwolf.windows.minimize(localStorage.getItem('InfoID'));
-									
 									overwolf.windows.minimize(localStorage.getItem('MainID'));
 									overwolf.windows.minimize(localStorage.getItem('SettingsID'));
 									overwolf.windows.minimize(localStorage.getItem('StatCrackID'));
@@ -278,6 +317,6 @@ var test = JSON.parse(localStorage.getItem("windowPOS"));
 			}
 		);
 			
-});		
+});
 			
 			

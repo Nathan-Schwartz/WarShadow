@@ -1,10 +1,12 @@
 
-	define(['windowCoreFunctions'], function(wCore){
+require(['windowCoreFunctions', 'counters'], function(wCore, counters){
 
-			window.addEventListener('storage', function( storageEvent ){
-					document.getElementById("HScount").innerHTML = localStorage.getItem('Headshots') + " Hs";
-			});
-		
-			document.getElementById("content").onmousedown = function(){wCore.dragMove();};
-			
+	document.getElementById("HScount").innerHTML = counters.getHeadshot(1) + " Hs";
+
+	window.addEventListener('storage', function( storageEvent ){
+		document.getElementById("HScount").innerHTML = counters.getHeadshot(1) + " Hs";
+	});
+
+	document.getElementById("content").onmousedown = function(){wCore.dragMove();};
+
 });		

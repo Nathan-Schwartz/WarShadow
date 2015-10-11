@@ -4,7 +4,8 @@ define(function () {
 		
 			var temp = JSON.parse(localStorage.getItem("Settings"));
 			
-		
+				document.getElementById('enableRecord').checked = (temp.enableRecord?true: false);
+				document.getElementById('autoLaunch').checked = (temp.autoLaunch?true: false);
 				document.getElementById('restoreOnTab').checked = (temp.restoreOnTab?true: false);
 				document.getElementById('minimizeOnTab').checked = (temp.minimizeOnTab?true:false);
 				document.getElementById('closeOnEnd').checked = (temp.restoreOnTab?true:false);

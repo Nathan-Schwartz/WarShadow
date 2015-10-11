@@ -2,52 +2,24 @@ define(function () {
 
 	function turnOn(){
 		overwolf.media.replays.turnOn(
-			{/*"settings": {
-				"audio": {
-					"mic": {
-						"volume": 100
-						
-					},
-					"game": {
-						"volume": 75
-						// !!! Fix when they patch the bug for settings file stuff
-					}
-				},
-				//in absence of video settings here, recording will use setting config from overwolf capture settings.
-				"video": {
-					"auto_calc_kbps": false,
-					"fps": 30,
-					"width": 1280,
-					"height": 720,
-					"max_kbps": 1500,
-					"encoder": {
-						"name": "overwolf.streaming.enums.StreamEncoder.X264",
-						"config": {
-							"preset": "overwolf.streaming.enums.StreamEncoderPreset_x264.ULTRAFAST",
-							"rate_control": "overwolf.streaming.enums.StreamEncoderRateControl_x264.RC_CBR",
-							"keyframe_interval": 2
-						}
-					}
-				},
-				"peripherals": {
-					"capture_mouse_cursor": "both"
-				}*/
-			}, 
+			{}, 
 			function(result) {
 				console.log(result);
 				if(result.status== "success"){
-			
+					localStorage.setItem('recordingOn', true);
 				}else{
+					if(result.error == "Already turned on." && JSON.parse(localStorage.getItem('recordingOn')) == false)
+						alert("Another app hijacked the recording feature!! I can't believe you have another recording app, I thought what we had was special :( \n\n This problem happens because only 1 recording can happen at a time. To fix this problem open up the other program and turn off the recording. To prevent this issue in the future you could prevent it from auto-launching with each game (assuming it has this option). If you really don't want to use my awesome auto-recording feature, I have made it easy to disable it in settings."); // !!! choose
+						document.getElementById("autoon").checked = false;
 					if(result.error != "Already turned on."){
 						alert("I'm sorry, the recording feature wasn't able to start properly. Overwolf says the error is: " + result.error);
 						document.getElementById("autoon").checked = false;
 					}
 				}
-			}	
+			}
 		);
-	};	
-		
-		
+	};
+
 	function turnOff(){
 		overwolf.media.replays.turnOff(
 			function(result) {
@@ -58,12 +30,12 @@ define(function () {
 					alert(result.error);
 			}
 		);
-	};	
+	};
 	
 var url = "";	
 	
 function startCapture(){
-	overwolf.media.replays.startCapture(500000, 
+	overwolf.media.replays.startCapture(500000, // !!! yeah um what
 		function(result){
 			console.log(result);
 			url = result.url;

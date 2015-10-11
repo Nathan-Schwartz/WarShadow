@@ -1,18 +1,16 @@
 
-	define(['windowCoreFunctions'], function(wCore){
+require(['windowCoreFunctions', 'counters'], function(wCore, counters){
 			
-			function calcKD(){
-				var KDRatio = Number(localStorage.getItem('PVPKills')) / Number(localStorage.getItem('PVPDeaths'));
-				KDRatio = Math.round( KDRatio * 100 ) / 100;
-				if (KDRatio == "NaN")
-					console.log("KD was NaN");
-					
-				return KDRatio;
-			};
+	function calcKD(){
+		var KDRatio = Number(localStorage.getItem('kill')) / Number(localStorage.getItem('PVPDeaths'));
+		KDRatio = Math.round( KDRatio * 100 ) / 100;
+
+		return KDRatio;
+	};
 			
-			window.addEventListener('storage', function( storageEvent ){
-					document.getElementById("KD").innerHTML = calcKD() + " K/D";
-			});
+	window.addEventListener('storage', function( storageEvent ){
+		document.getElementById("KD").innerHTML = calcKD() + " K/D";
+	});
 		
-			document.getElementById("content").onmousedown = function(){wCore.dragMove();};
+	document.getElementById("content").onmousedown = function(){wCore.dragMove();};
 });

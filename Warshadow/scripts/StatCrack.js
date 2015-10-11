@@ -1,9 +1,9 @@
-define(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'gearDisplay', 'htmlInjection', 'repairCalc'],function($, gData, wCore, upDat, arrayData, sync, gDisplay, inject, rCalc){//implement wCore
+require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'gearDisplay', 'htmlInjection', 'repairCalc'],function($, gData, wCore, upDat, arrayData, sync, gDisplay, inject, rCalc){//implement wCore
 			
 	inject.injectHTML();
 	gData.initStats();
-	console.log(gData.getWeapons());
-	rCalc.repairCalc();;
+	console.log(gData.getWeapons());// !!!! tell user where files save using a call to get overwolf videofolder or w/e
+	rCalc.repairCalc(); // !!!! overwolf.windows.mediaPlayerElement
 	gDisplay.calc(); //used to be dependant on rCalc's localstorage set. Might be more efficient that way
 			
 			
@@ -92,11 +92,7 @@ define(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 's
 	
 	arrayData.initializeArray();
 	
-	var currentTable = ""; // !!! when calling .show, set currentTable = selector string
-
-	
-	
-	
+	var currentTable = "#sideInstruct";
 	
 $('#RChelmet').mousedown(function(){
 	$(currentTable).hide();
@@ -150,9 +146,10 @@ $('#RCprimary').mousedown(function(){
 				break;
 			}
 		}
-		if(!found) //just in case there is a weird value; It would be almost impossible though.
+		if(!found){ //just in case there is a weird value; It would be almost impossible though.
 			$("#sidePrimary").show();
 			currentTable = '#sidePrimary';
+		}
 	}
 });
 
@@ -184,9 +181,10 @@ $('#RCprimary').change(function(){ // !!! I could encapsulate the callback so i 
 				break;
 			}
 		}
-		if(!found) //just in case there is a weird value; It would be almost impossible though.
+		if(!found){ //just in case there is a weird value; It would be almost impossible though.
 			$("#sidePrimary").show();
 			currentTable = '#sidePrimary';
+		}
 	}
 });
 

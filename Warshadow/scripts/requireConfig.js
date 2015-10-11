@@ -31,6 +31,7 @@ require.config({
 			sync: 'assets/sync',
 			gearDisplay: 'assets/gearDisplay',
 			repairCalc: 'assets/repairCalc',
-			htmlInjection: 'assets/htmlInjection'
+			htmlInjection: 'assets/htmlInjection',
+			counters: 'assets/counters'
 		}
 });

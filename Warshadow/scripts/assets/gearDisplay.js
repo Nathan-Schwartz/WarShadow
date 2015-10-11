@@ -156,16 +156,11 @@ function compPrinter(obj){
 }
 
 function printer(obj){
-	for(var i = 0; i < obj[1].length; i++){ // !!!!do i need to shim?
+	for(var i = 0; i < obj[1].length; i++){
 		printTable(obj[0],i, obj[1]);
 	}
 };
-
-// !!!! Look into Modal windows
-// !!!! I removed the document.ready things for jQuery, do i need them still?
-		
-		
-		
+				
 		function rewardCalc(){
 			var booster = parseInt(document.getElementById("booster").value)/100;
 		

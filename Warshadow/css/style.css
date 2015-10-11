@@ -40,6 +40,10 @@ h1 {
 	color: rgb(43,39,39);
 }
 
+#content::selection{
+	 background-color: transparent;
+}
+
 body 
 {
 	color: rgb(250,250,250);

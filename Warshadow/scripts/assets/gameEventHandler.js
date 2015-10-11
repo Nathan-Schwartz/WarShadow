@@ -1,5 +1,5 @@
 	
-	define(['recording'], function(rec){
+	define(['recording', 'counters'], function(rec, counters){
 	
 	function nameHandler(name){
 		
@@ -21,9 +21,7 @@
 						}, 3000 + after);					
 					}
 				
-					var Kills = localStorage.getItem('Kills');
-					Kills++;
-					localStorage.setItem('Kills', Kills);
+					counters.incrementKill();
 					
 				}else if (name == "defibrillator_kill"){
 					if((document.getElementById("autoon").checked == true)&&(temp.Rdefib == true)){
@@ -34,10 +32,6 @@
 						}, 3000 + after);
 					}
 					
-					/*var Defibs = localStorage.getItem('Defibs');
-					Defibs++;
-					localStorage.setItem('Defibs', Defibs);
-					*/
 				}else if (name == "kill_headshot"){
 					if((document.getElementById("autoon").checked == true)&&(temp.Rheadshot == 1)){
 						//alert("single headshot works");
@@ -47,9 +41,7 @@
 						}, 3000 + after);
 					}
 					
-					var Headshots = localStorage.getItem('Headshots');
-					Headshots++;
-					localStorage.setItem('Headshots', Headshots);
+					counters.incrementHeadshot(1);
 				
 				}else if (name == "kill_melee"){
 					if((document.getElementById("autoon").checked == true)&&(temp.Rmelee == 1)){
@@ -69,10 +61,7 @@
 						}, 3000 + after);
 					}
 					
-					var TwoHeadshots = localStorage.getItem('TWWWOOOOCHAAAAAIIIIIIIINNNNNZZZZZ');
-					TwoHeadshots++;
-					localStorage.setItem('TWWWOOOOCHAAAAAIIIIIIIINNNNNZZZZZ', TwoHeadshots);
-				
+					counters.incrementHeadshot(2);
 				}else if(name == "double_kill"){
 					if((document.getElementById("autoon").checked == true)&&(temp.Rdoublekill == true)) {
 						//alert("double kill works");
@@ -101,9 +90,7 @@
 						}, 5000 + after);
 					}
 					
-					var ThreeHeadshots = localStorage.getItem('3chain');
-					ThreeHeadshots++;
-					localStorage.setItem('3chain', ThreeHeadshots);
+					counters.incrementHeadshot(3);
 					
 				}else if (name == "pvp_triple_kill") { 
 					if((document.getElementById("autoon").checked == true)&&(temp.Rtriplekill == true)&&(temp.Rdoublekill == false)) {	
@@ -132,10 +119,7 @@
 						}, 3000 + after);
 					}
 					
-					var FourHeadshots = localStorage.getItem('4chain');
-					FourHeadshots++;
-					localStorage.setItem('4chain', FourHeadshots);
-					
+					counters.incrementHeadshot(4);
 				}else if (name == "headshots_in_a_row_5"){ 
 					if((document.getElementById("autoon").checked == true)&&(temp.Rheadshot == 5)) { 
 						//alert("annhilator works");
@@ -145,10 +129,7 @@
 						}, 3000 + after);
 					}				
 					
-					var FiveHeadshots = localStorage.getItem('5chain');
-					FiveHeadshots++;
-					localStorage.setItem('5chain', FiveHeadshots);
-					
+					counters.incrementHeadshot(5);
 					
 				}else if (name == "melee_kills_in_a_row_3"){ 
 					if((document.getElementById("autoon").checked == true)&&(temp.Rmelee == 5)){

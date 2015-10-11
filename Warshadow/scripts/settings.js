@@ -1,18 +1,7 @@
 
-	define(['jquery','windowCoreFunctions', 'loadSettings','updateSettings'], function($,wCore, loadS, updateS){
+	require(['jquery','windowCoreFunctions', 'loadSettings','updateSettings', 'counters'], function($,wCore, loadS, updateS, counters){
 
-	function resetLS(){ // !!!! its time to make these stored in a module with accessors and mutators.
-		localStorage.setItem('Kills', 0); 
-		localStorage.setItem('Headshots', 0); 
-		localStorage.setItem('Defibs', 0);
-		localStorage.setItem('TWWWOOOOCHAAAAAIIIIIIIINNNNNZZZZZ',0);
-		localStorage.setItem('3chain',0);
-		localStorage.setItem('4chain',0);
-		localStorage.setItem('5chain',0);
-		localStorage.setItem('PVPKills',0);
-		localStorage.setItem('PVPDeaths',0);
-	};
-
+	//UI Slider js?
 	loadS.loadSettings();	
 			
 //		Menu Listeners
@@ -23,9 +12,12 @@
 				$("#triggers").slideToggle(200);
 				$("#showfeatures").slideToggle(200)
 			});
-		document.getElementById("resetLS").onclick = function(){resetLS();};
+		document.getElementById("resetLS").onclick = function(){counters.resetCounters();};
+		document.getElementById("openSettings").onclick = function(){window.location.assign('overwolf://settings/capture');};
 		
 		//menu checkboxes //
+		document.getElementById("enableRecord").onchange = function(){updateS.updateSettings();};
+		document.getElementById("autoLaunch").onchange = function(){updateS.updateSettings();};
 		document.getElementById("minimizeOnTab").onchange = function(){updateS.updateSettings();};
 		document.getElementById("restoreOnTab").onchange = function(){updateS.updateSettings();};
 		document.getElementById("closeOnEnd").onchange = function(){updateS.updateSettings();};

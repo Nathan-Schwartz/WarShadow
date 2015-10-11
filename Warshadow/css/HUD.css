@@ -49,6 +49,7 @@ h2{
 	position: absolute;
 }
 
+
 #content {
 	position: absolute;
 	top:5px;
@@ -56,6 +57,8 @@ h2{
 	left: 5px;
 	right: 5px;
 	padding: 5px;
+	
+	-webkit-user-select: none;
 }
 
 #resizeGripTop {
