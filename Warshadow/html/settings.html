@@ -45,26 +45,15 @@
 <fieldset id="autocapfield" class="embeddedSettings">
 		<legend><b> AutoCapture Options</b></legend>
 			<br>
-				
-				Time before first kill: <br>
-			<select id="Foreplay">
-				<option value="5"> 5 seconds </option> <br>
-				<option value="10"> 10 seconds </option> <br>
-				<option value="15" > 15 seconds </option> <br>
-				<option value="20"> 20 seconds </option> <br>
-				<option value="30" > 30 seconds </option> <br> 
-				<option value="60"> 1 minute </option> <br>
-			</select> 
-				<br><br>
-				Time after event: <br> 
-			<select id="Cuddling">
-				<option value="5"> 5 seconds </option> <br>
-				<option value="10"> 10 seconds </option> <br>
-				<option value="15" > 15 seconds </option> <br>
-				<option value="20"> 20 seconds </option> <br>
-				<option value="30" > 30 seconds </option> <br> 
-				<option value="60"> 1 minute </option> <br>
-			</select> <br><br>
+			<label for="beforeSliderValue">Time before first kill:</label>
+			<input type="text" id="beforeSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
+			<div id='beforeSlider' class="sliders"> </div>
+
+			<br><br> 
+				<label for="afterSliderValue">Time after event:</label>
+				<input type="text" id="afterSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
+				<div id='afterSlider' class="sliders"> </div>
+			<br>
 				
 				
 				
@@ -123,8 +112,9 @@
 			<fieldset class="settings">
 		<legend><b>Manual Capture Options:</b></legend>
 			<br>
-			
-			Capture Length (seconds): <br> <input type="text" id="grablength" value="60"><br>
+			<label for="grabSliderValue">Capture Length:</label>
+			<input type="text" id="grabSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
+			<div id='grabSlider' class="sliders"> </div><br>
 			</fieldset></fieldset>
 			<br><br>
 </div>

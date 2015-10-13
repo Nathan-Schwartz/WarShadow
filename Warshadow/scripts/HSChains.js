@@ -1,5 +1,5 @@
 	
-require(['windowCoreFunctions', 'counters'], function(wCore, counters){
+require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters){
 		
 	document.getElementById("HSchains").innerHTML = avgChain() + " Avg";	
 		
@@ -30,6 +30,6 @@ require(['windowCoreFunctions', 'counters'], function(wCore, counters){
 		document.getElementById("HSchains").innerHTML = avgChain() + " Avg";
 	});
 	
-	document.getElementById("content").onmousedown = function(){wCore.dragMove();};
+	$("#content").mousedown(function(){wCore.dragMove();});
 
 });

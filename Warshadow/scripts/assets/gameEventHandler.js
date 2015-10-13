@@ -7,10 +7,10 @@
 		and it only allows one recording to grab footage at a time. For this reason its beneficial to only grab past time. I use the setTimeout function for this purpose.
 		*/
 		
-			var temp = JSON.parse(localStorage.getItem("Settings"));// if there are errors for recording various actions check the calls to localstorage. I just consolidated them to the temp variable
+			var temp = JSON.parse(localStorage.getItem("Settings"));
 			
-			var after = temp.Rcuddling*1000; 
-			var before = temp.Rforeplay*1000; 
+			var after = temp.Rbefore*1000; 
+			var before = temp.Rafter*1000; 
 	
 				if (name == "kill"){
 					if((document.getElementById("autoon").checked == true)&&(temp.Rkill == true)){

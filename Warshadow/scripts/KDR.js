@@ -1,5 +1,5 @@
 
-require(['windowCoreFunctions', 'counters'], function(wCore, counters){
+require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters){
 			
 	function calcKD(){
 		var KDRatio = Number(localStorage.getItem('kill')) / Number(localStorage.getItem('PVPDeaths'));
@@ -12,5 +12,5 @@ require(['windowCoreFunctions', 'counters'], function(wCore, counters){
 		document.getElementById("KD").innerHTML = calcKD() + " K/D";
 	});
 		
-	document.getElementById("content").onmousedown = function(){wCore.dragMove();};
+	$("#content").mousedown(function(){wCore.dragMove();});
 });

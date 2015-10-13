@@ -1,5 +1,5 @@
 
-require(['windowCoreFunctions', 'counters'], function(wCore, counters){
+require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters){
 
 	document.getElementById("HScount").innerHTML = counters.getHeadshot(1) + " Hs";
 
@@ -7,6 +7,5 @@ require(['windowCoreFunctions', 'counters'], function(wCore, counters){
 		document.getElementById("HScount").innerHTML = counters.getHeadshot(1) + " Hs";
 	});
 
-	document.getElementById("content").onmousedown = function(){wCore.dragMove();};
-
+	$("#content").mousedown(function(){wCore.dragMove();});
 });		

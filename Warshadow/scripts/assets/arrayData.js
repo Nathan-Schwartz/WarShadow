@@ -1,8 +1,5 @@
 define( function(){
 
-//Should I really be using sessionStorage?
-
-
 	function initializeArray(){
 		var myA = [];
 		for(var iter = 0; iter < 100; iter++){

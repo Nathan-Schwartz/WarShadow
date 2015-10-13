@@ -1,8 +1,9 @@
 require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'gearDisplay', 'htmlInjection', 'repairCalc','jqueryUI'],function($, gData, wCore, upDat, arrayData, sync, gDisplay, inject, rCalc, jqueryUI){//implement wCore
 
 	inject.injectHTML();// put lists into html drop down boxes
-	sync.testPlugin() ? sync.getNewData(): console.log("failed to get plugin"); //update repair costs	
+	sync.testPlugin() ? sync.getNewData(): console.log("failed to get plugin"); // sync repair costs with latest game price dump	
 
+	// !!! blurring if i use 2nd weapon slot beofre first on graph. Also doesn't make line reappear when i reselect a text box even though it saves the weapon choice
 	//initialize sliders !!! could be exported, its spaghetti
 		//Distance slider
 		$(function() {
@@ -145,32 +146,32 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 $('#RChelmet').mousedown(function(){
 	$(currentTable).hide();
 	currentTable = '#sideHelm';
-	$("#sideHelm").show();
+	$("#sideHelm").fadeIn();
 });
 
 $('#RCvest').mousedown(function(){
 	$(currentTable).hide();
 	currentTable = '#sideVest';
-	$("#sideVest").show();
+	$("#sideVest").fadeIn();
 });
 
 $('#RCgloves').mousedown(function(){
 	$(currentTable).hide();
 	currentTable = '#sideGlove';
-	$("#sideGlove").show();
+	$("#sideGlove").fadeIn();
 });
 
 $('#RCboots').mousedown(function(){
 	$(currentTable).hide();
 	currentTable = '#sideBoot';
-	$("#sideBoot").show();
+	$("#sideBoot").fadeIn();
 });
 
 $('#RCprimary').mousedown(function(){
 	$(currentTable).hide();
 
 	if((document.getElementById("RCprimary").value == "none")||(document.getElementById("RCprimary").value == "rental")){
-		$("#sidePrimary").show();
+		$("#sidePrimary").fadeIn();
 		currentTable = '#sidePrimary';
 	}else{
 		var weapons = gData.getWeapons();
@@ -178,16 +179,16 @@ $('#RCprimary').mousedown(function(){
 		for(var i = 0; i < weapons.length; i ++){
 			if(weapons[i].key == document.getElementById("RCprimary").value){
 				if(weapons[i].Class == "M"){
-					$("#sideShotgun").show();
+					$("#sideShotgun").fadeIn();
 					currentTable = '#sideShotgun';
 				}else if(weapons[i].Class == "E"){
-					$("#sideSMG").show();
+					$("#sideSMG").fadeIn();
 					currentTable = '#sideSMG';
 				}else if(weapons[i].Class == "R"){
-					$("#sideRifle").show();
+					$("#sideRifle").fadeIn();
 					currentTable = '#sideRifle';
 				}else if(weapons[i].Class == "S"){
-					$("#sideSniper").show();
+					$("#sideSniper").fadeIn();
 					currentTable = '#sideSniper';
 				}
 				found = true;
@@ -195,7 +196,7 @@ $('#RCprimary').mousedown(function(){
 			}
 		}
 		if(!found){ //just in case there is a weird value; It would be almost impossible though.
-			$("#sidePrimary").show();
+			$("#sidePrimary").fadeIn();
 			currentTable = '#sidePrimary';
 		}
 	}
@@ -205,7 +206,7 @@ $('#RCprimary').change(function(){ // !!! I could encapsulate the callback so i 
 	$(currentTable).hide();
 
 	if((document.getElementById("RCprimary").value == "none")||(document.getElementById("RCprimary").value == "rental")){
-		$("#sidePrimary").show();
+		$("#sidePrimary").fadeIn();
 		currentTable = '#sidePrimary';
 	}else{
 		var weapons = gData.getWeapons();
@@ -213,16 +214,16 @@ $('#RCprimary').change(function(){ // !!! I could encapsulate the callback so i 
 		for(var i = 0; i < weapons.length; i ++){
 			if(weapons[i].key == document.getElementById("RCprimary").value){
 				if(weapons[i].Class == "M"){
-					$("#sideShotgun").show();
+					$("#sideShotgun").fadeIn();
 					currentTable = '#sideShotgun';
 				}else if(weapons[i].Class == "E"){
-					$("#sideSMG").show();
+					$("#sideSMG").fadeIn();
 					currentTable = '#sideSMG';
 				}else if(weapons[i].Class == "R"){
-					$("#sideRifle").show();
+					$("#sideRifle").fadeIn();
 					currentTable = '#sideRifle';
 				}else if(weapons[i].Class == "S"){
-					$("#sideSniper").show();
+					$("#sideSniper").fadeIn();
 					currentTable = '#sideSniper';
 				}
 				found = true;
@@ -230,7 +231,7 @@ $('#RCprimary').change(function(){ // !!! I could encapsulate the callback so i 
 			}
 		}
 		if(!found){ //just in case there is a weird value; It would be almost impossible though.
-			$("#sidePrimary").show();
+			$("#sidePrimary").fadeIn();
 			currentTable = '#sidePrimary';
 		}
 	}
@@ -239,20 +240,20 @@ $('#RCprimary').change(function(){ // !!! I could encapsulate the callback so i 
 $('#RCsecondary').mousedown(function(){
 	$(currentTable).hide();
 	currentTable = '#sideSecondary';
-	$("#sideSecondary").show();
+	$("#sideSecondary").fadeIn();
 });
 
 $('#RCmelee').mousedown(function(){
 	$(currentTable).hide();
 	currentTable = '#sideKnife';
-	$("#sideKnife").show();
+	$("#sideKnife").fadeIn();
 });
 
 //Jquery for variables that change repair costs or rewards
 $('#missionType').mousedown(function(){
 	$(currentTable).hide();
 	currentTable = '#sideRewards';
-	$("#sideRewards").show();
+	$("#sideRewards").fadeIn();
 });
 
 

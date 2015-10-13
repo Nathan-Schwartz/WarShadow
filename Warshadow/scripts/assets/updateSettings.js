@@ -1,12 +1,12 @@
 
-define(function () {
+define(["jquery", "jqueryUI"], function ($) {
 
 		function updateSettings(){//Update localStorage with newest settings
 			var temp = JSON.parse(localStorage.getItem("Settings"));
 		
-			temp.Rgrab = document.getElementById("grablength").value;
-			temp.Rcuddling = document.getElementById("Cuddling").value;
-			temp.Rforeplay = document.getElementById("Foreplay").value;
+			temp.Rgrab = $( "#grabSlider" ).slider( "value" );
+			temp.Rafter = $( "#afterSlider" ).slider( "value" );
+			temp.Rbefore = $( "#beforeSlider" ).slider( "value" );
 
 			temp.enableRecord = (document.getElementById("enableRecord").checked?true:false);
 			temp.autoLaunch = (document.getElementById("autoLaunch").checked?true:false);
@@ -16,7 +16,6 @@ define(function () {
 			temp.Rkill = (document.getElementById("kill").checked?true:false);
 			temp.Rdefib = (document.getElementById("defibkill").checked?true:false);
 			temp.Rseverekill = (document.getElementById("severekill").checked?true:false);
-			//temp.Rslidekill = (document.getElementById("slidekill").checked?true:false);
 			temp.Rperfkill = (document.getElementById("perfkill").checked?true:false);
 			temp.Rflagkill = (document.getElementById("flagkill").checked?true:false);
 			temp.Rminekill = (document.getElementById("minekill").checked?true:false);
@@ -24,6 +23,7 @@ define(function () {
 			temp.Rtriplekill = (document.getElementById("triplekill").checked?true:false);
 			temp.Rachievepic = (document.getElementById('screenshot').checked?true:false);
 			temp.Rachievevid = (document.getElementById('achievevid').checked?true:false);
+			//temp.Rslidekill = (document.getElementById("slidekill").checked?true:false);
 			//temp.Rcombokill = (document.getElementById("combokill").checked?true:false);
 			
 				

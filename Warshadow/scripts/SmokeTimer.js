@@ -1,5 +1,5 @@
 
-require(['windowCoreFunctions'], function(wCore){
+require(['windowCoreFunctions', 'jquery'], function(wCore, $){
 			
 	function startTimer(timer) {
 		setInterval(
@@ -13,11 +13,11 @@ require(['windowCoreFunctions'], function(wCore){
 						wCore.closeWindow();
 				}
 			}, 
-		1000);// !!! blurring if i use 2nd weapon slot beofre first on graph. Also doesn't make line reappear when i reselect a text box even though it saves the weapon choice
+		1000);
 	}
 
 	startTimer(14);
 		
-	document.getElementById("content").onmousedown = function(){wCore.dragMove();};
+	$("#content").mousedown(function(){wCore.dragMove();});
 	});
 		

@@ -1,4 +1,4 @@
-define(function () {
+define(["jquery", "jqueryUI"], function ($) {
 
 		function loadSettings(){//Load window with the most recent settings
 		
@@ -12,7 +12,6 @@ define(function () {
 				document.getElementById("kill").checked = (temp.Rkill?true:false);
 				document.getElementById("defibkill").checked = (temp.Rdefib?true:false);
 				document.getElementById("severekill").checked = (temp.Rseverekill?true:false);
-				//document.getElementById("slidekill").checked = (temp.Rslidekill?true:false);
 				document.getElementById("perfkill").checked = (temp.Rperfkill?true:false);
 				document.getElementById("flagkill").checked = (temp.Rflagkill?true:false);
 				document.getElementById("minekill").checked = (temp.Rminekill?true:false);
@@ -21,11 +20,16 @@ define(function () {
 				document.getElementById("screenshot").checked = (temp.Rachievepic?true:false);
 				document.getElementById("achievevid").checked = (temp.Rachievevid?true:false);
 				document.getElementById("achievevid").checked = (temp.Rachievevid?true:false);
+				//document.getElementById("slidekill").checked = (temp.Rslidekill?true:false);
 				//document.getElementById("combokill").checked = (temp.Rcombokill?true:false);
 			
-			document.getElementById("grablength").value = temp.Rgrab;
-			document.getElementById("Cuddling").value = temp.Rcuddling;
-			document.getElementById("Foreplay").value = temp.Rforeplay;
+			$( "#grabSlider" ).slider( "value", parseInt(temp.Rgrab));
+			$( "#grabSliderValue" ).val( $( "#grabSlider" ).slider( "value" ) + " seconds");
+			
+			$( "#afterSlider" ).slider( "value", parseInt(temp.Rafter));
+			$( "#afterSliderValue" ).val( $( "#afterSlider" ).slider( "value" ) + " seconds");
+			$( "#beforeSlider" ).slider( "value", parseInt(temp.Rbefore));
+			$( "#beforeSliderValue" ).val( $( "#beforeSlider" ).slider( "value" ) + " seconds");
 			
 			if(temp.Rheadshot == 1){
 				document.getElementById("HSlength").value = "headshot";

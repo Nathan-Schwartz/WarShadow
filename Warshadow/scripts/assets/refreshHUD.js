@@ -10,10 +10,10 @@ define(function () {
 						if(value.window_state == "closed"){ //if it is closed we will open it
 							overwolf.windows.obtainDeclaredWindow(name, 
 								function(result){
-									if (result.status != "success") //if opening it doesn't work, alert me
-										alert("obtain window failed in refreshHelper");
-									else
+									if (result.status == "success")
 										overwolf.windows.restore(localStorage.getItem(ID));
+									else
+										console.log('refreshHUD failed');
 								}
 							);
 						}

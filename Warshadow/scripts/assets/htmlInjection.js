@@ -1,7 +1,9 @@
 define( function(){
 
 function injectHTML(){
-document.getElementById("weaponSelect1").innerHTML = "<option value='none'> Select a weapon </option><br>" + 
+
+
+var primaries = 
 "<option value='none'> </option><br>" +
 "<option value='none'>----------SMGs----------</option><br>" +
 "<option value='Exar-L PDW'>Exar-L PDW </option><br>" +
@@ -181,53 +183,6 @@ document.getElementById("weaponSelect1").innerHTML = "<option value='none'> Sele
 "<option value='MM1981/30 Sneakpeak'>MM1981/30 Sneakpeak </option><br>" +
 
 
-
-"<option value='none'> </option><br>" +
-"<option value='none'> ----------Pistols---------- </option><br>" +
-"<option value='AY Gel. CP334'>AY Gel. CP334 </option><br>" +
-"<option value='STCC'>STCC </option><br>" +
-"<option value='STCC Halloween'>STCC Halloween </option><br>" +
-"<option value='STCC Shiny'>STCC Shiny </option><br>" +
-"<option value='Gun Glove!'>Gun Glove! </option><br>" +
-"<option value='S18G'>S18G </option><br>" +
-"<option value='S18G Crown'>S18G Crown </option><br>" +
-"<option value='S18G Platinum'>S18G Platinum </option><br>" +
-"<option value='Shark-443'>Shark-443 </option><br>" +
-"<option value='R1911'>R1911 </option><br>" +
-"<option value='Eagle Eye'>Eagle Eye </option><br>" +
-"<option value='Eagle Eye Gold'>Eagle Eye Gold </option><br>" +
-"<option value='Eagle Eye Brazil'>Eagle Eye Brazil </option><br>" +
-"<option value='Eagle Eye Elite Crown'>Eagle Eye Crown </option><br>" +
-"<option value='Eagle Eye NY'>Eagle Eye NY </option><br>" +
-"<option value='Eagle Eye Christmas'>Eagle Eye Christmas </option><br>" +
-"<option value='Hex Autorevolver'>Hex Autorevolver </option><br>" +
-"<option value='Hex AutoRevolver Black Dragon'>Hex AutoRevolver Black Dragon </option><br>" +
-"<option value='Hex AutoRevolver Scarlet Dragon'>Hex AutoRevolver Scarlet Dragon </option><br>" +
-"<option value='Hex AutoRevolver Jade Dragon'>Hex AutoRevolver Jade Dragon </option><br>" +
-"<option value='P-57'>P-57 </option><br>" +
-"<option value='Python'>Python </option><br>" +
-"<option value='ZX84 USP'>ZX84 USP </option><br>" +
-"<option value='ZX84 USP Winter'>ZX84 USP Winter </option><br>" +
-"<option value='M900'>M900 </option><br>" +
-"<option value='M9A1'>M9A1 </option><br>" +
-"<option value='M9A1 Winter'>M9A1 Winter </option><br>" +
-"<option value='Aquatic Assassin'>Aquatic Assassin </option><br>" +
-"<option value='Abada 266mm'>Abada 266mm </option><br>" +
-"<option value='GU5'>GU5 </option><br>" +
-"<option value='GU5 Korea Anniversary'>GU5 Korea Anniversary </option><br>" +
-"<option value='MD9'>MD9 </option><br>" +
-"<option value='MD9 Anniversary'>MD9 Anniversary </option><br>" +
-"<option value='MD9 US set'>MD9 US set </option><br>" +
-"<option value='MD9 Crown'>MD9 Crown </option><br>" +
-"<option value='MD9 Christmas'>MD9 Christmas </option><br>" +
-"<option value='Q-92'>Q-92 </option><br>" +
-"<option value='Q-92 Desert Camo'>Q-92 Desert Camo </option><br>" +
-"<option value='High Power Pistol'>High Power Pistol </option><br>" +
-"<option value='M93R'>M93R </option><br>" +
-"<option value='M1895 Sneakpeak'>M1895 Sneakpeak </option><br>" +
-"<option value='Bellum Sneakpeak'>Bellum Sneakpeak </option><br>" +
-
-
 "<option value='none'> </option><br>" +
 "<option value='none'> ----------Shotties---------- </option><br>" +
 "<option value='Richmond 770'>Richmond 770</option><br>" +
@@ -299,14 +254,64 @@ document.getElementById("weaponSelect1").innerHTML = "<option value='none'> Sele
 
 
 
+var secondaries = "<option value='none'> </option><br>" +
+"<option value='none'> ----------Pistols---------- </option><br>" +
+"<option value='AY Gel. CP334'>AY Gel. CP334 </option><br>" +
+"<option value='STCC'>STCC </option><br>" +
+"<option value='STCC Halloween'>STCC Halloween </option><br>" +
+"<option value='STCC Shiny'>STCC Shiny </option><br>" +
+"<option value='Gun Glove!'>Gun Glove! </option><br>" +
+"<option value='S18G'>S18G </option><br>" +
+"<option value='S18G Crown'>S18G Crown </option><br>" +
+"<option value='S18G Platinum'>S18G Platinum </option><br>" +
+"<option value='Shark-443'>Shark-443 </option><br>" +
+"<option value='R1911'>R1911 </option><br>" +
+"<option value='Eagle Eye'>Eagle Eye </option><br>" +
+"<option value='Eagle Eye Gold'>Eagle Eye Gold </option><br>" +
+"<option value='Eagle Eye Brazil'>Eagle Eye Brazil </option><br>" +
+"<option value='Eagle Eye Elite Crown'>Eagle Eye Crown </option><br>" +
+"<option value='Eagle Eye NY'>Eagle Eye NY </option><br>" +
+"<option value='Eagle Eye Christmas'>Eagle Eye Christmas </option><br>" +
+"<option value='Hex Autorevolver'>Hex Autorevolver </option><br>" +
+"<option value='Hex AutoRevolver Black Dragon'>Hex AutoRevolver Black Dragon </option><br>" +
+"<option value='Hex AutoRevolver Scarlet Dragon'>Hex AutoRevolver Scarlet Dragon </option><br>" +
+"<option value='Hex AutoRevolver Jade Dragon'>Hex AutoRevolver Jade Dragon </option><br>" +
+"<option value='P-57'>P-57 </option><br>" +
+"<option value='Python'>Python </option><br>" +
+"<option value='ZX84 USP'>ZX84 USP </option><br>" +
+"<option value='ZX84 USP Winter'>ZX84 USP Winter </option><br>" +
+"<option value='M900'>M900 </option><br>" +
+"<option value='M9A1'>M9A1 </option><br>" +
+"<option value='M9A1 Winter'>M9A1 Winter </option><br>" +
+"<option value='Aquatic Assassin'>Aquatic Assassin </option><br>" +
+"<option value='Abada 266mm'>Abada 266mm </option><br>" +
+"<option value='GU5'>GU5 </option><br>" +
+"<option value='GU5 Korea Anniversary'>GU5 Korea Anniversary </option><br>" +
+"<option value='MD9'>MD9 </option><br>" +
+"<option value='MD9 Anniversary'>MD9 Anniversary </option><br>" +
+"<option value='MD9 US set'>MD9 US set </option><br>" +
+"<option value='MD9 Crown'>MD9 Crown </option><br>" +
+"<option value='MD9 Christmas'>MD9 Christmas </option><br>" +
+"<option value='Q-92'>Q-92 </option><br>" +
+"<option value='Q-92 Desert Camo'>Q-92 Desert Camo </option><br>" +
+"<option value='High Power Pistol'>High Power Pistol </option><br>" +
+"<option value='M93R'>M93R </option><br>" +
+"<option value='M1895 Sneakpeak'>M1895 Sneakpeak </option><br>" +
+"<option value='Bellum Sneakpeak'>Bellum Sneakpeak </option><br>";
 
-document.getElementById("weaponSelect2").innerHTML = document.getElementById("weaponSelect1").innerHTML;
+document.getElementById("weaponSelect1").innerHTML += secondaries + primaries ;
 
-document.getElementById("weaponSelect3").innerHTML = document.getElementById("weaponSelect1").innerHTML;
+document.getElementById("RCprimary").innerHTML += primaries;
 
-document.getElementById("weaponSelect4").innerHTML = document.getElementById("weaponSelect1").innerHTML;
+document.getElementById("RCsecondary").innerHTML += secondaries;
 
-document.getElementById("weaponSelect5").innerHTML = document.getElementById("weaponSelect1").innerHTML;
+document.getElementById("weaponSelect2").innerHTML += document.getElementById("weaponSelect1").innerHTML;
+
+document.getElementById("weaponSelect3").innerHTML += document.getElementById("weaponSelect1").innerHTML;
+
+document.getElementById("weaponSelect4").innerHTML += document.getElementById("weaponSelect1").innerHTML;
+
+document.getElementById("weaponSelect5").innerHTML += document.getElementById("weaponSelect1").innerHTML;
 
 };
 

@@ -35,7 +35,7 @@ define(function () {
 var url = "";	
 	
 function startCapture(){
-	overwolf.media.replays.startCapture(500000, // !!! yeah um what
+	overwolf.media.replays.startCapture(500000, // !!!This was just used for testing. The startCapture function is broken (confirmed by Overwolf, should be patched in next dev platform update)
 		function(result){
 			console.log(result);
 			url = result.url;

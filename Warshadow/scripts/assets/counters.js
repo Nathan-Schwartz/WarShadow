@@ -23,7 +23,7 @@ define(function(){
 		localStorage.setItem("kill", kill);
 	};
 	
-	function incrementHeadshot(num){ // !!!! switch statement?
+	function incrementHeadshot(num){
 		if(num == 1){
 			var headshot1 = JSON.parse(localStorage.getItem("headshot1"));
 			headshot1++;

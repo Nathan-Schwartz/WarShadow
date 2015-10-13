@@ -3,7 +3,6 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 		
 			
 //localStorage.removeItem('Settings');
-// !!! I should make before/after user text box input
 if(!localStorage.getItem('Settings')){
 	var Settings = {
 		enableRecord: false,
@@ -11,8 +10,8 @@ if(!localStorage.getItem('Settings')){
 		restoreOnTab: true,
 		minimizeOnTab: true,
 		closeOnEnd: true,
-		Rforeplay: "5",
-		Rcuddling: "5",
+		Rbefore: "5",
+		Rafter: "5",
 		Rgrab: "60",
 		Rkill: false, 
 		Rheadshot: 0, 
@@ -32,11 +31,11 @@ if(!localStorage.getItem('Settings')){
 	};
 	localStorage.setItem('Settings', JSON.stringify(Settings));
 	console.log("Settings: " + localStorage.getItem('Settings'));
-	if (confirm("Welcome to WarShadow! Would you like to go on the '3-click' tour?") == true){
+	/*if (confirm("Welcome to WarShadow! Would you like to go on the '3-click' tour?") == true){
 		alert("To collapse the main menu, simply double click on the Warface Logo.");
 		alert("To automatically record your best moments, turn on Auto-Capture. Customize your recordings through Settings!");
 		alert("Click on the 'info' button to learn more!"); // !!! These will need updating.
-	}
+	}*/
 }
 
 localStorage.setItem('recordingOn', false); //This is a side effect of my turnOn() recording function. I use this to determine if recording is being used by another app or by me.
@@ -70,39 +69,11 @@ function launchData(){
 	});
 	return launchData;
 };
-
-
-/*var launch = (function(){
-	var launchData = new Object;
-	
-	overwolf.windows.getCurrentWindow(function(data){
-		console.log('currentwindow', data);
-		launchData.autoLaunch = !data.window.isVisible;
-	});
-	
-	overwolf.games.getRunningGameInfo(function(data){
-		console.log("runningGameInfo",data);
-		if(data !== null){
-			launchData.focused = data.isInFocus;
-
-			launchData.playing = data.isRunning;
-		}else{
-			launchData.playing = false;
-			launchData.focused = false;
-		}
-		launchData.TEST = 1;
-	});
-	return launchData;
-})();*/
-
 		
 
 	var smallwindow = true;
-
-	// !!!! Don't allow invalid user input
-	// !!!! don't allow text highlighting
-	// !!!!! launch_events & in_game_only & ignore_keyboard_events in manifest? permissions and dependancies?
-	
+	// !!!  in_game_only &  in manifest? permissions and dependancies?
+	// !!! before submitting app for contest, search for all alerts that haven't been cleaned up yet
 		
 		function getWinID(name, ID){
 		//Start the process of the window named, retrieve and save its ID, and then end the process if it is not the main window.
@@ -157,50 +128,7 @@ function launchData(){
 			}
 		);
 
-			$(document).ready(function(){
-
-var launch = launchData();
-console.log("launch", launch);
-console.log("autolaunch", launch.autoLaunch, typeof launch.autoLaunch);//these are returning undefined for some reason.
-console.log("playing", launch.playing, typeof launch.playing);
-console.log("TEST", launch.TEST, typeof launch.TEST);
-
-if(launch.autoLaunch == true || (launch.autoLaunch == false && launch.playing == false)){
-	console.log("auto or prelaunch");
-	var alerted = false;
-	overwolf.games.onMajorFrameRateChange.addListener(function(data){
-		console.log("frame rate change data", data);
-
-		if(JSON.parse(localStorage.getItem("Settings")).autoLaunch == false && launch.autoLaunch == true)// !!! if they change it in settings and then there is a FPS spike it would close.
-			overwolf.windows.close(localStorage.getItem('MainID'));
-
-		if(data.fps > 15 && data.fps_status == "Stable" && !alerted){
-			// !!! won't work if not in focus
-			if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
-				rec.turnOn();
-			}
-			alerted = true;
-			overwolf.windows.restore(localStorage.getItem('MainID'));
-		}
-	});
-
-}else if(launch.playing == true){
-	console.log("manual launch in game");
-	if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
-		rec.turnOn();
-	}
-	
-}else{
-	console.log("else");
-	if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
-		rec.turnOn(); 
-	}
-	overwolf.windows.restore(localStorage.getItem('MainID')); 
-}
-// !!! The above should be in a launchController module
-	
-	
-});
+//			$(document).ready(function(){});
 				//Get ID's of each window
 				getWinID("MainWindow",'MainID');
 				getWinID("HSCounter",'HSCounterID');
@@ -241,7 +169,6 @@ if(launch.autoLaunch == true || (launch.autoLaunch == false && launch.playing ==
 		//menu buttons
 		document.getElementById("resize").ondblclick = function(){ResizeMain();};
 		document.getElementById("close").onclick = function(){wCore.minimizeWindow();};
-	//	document.getElementById("SubmitVideo").onclick = function(){SubmitVideo();};
 		document.getElementById("cold").onclick = function(){cold();};
 		document.getElementById("tower").onclick = function(){tower();};
 		document.getElementById("info").onclick = function(){rHUD.refreshHelper(true, 'Info', 'InfoID');};
@@ -255,7 +182,6 @@ if(launch.autoLaunch == true || (launch.autoLaunch == false && launch.playing ==
 		document.getElementById("HSChain").onchange = function(){rHUD.refreshHUD();};
 		
 		document.getElementById("KDRate").onchange = function(){rHUD.refreshHUD();};
-	//	document.getElementById("crosshair").onchange = function(){document.getElementById('crosshair').checked ? rec.startCapture() : rec.finishCapture();};
 		document.getElementById("autoon").onchange = function(){rec.turnOn();};
 		
 		//replay testing
@@ -287,7 +213,7 @@ if(launch.autoLaunch == true || (launch.autoLaunch == false && launch.playing ==
 						);
 					}
 				}
-				if(resultA.focusChanged === true){ // !!!if open and minimize are disabled, app can disapear behind other apps when tabbed out, and will open in game if not minimized. 
+				if(resultA.focusChanged === true){ // if open and minimize are disabled, app can disapear behind other apps when tabbed out, and will open in game if not minimized. 
 					overwolf.games.getRunningGameInfo(
 						function (resultD){
 							if(resultD.isInFocus === true){
