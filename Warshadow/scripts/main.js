@@ -1,93 +1,9 @@
 		
-require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', 'counters'], function($ ,gEvent, wCore, rHUD, rec, counters){ 
-		
-			
-//localStorage.removeItem('Settings');
-if(!localStorage.getItem('Settings')){
-	var Settings = {
-		enableRecord: false,
-		autoLaunch: true,
-		restoreOnTab: true,
-		minimizeOnTab: true,
-		closeOnEnd: true,
-		Rbefore: "5",
-		Rafter: "5",
-		Rgrab: "60",
-		Rkill: false, 
-		Rheadshot: 0, 
-		Rnade: 0,
-		Rmelee: 0,
-		Rdoublekill: false,
-		Rtriplekill: false,
-		Rminekill: false,
-		Rdefib: false,
-		Rflagkill: false,
-		Rseverekill: false,
-		Rperfkill: false,
-		Rslidekill: false,
-		Rachievevid: false,
-		Rachievepic: false,
-		Rcombokill: false,
-	};
-	localStorage.setItem('Settings', JSON.stringify(Settings));
-	console.log("Settings: " + localStorage.getItem('Settings'));
-	/*if (confirm("Welcome to WarShadow! Would you like to go on the '3-click' tour?") == true){
-		alert("To collapse the main menu, simply double click on the Warface Logo.");
-		alert("To automatically record your best moments, turn on Auto-Capture. Customize your recordings through Settings!");
-		alert("Click on the 'info' button to learn more!"); // !!! These will need updating.
-	}*/
-}
-
-localStorage.setItem('recordingOn', false); //This is a side effect of my turnOn() recording function. I use this to determine if recording is being used by another app or by me.
-		
-		
-		
-//autoLaunch starts minimized so if current window is minimized then it was autolaunched
-//if autolaunched use the FPS listener to initiate window.
-//else check if game is running, if true initiate recording, else use FPS listener method
-
-
-function launchData(){
-	var launchData = new Object;
-	
-	overwolf.windows.getCurrentWindow(function(data){
-		console.log('currentwindow', data);
-		launchData.autoLaunch = !data.window.isVisible;
-	});
-	
-	overwolf.games.getRunningGameInfo(function(data){
-		console.log("runningGameInfo",data);
-		if(data !== null){
-			launchData.focused = data.isInFocus;
-
-			launchData.playing = data.isRunning;
-		}else{
-			launchData.playing = false;
-			launchData.focused = false;
-		}
-		launchData.TEST = 1;
-	});
-	return launchData;
-};
-		
+require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', 'counters', "launchManager", "localStorageInit"], function($ ,gEvent, wCore, rHUD, rec, counters, launcher, localStorageInit){ 
 
 	var smallwindow = true;
-	// !!!  in_game_only &  in manifest? permissions and dependancies?
-	// !!! before submitting app for contest, search for all alerts that haven't been cleaned up yet
-		
-		function getWinID(name, ID){
-		//Start the process of the window named, retrieve and save its ID, and then end the process if it is not the main window.
-			overwolf.windows.obtainDeclaredWindow(name, 
-				function(result){
-					if (result.status == "success"){
-						localStorage.setItem(ID, result.window.id);
-						
-						if(name != "MainWindow")
-							overwolf.windows.close(result.window.id);
-					}
-				}
-			);
-		};			
+	// !!!  in_game_only in manifest? permissions and dependancies?
+	// !!! before submitting app for contest, search for all alerts that haven't been cleaned up yet		
 			
 		function tower(){
 			window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=299691346"); // tower
@@ -113,9 +29,26 @@ function launchData(){
 				smallwindow=true;
 			}else
 				alert("Houston we have a problem");
-			
-			
 		};
+
+		
+
+/*		
+overwolf.benchmarking.requestHardwareInfo(500, function(value){ console.log("hardware info requested", value);}); //if status = "success" stop requesting
+overwolf.benchmarking.onHardwareInfoReady.addListener(
+	function(value){
+		console.log("HWinfoready listener",value);
+		//overwolf.benchmarking.stopRequesting();
+	}
+);*/		
+/*
+overwolf.benchmarking.requestFpsInfo(500, function(value){ console.log("fps info requested", value);}); //if status = "success" stop requesting
+overwolf.benchmarking.onFpsInfoReady.addListener(
+	function(value){
+		console.log("fpsinfoready listener",value);
+		//overwolf.benchmarking.stopRequesting();
+	}
+);*/
 	
 //		Game Events Listener
 		overwolf.games.events.onNewEvents.addListener(
@@ -128,19 +61,7 @@ function launchData(){
 			}
 		);
 
-//			$(document).ready(function(){});
-				//Get ID's of each window
-				getWinID("MainWindow",'MainID');
-				getWinID("HSCounter",'HSCounterID');
-				getWinID("HSPercent",'HSPercentID');
-				getWinID("HSChains",'HSChainsID');
-				getWinID("SmokeTimer",'SmokeTimerID');
-				getWinID("Info",'InfoID');
-				getWinID("KDR",'KDRID');
-				getWinID("StatCrack",'StatCrackID');
-				getWinID("Crosshair",'CrosshairID');
-				getWinID("Settings",'SettingsID');
-				getWinID("StatCrack",'StatCrackID');
+//$(document).ready(function(){});
 			
 			// !!!! Either make the height of the window change with the sliders, or make it not slide.
 			
@@ -156,38 +77,38 @@ function launchData(){
 			
 //		Menu Listeners
 		//resize and drag
-		document.getElementById("resizeGripTopLeft").onmousedown = function(){('TopLeft');};
-		document.getElementById("resizeGripTop").onmousedown = function(){wCore.dragResize('Top');};
-		document.getElementById("resizeGripTopRight").onmousedown = function(){wCore.dragResize('TopRight');};
-		document.getElementById("resizeGripRight").onmousedown = function(){wCore.dragResize('Right');};
-		document.getElementById("resizeGripBottomRight").onmousedown = function(){wCore.dragResize('BottomRight');};
-		document.getElementById("resizeGripBottom").onmousedown = function(){wCore.dragResize('Bottom');};
-		document.getElementById("resizeGripBottomLeft").onmousedown = function(){wCore.dragResize('BottomLeft');};
-		document.getElementById("resizeGripLeft").onmousedown = function(){wCore.dragResize('Left');};
-		document.getElementById("content").onmousedown = function(){wCore.dragMove();};
+		$("#resizeGripTopLeft").mousedown(function(){('TopLeft');});
+		$("#resizeGripTop").mousedown(function(){wCore.dragResize('Top');});
+		$("#resizeGripTopRight").mousedown(function(){wCore.dragResize('TopRight');});
+		$("#resizeGripRight").mousedown(function(){wCore.dragResize('Right');});
+		$("#resizeGripBottomRight").mousedown(function(){wCore.dragResize('BottomRight');});
+		$("#resizeGripBottom").mousedown(function(){wCore.dragResize('Bottom');});
+		$("#resizeGripBottomLeft").mousedown(function(){wCore.dragResize('BottomLeft');});
+		$("#resizeGripLeft").mousedown(function(){wCore.dragResize('Left');});
+		$("#content").mousedown(function(){wCore.dragMove();});
 		
 		//menu buttons
-		document.getElementById("resize").ondblclick = function(){ResizeMain();};
-		document.getElementById("close").onclick = function(){wCore.minimizeWindow();};
-		document.getElementById("cold").onclick = function(){cold();};
-		document.getElementById("tower").onclick = function(){tower();};
-		document.getElementById("info").onclick = function(){rHUD.refreshHelper(true, 'Info', 'InfoID');};
-		document.getElementById("settingsWin").onclick = function(){rHUD.refreshHelper(true, 'Settings', 'SettingsID');};
-		document.getElementById("Stats").onclick = function(){rHUD.refreshHelper(true,"StatCrack",'StatCrackID');};
-		document.getElementById("STimer").onclick = function(){rHUD.refreshHelper(true,"SmokeTimer",'SmokeTimerID');};
+		$("#resize").dblclick(function(){ResizeMain();});
+		$("#close").click(function(){wCore.minimizeWindow();});
+		$("#cold").click(function(){cold();});
+		$("#tower").click(function(){tower();});
+		$("#info").click(function(){rHUD.refreshHelper(true, 'Info', 'InfoID');});
+		$("#settingsWin").click(function(){rHUD.refreshHelper(true, 'Settings', 'SettingsID');});
+		$("#Stats").click(function(){rHUD.refreshHelper(true,"StatCrack",'StatCrackID');});
+		$("#STimer").click(function(){rHUD.refreshHelper(true,"SmokeTimer",'SmokeTimerID');});
 		
 		//menu checkboxes
-		document.getElementById("HSNum").onchange = function(){rHUD.refreshHUD();};
-		document.getElementById("HSPerc").onchange = function(){rHUD.refreshHUD();};
-		document.getElementById("HSChain").onchange = function(){rHUD.refreshHUD();};
+		$("#HSNum").change(function(){rHUD.refreshHUD();});
+		$("#HSPerc").change(function(){rHUD.refreshHUD();});
+		$("#HSChain").change(function(){rHUD.refreshHUD();});
 		
-		document.getElementById("KDRate").onchange = function(){rHUD.refreshHUD();};
-		document.getElementById("autoon").onchange = function(){rec.turnOn();};
+		$("#KDRate").change(function(){rHUD.refreshHUD();});
+		$("#autoon").change(function(){rec.turnOn();});
 		
 		//replay testing
-		document.getElementById("turnOff").onclick = function(){rec.turnOff();};
-		document.getElementById("turnOn").onclick = function(){rec.turnOn();};
-		document.getElementById("capture").onclick = function(){rec.capture(1,-1);};
+		$("#turnOff").click(function(){rec.turnOff();});
+		$("#turnOn").click(function(){rec.turnOn();});
+		$("#capture").click(function(){rec.capture(1,-1);});
 
 		
 		//Restore all windows together
@@ -198,7 +119,7 @@ function launchData(){
 		);
 		
 		
-		//If game ends or changes close the program
+		//If game ends close the program, focus change manager
 		overwolf.games.onGameInfoUpdated.addListener(
 			function(resultA){
 				var test = JSON.parse(localStorage.getItem("Settings"));
@@ -214,7 +135,7 @@ function launchData(){
 					}
 				}
 				if(resultA.focusChanged === true){ // if open and minimize are disabled, app can disapear behind other apps when tabbed out, and will open in game if not minimized. 
-					overwolf.games.getRunningGameInfo(
+					overwolf.games.getRunningGameInfo( // !!! This is actually returned as a property from the onGameInfoUpdated function
 						function (resultD){
 							if(resultD.isInFocus === true){
 								if(test.restoreOnTab === true){

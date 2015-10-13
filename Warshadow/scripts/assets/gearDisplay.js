@@ -54,7 +54,7 @@ function addHTML(id,message) {
 	}
 };
 	
-function printTable(id, iter, gear){ // !!! Standardize + / - across all tables. Right now only some have them
+function printTable(id, iter, gear){ // This is pretty spaghetti
 	if(id == 'Helmets'){
 		if(gear[iter].key != "npc")
 			addHTML(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ Math.round((1-gear[iter].Damage_reduc) * 100) + "%" + " </td><td align='center'>" + (gear[iter].HP_regen == 0 ? "" : gear[iter].HP_regen)+ "</td><td align='center'>" + (gear[iter].Flash == "TRUE" ? "X" : "") +"</td><td align='center'>"+ (gear[iter].Mine == "TRUE" ? "X" : "") + /*"</td><td>" + gear[iter].Repair_num+ */"</td></tr>");
@@ -65,7 +65,7 @@ function printTable(id, iter, gear){ // !!! Standardize + / - across all tables.
 	}else if(id == 'Gloves'){
 		addHTML(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ (Math.round(1-gear[iter].Damage_reduc) * 100 == 100? "" : Math.round((1-gear[iter].Damage_reduc) * 100) + "% ") + " </td><td align='center'>" + (gear[iter].Reload==0 ? "" : "-" + Math.round((1-gear[iter].Reload)*100) + "%" ) + "</td><td align='center'>" + (gear[iter].Swap_speed== 0 ? "" : Math.round((1-gear[iter].Swap_speed)*100) + "%") +"</td><td align='center'>" + (gear[iter].Melee_range== 0 ? "" : "+" + Math.round((1-gear[iter].Melee_range)*-100) + "%" ) + "</td><td align='center'>" + (gear[iter].Melee_speed== 0 ? "" : "+" + Math.round((1-gear[iter].Melee_speed)*-100) + "%" ) + "</td><td align='center'>" + (gear[iter].recoil_reduc== 0 ? "" : "+" +Math.round((1-gear[iter].recoil_reduc)*100) + "%" ) + "</td><td align='center'>" + (gear[iter].Spread_reduc== 0 ? "" : "+" + Math.round((1-gear[iter].Spread_reduc)*100) + "%" ) + "</td><td align='center'>" + (gear[iter].Knockdown == "TRUE" ? "X" : "") + /*"</td><td>" + gear[iter].Repair_num+ */ "</td></tr>");
 	}else if(id == 'Boots'){
-		addHTML(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ (Math.round(1-gear[iter].Damage_reduc_perc) * 100 == 100 ? "": Math.round((1-gear[iter].Damage_reduc_perc) * 100) + "% ") + " </td><td align='center'>" + (gear[iter].Mine_delay == "TRUE" ? "X" : "") + "</td><td align='center'>" + (gear[iter].Silent == "TRUE" ? "X" : "") +"</td><td align='center'>" + (gear[iter].Sprint_speed== 0 ? "" : gear[iter].Sprint_speed) + "</td><td align='center'>" + (gear[iter].Sprint_dur== 0 ? "" : gear[iter].Sprint_dur) + "</td><td align='center'>" + (gear[iter].Slide_dist== 0 ? "" : gear[iter].Slide_dist) + "</td><td align='center'>" + (gear[iter].Crouch_speed== 0 ? "" : gear[iter].Crouch_speed + "%") + /*"</td><td>" + gear[iter].Repair_num+ */"</td></tr>");
+		addHTML(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ (Math.round(1-gear[iter].Damage_reduc_perc) * 100 == 100 ? "": Math.round((1-gear[iter].Damage_reduc_perc) * 100) + "% ") + " </td><td align='center'>" + (gear[iter].Mine_delay == "TRUE" ? "X" : "") + "</td><td align='center'>" + (gear[iter].Silent == "TRUE" ? "X" : "") +"</td><td align='center'>" + (gear[iter].Sprint_speed== 0 ? "" : "+"+Math.round((1-gear[iter].Sprint_speed) * -100) + "%") + "</td><td align='center'>" + (gear[iter].Sprint_dur== 0 ? "" : "+"+Math.round((1-gear[iter].Sprint_dur) * -100) + "%") + "</td><td align='center'>" + (gear[iter].Slide_dist== 0 ? "" : "+"+Math.round((1-gear[iter].Slide_dist) * -100) + "%") + "</td><td align='center'>" + (gear[iter].Crouch_speed== 0 ? "" : "+"+gear[iter].Crouch_speed + "%") + /*"</td><td>" + gear[iter].Repair_num+ */"</td></tr>");
 	}
 };	
 	

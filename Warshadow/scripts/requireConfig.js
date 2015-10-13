@@ -30,6 +30,8 @@ require.config({
 			gearDisplay: 'assets/gearDisplay',
 			repairCalc: 'assets/repairCalc',
 			htmlInjection: 'assets/htmlInjection',
-			counters: 'assets/counters'
+			counters: 'assets/counters',
+			launchManager: 'assets/launchManager',
+			localStorageInit: 'assets/localStorageInit'
 		}
 });

@@ -50,6 +50,7 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 			});
 			$( "#gameLengthSliderValue" ).val( $( "#gameLengthSlider" ).slider( "value" ) + " minutes");
 		});
+		
 //finish initializing
 	gData.initStats();
 	rCalc.repairCalc();

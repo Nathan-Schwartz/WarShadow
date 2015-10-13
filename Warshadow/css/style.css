@@ -4,7 +4,18 @@
 	width: 100%;
 	background: rgba(255, 255, 255, 0.05);
 /*  background: -webkit-linear-gradient(left bottom,rgba(255,0,0,0),rgba(255,0,0,1));*/
-
+/* 
+Can make beveled corners with gradients by using angles with minimal transition
+div {    
+	background:
+		linear-gradient(135deg, transparent 10px, #c00 0) top left,
+		linear-gradient(225deg, transparent 10px, #c00 0) top right,
+		linear-gradient(315deg, transparent 10px, #c00 0) bottom right,
+		linear-gradient(45deg,  transparent 10px, #c00 0) bottom left;
+	background-size: 50% 50%;
+	background-repeat: no-repeat;
+}
+*/
 }
 
 #contentbuttons{

@@ -10,7 +10,7 @@
 		"icon_gray":"images/IconMouseNormal.png",
 		"description":"Demo App"
 	},
-	"permissions": ["Hotkeys","GameInfo", "Media", "Microphone", "GameControl", "Extensions", "DesktopStreaming" ],
+	"permissions": ["Hotkeys","GameInfo", "Logging", "Media", "Microphone", "GameControl", "Extensions", "DesktopStreaming" ],
 	"data": {
 		"launch_events": [{
 			"event": "GameLaunch",

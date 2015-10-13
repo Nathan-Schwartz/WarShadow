@@ -46,7 +46,7 @@
 		});
 		
 		
-	loadS.loadSettings();	
+	loadS.loadSettings();	// This will load current setting that were previously stored in localStorage
 			
 //		Menu Listeners
 
