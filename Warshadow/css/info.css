@@ -50,7 +50,7 @@ body {
 	border-color: #E1E1E1;
 	border-radius:3px;
 	width: 270px;
-	height: 570px;
+	height: 565px;
 	position:absolute;
 	left:710px;
 	overflow: auto;
@@ -84,6 +84,10 @@ body {
 	border-radius:3px;
 	width: 360px;
 	padding: 8px;
+}
+
+#armorrepairfield{
+	height: 95px;
 }
 .repair{
 	margin-top:15px;
@@ -156,6 +160,8 @@ body {
 /*End StatCrack Table*/
 
 
+
+
 /* Tab system for statcrack */
 
 
@@ -221,6 +227,8 @@ body {
 /*end tabs*/
 
 
+
+
 #banner{
 position: relative;
 width:375px;
@@ -259,6 +267,20 @@ select{
 #title{
 left:20px;
 position: relative;
+}
+
+.StatContent{
+	position: relative;
+	display: none;
+}
+
+#progressbar{
+	margin-left: auto;
+	margin-right: auto;
+	top:300px;
+	position: relative;
+	width: 500px;
+	
 }
 
 #content {

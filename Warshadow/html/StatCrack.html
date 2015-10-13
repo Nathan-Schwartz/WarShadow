@@ -23,10 +23,13 @@
 	
 
 	<body>
-		<div id='content'>
+	
+	<div id="progressbar"><div class="progress-label"></div></div>
+ 
+		<div id='content' class="StatContent">
 	 
 	
-<div class='tabs'>
+<div id="tabs" class='tabs'>
   <ul class='tab-links'>
     <li class='active'><a href='#tab1'>Damage</a></li>
     <li><a href='#tab2'>Repair</a></li>
@@ -297,7 +300,7 @@ Mission:
 
   </fieldset>
   
-  <fieldset class="repair">
+  <fieldset class="repair" id="armorrepairfield">
 	<legend><b> Armor </b> </legend><br>
   
   Helmet:
@@ -382,7 +385,8 @@ Boots:
 <option value='Christmas Boots'>Christmas Boots </option><br>
 <option value='Anti-directional Mine Boots'>Anti-directional Mine Boots </option><br>
 <option value='Warlord Boots'>Warlord Boots </option><br>
-</select> <span class="cost"  id="booCost"></span>
+</select> 
+<span class="cost"  id="booCost"></span>
 </span>
 </fieldset>
 

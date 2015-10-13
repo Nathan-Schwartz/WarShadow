@@ -1,8 +1,41 @@
-require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'gearDisplay', 'htmlInjection', 'repairCalc','jqueryUI'],function($, gData, wCore, upDat, arrayData, sync, gDisplay, inject, rCalc, jqueryUI){//implement wCore
+require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'gearDisplay', 'htmlInjection', 'repairCalc','jqueryUI'],function($, gData, wCore, upDat, arrayData, sync, gDisplay, inject, rCalc, jqueryUI){
 
 	inject.injectHTML();// put lists into html drop down boxes
 	sync.testPlugin() ? sync.getNewData(): console.log("failed to get plugin"); // sync repair costs with latest game price dump	
 
+	
+	//progress bar is here because the sliders load in late and it allows all elements to be functional immediately upon being visible.
+	 $(function() {
+    var progressbar = $( "#progressbar" ),
+      progressLabel = $( ".progress-label" );
+
+    progressbar.progressbar({
+      value: false,
+      change: function() {
+       // progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+      },
+      complete: function() {
+        $('#progressbar').hide();
+		$("#progressbar").progressbar( "destroy" );
+		$(".StatContent").fadeIn();
+      }
+    });
+ 
+    function progress() {
+      var val = progressbar.progressbar( "value" ) || 0;
+ 
+      progressbar.progressbar( "value", val + 2 );
+	  
+      if ( val < 99 ) {
+        setTimeout( progress, 2 );
+      }
+    }
+ 
+   progress();
+   
+  });
+	
+	
 	// !!! blurring if i use 2nd weapon slot beofre first on graph. Also doesn't make line reappear when i reselect a text box even though it saves the weapon choice
 	//initialize sliders !!! could be exported, its spaghetti
 		//Distance slider
@@ -122,7 +155,14 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 					upDat.updateData(0);
 				}
 			};
-			
+		
+/*
+		$(function() {
+			$( "#tabs" ).tabs();
+		});*/
+		
+		
+		
 	//jQuery for tab implementation		
 	$(document).ready(function() {
 	
@@ -139,7 +179,7 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 			e.preventDefault();
 		});
 	});
-	
+
 
 //jQuery spaghetti for displaying comparison charts
 	var currentTable = "#sideInstruct";

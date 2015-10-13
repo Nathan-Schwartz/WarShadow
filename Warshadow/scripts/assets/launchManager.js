@@ -53,10 +53,10 @@ setTimeout(function(){ //all properties of launch were returning as undefined un
 			
 					if(value.isInFocus === false){
 						console.log('out of focus');
-						overwolf.games.onGameInfoUpdated.addListener(function(data){
+						overwolf.games.onGameInfoUpdated.addListener(function(data){ // !!! This method of delaying the enabling of recording hasn't been verified yet
 							if(data.focusChanged === true && !alerted){
 								console.log("trying rec");
-								if(JSON.parse(localStorage.getItem("Settings")).enableRecord){// !!! won't work if not in focus
+								if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
 									rec.turnOn();
 								}
 								alerted = true;
@@ -65,7 +65,7 @@ setTimeout(function(){ //all properties of launch were returning as undefined un
 						});
 					}else if(value.isInFocus === true && !alerted){
 						console.log("tracker");
-						if(JSON.parse(localStorage.getItem("Settings")).enableRecord){// !!! won't work if not in focus
+						if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
 							rec.turnOn();
 						}
 						alerted = true;
