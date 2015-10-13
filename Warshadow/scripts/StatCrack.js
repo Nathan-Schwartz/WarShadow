@@ -1,11 +1,59 @@
-require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'gearDisplay', 'htmlInjection', 'repairCalc'],function($, gData, wCore, upDat, arrayData, sync, gDisplay, inject, rCalc){//implement wCore
-			
-	inject.injectHTML();
+require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'gearDisplay', 'htmlInjection', 'repairCalc','jqueryUI'],function($, gData, wCore, upDat, arrayData, sync, gDisplay, inject, rCalc, jqueryUI){//implement wCore
+
+	inject.injectHTML();// put lists into html drop down boxes
+	sync.testPlugin() ? sync.getNewData(): console.log("failed to get plugin"); //update repair costs	
+
+	//initialize sliders !!! could be exported, its spaghetti
+		//Distance slider
+		$(function() {
+			$( "#distSlider" ).slider({
+				range: "min",
+				value:50,
+				min: 1,
+				max: 100,
+				change: function( event, ui ) {console.log("value", ui.value); upDat.updateData(0);},
+				slide: function( event, ui ) {
+					$( "#distSliderValue" ).val( ui.value );
+				}
+			});
+			$( "#distSliderValue" ).val( $( "#distSlider" ).slider( "value" ) );
+		});
+		
+		//Booster slider
+		$(function() {
+			$( "#boosterSlider" ).slider({
+				range: "min",
+				value:0,
+				min: 0,
+				step: 5,
+				max: 295,
+				change: function( event, ui ) {console.log("value", ui.value); gDisplay.rewardCalc();},
+				slide: function( event, ui ) {
+					$( "#boosterSliderValue" ).val( ui.value + "%");
+				}
+			});
+			$( "#boosterSliderValue" ).val( $( "#boosterSlider" ).slider( "value" ) + "%");
+		});
+		
+		//Duration slider
+		$(function() {
+			$( "#gameLengthSlider" ).slider({
+				range: "min",
+				value:10,
+				min: 1,
+				max: 120,
+				change: function( event, ui ) {console.log("value", ui.value); rCalc.repairCalc(); gDisplay.recalc()},
+				slide: function( event, ui ) {
+					$( "#gameLengthSliderValue" ).val( ui.value + " minutes" );
+				}
+			});
+			$( "#gameLengthSliderValue" ).val( $( "#gameLengthSlider" ).slider( "value" ) + " minutes");
+		});
+//finish initializing
 	gData.initStats();
-	rCalc.repairCalc(); // !!!! overwolf.windows.mediaPlayerElement
+	rCalc.repairCalc();
 	gDisplay.calc();
-	arrayData.initializeArray();	
-	sync.testPlugin() ? sync.getNewData(): console.log("failed to get plugin");
+	arrayData.initializeArray();
 	
 	//jQuery for showing more weapon slots on the graph when a checkbox is clicked
 			document.getElementById("showsecond").onchange = function(){
@@ -75,6 +123,8 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 			
 	//jQuery for tab implementation		
 	$(document).ready(function() {
+	
+	
 		$('.tabs .tab-links a').on('click', function(e)  {
 			var currentAttrValue = $(this).attr('href');
  
@@ -205,24 +255,10 @@ $('#missionType').mousedown(function(){
 	$("#sideRewards").show();
 });
 
-$("#booster").change(function(){
-	if(isNaN(parseInt(document.getElementById("booster").value)) || parseInt(document.getElementById("booster").value) < 100)
-		alert("You entered an invalid booster value. 100% is normal. 175% is normal VIP");
-	else
-		gDisplay.rewardCalc();
-});
+
 
 $('#missionType').change(function(){
 	gDisplay.rewardCalc();
-});
-
-$("#duration").change(function(){
-	if(isNaN(parseFloat(document.getElementById("duration").value)) || parseInt(document.getElementById("duration").value) < .1){
-		alert("You entered an invalid distance");
-	}else{
-		rCalc.repairCalc();
-		gDisplay.recalc()
-	}
 });
 		
 $('#RChelmet, #RCvest, #RCgloves, #RCboots, #RCprimary, #RCsecondary, #RCmelee').change(function(){
@@ -233,12 +269,11 @@ $('#RChelmet, #RCvest, #RCgloves, #RCboots, #RCprimary, #RCsecondary, #RCmelee')
 
 
 //jQuery for changing variables that affect individual weapons
-$("#weaponSelect1").change(function(){upDat.updateData(1); setTimeout(function(){$("#chart").slideDown();}, 100); });
-$("#weaponSelect2").change(function(){upDat.updateData(2);});
-$("#weaponSelect3").change(function(){upDat.updateData(3);});
-$("#weaponSelect4").change(function(){upDat.updateData(4);});
-$("#weaponSelect5").change(function(){upDat.updateData(5);});
-
+$("#weaponSelect1").change(function(){upDat.updateData(1); setTimeout(function(){$("#chart").slideDown();}, 100);});
+$("#weaponSelect2").change(function(){upDat.updateData(2); setTimeout(function(){$("#chart").slideDown();}, 100);});
+$("#weaponSelect3").change(function(){upDat.updateData(3); setTimeout(function(){$("#chart").slideDown();}, 100);});
+$("#weaponSelect4").change(function(){upDat.updateData(4); setTimeout(function(){$("#chart").slideDown();}, 100);});
+$("#weaponSelect5").change(function(){upDat.updateData(5); setTimeout(function(){$("#chart").slideDown();}, 100);});
 
 $("#attachmentSelect1").change(function(){upDat.updateData(1);});
 $("#attachmentSelect2").change(function(){upDat.updateData(2);});
@@ -247,12 +282,6 @@ $("#attachmentSelect4").change(function(){upDat.updateData(4);});
 $("#attachmentSelect5").change(function(){upDat.updateData(5);});
 
 //Jquery for changing variables that all weapons in graph calculations.
-$("#distance").change(function(){
-	if(isNaN(parseInt(document.getElementById("distance").value)) || parseInt(document.getElementById("distance").value) > 100 || parseInt(document.getElementById("distance").value) <= 0)
-			alert("You entered an invalid distance");
-	
-	upDat.updateData(0);
-});
 $("#selectGData").change(function(){upDat.updateData(0);});
 $("#enemyVest1").change(function(){upDat.updateData(0);});
 $("#enemyHelmet1").change(function(){upDat.updateData(0);});

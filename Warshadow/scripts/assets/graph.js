@@ -13,7 +13,7 @@ function graphIT(myData) {
 			hAxis: {
 				title: 'Distance (m)',
 				minValue:0,
-				viewWindow: {max: parseFloat(document.getElementById("distance").value)},
+				viewWindow: {max:  $( "#distSlider" ).slider( "value" )},
 				ticks: [10,20, 30, 40, 50, 60, 70, 80, 90, 100],
 				textStyle: {italic: true },
 				titleTextStyle: {fontSize: 20,bold: true, fontSize: 16 }

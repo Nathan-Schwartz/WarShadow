@@ -1,13 +1,11 @@
 
-
-
-
 require.config({
 		baseUrl: "../scripts",
 		paths: {	
                    async : 'lib/async',
                    goog : 'lib/goog',
                    propertyParser : 'lib/propertyParser',
+			jqueryUI: 'lib/jquery-ui/jquery-ui.min',
 			jquery: 'lib/jquery-2.1.4.min',
 			smoke: 'SmokeTimer',
 			statcrack: 'StatCrack',

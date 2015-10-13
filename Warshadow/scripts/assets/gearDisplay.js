@@ -58,7 +58,7 @@ function addHTML(id,message) {
 function printTable(id, iter, gear){
 	if(id == 'Helmets'){
 		if(gear[iter].key != "npc")
-			addHTML(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ Math.round((1-gear[iter].Damage_reduc) * 100) + "%" + " </td><td align='center'>" + gear[iter].HP_regen + "</td><td align='center'>" + (gear[iter].Flash == "TRUE" ? "X" : "") +"</td><td align='center'>"+ (gear[iter].Mine == "TRUE" ? "X" : "") + /*"</td><td>" + gear[iter].Repair_num+ */"</td></tr>");
+			addHTML(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ Math.round((1-gear[iter].Damage_reduc) * 100) + "%" + " </td><td align='center'>" + (gear[iter].HP_regen == 0 ? "" : gear[iter].HP_regen)+ "</td><td align='center'>" + (gear[iter].Flash == "TRUE" ? "X" : "") +"</td><td align='center'>"+ (gear[iter].Mine == "TRUE" ? "X" : "") + /*"</td><td>" + gear[iter].Repair_num+ */"</td></tr>");
 
 	}else if(id == 'Vests'){
 		if(gear[iter].Shop_name != "none")
@@ -73,17 +73,8 @@ function printTable(id, iter, gear){
 	
 	
 function printComparison(id, iter, gear){
-	// !!!finding value of mult is the same as in repairCalc.
-	var durString = JSON.stringify(parseFloat(document.getElementById("duration").value));
-	var durArr = durString.split("."); 
-	for(var i = 0; i < durArr.length; i++){
-		durArr[i] = parseInt(durArr[i]);
-	}
-	durArr[0] = durArr[0] * 60;
-	if(durArr.length > 1){
-		durArr[0] = durArr[0] + durArr[1] * 60;
-	}
-	var duration = durArr[0];
+	
+	var duration = $( "#gameLengthSlider" ).slider( "value" ) * 60;
 	var mult = duration/36000;
 	
 	if(id == 'Helmets'){
@@ -159,12 +150,11 @@ function printer(obj){
 };
 				
 		function rewardCalc(){
-			var booster = parseInt(document.getElementById("booster").value)/100;
+			var booster = $( "#boosterSlider" ).slider( "value" );
 		
 			document.getElementById('sideRewards').innerHTML = "";
 		
 			addHTML("Rewards","<tr><th> Mission </th><th align='center'> Rewards  </th><th align='center'> First Win</th></tr>");
-			addHTML("Rewards","<tr><td> Easy </td><td align='center'> "+parseInt(201*booster) + "  </td><td align='center'> "+ parseInt(400*booster)+ "  </td></tr>"); // !!!! put tested initiation rewards here too
 			addHTML("Rewards","<tr><td> Normal </td><td align='center'> "+parseInt(160*booster) + "   </td><td align='center'> "+ parseInt(400*booster)+ "  </td></tr>");
 			addHTML("Rewards","<tr><td> Normal Africa </td><td align='center'> "+parseInt(232*booster) + "    </td><td align='center'> "+ parseInt(472*booster)+ "  </td></tr>");
 			addHTML("Rewards","<tr><td> Hard </td><td align='center'> "+ parseInt(256*booster)+ "   </td><td align='center'> "+ parseInt(576*booster)+ "  </td></tr>");

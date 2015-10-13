@@ -1,21 +1,10 @@
 define(['gearData'], function(gData){
 
 function repairCalc(){
-	var durString = JSON.stringify(parseFloat(document.getElementById("duration").value));
-	var durArr = durString.split("."); //if there is a decimal value enterred into the duration box split it into two strings.
 	
-	//turn the strings back into numbers
-	for(var i = 0; i < durArr.length; i++){
-		durArr[i] = parseInt(durArr[i]);
-	}
-	
-	durArr[0] = durArr[0] * 60; //convert the integer section into seconds
-	if(durArr.length > 1){
-		durArr[0] = durArr[0] + durArr[1] * 60; //convert the decimal into seconds and add it to the other value
-	}
-	var duration = durArr[0]; //Seconds enterred by user
+	var duration = $( "#gameLengthSlider" ).slider( "value" ) * 60;
 	var repair_mult = duration/36000; //since repair values are based on 10 hours of gameplay this is what we will multiply repair cost by to adjust for the session length
-	
+
 	function outputCosts(obj){
 		if(obj.length == 3){
 			if(document.getElementById(obj[1]).value == 'rental') document.getElementById(obj[2]).innerText = 0;

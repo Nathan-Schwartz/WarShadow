@@ -289,11 +289,25 @@ position: relative;
 	bottom: 15px;
 }
 
+.sliders{
+	width: 275px;
+	position: relative;
+	top: 10px;
+}
+
+#gDataspacer{
+	bottom: 30px;
+}
+
 .spaced{
 	display: block;
 	position:relative;
 	left: 400px;
 	bottom: 20px;
+}
+
+#spacedSlider{
+	bottom: 35px;
 }
 
 .spacedR{

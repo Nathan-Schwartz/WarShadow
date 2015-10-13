@@ -1,9 +1,7 @@
 
-	require(['jquery','windowCoreFunctions', 'loadSettings','updateSettings', 'counters'], function($,wCore, loadS, updateS, counters){
+	require(['jquery','windowCoreFunctions', 'loadSettings','updateSettings', 'counters', 'jqueryUI'], function($,wCore, loadS, updateS, counters, jqueryUI){
 
-	//UI Slider js?
 	loadS.loadSettings();	
-	// line up game length repair tab, drop max 100 damage tab,  move over comparison tab on repair chart to allow greens to be on the same row as items
 			
 //		Menu Listeners
 

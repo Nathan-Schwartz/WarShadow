@@ -2,6 +2,9 @@
 <html>
 	<head> 
 		<link rel='stylesheet' href='../css/info.css' />
+		<link rel='stylesheet' href='../css/jquery-ui/jquery-ui.min.css' />
+		<link rel='stylesheet' href='../css/jquery-ui/jquery-ui.theme.min.css' />
+		<link rel='stylesheet' href='../css/jquery-ui/jquery-ui.structure.min.css' />
 		<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 		<meta name='viewport' content='width=device-width, initial-scale=1' >
 		<script data-main='../scripts/requireConfig' src='../scripts/lib/require.js'></script>
@@ -35,8 +38,12 @@
 
 	  <fieldset class="standard">
 		<legend><b>  Graph Options </b></legend><br>
-		Graph distance: <input type='text' id='distance' value='50'>
-		<span class="spaced">
+	
+		<label for="distSliderValue">Graph Distance:</label>
+		<input type="text" id="distSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
+		
+		<div id='distSlider' class="sliders"> </div>
+		<span class="spaced" id="gDataspacer">
 		Select data to display:
 		<select id='selectGData'>
 				<option value='Ddamage'> Damage </option> <br>
@@ -46,7 +53,6 @@
 				<option value='DntkV'> Bullets to kill (Bodyshots) </option><br>
 		</select>
 		</span>
-		(max is 100):
 		
 	</fieldset> 
 		
@@ -116,7 +122,7 @@ Attachment:
 <option value='none'> No attachment </option> <br>
 <option value='suppressor'> Suppressor </option><br>
 <option value='sharedsil'> Shared Silencer </option><br>
-<option value='specsil'> Specialized Silencer </option>
+<option value='specsil'> Specialized Silencer </option><br>
 </select> 
 </span>
 
@@ -140,7 +146,7 @@ Attachment:
 <option value='none'> No attachment </option> <br>
 <option value='suppressor'> Suppressor </option><br>
 <option value='sharedsil'> Shared Silencer </option><br>
-<option value='specsil'> Specialized Silencer </option>
+<option value='specsil'> Specialized Silencer </option><br>
 </select>
 </span>
 <span class="addweapon">
@@ -162,7 +168,7 @@ Attachment:
 <option value='none'> No attachment </option> <br>
 <option value='suppressor'> Suppressor </option><br>
 <option value='sharedsil'> Shared Silencer </option><br>
-<option value='specsil'> Specialized Silencer </option>
+<option value='specsil'> Specialized Silencer </option><br>
 </select>
 </span>
 <span class="addweapon">
@@ -183,7 +189,7 @@ Attachment:
 <option value='none'> No attachment </option> <br>
 <option value='suppressor'> Suppressor </option><br>
 <option value='sharedsil'> Shared Silencer </option><br>
-<option value='specsil'> Specialized Silencer </option>
+<option value='specsil'> Specialized Silencer </option><br>
 </select>
 </span>
   
@@ -206,7 +212,7 @@ Attachment:
 <option value='none'> No attachment </option> <br>
 <option value='suppressor'> Suppressor </option><br>
 <option value='sharedsil'> Shared Silencer </option><br>
-<option value='specsil'> Specialized Silencer </option>
+<option value='specsil'> Specialized Silencer </option><br>
 </select>
 </span>
 <br>  
@@ -264,13 +270,20 @@ Attachment:
 
 </fieldset>
 
-  <fieldset class="repair">
+ <fieldset class="repair">
   <legend> <b>Game Variables</b> </legend>
- Money Rewards (%):  <input type='text' id='booster' value='100'><br><br>
+	<label for="boosterSliderValue">Money Booster:</label>
+	<input type="text" id="boosterSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
+	<div id='boosterSlider' class="sliders"> </div>
+  
+  <span class="spacedR" id="spacedSlider">
+	<label for="gameLengthSliderValue">Game Duration:</label>
+	<input type="text" id="gameLengthSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">	
+	<div id='gameLengthSlider' class="sliders"> </div>
+</span>
   
 Mission:  
-<select id='missionType'> Insane
-<option value='Easy'> Easy </option><br>
+<select id='missionType'>
 <option value='Normal'> Normal </option><br>
 <option value='Normal Africa'> Normal Africa </option> <br>
 <option value='Hard'> Hard </option><br>
@@ -280,9 +293,8 @@ Mission:
 <option value='Tower'> Tower HQ </option><br>
 <option value='Marathon'> Marathon </option><br>
 </select>
-<span class="spacedR">
-Game length (min): <input type='text' id='duration' value="10">
-</span>
+
+
   </fieldset>
   
   <fieldset class="repair">

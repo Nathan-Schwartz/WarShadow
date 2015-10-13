@@ -56,9 +56,9 @@ function capture(before, after){
 		}
 		else{
 			overwolf.media.replays.capture(before + (parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000), after, 
-				function(result){if(result) console.log(result);},
+				function(result){console.log("first",result);},
 				function(results){
-					//console.log(results);
+					console.log("second",results);
 					if(results.status== "success"){
 						overwolf.media.replays.finishCapture(results.url,
 							function(results){
@@ -77,9 +77,9 @@ function capture(before, after){
 	}
 	else{
 		overwolf.media.replays.capture(before, after,
-			function(result){if(result) console.log(result);},
+			function(result){if(result) console.log("first",result);},
 			function(results){
-				console.log(results);
+				console.log("second",results);
 				if(results.status== "success"){
 					overwolf.media.replays.finishCapture(results.url,
 						function(results){
