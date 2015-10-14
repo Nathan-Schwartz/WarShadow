@@ -50,7 +50,7 @@ setTimeout(function(){ //all properties of launch were returning as undefined un
 			
 					if(value.isInFocus === false){
 						console.log('out of focus');
-						overwolf.games.onGameInfoUpdated.addListener(function(data){ // !!! This method of delaying the enabling of recording hasn't been verified yet
+						overwolf.games.onGameInfoUpdated.addListener(function(data){ // !!! This method of delaying the enabling of recording hasn't been verified to work yet
 							if(data.focusChanged === true && !alerted){
 								console.log("trying rec");
 								if(JSON.parse(localStorage.getItem("Settings")).enableRecord){

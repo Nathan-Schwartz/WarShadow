@@ -1,5 +1,6 @@
 define(['gearData'], function(gData) {
-// !!! figure out real purpose of gearDisplay vs repairCalc as far as outputs. Some functions should probably be encapsulated externally.
+//recalculates and prints the tables for comparison on Tab 2 of Statcrack
+
 
 var charts = {
 		Vests: ['Vests', gData.getVests()],
@@ -35,41 +36,10 @@ function addCOMP(id,message) {
 		document.querySelector('#sideSMG').appendChild(obj);
 	}else if(id == "Sniper"){
 		document.querySelector('#sideSniper').appendChild(obj);
-	}
-};
-
-function addHTML(id,message) {
-	var obj = document.createElement("tr");
-	obj.innerHTML = message;
-	if(id == "Helmets"){
-		document.querySelector('#Htable').appendChild(obj);
-	}else if(id == 'Gloves'){
-		document.querySelector('#Gtable').appendChild(obj);
-	}else if(id == 'Vests'){
-		document.querySelector('#Vtable').appendChild(obj);
-	}else if(id == 'Boots'){
-		document.querySelector('#Btable').appendChild(obj);
 	}else if(id == 'Rewards'){
 		document.querySelector('#sideRewards').appendChild(obj);
 	}
 };
-	
-function printTable(id, iter, gear){ // This is pretty spaghetti
-	if(id == 'Helmets'){
-		if(gear[iter].key != "npc")
-			addHTML(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ Math.round((1-gear[iter].Damage_reduc) * 100) + "%" + " </td><td align='center'>" + (gear[iter].HP_regen == 0 ? "" : gear[iter].HP_regen)+ "</td><td align='center'>" + (gear[iter].Flash == "TRUE" ? "X" : "") +"</td><td align='center'>"+ (gear[iter].Mine == "TRUE" ? "X" : "") + /*"</td><td>" + gear[iter].Repair_num+ */"</td></tr>");
-
-	}else if(id == 'Vests'){
-		if(gear[iter].Shop_name != "none")
-			addHTML(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ gear[iter].HP +"</td><td align='center'>"+ (gear[iter].RFProtection == "TRUE" ? "10" : "") + " </td><td align='center'>" + (gear[iter].Repel_shot == "TRUE" ? "X" : "")+ "</td><td align='center'>" + (gear[iter].Armor_per_sec == 0 ? "" : gear[iter].Armor_per_sec)+ "</td><td align='center'>" + (gear[iter].Explo_res== 0 ? "" : gear[iter].Explo_res*100 + "%" )+ "</td><td align='center'>" + (gear[iter].Melee_res== 0 ? "" : gear[iter].Melee_res*100 + "%" ) +"</td><td>" + (gear[iter].Special == "none" ? "" : gear[iter].Special) + /*"</td><td>" + gear[iter].Repair_num+*/ "</td></tr>");
-	}else if(id == 'Gloves'){
-		addHTML(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ (Math.round(1-gear[iter].Damage_reduc) * 100 == 100? "" : Math.round((1-gear[iter].Damage_reduc) * 100) + "% ") + " </td><td align='center'>" + (gear[iter].Reload==0 ? "" : "-" + Math.round((1-gear[iter].Reload)*100) + "%" ) + "</td><td align='center'>" + (gear[iter].Swap_speed== 0 ? "" : Math.round((1-gear[iter].Swap_speed)*100) + "%") +"</td><td align='center'>" + (gear[iter].Melee_range== 0 ? "" : "+" + Math.round((1-gear[iter].Melee_range)*-100) + "%" ) + "</td><td align='center'>" + (gear[iter].Melee_speed== 0 ? "" : "+" + Math.round((1-gear[iter].Melee_speed)*-100) + "%" ) + "</td><td align='center'>" + (gear[iter].recoil_reduc== 0 ? "" : "+" +Math.round((1-gear[iter].recoil_reduc)*100) + "%" ) + "</td><td align='center'>" + (gear[iter].Spread_reduc== 0 ? "" : "+" + Math.round((1-gear[iter].Spread_reduc)*100) + "%" ) + "</td><td align='center'>" + (gear[iter].Knockdown == "TRUE" ? "X" : "") + /*"</td><td>" + gear[iter].Repair_num+ */ "</td></tr>");
-	}else if(id == 'Boots'){
-		addHTML(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ (Math.round(1-gear[iter].Damage_reduc_perc) * 100 == 100 ? "": Math.round((1-gear[iter].Damage_reduc_perc) * 100) + "% ") + " </td><td align='center'>" + (gear[iter].Mine_delay == "TRUE" ? "X" : "") + "</td><td align='center'>" + (gear[iter].Silent == "TRUE" ? "X" : "") +"</td><td align='center'>" + (gear[iter].Sprint_speed== 0 ? "" : "+"+Math.round((1-gear[iter].Sprint_speed) * -100) + "%") + "</td><td align='center'>" + (gear[iter].Sprint_dur== 0 ? "" : "+"+Math.round((1-gear[iter].Sprint_dur) * -100) + "%") + "</td><td align='center'>" + (gear[iter].Slide_dist== 0 ? "" : "+"+Math.round((1-gear[iter].Slide_dist) * -100) + "%") + "</td><td align='center'>" + (gear[iter].Crouch_speed== 0 ? "" : "+"+gear[iter].Crouch_speed + "%") + /*"</td><td>" + gear[iter].Repair_num+ */"</td></tr>");
-	}
-};	
-	
-	
 	
 function printComparison(id, iter, gear){
 	
@@ -141,115 +111,39 @@ function compPrinter(obj){
 		printComparison(obj[0],i, obj[1]);
 	}
 }
-
-function printer(obj){
-	for(var i = 0; i < obj[1].length; i++){
-		printTable(obj[0],i, obj[1]);
-	}
-};
-				
-		function rewardCalc(){
-			var booster = ($( "#boosterSlider" ).slider( "value" )+100)/100;
 		
-			document.getElementById('sideRewards').innerHTML = "";
+function reprintCostComp(){
+	clearOld();
+	initializeLabels();
+	compPrinter(charts.Vests);
+	compPrinter(charts.Gloves);
+	compPrinter(charts.Boots);
+	compPrinter(charts.Helmets);
+	compPrinter(charts.Knives);
+	compPrinter(charts.Weapons);
+}
+	
+function reprintRewardComp(){
+	
+	var booster = ($( "#boosterSlider" ).slider( "value" )+100)/100;
 		
-			addHTML("Rewards","<tr><th> Mission </th><th align='center'> Rewards  </th><th align='center'> First Win</th></tr>");
-			addHTML("Rewards","<tr><td> Normal </td><td align='center'> "+parseInt(160*booster) + "   </td><td align='center'> "+ parseInt(400*booster)+ "  </td></tr>");
-			addHTML("Rewards","<tr><td> Normal Africa </td><td align='center'> "+parseInt(232*booster) + "    </td><td align='center'> "+ parseInt(472*booster)+ "  </td></tr>");
-			addHTML("Rewards","<tr><td> Hard </td><td align='center'> "+ parseInt(256*booster)+ "   </td><td align='center'> "+ parseInt(576*booster)+ "  </td></tr>");
-			addHTML("Rewards","<tr><td> Hard Africa </td><td align='center'> "+ parseInt(455*booster)+ "    </td><td align='center'> "+parseInt(775*booster) + "  </td></tr>");
-			addHTML("Rewards","<tr><td> Insane </td><td align='center'> "+parseInt(560*booster) + "   </td><td align='center'> "+parseInt(960*booster) + "  </td></tr>");
-			addHTML("Rewards","<tr><td> Insane Africa </td><td align='center'> "+ parseInt(647*booster)+ "    </td><td align='center'> "+parseInt(1047*booster) + "  </td></tr>");
-			addHTML("Rewards","<tr><td> Tower HQ </td><td align='center'> "+parseInt(1760*booster) + "   </td></tr>");
-			addHTML("Rewards","<tr><td> Marathon </td><td align='center'> "+parseInt(4480*booster) + "  </td></tr>");
-			
-				if(document.getElementById('missionType').value == "Easy"){
-					document.getElementById('incomeFW').style.display = "inline";
-					document.getElementById('netFW').style.display = "inline";
-					document.getElementById('income').innerText = parseInt(160*booster)
-					document.getElementById('incomeFW').innerText = parseInt(400*booster)
+	document.getElementById('sideRewards').innnerHTML = "";
 		
-				}else if(document.getElementById('missionType').value == "Normal"){
-					document.getElementById('incomeFW').style.display = "inline";
-					document.getElementById('netFW').style.display = "inline";
-					document.getElementById('income').innerText = parseInt(160*booster)
-					document.getElementById('incomeFW').innerText = parseInt(400*booster)
-		
-				}else if(document.getElementById('missionType').value == "Normal Africa"){
-					document.getElementById('incomeFW').style.display = "inline";
-					document.getElementById('netFW').style.display = "inline";
-					document.getElementById('income').innerText = parseInt(232*booster)
-					document.getElementById('incomeFW').innerText = parseInt(472*booster)
-		
-				}else if(document.getElementById('missionType').value == "Hard"){
-					document.getElementById('incomeFW').style.display = "inline";
-					document.getElementById('netFW').style.display = "inline";
-					document.getElementById('income').innerText = parseInt(256*booster)
-					document.getElementById('incomeFW').innerText = parseInt(576*booster)
-		
-				}else if(document.getElementById('missionType').value == "Hard Africa"){
-					document.getElementById('incomeFW').style.display = "inline";
-					document.getElementById('netFW').style.display = "inline";
-					document.getElementById('income').innerText = parseInt(455*booster)
-					document.getElementById('incomeFW').innerText = parseInt(775*booster)
-		
-				}else if(document.getElementById('missionType').value == "Insane"){
-					document.getElementById('incomeFW').style.display = "inline";
-					document.getElementById('netFW').style.display = "inline";
-					document.getElementById('income').innerText = parseInt(560*booster)
-					document.getElementById('incomeFW').innerText = parseInt(960*booster)
-		
-				}else if(document.getElementById('missionType').value == "Insane Africa"){
-					document.getElementById('incomeFW').style.display = "inline";
-					document.getElementById('netFW').style.display = "inline";
-					document.getElementById('income').innerText = parseInt(647*booster)
-					document.getElementById('incomeFW').innerText = parseInt(1047*booster)
-		
-				}else if(document.getElementById('missionType').value == "Tower HQ"){
-					document.getElementById('income').innerText = parseInt(1760*booster)
-					document.getElementById('incomeFW').style.display = "none";
-					document.getElementById('netFW').style.display = "none";
-		
-				}else if(document.getElementById('missionType').value == "Marathon"){
-					document.getElementById('income').innerText = parseInt(4480*booster)
-					document.getElementById('incomeFW').style.display = "none";
-					document.getElementById('netFW').style.display = "none";
-				}
-				
-				
-			document.getElementById('net').innerText = parseInt(document.getElementById('income').innerText) - parseInt(document.getElementById('totCost').innerText);
-			document.getElementById('netFW').innerText = parseInt(document.getElementById('incomeFW').innerText) - parseInt(document.getElementById('totCost').innerText);
-			
-		};
-		
-	function calc(){
-		recalc();
-		
-		printer(charts.Vests);
-		printer(charts.Gloves);
-		printer(charts.Boots);
-		printer(charts.Helmets);
-		rewardCalc();
-		
-	}	
-		
-	function recalc(){
-		
-		clearOld();
-		initializeLabels();
-		compPrinter(charts.Vests);
-		compPrinter(charts.Gloves);
-		compPrinter(charts.Boots);
-		compPrinter(charts.Helmets);
-		compPrinter(charts.Knives);
-		compPrinter(charts.Weapons);
-	}
+	addCOMP("Rewards","<tr><th> Mission </th><th align='center'> Rewards  </th><th align='center'> First Win</th></tr>");
+	addCOMP("Rewards","<tr><td> Normal </td><td align='center'> "+parseInt(160*booster) + "   </td><td align='center'> "+ parseInt(400*booster)+ "  </td></tr>");
+	addCOMP("Rewards","<tr><td> Normal Africa </td><td align='center'> "+parseInt(232*booster) + "    </td><td align='center'> "+ parseInt(472*booster)+ "  </td></tr>");
+	addCOMP("Rewards","<tr><td> Hard </td><td align='center'> "+ parseInt(256*booster)+ "   </td><td align='center'> "+ parseInt(576*booster)+ "  </td></tr>");
+	addCOMP("Rewards","<tr><td> Hard Africa </td><td align='center'> "+ parseInt(455*booster)+ "    </td><td align='center'> "+parseInt(775*booster) + "  </td></tr>");
+	addCOMP("Rewards","<tr><td> Insane </td><td align='center'> "+parseInt(560*booster) + "   </td><td align='center'> "+parseInt(960*booster) + "  </td></tr>");
+	addCOMP("Rewards","<tr><td> Insane Africa </td><td align='center'> "+ parseInt(647*booster)+ "    </td><td align='center'> "+parseInt(1047*booster) + "  </td></tr>");
+	addCOMP("Rewards","<tr><td> Tower HQ </td><td align='center'> "+parseInt(1760*booster) + "   </td></tr>");
+	addCOMP("Rewards","<tr><td> Marathon </td><td align='center'> "+parseInt(4480*booster) + "  </td></tr>");
+}		
+	
 	
 	return{
-		recalc:recalc,
-		rewardCalc:rewardCalc,
-		calc:calc
-		
+		reprintCostComp:reprintCostComp,
+		reprintRewardComp:reprintRewardComp
 	}
 });
 

@@ -1,7 +1,11 @@
-define(['gearData'], function(gData){
+define(['gearData', 'gearDisplay'], function(gData, gDisplay){
+//repairCalc calculates the cost of each item and outputs it in the div near the relevant drop down menu.
+//rewardCalc does the same thing for rewards
+
+//Both of the above call external methods to recalculate the comparison tab values
 
 function repairCalc(){
-	
+
 	var duration = $( "#gameLengthSlider" ).slider( "value" ) * 60;
 	var repair_mult = duration/36000; //since repair values are based on 10 hours of gameplay this is what we will multiply repair cost by to adjust for the session length
 
@@ -49,14 +53,73 @@ function repairCalc(){
 		parseInt(document.getElementById('priCost').innerText) +
 		parseInt(document.getElementById('secCost').innerText) +
 		parseInt(document.getElementById('melCost').innerText)
-	);
-	
-	document.getElementById('net').innerText = (parseInt(document.getElementById('income').innerText) - parseInt(document.getElementById('totCost').innerText));
-	document.getElementById('netFW').innerText = (parseInt(document.getElementById('incomeFW').innerText) - parseInt(document.getElementById('totCost').innerText));
-	
+	);	
+	updateProfit();
+	gDisplay.reprintCostComp();
 };
 
+
+function rewardCalc(){
+	var booster = ($( "#boosterSlider" ).slider( "value" )+100)/100;
+		
+	if(document.getElementById('missionType').value == "Normal"){
+		document.getElementById('income').innerText = parseInt(160*booster)
+		document.getElementById('incomeFW').innerText = parseInt(400*booster)
+		document.getElementById('incomeFWparent').style.display = "inline";  
+		document.getElementById('netFWparent').style.display = "inline";
+		
+	}else if(document.getElementById('missionType').value == "Normal Africa"){
+		document.getElementById('income').innerText = parseInt(232*booster)
+		document.getElementById('incomeFW').innerText = parseInt(472*booster)
+		document.getElementById('incomeFWparent').style.display = "inline";  
+		document.getElementById('netFWparent').style.display = "inline";
+		
+	}else if(document.getElementById('missionType').value == "Hard"){
+		document.getElementById('income').innerText = parseInt(256*booster)
+		document.getElementById('incomeFW').innerText = parseInt(576*booster)
+		document.getElementById('incomeFWparent').style.display = "inline";  
+		document.getElementById('netFWparent').style.display = "inline";
+		
+	}else if(document.getElementById('missionType').value == "Hard Africa"){
+		document.getElementById('income').innerText = parseInt(455*booster)
+		document.getElementById('incomeFW').innerText = parseInt(775*booster)
+		document.getElementById('incomeFWparent').style.display = "inline";  
+		document.getElementById('netFWparent').style.display = "inline";
+		
+	}else if(document.getElementById('missionType').value == "Insane"){
+		document.getElementById('income').innerText = parseInt(560*booster)
+		document.getElementById('incomeFW').innerText = parseInt(960*booster)
+		document.getElementById('incomeFWparent').style.display = "inline";  
+		document.getElementById('netFWparent').style.display = "inline";
+		
+	}else if(document.getElementById('missionType').value == "Insane Africa"){
+		document.getElementById('income').innerText = parseInt(647*booster)
+		document.getElementById('incomeFW').innerText = parseInt(1047*booster)
+		document.getElementById('incomeFWparent').style.display = "inline";  
+		document.getElementById('netFWparent').style.display = "inline";
+		
+	}else if(document.getElementById('missionType').value == "Tower"){
+		document.getElementById('income').innerText = parseInt(1760*booster)
+		document.getElementById('incomeFWparent').style.display = "none";  
+		document.getElementById('netFWparent').style.display = "none";
+		
+	}else if(document.getElementById('missionType').value == "Marathon"){
+		document.getElementById('income').innerText = parseInt(4480*booster)
+		document.getElementById('incomeFWparent').style.display = "none";  
+		document.getElementById('netFWparent').style.display = "none";
+		
+	}
+	updateProfit();
+	gDisplay.reprintRewardComp();
+};
+	
+function updateProfit(){
+	document.getElementById('net').innerText = (parseInt(document.getElementById('income').innerText) - parseInt(document.getElementById('totCost').innerText));
+	document.getElementById('netFW').innerText = (parseInt(document.getElementById('incomeFW').innerText) - parseInt(document.getElementById('totCost').innerText));
+}
+
 	return{
+		rewardCalc:rewardCalc,
 		repairCalc:repairCalc
 	};
 	

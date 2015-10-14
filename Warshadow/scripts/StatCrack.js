@@ -1,8 +1,8 @@
-require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'gearDisplay', 'htmlInjection', 'repairCalc','jqueryUI'],function($, gData, wCore, upDat, arrayData, sync, gDisplay, inject, rCalc, jqueryUI){
+require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', 'sync', 'htmlInjection', 'repairCalc','jqueryUI', 'printArmorTab'],function($, gData, wCore, upDat, arrayData, sync, inject, rCalc, jqueryUI, armorTab){
 
 	inject.injectHTML();// put lists into html drop down boxes
 	sync.testPlugin() ? sync.getNewData(): console.log("failed to get plugin"); // sync repair costs with latest game price dump	
-
+	armorTab.print();
 	
 	//progress bar is here because the sliders load in late and it allows all elements to be functional immediately upon being visible.
 	 $(function() {
@@ -61,7 +61,7 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 				min: 0,
 				step: 5,
 				max: 295,
-				change: function( event, ui ) {console.log("value", ui.value); gDisplay.rewardCalc();},
+				change: function( event, ui ) {console.log("value", ui.value); rCalc.rewardCalc();},
 				slide: function( event, ui ) {
 					$( "#boosterSliderValue" ).val( ui.value + "%");
 				}
@@ -76,7 +76,7 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 				value:10,
 				min: 1,
 				max: 120,
-				change: function( event, ui ) {console.log("value", ui.value); rCalc.repairCalc(); gDisplay.recalc()},
+				change: function( event, ui ) {console.log("value", ui.value); rCalc.repairCalc();},
 				slide: function( event, ui ) {
 					$( "#gameLengthSliderValue" ).val( ui.value + " minutes" );
 				}
@@ -87,7 +87,7 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 //finish initializing
 	gData.initStats();
 	rCalc.repairCalc();
-	gDisplay.calc();
+	rCalc.rewardCalc();
 	arrayData.initializeArray();
 	
 	//listeners for showing more weapon slots on the graph when a checkbox is clicked
@@ -290,12 +290,12 @@ $('#missionType').mousedown(function(){
 
 
 $('#missionType').change(function(){
-	gDisplay.rewardCalc();
+	rCalc.rewardCalc();
 });
 		
 $('#RChelmet, #RCvest, #RCgloves, #RCboots, #RCprimary, #RCsecondary, #RCmelee').change(function(){
 	rCalc.repairCalc();
-	gDisplay.recalc()
+	rCalc.rewardCalc();
 });
 
 

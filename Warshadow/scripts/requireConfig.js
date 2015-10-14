@@ -28,6 +28,7 @@ require.config({
 			arrayData : 'assets/arrayData',
 			sync: 'assets/sync',
 			gearDisplay: 'assets/gearDisplay',
+			printArmorTab: 'assets/printArmorTab',
 			repairCalc: 'assets/repairCalc',
 			htmlInjection: 'assets/htmlInjection',
 			counters: 'assets/counters',

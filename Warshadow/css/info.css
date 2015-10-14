@@ -345,3 +345,9 @@ position: relative;
 	bottom: 20px;	
 }
 
+#incomeFWparent , #netFWparent{
+	position:relative;
+	left: 150px;
+}
+
+
