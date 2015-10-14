@@ -12,6 +12,9 @@
 			var after = temp.Rbefore*1000; 
 			var before = temp.Rafter*1000; 
 	
+	
+			// !!!I'm considering arraylookup or a switch statement instead of these 20+ if/else if
+
 				if (name == "kill"){
 					if((document.getElementById("autoon").checked == true)&&(temp.Rkill == true)){
 					//alert("Kill works");

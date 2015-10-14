@@ -90,15 +90,15 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 	gDisplay.calc();
 	arrayData.initializeArray();
 	
-	//jQuery for showing more weapon slots on the graph when a checkbox is clicked
+	//listeners for showing more weapon slots on the graph when a checkbox is clicked
 			document.getElementById("showsecond").onchange = function(){
 				
 				if(document.getElementById("showsecond").checked){
 					document.getElementById('secondweapon').style.display = 'block';
-					
 				}else{
 					arrayData.initializeArray();
 					document.getElementById('secondweapon').style.display = 'none';
+					
 					document.getElementById('thirdweapon').style.display = 'none';
 					document.getElementById("weaponSelect3").value == "none";
 					document.getElementById("showthird").checked = false;
@@ -108,14 +108,13 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 					document.getElementById('fifthweapon').style.display = 'none';
 					document.getElementById("weaponSelect5").value == "none";
 					document.getElementById("showfifth").checked = false;
-					upDat.updateData(0);
 				}
+				upDat.updateData(0);
 			};
 			
 			document.getElementById("showthird").onchange = function(){
 				if(document.getElementById("showthird").checked){
 					document.getElementById('thirdweapon').style.display = 'block';
-					
 				}else{
 					arrayData.initializeArray();
 					document.getElementById('thirdweapon').style.display = 'none';
@@ -125,43 +124,34 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 					document.getElementById('fifthweapon').style.display = 'none';
 					document.getElementById("weaponSelect5").value == "none";
 					document.getElementById("showfifth").checked = false;
-					upDat.updateData(0);
 				}
+				upDat.updateData(0);
 			};
 
 			
 			document.getElementById("showfourth").onchange = function(){
 				if(document.getElementById("showfourth").checked){
 					document.getElementById('fourthweapon').style.display = 'block';
-				
 				}else{
 					arrayData.initializeArray();
 					document.getElementById('fourthweapon').style.display = 'none';
 					document.getElementById('fifthweapon').style.display = 'none';
 					document.getElementById("weaponSelect5").value == "none";
 					document.getElementById("showfifth").checked = false;
-					upDat.updateData(0);
 				}
+				upDat.updateData(0);
 			};
 				
 				
 			document.getElementById("showfifth").onchange = function(){
-				if(document.getElementById("showfifth").checked)
+				if(document.getElementById("showfifth").checked){
 					document.getElementById('fifthweapon').style.display = 'block';
-				
-				else{
+				}else{
 					arrayData.initializeArray();
 					document.getElementById('fifthweapon').style.display = 'none';
-					upDat.updateData(0);
 				}
+				upDat.updateData(0);
 			};
-		
-/*
-		$(function() {
-			$( "#tabs" ).tabs();
-		});*/
-		
-		
 		
 	//jQuery for tab implementation		
 	$(document).ready(function() {
@@ -310,18 +300,9 @@ $('#RChelmet, #RCvest, #RCgloves, #RCboots, #RCprimary, #RCsecondary, #RCmelee')
 
 
 
-//jQuery for changing variables that affect individual weapons
-$("#weaponSelect1").change(function(){upDat.updateData(1); setTimeout(function(){$("#chart").slideDown();}, 100);});
-$("#weaponSelect2").change(function(){upDat.updateData(2); setTimeout(function(){$("#chart").slideDown();}, 100);});
-$("#weaponSelect3").change(function(){upDat.updateData(3); setTimeout(function(){$("#chart").slideDown();}, 100);});
-$("#weaponSelect4").change(function(){upDat.updateData(4); setTimeout(function(){$("#chart").slideDown();}, 100);});
-$("#weaponSelect5").change(function(){upDat.updateData(5); setTimeout(function(){$("#chart").slideDown();}, 100);});
-
-$("#attachmentSelect1").change(function(){upDat.updateData(1);});
-$("#attachmentSelect2").change(function(){upDat.updateData(2);});
-$("#attachmentSelect3").change(function(){upDat.updateData(3);});
-$("#attachmentSelect4").change(function(){upDat.updateData(4);});
-$("#attachmentSelect5").change(function(){upDat.updateData(5);});
+//jQuery for changing weapon / attachment
+$("#weaponSelect1,#weaponSelect2,#weaponSelect3,#weaponSelect4,#weaponSelect5").change(function(){upDat.updateData(0); setTimeout(function(){$("#chart").slideDown();}, 100);});
+$("#attachmentSelect1,#attachmentSelect2,#attachmentSelect3,#attachmentSelect4,#attachmentSelect5").change(function(){upDat.updateData(0);});
 
 //Jquery for changing variables that all weapons in graph calculations.
 $("#selectGData").change(function(){upDat.updateData(0);});

@@ -149,7 +149,7 @@ function printer(obj){
 };
 				
 		function rewardCalc(){
-			var booster = $( "#boosterSlider" ).slider( "value" );
+			var booster = ($( "#boosterSlider" ).slider( "value" )+100)/100;
 		
 			document.getElementById('sideRewards').innerHTML = "";
 		

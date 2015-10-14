@@ -45,11 +45,12 @@ define(['gearData', 'calcData', 'graph', 'arrayData'], function(gData, cData, gr
 			weapon = "weaponSelect5";
 			attach = "attachmentSelect5";
 		}else if(elementNum == 0){ //update all recursively (used for change in distance/vest/etc)
-			updateData(1);
-			updateData(2);
-			updateData(3);
+			updateData(5);// IMPORTANT: DO NOT UNDER ANY CIRCUMSTANCES REVERSE THE ORDER OF RECURSIVE CALLS. I don't know why but the API hates it. This works and I'm not touching it till I refactor the whole thing again.
 			updateData(4);
-			updateData(5);
+			updateData(3);
+			updateData(2);
+			updateData(1);
+			
 			//alert("updated all");
 			return; //we don't need to finish the code if we are just using the recursive shortcut
 		}

@@ -38,15 +38,15 @@ function NTKhead(damage_default, min_default, attachment_equipped, RFProt, dista
 	else if(weapon_archetype == "M")
 		HSmult = 1.2;
 	
-	console.log("HSmult = " + HSmult);
+	/*console.log("HSmult = " + HSmult);
 	console.log("vestHP = " + vestHP);
 	console.log("Hdamage_reduc = " + Hdamage_reduc);
-	console.log("weapon_archetype = " + weapon_archetype);
+	console.log("weapon_archetype = " + weapon_archetype);*/
 
 	
 	var NTK = vestHP / (damageCalc(damage_default, min_default, attachment_equipped, false, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets) * Hdamage_reduc * HSmult);
 	NTK = Math.ceil(NTK);
-	console.log(NTK);
+//	console.log(NTK);
 	return NTK;
 	}
 	
@@ -68,7 +68,7 @@ function TTKvest(damage_default, min_default, attachment_equipped, RFProt, dista
 
 	function damageCalc(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets){
 	//This is the main damage function, the ones below are just helpers
-console.log("pellets: " + pellets);
+//console.log("pellets: " + pellets);
 	
 	
 		var silencer_reduc_mult = 1;
@@ -151,9 +151,7 @@ console.log("pellets: " + pellets);
 		if(distance_selected > weapon_range){
 		
 			fall_off_distance = distance_selected - weapon_range;
-			damage_lost = fall_off_distance * (damage_lost_p_meter * silencer_fall_off_mult);
-			
-			
+			damage_lost = fall_off_distance * (damage_lost_p_meter * silencer_fall_off_mult);	
 		}
 		return damage_lost;
 	

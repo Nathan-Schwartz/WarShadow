@@ -1,8 +1,5 @@
 define(["recording"], function(rec){
 
-// !!! This file needs a loooot of testing still.
-
-
 //autoLaunch starts minimized so if current window is minimized then it was autolaunched
 //if autolaunched use the FPS listener to initiate window.
 //else check if game is running, if true initiate recording, else use FPS listener method	

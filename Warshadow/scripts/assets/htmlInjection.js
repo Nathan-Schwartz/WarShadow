@@ -299,19 +299,15 @@ var secondaries = "<option value='none'> </option><br>" +
 "<option value='M1895 Sneakpeak'>M1895 Sneakpeak </option><br>" +
 "<option value='Bellum Sneakpeak'>Bellum Sneakpeak </option><br>";
 
-document.getElementById("weaponSelect1").innerHTML += secondaries + primaries ;
-
 document.getElementById("RCprimary").innerHTML += primaries;
 
 document.getElementById("RCsecondary").innerHTML += secondaries;
 
-document.getElementById("weaponSelect2").innerHTML += document.getElementById("weaponSelect1").innerHTML;
-
-document.getElementById("weaponSelect3").innerHTML += document.getElementById("weaponSelect1").innerHTML;
-
-document.getElementById("weaponSelect4").innerHTML += document.getElementById("weaponSelect1").innerHTML;
-
-document.getElementById("weaponSelect5").innerHTML += document.getElementById("weaponSelect1").innerHTML;
+document.getElementById("weaponSelect1").innerHTML += secondaries + primaries ;
+document.getElementById("weaponSelect2").innerHTML = document.getElementById("weaponSelect1").innerHTML;
+document.getElementById("weaponSelect3").innerHTML = document.getElementById("weaponSelect1").innerHTML;
+document.getElementById("weaponSelect4").innerHTML = document.getElementById("weaponSelect1").innerHTML;
+document.getElementById("weaponSelect5").innerHTML = document.getElementById("weaponSelect1").innerHTML;
 
 };
 
