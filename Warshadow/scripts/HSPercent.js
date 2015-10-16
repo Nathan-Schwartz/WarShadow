@@ -1,7 +1,7 @@
 
 require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $, counters){
 			
-	document.getElementById("HSperc").innerHTML = hsPercent() + "%";		
+	document.getElementById("HSperc").innerHTML = 0 + "%";		
 			
 	function hsPercent(){
 		headshots = counters.getHeadshot(1);

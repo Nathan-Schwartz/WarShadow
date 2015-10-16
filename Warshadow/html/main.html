@@ -1,7 +1,11 @@
 ﻿<!DOCTYPE html>
 <html>
 	<head> 
+		<link rel='stylesheet' href='../css/jquery-ui/jquery-ui.min.css' />
+		<link rel='stylesheet' href='../css/jquery-ui/jquery-ui.theme.min.css' />
+		<link rel='stylesheet' href='../css/jquery-ui/jquery-ui.structure.min.css' />
 		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/spectrum.css" />
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
 		<title>WarShadow</title>
@@ -9,6 +13,7 @@
 			
 
 	<body>
+	
 		<div class="resizeGrip" id="resizeGripTopLeft"></div>
 		<div class="resizeGrip" id="resizeGripTop"></div>
 		<div class="resizeGrip" id="resizeGripTopRight"></div>
@@ -17,6 +22,8 @@
 		<div class="resizeGrip" id="resizeGripBottom" ></div>
 		<div class="resizeGrip" id="resizeGripBottomLeft"></div>
 		<div class="resizeGrip" id="resizeGripLeft"></div>
+		<div id="contentWrapper">
+					<div id="progress"><div class="progress-label"></div></div>
 		<div id="content">
 
 		<img src="../images/IconMouseNormal.png" id="resize" alt="logo">
@@ -24,30 +31,33 @@
 		<img src="../images/info.png" id="info" alt="info">
 		<img src="../images/options1.png" id="settingsWin" alt="settings">
 		
-		<br> <br>  <br>
-		<!--img src="../images/loading.gif" id="loading" alt="loading"-->
+		<br> <br>  <br><br>
 
 			<u><b>Features:</b> </u> <br>
-			<input type="checkbox" class="checkbox" id="HSNum"> # of Headshots <br>
-			<input type="checkbox" class="checkbox" id="HSPerc"> % of Headshots <br>
-			<input type="checkbox" class="checkbox" id="HSChain"> HS Chain Avg <br>
-			<input type="checkbox" class="checkbox" id="KDRate"> KDR tracker <br>
-			<!--input type="checkbox" class="checkbox" id="crosshair"> start/stop <br-->
-			<input type="checkbox" class="checkbox" id="autoon"> Auto-capture <br>
-			
-			<button id="Stats" class="button"> StatCrack </button>
-			<button class="button" id="STimer"> Smoke timer </button>
-			<button id="record" class="button"> Recording</button>
+			<input type="checkbox" class="checkbox" id="HSNum" tabindex="-1"> # of Headshots <br>
+			<input type="checkbox" class="checkbox" id="HSPerc" tabindex="-1"> % of Headshots <br>
+			<input type="checkbox" class="checkbox" id="HSChain" tabindex="-1"> HS Chain Avg <br>
+			<input type="checkbox" class="checkbox" id="KDRate" tabindex="-1"> KDR tracker <br>
+			<input type="checkbox" class="checkbox" id="autoon" tabindex="-1"> Auto-capture <br>
+
+			<button id="Stats" class="button" tabindex="-1"> StatCrack </button>
+			<button class="button" id="STimer" tabindex="-1"> Smoke timer </button>
+			<button id="record" class="button" tabindex="-1"> Recording</button>
 			<div id="Roptions">
-				<button id="turnOn" class="subbutton"> Start Recording </button>
-				<button id="capture" class="subbutton"> Capture </button> 
-				<button id="turnOff" class="subbutton"> Stop Recording </button>
+				<button id="turnOn" class="subbutton" tabindex="-1"> Start Recording </button>
+				<button id="capture" class="subbutton" tabindex="-1"> Capture </button> 
+				<button id="turnOff" class="subbutton" tabindex="-1"> Stop Recording </button>
 			</div>
 			
-			<button id="showcontent" class="button">Guides I wrote</button>
+			<button id="showcontent" class="button" tabindex="-1">Guides I wrote</button>
 		<div id="contentbuttons">	
-			<button id="cold" class="subbutton">Cold Peak</button> 
-			<button id="tower" class="subbutton">Tower & Basics</button>
+			<button id="cold" class="subbutton" tabindex="-1">Cold Peak</button> 
+			<button id="tower" class="subbutton" tabindex="-1">Tower & Basics</button>
+		</div><br>
+		
+		<input type='text' class="sp-dark" id="cpicker1" tabindex="-1"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' class="sp-dark" id="cpicker2" tabindex="-1"/>
+		
+		</div>
 		</div>
 			<script>
 

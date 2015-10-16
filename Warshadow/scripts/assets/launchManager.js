@@ -4,6 +4,7 @@ define(["recording"], function(rec){
 //if autolaunched use the FPS listener to initiate window.
 //else check if game is running, if true initiate recording, else use FPS listener method	
 
+
 function launchData(){
 	var launchData = new Object;
 	
@@ -48,9 +49,9 @@ setTimeout(function(){ //all properties of launch were returning as undefined un
 				
 					console.log("focus callback", value.isInFocus);
 			
-					if(value.isInFocus === false){
-						console.log('out of focus');
-						overwolf.games.onGameInfoUpdated.addListener(function(data){ // !!! This method of delaying the enabling of recording hasn't been verified to work yet
+					if(value.isInFocus === false){// !!! This method of delaying the enabling of recording hasn't been verified to work yet
+						/*console.log('out of focus');
+						overwolf.games.onGameInfoUpdated.addListener(function(data){ 
 							if(data.focusChanged === true && !alerted){
 								console.log("trying rec");
 								if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
@@ -59,7 +60,9 @@ setTimeout(function(){ //all properties of launch were returning as undefined un
 								alerted = true;
 								overwolf.windows.restore(localStorage.getItem('MainID'));
 							}
-						});
+						});*/
+						alerted = true;
+						overwolf.windows.restore(localStorage.getItem('MainID'));
 					}else if(value.isInFocus === true && !alerted){
 						console.log("tracker");
 						if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
@@ -77,7 +80,7 @@ setTimeout(function(){ //all properties of launch were returning as undefined un
 		if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
 			rec.turnOn();
 		}
-	
+		overwolf.windows.restore(localStorage.getItem('MainID'));
 	}else{
 		console.log("else");
 		if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
@@ -85,7 +88,7 @@ setTimeout(function(){ //all properties of launch were returning as undefined un
 		}
 		overwolf.windows.restore(localStorage.getItem('MainID')); 
 	}
-
+	
 }, 1000);
 
 

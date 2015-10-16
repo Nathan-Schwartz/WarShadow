@@ -24,7 +24,7 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
     function progress() {
       var val = progressbar.progressbar( "value" ) || 0;
  
-      progressbar.progressbar( "value", val + 2 );
+      progressbar.progressbar( "value", val + 1 );
 	  
       if ( val < 99 ) {
         setTimeout( progress, 2 );
@@ -34,10 +34,8 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
    progress();
    
   });
-	
-	
-	// !!! blurring if i use 2nd weapon slot beofre first on graph. Also doesn't make line reappear when i reselect a text box even though it saves the weapon choice
-	//initialize sliders !!! could be exported, its spaghetti
+
+	//initialize sliders
 		//Distance slider
 		$(function() {
 			$( "#distSlider" ).slider({

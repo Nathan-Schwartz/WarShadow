@@ -13,8 +13,17 @@ define( function(){
 			}
 		);
 	};	
+	
+//localStorage.removeItem('color1');
+if(!localStorage.getItem('color1')){
+	localStorage.setItem('color1', 'rgba(117,85,106,.8)');
+}
 
-
+//localStorage.removeItem('color2');
+if(!localStorage.getItem('color2')){
+	localStorage.setItem('color2', 'rgba(130,96,96,.8)');
+}
+	
 //localStorage.removeItem('Settings');
 if(!localStorage.getItem('Settings')){
 	var Settings = {

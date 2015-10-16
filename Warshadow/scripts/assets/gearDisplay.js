@@ -48,33 +48,33 @@ function printComparison(id, iter, gear){
 	
 	if(id == 'Helmets'){
 		if(gear[iter].key != "npc")
-			addCOMP(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
+			addCOMP(id,"<tr><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
 
 	}else if(id == 'Vests'){
 		if(gear[iter].Shop_name != "none")
-			addCOMP(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
+			addCOMP(id,"<tr><td>" + gear[iter].key + "</td><td align='center'>"+parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
 	}else if(id == 'Gloves'){
-		addCOMP(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+ parseInt(gear[iter].Repair_num*mult)+  "</td></tr>");
+		addCOMP(id,"<tr><td>" + gear[iter].key + "</td><td align='center'>"+ parseInt(gear[iter].Repair_num*mult)+  "</td></tr>");
 	}else if(id == 'Boots'){
-		addCOMP(id,"<tr class='alt'><td>" + gear[iter].key +"</td><td align='center'>"+ parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
+		addCOMP(id,"<tr><td>" + gear[iter].key +"</td><td align='center'>"+ parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
 	}else if(id== 'Weapons'){
 		if(gear[iter].Class == "A"){//secondary
-			addCOMP("Secondary","<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
+			addCOMP("Secondary","<tr><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
 		}else{//primary
 			if(gear[iter].Class == "M"){
-				addCOMP("Medic","<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
+				addCOMP("Medic","<tr><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
 			}else if(gear[iter].Class == "R"){
-				addCOMP("Rifle","<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
+				addCOMP("Rifle","<tr><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
 			}else if(gear[iter].Class == "E"){
-				addCOMP("Engineer","<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
+				addCOMP("Engineer","<tr><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
 			}else if(gear[iter].Class == "S"){
-				addCOMP("Sniper","<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
+				addCOMP("Sniper","<tr><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
 			}		
-		addCOMP("Primary","<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
+		addCOMP("Primary","<tr><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
 			
 		}
 	}else if(id == 'Knives'){
-		addCOMP(id,"<tr class='alt'><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
+		addCOMP(id,"<tr><td>" + gear[iter].key + "</td><td align='center'>"+  + parseInt(gear[iter].Repair_num*mult)+ "</td></tr>");
 	}
 };
 
@@ -91,6 +91,12 @@ function initializeLabels(){
 	addCOMP( "Primary","<tr><th>Primary Name</th> <th>Repairs</th></tr>");
 	addCOMP( "Knives","<tr><th>Knife Name</th> <th>Repairs</th></tr>");
 };
+
+function alternateBackground(that, rowCount){
+	if(rowCount%2==0)
+		$(that).css('background','#F0F0F5');
+};	
+	
 
 function clearOld(){
 	document.getElementById('sideHelm').innerHTML = "";
@@ -121,6 +127,19 @@ function reprintCostComp(){
 	compPrinter(charts.Helmets);
 	compPrinter(charts.Knives);
 	compPrinter(charts.Weapons);
+	
+	var rowCount=0;
+	$('#sideHelm tr').each(function(){rowCount++; alternateBackground(this, rowCount);});  
+	$('#sideGlove tr').each(function(){rowCount++; alternateBackground(this, rowCount);});  
+	$('#sideVest tr').each(function(){rowCount++; alternateBackground(this, rowCount);});  
+	$('#sideBoot tr').each(function(){rowCount++; alternateBackground(this, rowCount);});  
+	$('#sidePrimary tr').each(function(){rowCount++; alternateBackground(this, rowCount);});  
+	$('#sideSecondary tr').each(function(){rowCount++; alternateBackground(this, rowCount);});  
+	$('#sideKnife tr').each(function(){rowCount++; alternateBackground(this, rowCount);});  
+	$('#sideShotgun tr').each(function(){rowCount++; alternateBackground(this, rowCount);});  
+	$('#sideRifle tr').each(function(){rowCount++; alternateBackground(this, rowCount);});  
+	$('#sideSMG tr').each(function(){rowCount++; alternateBackground(this, rowCount);});  
+	$('#sideSniper tr').each(function(){rowCount++; alternateBackground(this, rowCount);});   
 }
 	
 function reprintRewardComp(){
@@ -138,6 +157,9 @@ function reprintRewardComp(){
 	addCOMP("Rewards","<tr><td> Insane Africa </td><td align='center'> "+ parseInt(647*booster)+ "    </td><td align='center'> "+parseInt(1047*booster) + "  </td></tr>");
 	addCOMP("Rewards","<tr><td> Tower HQ </td><td align='center'> "+parseInt(1760*booster) + "   </td></tr>");
 	addCOMP("Rewards","<tr><td> Marathon </td><td align='center'> "+parseInt(4480*booster) + "  </td></tr>");
+	
+	var rowCount=0;
+	$('#sideRewards tr').each(function(){rowCount++; alternateBackground(this, rowCount);});  
 }		
 	
 	

@@ -1,7 +1,7 @@
 	
 require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters){
 		
-	document.getElementById("HSchains").innerHTML = avgChain() + " Avg";	
+	document.getElementById("HSchains").innerHTML = 0 + " Avg";	
 		
 	function avgChain(){
 		//the commented out stuff was before they changed how combos were registered in the game

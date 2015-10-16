@@ -33,6 +33,7 @@ require.config({
 			htmlInjection: 'assets/htmlInjection',
 			counters: 'assets/counters',
 			launchManager: 'assets/launchManager',
-			localStorageInit: 'assets/localStorageInit'
+			localStorageInit: 'assets/localStorageInit',
+			spectrum: 'lib/spectrum'
 		}
 });

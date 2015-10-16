@@ -9,7 +9,7 @@ define(function () {
 					localStorage.setItem('recordingOn', true);
 				}else{
 					if(result.error == "Already turned on." && JSON.parse(localStorage.getItem('recordingOn')) === false){
-						alert("Another app hijacked the recording feature!! I can't believe you have another recording app, I thought what we had was special :( \n\n This problem happens because only 1 recording can happen at a time. To fix this problem open up the other program and turn off the recording. To prevent this issue in the future you could prevent it from auto-launching with each game (assuming it has this option). If you really don't want to use my awesome auto-recording feature, I have made it easy to disable it in settings."); // !!! choose
+						alert("Another app hijacked the recording feature!! I can't believe you have another recording app, I thought what we had was special :( \n\n This problem happens because only 1 recording can happen at a time. To fix this problem open up the other program and turn off the recording. To prevent this issue in the future you could prevent it from auto-launching with each game (assuming it has this option). If you really don't want to use my awesome auto-recording feature, I have made it easy to disable it in settings.");
 						document.getElementById("autoon").checked = false;
 					}else if(result.error != "Already turned on."){
 						alert("I'm sorry, the recording feature wasn't able to start properly. Overwolf says the error is: " + result.error);
@@ -62,7 +62,7 @@ function capture(before, after){
 					if(results.status== "success"){
 						overwolf.media.replays.finishCapture(results.url,
 							function(results){
-								//console.log(results);
+								console.log("finish capture: ", results);
 								if(results.status== "success"){
 									//alert("success");
 								}else{

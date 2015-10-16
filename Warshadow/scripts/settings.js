@@ -1,5 +1,6 @@
 
 	require(['jquery','windowCoreFunctions', 'loadSettings','updateSettings', 'counters', 'jqueryUI'], function($,wCore, loadS, updateS, counters, jqueryUI){
+
 	//before slider
 	$(function() {
 			$( "#beforeSlider" ).slider({

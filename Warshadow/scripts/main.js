@@ -1,10 +1,8 @@
-		
-require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', 'counters', "launchManager", "localStorageInit"], function($ ,gEvent, wCore, rHUD, rec, counters, launcher, localStorageInit){ 
 
-	var smallwindow = true;
-	// !!!  in_game_only in manifest? permissions and dependancies?
-	// !!! before submitting app for contest, search for all alerts that haven't been cleaned up yet		
-			
+require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "launchManager", "localStorageInit", "spectrum", 'jqueryUI'], function($ ,gEvent, wCore, rHUD, rec, launcher, localStorageInit, spectrum, jqueryUI){ 
+
+	var smallwindow = false; // its ok cuz we are in a module
+	
 		function tower(){
 			window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=299691346"); // tower
 		};
@@ -12,7 +10,64 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 		function cold(){
 			window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=352301863"); //coldpeak		
 		};
+		
+		//Color pickers
+		
+		$('#cpicker1').spectrum({
+			color: localStorage.getItem('color1'),
+			preferredFormat: "rgb",
+			showAlpha: true,
+			clickoutFiresChange: true,
+			showButtons: false,
+			change: function(color) {
+				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+ color + "," + $("#cpicker2").spectrum("get") + ")";
+				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+				localStorage.setItem('color1', color);
+			}
+		});
+		
+		$('#cpicker2').spectrum({
+			color: localStorage.getItem('color2'),
+			preferredFormat: "rgb",
+			showAlpha: true,
+			clickoutFiresChange: true,
+			showButtons: false,
+			change: function(color) {
+				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+ $("#cpicker1").spectrum("get") + ","  + color + ")";
+				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+				localStorage.setItem('color2', color);
+			}
+		});
 
+	//progress bar is here because the color picker loads slowly
+	 $(function() {
+    var progressbar = $( "#progress" ),
+      progressLabel = $( ".progress-label" );
+
+    progressbar.progressbar({
+      value: false,
+      complete: function() {
+        $('#progress').hide();
+		$("#progress").progressbar( "destroy" );
+		$("#content").fadeIn();
+      }
+    });
+ 
+    function progress() {
+      var val = progressbar.progressbar( "value" ) || 0;
+ 
+      progressbar.progressbar( "value", val + 1 );
+	  
+      if ( val < 99 ) {
+        setTimeout( progress, 10 );
+      }
+    }
+ 
+   progress();
+   
+  });
+  		document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
+		document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
 	
 		function ResizeMain(){
 		/*
@@ -22,16 +77,24 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 */
 		
 			if(smallwindow === true){
-				overwolf.windows.changeSize(localStorage.getItem('MainID'), 160, 460);
-				smallwindow=false;			
-		}else if(smallwindow === false){
-				overwolf.windows.changeSize(localStorage.getItem('MainID'), 50, 50);
+				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  $("#cpicker1").spectrum("get") + "," + $("#cpicker2").spectrum("get") + ")";
+				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+				document.getElementById("contentWrapper").style.borderImage = "url('../images/boxBorderNoDots.png') 40% 15% 40% 15% stretch round";
+				document.getElementById("content").style.padding = "5px";
+				overwolf.windows.changeSize(localStorage.getItem('MainID'), 200, 460);//160
+				smallwindow=false;		
+			}else if(smallwindow === false){
+				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,rgba(256,256,256,0),rgba(256,256,256,0))";
+				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+				document.getElementById("contentWrapper").style.borderImage = "url('../images/closed3.png') 20% fill stretch";
+				document.getElementById("content").style.padding = "0px";
+				overwolf.windows.changeSize(localStorage.getItem('MainID'), 80, 80);// 50 without borders
 				smallwindow=true;
 			}else
 				alert("Houston we have a problem");
 		};
 
-		
+
 
 /*		
 overwolf.benchmarking.requestHardwareInfo(500, function(value){ console.log("hardware info requested", value);}); //if status = "success" stop requesting
@@ -60,10 +123,9 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 				}
 			}
 		);
-
 //$(document).ready(function(){});
 			
-			// !!!! Either make the height of the window change with the sliders, or make it not slide.
+			// !!! Either make the height of the window change with the sliderToggle calls, or take them out.
 			
 			//Slider for recording
 			$("#record").click(function(){
@@ -85,8 +147,8 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		$("#resizeGripBottom").mousedown(function(){wCore.dragResize('Bottom');});
 		$("#resizeGripBottomLeft").mousedown(function(){wCore.dragResize('BottomLeft');});
 		$("#resizeGripLeft").mousedown(function(){wCore.dragResize('Left');});
-		$("#content").mousedown(function(){wCore.dragMove();});
-		
+		$("#contentWrapper").mousedown(function(){wCore.dragMove();});
+		//$("#content").mousedown(function(){wCore.dragMove();});
 		//menu buttons
 		$("#resize").dblclick(function(){ResizeMain();});
 		$("#close").click(function(){wCore.minimizeWindow();});
@@ -135,35 +197,29 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 					}
 				}
 				if(resultA.focusChanged === true){ // if open and minimize are disabled, app can disapear behind other apps when tabbed out, and will open in game if not minimized. 
-					overwolf.games.getRunningGameInfo( // !!! This is actually returned as a property from the onGameInfoUpdated function
-						function (resultD){
-							if(resultD.isInFocus === true){
-								if(test.restoreOnTab === true){
-									//game is in focus so restore all except settings and statcrack
-									overwolf.windows.restore(localStorage.getItem('MainID'));
-									rHUD.refreshHUD();
-								}
-							}else{
-								if(test.minimizeOnTab === true){
-									//game is out of focus so minimize all
-									
-									overwolf.windows.minimize(localStorage.getItem('SmokeTimerID'));
-									overwolf.windows.minimize(localStorage.getItem('HSCounterID'));
-									overwolf.windows.minimize(localStorage.getItem('HSChainsID'));
-									overwolf.windows.minimize(localStorage.getItem('HSPercentID'));
-									overwolf.windows.minimize(localStorage.getItem('KDRID'));
-									overwolf.windows.minimize(localStorage.getItem('InfoID'));
-									overwolf.windows.minimize(localStorage.getItem('MainID'));
-									overwolf.windows.minimize(localStorage.getItem('SettingsID'));
-									overwolf.windows.minimize(localStorage.getItem('StatCrackID'));
-								}
-							}
+					if (resultA.gameInfo.isInFocus  === true){
+						if(test.restoreOnTab === true){
+							//game is in focus so restore all except settings and statcrack
+							overwolf.windows.restore(localStorage.getItem('MainID'));
+							rHUD.refreshHUD();
 						}
-					);
+					}else{
+						if(test.minimizeOnTab === true){
+							//game is out of focus so minimize all
+							overwolf.windows.minimize(localStorage.getItem('SmokeTimerID'));
+							overwolf.windows.minimize(localStorage.getItem('HSCounterID'));
+							overwolf.windows.minimize(localStorage.getItem('HSChainsID'));
+							overwolf.windows.minimize(localStorage.getItem('HSPercentID'));
+							overwolf.windows.minimize(localStorage.getItem('KDRID'));
+							overwolf.windows.minimize(localStorage.getItem('InfoID'));
+							overwolf.windows.minimize(localStorage.getItem('MainID'));
+							overwolf.windows.minimize(localStorage.getItem('SettingsID'));
+							overwolf.windows.minimize(localStorage.getItem('StatCrackID'));
+						}
+					}
 				}
 			}
 		);
-			
 });
 			
 			

@@ -2,20 +2,6 @@
 	overflow: hidden;
 	height: 100%;
 	width: 100%;
-	background: rgba(255, 255, 255, 0.05);
-/*  background: -webkit-linear-gradient(left bottom,rgba(255,0,0,0),rgba(255,0,0,1));*/
-/* 
-Can make beveled corners with gradients by using angles with minimal transition
-div {    
-	background:
-		linear-gradient(135deg, transparent 10px, #c00 0) top left,
-		linear-gradient(225deg, transparent 10px, #c00 0) top right,
-		linear-gradient(315deg, transparent 10px, #c00 0) bottom right,
-		linear-gradient(45deg,  transparent 10px, #c00 0) bottom left;
-	background-size: 50% 50%;
-	background-repeat: no-repeat;
-}
-*/
 }
 
 #contentbuttons{
@@ -34,11 +20,11 @@ div {
 
 
 .button:hover, .subbutton:hover{
- transform: rotateY(7deg); 
+    border-color: #F0C49B;
 }
 
 .button:active, .subbutton:active{
- transform: rotateY(11deg); 
+ transform: rotateY(10deg); 
 }
 
 .resizeGrip {
@@ -71,10 +57,34 @@ body
 }
 
 #Stats{
-	margin-top:10px;
+	margin-top: 10px;
+}
+
+#contentWrapper{
+	position: absolute;
+	top:5px;
+	bottom: 5px;
+	left: 5px;
+	right: 5px;
+	-webkit-background-clip: padding;
+	background-clip: padding-box1;
+	
+	border: 10px solid transparent;
+	border-image-source: url(../images/boxBorderNoDots.png);
+	border-image-outset: 0;
+	border-image-repeat: stretch round;
+	border-image-slice: 40% 15% 45% 15%;
+}
+
+#progress{
+	position:relative;
+	top:10px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #content {
+	display: none;
 	position: absolute;
 	top:5px;
 	bottom: 5px;
@@ -153,8 +163,8 @@ body
     text-align: center;
     padding: 3px; 
     width:140px;
-	border:none;
-	background: #585e61;
+	border: solid 1px #91765d;
+	background: #323232;/*#575857;/*#585e61;*/
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	border-radius: 0px;
@@ -189,6 +199,12 @@ body
 	font-weight: bold;
 	outline: none;
 	margin: 2px;
+		/*text-shadow:
+		-1px -1px 0 #000,  
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+		}*/
 }
 
 

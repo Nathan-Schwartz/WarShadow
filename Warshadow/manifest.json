@@ -25,11 +25,11 @@
 					"file":"html/main.html",
 					"transparent":true,
 					"resizable":true,
-					"size":{"width":160, "height":400},
+					"size":{"width":200, "height":400},
 					"min_size":{"width":0,"height":0},
 					"show_in_taskbar": true,
 					"grab_keyboard_focus": false,
-					"ignore_keyboard_events":true,
+					"ignore_keyboard_events":false,
 					"show_minimize": false
 					
 			},
@@ -139,7 +139,5 @@
 		"plugins": [
 			"npIOPlugin.dll"
 		]
-		
-		
 	}
 }
