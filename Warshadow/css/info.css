@@ -24,7 +24,7 @@ div, span, fieldset, legend{
 
 body {
 	color: rgb(5,5,5);
-	font-family: Arial;
+	font-family: Helvetica;
 }
 
 .cost{
@@ -108,18 +108,18 @@ body {
 
 
 .button:hover, .subbutton:hover{
- transform: rotateY(7deg); 
+    border-color: #F0C49B;
 }
 
 .button:active, .subbutton:active{
- transform: rotateY(11deg); 
+ transform: rotateY(10deg); 
 }
 
 .button{
     text-align: center;
     padding: 3px; 
     width:200px;
-	border:none;
+	border: solid 1px #91765d;
 	background: #585e61;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
@@ -127,10 +127,8 @@ body {
 	-webkit-box-shadow: 0px 1px 3px #666666;
 	-moz-box-shadow: 0px 1px 3px #666666;
 	box-shadow: 0px 1px 3px #666666;
-	font-family: Arial;
+	font-family: Helvetica;
 	color: #ffffff;
-	text-decoration: bold;
-	font-weight: bold;
 	outline: none;
 }
 
@@ -330,7 +328,7 @@ position: relative;
 }
 
 #spacedSlider{
-	bottom: 35px;
+	bottom: 25px;
 }
 
 .spacedR{

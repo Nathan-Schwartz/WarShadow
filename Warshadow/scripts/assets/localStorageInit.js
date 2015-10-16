@@ -16,12 +16,12 @@ define( function(){
 	
 //localStorage.removeItem('color1');
 if(!localStorage.getItem('color1')){
-	localStorage.setItem('color1', 'rgba(117,85,106,.8)');
+	localStorage.setItem('color1', 'rgba(80, 106, 104, 0.95)');
 }
 
 //localStorage.removeItem('color2');
 if(!localStorage.getItem('color2')){
-	localStorage.setItem('color2', 'rgba(130,96,96,.8)');
+	localStorage.setItem('color2', 'rgba(36, 220, 143, 0.3)');
 }
 	
 //localStorage.removeItem('Settings');

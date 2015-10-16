@@ -1,6 +1,10 @@
 
 require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "launchManager", "localStorageInit", "spectrum", 'jqueryUI'], function($ ,gEvent, wCore, rHUD, rec, launcher, localStorageInit, spectrum, jqueryUI){ 
 
+  		document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
+		document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+	
+
 	var smallwindow = false; // its ok cuz we are in a module
 	
 		function tower(){
@@ -12,7 +16,6 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 		};
 		
 		//Color pickers
-		
 		$('#cpicker1').spectrum({
 			color: localStorage.getItem('color1'),
 			preferredFormat: "rgb",
@@ -59,16 +62,14 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
       progressbar.progressbar( "value", val + 1 );
 	  
       if ( val < 99 ) {
-        setTimeout( progress, 10 );
+        setTimeout( progress, 1 );
       }
     }
  
    progress();
    
   });
-  		document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
-		document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-	
+
 		function ResizeMain(){
 		/*
 			This function will trigger upon clicking the icon in the main windows top-left corner
