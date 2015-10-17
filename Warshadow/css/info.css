@@ -119,7 +119,7 @@ body {
     text-align: center;
     padding: 3px; 
     width:200px;
-	border: solid 1px #91765d;
+	border: solid 1px #323232;/*#91765d;*/
 	background: #585e61;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
@@ -130,6 +130,8 @@ body {
 	font-family: Helvetica;
 	color: #ffffff;
 	outline: none;
+	margin: 2px auto;
+	display: block;
 }
 
 
@@ -143,7 +145,7 @@ body {
 
 .table td, .table th {
     font-size: 1em;
-    border: 1px solid #4F4F53;
+    border: 1px solid #959598;/*#4F4F53;*/
     padding: 3px 7px 2px 7px;
 }
 
@@ -284,7 +286,6 @@ position: relative;
 
 #content {
 	position: relative;
-/*	-webkit-user-select: none;*/
 }
 
 #chart{
@@ -296,11 +297,6 @@ position: relative;
 }
 
 #showfeatures{
-	margin: 0 auto;
-	display: block;
-}
-
-#resetLS, #openSettings{
 	margin: 0 auto;
 	display: block;
 }

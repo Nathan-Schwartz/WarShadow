@@ -1,11 +1,25 @@
 
-require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "launchManager", "localStorageInit", "spectrum", 'jqueryUI'], function($ ,gEvent, wCore, rHUD, rec, launcher, localStorageInit, spectrum, jqueryUI){ 
+require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "launchManager", "localStorageInit", "spectrum"], function($ ,gEvent, wCore, rHUD, rec, launcher, localStorageInit, spectrum){ 
 
   		document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
 		document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-	
+		document.getElementById("contentWrapper").style.borderImage = "url('../images/boxBorderNoDots.png') 40% 15% 40% 15% stretch round";
 
-	var smallwindow = false; // its ok cuz we are in a module
+		
+		// !!!All windows methods can now be invoked on both window name and window id (same calls, backwards compatible)
+		
+		
+	var smallwindow = false; // its not global cuz module
+	
+	//check if the window was closed while collapsed last session. If so, resize it when launching.
+	overwolf.windows.getCurrentWindow(function(window){
+		console.log("window", window);
+		if(window.window.width < 150){
+			smallwindow = true;
+			ResizeMain();
+		}
+	});
+
 	
 		function tower(){
 			window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=299691346"); // tower
@@ -20,9 +34,14 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 			color: localStorage.getItem('color1'),
 			preferredFormat: "rgb",
 			showAlpha: true,
-			clickoutFiresChange: true,
+			//clickoutFiresChange: true,
 			showButtons: false,
-			change: function(color) {
+			/*change: function(color) {
+				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+ color + "," + $("#cpicker2").spectrum("get") + ")";
+				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+				localStorage.setItem('color1', color);
+			},*/
+			move: function(color) {
 				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+ color + "," + $("#cpicker2").spectrum("get") + ")";
 				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
 				localStorage.setItem('color1', color);
@@ -33,43 +52,21 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 			color: localStorage.getItem('color2'),
 			preferredFormat: "rgb",
 			showAlpha: true,
-			clickoutFiresChange: true,
+			//clickoutFiresChange: true,
 			showButtons: false,
-			change: function(color) {
+			/*change: function(color) {
+				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+ $("#cpicker1").spectrum("get") + ","  + color + ")";
+				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+				localStorage.setItem('color2', color);
+			},*/
+			move: function(color) {
 				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+ $("#cpicker1").spectrum("get") + ","  + color + ")";
 				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
 				localStorage.setItem('color2', color);
 			}
 		});
 
-	//progress bar is here because the color picker loads slowly
-	 $(function() {
-    var progressbar = $( "#progress" ),
-      progressLabel = $( ".progress-label" );
-
-    progressbar.progressbar({
-      value: false,
-      complete: function() {
-        $('#progress').hide();
-		$("#progress").progressbar( "destroy" );
-		$("#content").fadeIn();
-      }
-    });
- 
-    function progress() {
-      var val = progressbar.progressbar( "value" ) || 0;
- 
-      progressbar.progressbar( "value", val + 1 );
-	  
-      if ( val < 99 ) {
-        setTimeout( progress, 1 );
-      }
-    }
- 
-   progress();
-   
-  });
-
+  $("#content").fadeIn();
 		function ResizeMain(){
 		/*
 			This function will trigger upon clicking the icon in the main windows top-left corner
@@ -88,7 +85,7 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,rgba(256,256,256,0),rgba(256,256,256,0))";
 				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
 				document.getElementById("contentWrapper").style.borderImage = "url('../images/closed3.png') 20% fill stretch";
-				document.getElementById("content").style.padding = "0px";
+				document.getElementById("content").style.padding = "1px";
 				overwolf.windows.changeSize(localStorage.getItem('MainID'), 80, 80);// 50 without borders
 				smallwindow=true;
 			}else
@@ -140,16 +137,23 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			
 //		Menu Listeners
 		//resize and drag
-		$("#resizeGripTopLeft").mousedown(function(){('TopLeft');});
+		/*$("#resizeGripTopLeft").mousedown(function(){('TopLeft');});
 		$("#resizeGripTop").mousedown(function(){wCore.dragResize('Top');});
 		$("#resizeGripTopRight").mousedown(function(){wCore.dragResize('TopRight');});
 		$("#resizeGripRight").mousedown(function(){wCore.dragResize('Right');});
 		$("#resizeGripBottomRight").mousedown(function(){wCore.dragResize('BottomRight');});
 		$("#resizeGripBottom").mousedown(function(){wCore.dragResize('Bottom');});
 		$("#resizeGripBottomLeft").mousedown(function(){wCore.dragResize('BottomLeft');});
-		$("#resizeGripLeft").mousedown(function(){wCore.dragResize('Left');});
-		$("#contentWrapper").mousedown(function(){wCore.dragMove();});
+		$("#resizeGripLeft").mousedown(function(){wCore.dragResize('Left');});*/
+		$("#contentWrapper").mousedown(function(e){
+		 if (!$(e.target).hasClass('draggable')) 
+			 return;
+		 
+		 wCore.dragMove();
+		});
 		//$("#content").mousedown(function(){wCore.dragMove();});
+		
+		
 		//menu buttons
 		$("#resize").dblclick(function(){ResizeMain();});
 		$("#close").click(function(){wCore.minimizeWindow();});
@@ -164,9 +168,27 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		$("#HSNum").change(function(){rHUD.refreshHUD();});
 		$("#HSPerc").change(function(){rHUD.refreshHUD();});
 		$("#HSChain").change(function(){rHUD.refreshHUD();});
-		
 		$("#KDRate").change(function(){rHUD.refreshHUD();});
 		$("#autoon").change(function(){rec.turnOn();});
+		$("#colorContainer input:checkbox[id=colorVis]").click(function() {
+			var $this = $(this);
+			if ($this.attr("checked")) {
+				$('#container').toggleClass("bigCheckbox normalCheckbox");
+			} else {
+				$this.parent().toggleClass("normalCheckbox bigCheckbox");
+			}
+		});
+		$("#colorVis").change(function(e){ 
+			if(document.getElementById("colorVis").checked === true){
+				$("#colorText").hide();
+				$("#colorbuttons").fadeIn();
+				document.getElementById("colorContainer").style.left = '5px';
+			} else{			
+				$("#colorText").fadeIn();
+				$("#colorbuttons").hide();
+				document.getElementById("colorContainer").style.left = '0px';
+			}
+		});
 		
 		//replay testing
 		$("#turnOff").click(function(){rec.turnOff();});

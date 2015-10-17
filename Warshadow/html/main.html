@@ -1,12 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
 	<head> 
-		<!--link rel='stylesheet' href='../css/jquery-ui/jquery-ui.min.css' />
-		<link rel='stylesheet' href='../css/jquery-ui/jquery-ui.theme.min.css' />
-		<link rel='stylesheet' href='../css/jquery-ui/jquery-ui.structure.min.css' /-->
-		<!--link rel="stylesheet" href="../css/absolution/theme.css" /-->
-		<link rel="stylesheet" href="../css/Aristo/theme.css" />
-		<!--link rel="stylesheet" href="../css/black-tie/theme.css" /-->
 		<link rel="stylesheet" href="../css/style.css" />
 		<link rel="stylesheet" href="../css/spectrum.css" />
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -16,33 +10,34 @@
 			
 
 	<body>
-	
-		<div class="resizeGrip" id="resizeGripTopLeft"></div>
-		<div class="resizeGrip" id="resizeGripTop"></div>
-		<div class="resizeGrip" id="resizeGripTopRight"></div>
-		<div class="resizeGrip" id="resizeGripRight"></div>
-		<div class="resizeGrip" id="resizeGripBottomRight"></div>
-		<div class="resizeGrip" id="resizeGripBottom" ></div>
-		<div class="resizeGrip" id="resizeGripBottomLeft"></div>
-		<div class="resizeGrip" id="resizeGripLeft"></div>
-		<div id="contentWrapper">
+		<div id="contentWrapper" class="draggable">
 					<div id="progress"><div class="progress-label"></div></div>
-		<div id="content">
+		<div id="content" class="draggable">
 
 		<img src="../images/IconMouseNormal.png" id="resize" alt="logo">
 		<img src="../images/minimize.png" id="close" alt="close">
 		<img src="../images/info.png" id="info" alt="info">
 		<img src="../images/options1.png" id="settingsWin" alt="settings">
-		<img src="../images/WarShadow.png" id="WarLogo" alt="settings">
+		<img src="../images/WarShadow.png" id="WarLogo" class="draggable" alt="settings">
 		<br> <br>  <br><br>
 
 		
-			<span class="squaredThree"><input type="checkbox" class="checkbox" id="HSNum" tabindex="-1"><label for="HSNum"></label></span><label for="HSNum"> # of Headshots </label><br>
-			<span class="squaredThree"><input type="checkbox" class="checkbox" id="HSPerc" tabindex="-1"><label for="HSPerc"></label></span><label for="HSPerc"> % of Headshots </label><br>
-			<span class="squaredThree"><input type="checkbox" class="checkbox" id="HSChain" tabindex="-1"><label for="HSChain"></label></span><label for="HSChain"> HS Chain Avg </label><br>
-			<span class="squaredThree"><input type="checkbox" class="checkbox" id="KDRate" tabindex="-1"><label for="KDRate"></label></span><label for="KDRate"> KDR tracker </label><br>
-			<span class="squaredThree"><input type="checkbox" class="checkbox" id="autoon" tabindex="-1"><label for="autoon"></label></span><label for="autoon"> Auto-capture </label><br>
-
+			<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="HSNum" tabindex="-1"><label for="HSNum"></label></span><label for="HSNum"> # of Headshots </label><br>
+			<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="HSPerc" tabindex="-1"><label for="HSPerc"></label></span><label for="HSPerc"> % of Headshots </label><br>
+			<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="HSChain" tabindex="-1"><label for="HSChain"></label></span><label for="HSChain"> HS Chain Avg </label><br>
+			<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="KDRate" tabindex="-1"><label for="KDRate"></label></span><label for="KDRate"> KDR tracker </label><br>
+			<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="autoon" tabindex="-1"><label for="autoon"></label></span><label for="autoon"> Auto-capture </label><br>
+			<span id="colorContainer">
+				<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="colorVis" tabindex="-1">
+					<label for="colorVis"></label>
+				</span> 
+				<span id="colorText"><label for="colorVis">Colors</label></span>
+				<span id="colorbuttons">
+					<input type='text' class="sp-dark" id="cpicker1" tabindex="-1"/>
+					<input type='text' class="sp-dark" id="cpicker2" tabindex="-1"/>
+				</span>
+			</span>
+			
 			<button id="Stats" class="button" tabindex="-1"> StatCrack </button>
 			<button class="button" id="STimer" tabindex="-1"> Smoke timer </button>
 			<button id="record" class="button" tabindex="-1"> Recording</button>
@@ -57,9 +52,6 @@
 			<button id="cold" class="subbutton" tabindex="-1">Cold Peak</button> 
 			<button id="tower" class="subbutton" tabindex="-1">Tower & Basics</button>
 		</div>
-		
-		<input type='text' class="sp-dark" id="cpicker1" tabindex="-1"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' class="sp-dark" id="cpicker2" tabindex="-1"/>
-		
 		</div>
 		</div>
 			<script>

@@ -4,13 +4,13 @@
 	width: 100%;
 }
 
-.squaredThree {
+.normalCheckbox {
   width: 20px;
   position: relative;
-  left:3px;
+  left:4px;
 
 }
-.squaredThree label {
+.normalCheckbox label {
   width: 15px;
   height: 15px;
   position: absolute;
@@ -20,7 +20,7 @@
   border-radius: 4px;
   box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.4);
 }
-.squaredThree label:after {
+.normalCheckbox label:after {
   content: '';
   width: 7px;
   height: 4px;
@@ -34,13 +34,80 @@
   opacity: 0;
   transform: rotate(-45deg);
 }
-.squaredThree label:hover::after {
+.normalCheckbox label:hover::after {
   opacity: 0.3;
 }
-.squaredThree input[type=checkbox] {
+.normalCheckbox input[type=checkbox] {
   visibility: hidden;
 }
-.squaredThree input[type=checkbox]:checked + label:after {
+.normalCheckbox input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+
+#colorbuttons{	
+	display: none;
+	position: relative;
+	top: 5px;
+}
+
+#colorContainer{
+	position: relative;
+	width: 140px;
+	margin-left: auto;
+	margin-right:auto;
+	margin-top: 0px;
+	margin-bottom: 3px;
+	top:2px;
+}
+
+#colorText{
+	position: relative;
+	right: 10px;
+}
+
+#colorVis{
+	position: relative;
+	margin: 0px 6px;
+	width: 18px;
+}*/
+
+.bigCheckbox {
+  margin: 0px;
+  width: 25px;
+  position: relative;
+  bottom: 5px;
+}
+.bigCheckbox label {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #323232;
+  border-radius: 4px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.4);
+}
+.bigCheckbox label:after {
+  content: '';
+  width: 15px;
+  height: 8px;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  border: 3px solid #fcfff4;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  opacity: 0;
+  transform: rotate(-45deg);
+}
+.bigCheckbox label:hover::after {
+  opacity: 0.3;
+}
+.bigCheckbox input[type=checkbox] {
+  visibility: hidden;
+}
+.bigCheckbox input[type=checkbox]:checked + label:after {
   opacity: 1;
 }
 
@@ -69,18 +136,9 @@
  transform: rotateY(10deg); 
 }
 
-.resizeGrip {
-	background: transparent;
-	border:none;
-	position: absolute;
-}
 
 h1 {
 	color: rgb(43,39,39);
-}
-
-#content::selection{
-	 background-color: transparent;
 }
 
 body 
@@ -110,12 +168,15 @@ body
 	right: 5px;
 	-webkit-background-clip: padding;
 	background-clip: padding-box1;
+	-webkit-user-select: none;
 	
 	border: 10px solid transparent;
+	/*
 	border-image-source: url(../images/boxBorderNoDots.png);
 	border-image-outset: 0;
 	border-image-repeat: stretch round;
 	border-image-slice: 40% 15% 45% 15%;
+	*/
 }
 
 #progress{
@@ -136,70 +197,6 @@ body
 	padding: 5px;
 }
 
-#resizeGripTop {
-	height: 5px;
-	top: 0;
-	left: 5px;
-	right: 5px;
-	cursor: ns-resize;
-}
-
-#resizeGripBottom {
-	height: 5px;
-	bottom: 0;
-	left: 5px;
-	right: 5px;
-	cursor: ns-resize;
-}
-
-#resizeGripLeft {
-	width: 5px;
-	left: 0;
-	top: 5px;
-	bottom: 5px;
-	cursor: ew-resize;
-}
-
-#resizeGripRight {
-	width: 5px;
-	right: 0;
-	top: 5px;
-	bottom: 5px;
-	cursor: ew-resize;
-}
-
-#resizeGripTopLeft {
-	width: 5px;
-	height: 5px;
-	top: 0;
-	left: 0;
-	cursor: nwse-resize;
-}
-
-#resizeGripBottomLeft {
-	width: 5px;
-	height: 5px;
-	bottom: 0;
-	left: 0;
-	cursor: nesw-resize;
-}
-
-#resizeGripTopRight {
-	width: 5px;
-	height: 5px;
-	top: 0;
-	right: 0;
-	cursor: nesw-resize;
-}
-
-#resizeGripBottomRight {
-	width: 5px;
-	height: 5px;
-	bottom: 0;
-	right: 0;
-	cursor: nwse-resize;
-}
-
 #WarLogo{
 	width: 170px;
 	position: relative;
@@ -211,18 +208,24 @@ body
     text-align: center;
     padding: 3px; 
     width:140px;
-	border: solid 1px #91765d;
+	border: solid 1px #323232;/*#91765d;*/
 	background: #323232;/*#575857;/*#585e61;*/
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
-	border-radius: 0px;
+	border-radius: 2px;
 	-webkit-box-shadow: 0px 1px 3px #666666;
 	-moz-box-shadow: 0px 1px 3px #666666;
 	box-shadow: 0px 1px 3px #666666;
 	font-family: Helvetica;
 	color: #ffffff;
 	outline: none;
-	margin: 2px;
+	margin: 2px auto;
+	display: block;
+}
+
+#colorbuttons{
+	width: 140px;
+	margin: 2px auto;
 }
 
 
@@ -231,7 +234,7 @@ body
     text-align: center;
     padding: 3px; 
     width:140px;
-	border: solid 1px #91765d;
+	border: solid 1px #8c9194;/*#91765d;*/
 	background: #8c9194;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
@@ -242,13 +245,8 @@ body
 	font-family: Helvetica;
 	color: #ffffff;
 	outline: none;
-	margin: 2px;
-		/*text-shadow:
-		-1px -1px 0 #000,  
-		1px -1px 0 #000,
-		-1px 1px 0 #000,
-		1px 1px 0 #000;
-		}*/
+	margin: 2px auto;
+	display: block;
 }
 
 
