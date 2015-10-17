@@ -16,8 +16,8 @@ require(['windowCoreFunctions', 'jquery'], function(wCore, $){
 		1000);
 	}
 
-	startTimer(14);
-		
+	startTimer(15);
+	document.getElementById("smoke_content").innerHTML = 14;
 	$("#content").mousedown(function(){wCore.dragMove();});
 	});
 		

@@ -1,5 +1,4 @@
 define(function(){
-// !!!! add reset to a hotkey
 
 	localStorage.setItem("kill", 0);
 	localStorage.setItem("headshot1" ,0);

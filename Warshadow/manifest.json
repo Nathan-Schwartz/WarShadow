@@ -8,7 +8,7 @@
 		"author":"Nathan Schwartz",
 		"icon":"images/IconMouseOver.png",
 		"icon_gray":"images/IconMouseNormal.png",
-		"description":"Demo App"
+		"description":"All the Warface features you never knew you needed."
 	},
 	"permissions": ["Hotkeys","GameInfo", "Logging", "Media", "Microphone", "GameControl", "Extensions", "DesktopStreaming" ],
 	"data": {
@@ -22,16 +22,15 @@
 		"start_window":"MainWindow",
 		"windows":{
 			"MainWindow":{
-					"file":"html/main.html",
-					"transparent":true,
-					"resizable":true,
-					"size":{"width":200, "height":400},
-					"min_size":{"width":0,"height":0},
-					"show_in_taskbar": true,
-					"grab_keyboard_focus": false,
-					"ignore_keyboard_events":false,
-					"show_minimize": false
-					
+				"file":"html/main.html",
+				"transparent":true,
+				"resizable":true,
+				"size":{"width":200, "height":400},
+				"min_size":{"width":0,"height":0},
+				"show_in_taskbar": true,
+				"grab_keyboard_focus": false,
+				"ignore_keyboard_events":false,
+				"show_minimize": false
 			},
 			"HSCounter":{
 				"file":"html/HSCounter.html",
@@ -57,8 +56,6 @@
 				"ignore_keyboard_events":true,
 				"show_minimize": false
 			},
-				
-				
 			"SmokeTimer":{
 				"file":"html/SmokeTimer.html",
 				"transparent":true,
@@ -71,7 +68,6 @@
 				"ignore_keyboard_events":true,
 				"show_minimize": false
 			},
-				
 			"StatCrack":{
 				"file":"html/StatCrack.html",
 				"transparent":false,
@@ -81,7 +77,6 @@
 				"grab_keyboard_focus": true,
 				"show_minimize": false
 			},
-
 			"HSChains":{
 				"file":"html/HSChains.html",
 				"transparent":true,
@@ -104,7 +99,6 @@
 				"grab_keyboard_focus": true,
 				"show_minimize": false
 			},	
-			
 			"Settings":{
 					"file":"html/settings.html",
 					"transparent":false,
@@ -113,7 +107,6 @@
 					"grab_keyboard_focus": true,
 					"show_minimize": false
 			},
-			
 			"KDR":{
 				"file":"html/KDR.html",
 				"transparent":true,
@@ -127,12 +120,31 @@
 				"show_minimize": false
 			}
 		},
-		
 		"hotkeys" : {
-			"crosshair": {
-				"title": "still deciding",
+			"showHideWindows": {
+				"title": "Show/Hide Windows",
 				"action-type": "custom",
-				"default": "0"
+				"default": "Ctrl+Num 9"
+			},
+			"showHideMain": {
+				"title": "Show/Hide Main Window",
+				"action-type": "custom",
+				"default": "Ctrl+Num 8"
+			},
+			"resetCounters": {
+				"title": "Reset HUD Counters",
+				"action-type": "custom",
+				"default": "Ctrl+0"
+			},
+			"capture": {
+				"title": "Capture",
+				"action-type": "custom",
+				"default": "Ctrl+Num 2"
+			},
+			 "smokeTimer": {
+            "title": "Smoke Timer",
+            "action-type": "custom",
+            "default": "Num 3"
 			}
 		},
 		

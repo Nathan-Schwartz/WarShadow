@@ -5,36 +5,36 @@ define(function () {
 			This function is responsible for opening subwindows when their elements are triggered.
 		*/
 			if (checked == true){
-				overwolf.windows.getWindowState(localStorage.getItem(ID),
+				overwolf.windows.getWindowState(name,
 					function(value){
 						if(value.window_state == "closed"){ //if it is closed we will open it
 							overwolf.windows.obtainDeclaredWindow(name, 
 								function(result){
 									if (result.status == "success")
-										overwolf.windows.restore(localStorage.getItem(ID));
+										overwolf.windows.restore(name);
 									else
 										console.log('refreshHUD failed');
 								}
 							);
 						}
 						else
-							overwolf.windows.restore(localStorage.getItem(ID));
+							overwolf.windows.restore(name);
 					}
 				);
-				overwolf.windows.restore(localStorage.getItem(ID)); //now that I know the window is running, open it.
+				overwolf.windows.restore(name); //now that I know the window is running, open it.
 			
 			}else{
-				overwolf.windows.close(localStorage.getItem(ID));
+				overwolf.windows.close(name);
 			}
 		};
 
 		function refreshHUD(){
 		//This function makes sure that all HUD elements are in the state they should be.
 		
-			document.getElementById('HSNum').checked ? refreshHelper(true,"HSCounter",'HSCounterID') : refreshHelper(false,"HSCounter","HSCounterID");
-			document.getElementById('HSChain').checked ? refreshHelper(true,"HSChains",'HSChainsID') : refreshHelper(false,"HSChains",'HSChainsID');
-			document.getElementById('HSPerc').checked ? refreshHelper(true,"HSPercent",'HSPercentID') : refreshHelper(false,"HSPercent",'HSPercentID');
-			document.getElementById('KDRate').checked ? refreshHelper(true,"KDR",'KDRID') : refreshHelper(false,"KDR",'KDRID');
+			document.getElementById('HSNum').checked ? refreshHelper(true,"HSCounter") : refreshHelper(false,"HSCounter");
+			document.getElementById('HSChain').checked ? refreshHelper(true,"HSChains") : refreshHelper(false,"HSChains");
+			document.getElementById('HSPerc').checked ? refreshHelper(true,"HSPercent") : refreshHelper(false,"HSPercent");
+			//document.getElementById('KDRate').checked ? refreshHelper(true,"KDR") : refreshHelper(false,"KDR");
 		};
 		
 		return {

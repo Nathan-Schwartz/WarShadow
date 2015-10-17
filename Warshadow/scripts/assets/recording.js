@@ -51,31 +51,25 @@ function finishCapture(){
 function capture(before, after){
 	
 	if(after == -1){ //I call this function with a -1 every time for "manual capture" 
-		if(isNaN(parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab))){
-			alert("You entered an invalid Capture duration");
-		}
-		else{
-			overwolf.media.replays.capture(before + (parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000), after, 
-				function(result){console.log("first",result);},
-				function(results){
-					console.log("second",results);
-					if(results.status== "success"){
-						overwolf.media.replays.finishCapture(results.url,
-							function(results){
-								console.log("finish capture: ", results);
-								if(results.status== "success"){
-									//alert("success");
-								}else{
-									//alert(results.error);
-								}
-							}	
-						);				
-					}
+		overwolf.media.replays.capture(parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000, after, // !!! I just took out the 'before+' that was before getting Rgrab
+			function(result){console.log("first",result);},
+			function(results){
+				console.log("second",results);
+				if(results.status== "success"){
+					overwolf.media.replays.finishCapture(results.url,
+						function(results){
+							console.log("finish capture: ", results);
+							if(results.status== "success"){
+								//alert("success");
+							}else{
+								//alert(results.error);
+							}
+						}	
+					);				
 				}
-			);
-		}
-	}
-	else{
+			}
+		);
+	}else{
 		overwolf.media.replays.capture(before, after,
 			function(result){if(result) console.log("first",result);},
 			function(results){

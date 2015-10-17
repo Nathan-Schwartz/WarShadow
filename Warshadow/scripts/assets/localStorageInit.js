@@ -64,7 +64,7 @@ localStorage.setItem('recordingOn', false); //This is a side effect of my turnOn
 		
 //Get ID's of each window
 	getWinID("MainWindow",'MainID');
-	getWinID("HSCounter",'HSCounterID');
+/*	getWinID("HSCounter",'HSCounterID');
 	getWinID("HSPercent",'HSPercentID');
 	getWinID("HSChains",'HSChainsID');
 	getWinID("SmokeTimer",'SmokeTimerID');
@@ -74,5 +74,5 @@ localStorage.setItem('recordingOn', false); //This is a side effect of my turnOn
 	getWinID("Crosshair",'CrosshairID');
 	getWinID("Settings",'SettingsID');
 	getWinID("StatCrack",'StatCrackID');
-	
+*/	
 });

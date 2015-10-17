@@ -1,12 +1,13 @@
 
-require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "launchManager", "localStorageInit", "spectrum"], function($ ,gEvent, wCore, rHUD, rec, launcher, localStorageInit, spectrum){ 
+require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "launchManager", "localStorageInit", "spectrum", 'counters'], function($ ,gEvent, wCore, rHUD, rec, launcher, localStorageInit, spectrum, counters){ 
 
   		document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
 		document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
 		document.getElementById("contentWrapper").style.borderImage = "url('../images/boxBorderNoDots.png') 40% 15% 40% 15% stretch round";
 
 		
-		// !!!All windows methods can now be invoked on both window name and window id (same calls, backwards compatible)
+		// !!! MainWindow resize window not working with name, only ID
+		//hotkey ideas: minimize only main window
 		
 		
 	var smallwindow = false; // its not global cuz module
@@ -19,7 +20,6 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 			ResizeMain();
 		}
 	});
-
 	
 		function tower(){
 			window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=299691346"); // tower
@@ -79,14 +79,16 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
 				document.getElementById("contentWrapper").style.borderImage = "url('../images/boxBorderNoDots.png') 40% 15% 40% 15% stretch round";
 				document.getElementById("content").style.padding = "5px";
-				overwolf.windows.changeSize(localStorage.getItem('MainID'), 200, 460);//160
+				//overwolf.windows.changeSize(localStorage.getItem("MainID"), 200, 460);//160
+				overwolf.windows.changeSize('MainWindow', 200, 460);//160
 				smallwindow=false;		
 			}else if(smallwindow === false){
 				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,rgba(256,256,256,0),rgba(256,256,256,0))";
 				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
 				document.getElementById("contentWrapper").style.borderImage = "url('../images/closed3.png') 20% fill stretch";
 				document.getElementById("content").style.padding = "1px";
-				overwolf.windows.changeSize(localStorage.getItem('MainID'), 80, 80);// 50 without borders
+				//overwolf.windows.changeSize(localStorage.getItem("MainID"), 80, 80);// 50 without borders
+				overwolf.windows.changeSize('MainWindow', 80, 80);// 50 without borders
 				smallwindow=true;
 			}else
 				alert("Houston we have a problem");
@@ -123,6 +125,58 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		);
 //$(document).ready(function(){});
 			
+			overwolf.settings.registerHotKey("resetCounters", function(arg) {
+				if (arg.status == "success") {
+					counters.resetCounters();
+				}
+			});
+			
+			var smoking = false;
+			var timeout = 0;
+			overwolf.settings.registerHotKey("smokeTimer", function(arg) {
+				if (arg.status == "success") {
+					if(smoking === false){
+						smoking = true;
+						rHUD.refreshHelper(true,"SmokeTimer");
+						timeout = setTimeout(function(){smoking = false}, 15000);
+					}else if(smoking === true){
+						clearTimeout(timeout);
+						rHUD.refreshHelper(false,"SmokeTimer");
+						rHUD.refreshHelper(true,"SmokeTimer");
+						timeout = setTimeout(function(){smoking = false}, 15000);
+					}
+				}
+			});
+			
+			overwolf.settings.registerHotKey("showHideWindows", function(arg) {
+				if (arg.status == "success") {
+					overwolf.windows.getCurrentWindow(function(window){
+						console.log("window", window);
+						if(window.window.isVisible === true){
+							minimizeAllWindows();
+						}else{
+							restoreAllWindows();
+						}
+					});
+				}
+			});
+			
+			
+			overwolf.settings.registerHotKey("showHideMain", function(arg) {
+				if (arg.status == "success") {
+					overwolf.windows.getCurrentWindow(function(window){
+						console.log("window", window);
+						if(window.window.isVisible === true){
+							overwolf.windows.minimize('MainWindow');
+						}else{
+							restoreAllWindows();
+						}
+					});
+				}
+			});
+			
+			
+			
 			// !!! Either make the height of the window change with the sliderToggle calls, or take them out.
 			
 			//Slider for recording
@@ -136,39 +190,28 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			});
 			
 //		Menu Listeners
-		//resize and drag
-		/*$("#resizeGripTopLeft").mousedown(function(){('TopLeft');});
-		$("#resizeGripTop").mousedown(function(){wCore.dragResize('Top');});
-		$("#resizeGripTopRight").mousedown(function(){wCore.dragResize('TopRight');});
-		$("#resizeGripRight").mousedown(function(){wCore.dragResize('Right');});
-		$("#resizeGripBottomRight").mousedown(function(){wCore.dragResize('BottomRight');});
-		$("#resizeGripBottom").mousedown(function(){wCore.dragResize('Bottom');});
-		$("#resizeGripBottomLeft").mousedown(function(){wCore.dragResize('BottomLeft');});
-		$("#resizeGripLeft").mousedown(function(){wCore.dragResize('Left');});*/
 		$("#contentWrapper").mousedown(function(e){
 		 if (!$(e.target).hasClass('draggable')) 
 			 return;
 		 
 		 wCore.dragMove();
-		});
-		//$("#content").mousedown(function(){wCore.dragMove();});
-		
+		});		
 		
 		//menu buttons
 		$("#resize").dblclick(function(){ResizeMain();});
 		$("#close").click(function(){wCore.minimizeWindow();});
 		$("#cold").click(function(){cold();});
 		$("#tower").click(function(){tower();});
-		$("#info").click(function(){rHUD.refreshHelper(true, 'Info', 'InfoID');});
-		$("#settingsWin").click(function(){rHUD.refreshHelper(true, 'Settings', 'SettingsID');});
-		$("#Stats").click(function(){rHUD.refreshHelper(true,"StatCrack",'StatCrackID');});
-		$("#STimer").click(function(){rHUD.refreshHelper(true,"SmokeTimer",'SmokeTimerID');});
+		$("#info").click(function(){rHUD.refreshHelper(true, 'Info');});
+		$("#settingsWin").click(function(){rHUD.refreshHelper(true, 'Settings');});
+		$("#Stats").click(function(){rHUD.refreshHelper(true,"StatCrack");});
+		//$("#STimer").click(function(){rHUD.refreshHelper(true,"SmokeTimer");});
 		
 		//menu checkboxes
 		$("#HSNum").change(function(){rHUD.refreshHUD();});
 		$("#HSPerc").change(function(){rHUD.refreshHUD();});
 		$("#HSChain").change(function(){rHUD.refreshHUD();});
-		$("#KDRate").change(function(){rHUD.refreshHUD();});
+		//$("#KDRate").change(function(){rHUD.refreshHUD();});
 		$("#autoon").change(function(){rec.turnOn();});
 		$("#colorContainer input:checkbox[id=colorVis]").click(function() {
 			var $this = $(this);
@@ -204,6 +247,26 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		);
 		
 		
+		function restoreAllWindows(){
+			overwolf.windows.restore("MainWindow");
+			overwolf.windows.restore("Info");
+			overwolf.windows.restore("Settings");
+			overwolf.windows.restore("StatCrack");
+			rHUD.refreshHUD();
+		};
+		
+		function minimizeAllWindows(){
+			overwolf.windows.minimize('SmokeTimer');
+			overwolf.windows.minimize('HSCounter');
+			overwolf.windows.minimize('HSChains');
+			overwolf.windows.minimize('HSPercent');
+			overwolf.windows.minimize('KDR');
+			overwolf.windows.minimize('Info');
+			overwolf.windows.minimize('MainWindow');
+			overwolf.windows.minimize('Settings');
+			overwolf.windows.minimize('StatCrack');
+		};
+		
 		//If game ends close the program, focus change manager
 		overwolf.games.onGameInfoUpdated.addListener(
 			function(resultA){
@@ -214,7 +277,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 						overwolf.games.getRunningGameInfo(
 							function (resultB){
 								if (resultB == null)
-									overwolf.windows.close(localStorage.getItem('MainID'));//game closed
+									overwolf.windows.close('MainWindow');//game closed
 							}
 						);
 					}
@@ -223,21 +286,12 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 					if (resultA.gameInfo.isInFocus  === true){
 						if(test.restoreOnTab === true){
 							//game is in focus so restore all except settings and statcrack
-							overwolf.windows.restore(localStorage.getItem('MainID'));
-							rHUD.refreshHUD();
+							restoreAllWindows();
 						}
 					}else{
 						if(test.minimizeOnTab === true){
 							//game is out of focus so minimize all
-							overwolf.windows.minimize(localStorage.getItem('SmokeTimerID'));
-							overwolf.windows.minimize(localStorage.getItem('HSCounterID'));
-							overwolf.windows.minimize(localStorage.getItem('HSChainsID'));
-							overwolf.windows.minimize(localStorage.getItem('HSPercentID'));
-							overwolf.windows.minimize(localStorage.getItem('KDRID'));
-							overwolf.windows.minimize(localStorage.getItem('InfoID'));
-							overwolf.windows.minimize(localStorage.getItem('MainID'));
-							overwolf.windows.minimize(localStorage.getItem('SettingsID'));
-							overwolf.windows.minimize(localStorage.getItem('StatCrackID'));
+							minimizeAllWindows();
 						}
 					}
 				}
