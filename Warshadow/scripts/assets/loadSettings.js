@@ -4,22 +4,29 @@ define(["jquery", "jqueryUI"], function ($) {
 		
 			var temp = JSON.parse(localStorage.getItem("Settings"));
 			
-				document.getElementById('enableRecord').checked = (temp.enableRecord?true: false);
-				document.getElementById('autoLaunch').checked = (temp.autoLaunch?true: false);
-				document.getElementById('restoreOnTab').checked = (temp.restoreOnTab?true: false);
-				document.getElementById('minimizeOnTab').checked = (temp.minimizeOnTab?true:false);
-				document.getElementById('closeOnEnd').checked = (temp.restoreOnTab?true:false);
-				document.getElementById("kill").checked = (temp.Rkill?true:false);
-				document.getElementById("defibkill").checked = (temp.Rdefib?true:false);
-				document.getElementById("severekill").checked = (temp.Rseverekill?true:false);
-				document.getElementById("perfkill").checked = (temp.Rperfkill?true:false);
-				document.getElementById("flagkill").checked = (temp.Rflagkill?true:false);
-				document.getElementById("minekill").checked = (temp.Rminekill?true:false);
-				document.getElementById("doublekill").checked = (temp.Rdoublekill?true:false);
-				document.getElementById("triplekill").checked = (temp.Rtriplekill?true:false);
-				document.getElementById("screenshot").checked = (temp.Rachievepic?true:false);
-				document.getElementById("achievevid").checked = (temp.Rachievevid?true:false);
-				document.getElementById("achievevid").checked = (temp.Rachievevid?true:false);
+
+				document.getElementById('toggleADS').checked = temp.toggleADS;
+				document.getElementById('holdADS').checked = !temp.toggleADS;
+				
+				document.getElementById('rightClickADS').checked = temp.rightClickADS;
+				if(!document.getElementById('rightClickADS').checked)
+					$("#inputADSContainer").fadeIn();// altering the value doesn't trigger "changed" so we have to manually display it.
+				
+				document.getElementById('enableRecord').checked = temp.enableRecord;
+				document.getElementById('autoLaunch').checked = temp.autoLaunch;
+				document.getElementById('restoreOnTab').checked = temp.restoreOnTab;
+				document.getElementById('minimizeOnTab').checked = temp.minimizeOnTab;
+				document.getElementById('closeOnEnd').checked = temp.closeOnEnd;
+				document.getElementById("kill").checked = temp.Rkill;
+				document.getElementById("defibkill").checked = temp.Rdefib;
+				document.getElementById("severekill").checked = temp.Rseverekill;
+				document.getElementById("perfkill").checked = temp.Rperfkill;
+				document.getElementById("flagkill").checked = temp.Rflagkill;
+				document.getElementById("minekill").checked = temp.Rminekill;
+				document.getElementById("doublekill").checked = temp.Rdoublekill;
+				document.getElementById("triplekill").checked = temp.Rtriplekill;
+				document.getElementById("screenshot").checked = temp.Rachievepic;
+				document.getElementById("achievevid").checked = temp.Rachievevid;
 				//document.getElementById("slidekill").checked = (temp.Rslidekill?true:false);
 				//document.getElementById("combokill").checked = (temp.Rcombokill?true:false);
 			

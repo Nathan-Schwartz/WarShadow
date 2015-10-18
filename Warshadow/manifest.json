@@ -10,14 +10,14 @@
 		"icon_gray":"images/IconMouseNormal.png",
 		"description":"All the Warface features you never knew you needed."
 	},
-	"permissions": ["Hotkeys","GameInfo", "Logging", "Media", "Microphone", "GameControl", "Extensions", "DesktopStreaming" ],
+	"permissions": ["Hotkeys","GameInfo", "Logging", "Media", "Microphone", "Extensions", "DesktopStreaming" ],
 	"data": {
 		"launch_events": [{
 			"event": "GameLaunch",
 			"event_data": {
 				"game_ids": [7784],
 			},
-		"start_minimized": true
+			"start_minimized": true
 		}],
 		"start_window":"MainWindow",
 		"windows":{
@@ -30,7 +30,7 @@
 				"show_in_taskbar": true,
 				"grab_keyboard_focus": false,
 				"ignore_keyboard_events":false,
-				"show_minimize": false
+				"show_minimize": true
 			},
 			"HSCounter":{
 				"file":"html/HSCounter.html",
@@ -42,6 +42,7 @@
 				"show_in_taskbar": false,
 				"grab_keyboard_focus": false,
 				"ignore_keyboard_events":true,
+				"disable_restore_animation": true,
 				"show_minimize": false
 			},
 			"HSPercent":{
@@ -54,6 +55,7 @@
 				"show_in_taskbar": false,
 				"grab_keyboard_focus": false,
 				"ignore_keyboard_events":true,
+				"disable_restore_animation": true,
 				"show_minimize": false
 			},
 			"SmokeTimer":{
@@ -66,6 +68,7 @@
 				"show_in_taskbar": false,
 				"grab_keyboard_focus": false,
 				"ignore_keyboard_events":true,
+				"disable_restore_animation": true,
 				"show_minimize": false
 			},
 			"StatCrack":{
@@ -87,6 +90,7 @@
 				"show_in_taskbar": false,
 				"grab_keyboard_focus": false,
 				"ignore_keyboard_events":true,
+				"disable_restore_animation": true,
 				"show_minimize": false
 			},
 			"Info":{
@@ -98,14 +102,14 @@
 				"start_position": {"Top": 100,"Left": 300},
 				"grab_keyboard_focus": true,
 				"show_minimize": false
-			},	
+			},
 			"Settings":{
-					"file":"html/settings.html",
-					"transparent":false,
-					"resizable":false,
-					"size":{"width":450, "height":600},
-					"grab_keyboard_focus": true,
-					"show_minimize": false
+				"file":"html/settings.html",
+				"transparent":false,
+				"resizable":false,
+				"size":{"width":450, "height":600},
+				"grab_keyboard_focus": true,
+				"show_minimize": false
 			},
 			"KDR":{
 				"file":"html/KDR.html",
@@ -117,39 +121,69 @@
 				"show_in_taskbar": false,
 				"grab_keyboard_focus": false,
 				"ignore_keyboard_events":true,
+				"disable_restore_animation": true,
 				"show_minimize": false
+			},
+			"Crosshair":{
+				"file":"html/crosshair.html",
+				"transparent":true,
+				"resizable":true,
+				"size":{"width":200, "height":200},
+				"min_size":{"width":25, "height":25},
+				"max_size":{"width":300, "height":500},
+				"show_in_taskbar": false,
+				"ignore_keyboard_events":true,
+				"grab_keyboard_focus": false,
+				"disable_restore_animation": true,
+			},
+			"popup":{
+				"file":"html/popup.html",
+				"transparent":true,
+				"resizable":false,
+				"size":{"width":300, "height":75},
+				"min_size":{"width":25, "height":10},
+				"show_in_taskbar": false,
+				"ignore_keyboard_events":true,
+				"grab_keyboard_focus": false,
+				"disable_restore_animation": true,
 			}
 		},
 		"hotkeys" : {
-			"showHideWindows": {
-				"title": "Show/Hide Windows",
-				"action-type": "custom",
-				"default": "Ctrl+Num 9"
+			"launchHideMain": {
+				"title": "Launch/Hide Menu",
+				"action-type": "toggle",
+				"default": "Num 9",
+				"passthrough": true,
 			},
-			"showHideMain": {
-				"title": "Show/Hide Main Window",
+			"showHideWindows": {
+				"title": "Show/Hide all Windows",
 				"action-type": "custom",
-				"default": "Ctrl+Num 8"
+				"default": "Num 8",
+				"passthrough": true,
 			},
 			"resetCounters": {
 				"title": "Reset HUD Counters",
 				"action-type": "custom",
-				"default": "Ctrl+0"
+				"default": "Num 0",
+				"passthrough": true,
 			},
 			"capture": {
 				"title": "Capture",
 				"action-type": "custom",
-				"default": "Ctrl+Num 2"
+				"default": "Num 7",
+				"passthrough": true,
 			},
-			 "smokeTimer": {
-            "title": "Smoke Timer",
-            "action-type": "custom",
-            "default": "Num 3"
-			}
+			"smokeTimer": {
+				"title": "Smoke Timer",
+				"action-type": "custom",
+				"default": "Num 3",
+				"passthrough": true,
+			},
 		},
 		
 		"plugins": [
-			"npIOPlugin.dll"
+			"npIOPlugin.dll",
+			"InputTrackerPlugin.dll"
 		]
 	}
 }

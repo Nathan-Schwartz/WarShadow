@@ -1,6 +1,52 @@
 
 	require(['jquery','windowCoreFunctions', 'loadSettings','updateSettings', 'counters', 'jqueryUI'], function($,wCore, loadS, updateS, counters, jqueryUI){
 
+	function plugin() {
+        return document.querySelector('#plugin');
+	}
+		
+	(plugin() == null) ? console.log("Plugin couldn't be loaded??") : console.log('yayyy');
+
+	
+	//OK so the plan here is to grab a button when the user wants one. After 1 button is pushed, make an indicator for when it is toggled again.
+	function checkADS(){
+		console.log("checkADS");
+		var checked = false;
+		plugin().onKeyDown = function (e) {
+			var saved = parseInt(localStorage.getItem("ADSkey"));
+			if(checked)
+				plugin().onKeyDown = null;
+			
+			if(saved == e){
+				document.getElementById('displayWhenADS').style.backgroundColor = "gray";
+				setTimeout( function(){document.getElementById('displayWhenADS').style.backgroundColor = "white";}, 500);
+				checked = true;
+			}
+		};
+	};
+	
+	function grabADS(){
+		document.getElementById("grabADS").innerHTML = "Grab ADS";
+		console.log("ads called");
+		plugin().onKeyDown = null;//end checkADS's listener in case it got called before.
+		
+		var set = false;
+		plugin().onKeyDown = function (e) {
+			console.log("key registered", e);
+			if(set === false){
+				localStorage.setItem("ADSkey", String(e));
+				updateS.updateSettings();
+			}
+			set = true;
+			checkADS();
+		};
+
+		
+		
+	};
+	
+	
+	
 	//before slider
 	$(function() {
 			$( "#beforeSlider" ).slider({
@@ -46,7 +92,7 @@
 			$( "#grabSliderValue" ).val( $( "#grabSlider" ).slider( "value" )  + " seconds");
 		});
 		
-		
+
 	loadS.loadSettings();	// This will load current setting that were previously stored in localStorage
 			
 //		Menu Listeners
@@ -61,29 +107,27 @@
 			});
 		$("#resetLS").click(function(){counters.resetCounters();});
 		$("#openSettings").click(function(){window.location.assign('overwolf://settings/capture');});
+		$("#grabADS").click(function(){
+			console.log("clicked");
+			document.getElementById("grabADS").innerHTML = "Waiting for button";
+			grabADS();
+		});
 		
 		//menu checkboxes //
-		$("#enableRecord").change(function(){updateS.updateSettings();});
-		$("#autoLaunch").change(function(){updateS.updateSettings();});
-		$("#minimizeOnTab").change(function(){updateS.updateSettings();});
-		$("#restoreOnTab").change(function(){updateS.updateSettings();});
-		$("#closeOnEnd").change(function(){updateS.updateSettings();});
-		$("#kill").change(function(){updateS.updateSettings();});
-		$("#doublekill").change(function(){updateS.updateSettings();});
-		$("#triplekill").change(function(){updateS.updateSettings();});
-		$("#perfkill").change(function(){updateS.updateSettings();});
-		$("#flagkill").change(function(){updateS.updateSettings();});
-		$("#screenshot").change(function(){updateS.updateSettings();});
-		$("#achievevid").change(function(){updateS.updateSettings();});
-		$("#severekill").change(function(){updateS.updateSettings();});
-		$("#HSlength").change(function(){updateS.updateSettings();});
-		$("#Grenlength").change(function(){updateS.updateSettings();});
-		$("#Meleelength").change(function(){updateS.updateSettings();});
-		$("#minekill").change(function(){updateS.updateSettings();});
-		$("#defibkill").change(function(){updateS.updateSettings();});
+		$("#enableRecord, #autoLaunch, #minimizeOnTab, #restoreOnTab, #closeOnEnd, #kill, #doublekill, #triplekill, #perfkill, #flagkill, #screenshot, #achievevid, #severekill, #HSlength, #Grenlength, #Meleelength, #minekill, #defibkill").change(function(){updateS.updateSettings();});
+		$("#rightClickADS").change(function(){
+			document.getElementById("rightClickADS").checked 
+			? $("#inputADSContainer").fadeOut()
+			: $("#inputADSContainer").fadeIn();
+			updateS.updateSettings();
+		});
 		//$("#combokill").change(function(){updateS.updateSettings();});
 		//$("#slidekill").change(function(){updateS.updateSettings();});
 
+		//Menu radio
+		$("#holdADS").change(function(){updateS.updateSettings();});
+		$("#toggleADS").change(function(){updateS.updateSettings();});
+		
 
 });
 			

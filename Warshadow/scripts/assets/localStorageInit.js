@@ -13,6 +13,16 @@ define( function(){
 			}
 		);
 	};	
+
+//localStorage.removeItem('message');
+if(!localStorage.getItem("message")){
+	localStorage.setItem("message", "Generic Message");
+}
+	
+//localStorage.removeItem('ADSkey');
+if(!localStorage.getItem("ADSkey")){
+	localStorage.setItem("ADSkey", "221");
+}	
 	
 //localStorage.removeItem('color1');
 if(!localStorage.getItem('color1')){
@@ -27,6 +37,9 @@ if(!localStorage.getItem('color2')){
 //localStorage.removeItem('Settings');
 if(!localStorage.getItem('Settings')){
 	var Settings = {
+		toggleADS : true,
+		rightClickADS : true,
+		
 		enableRecord: false,
 		autoLaunch: true,
 		restoreOnTab: true,

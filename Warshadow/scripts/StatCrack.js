@@ -167,6 +167,13 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 			e.preventDefault();
 		});
 	});
+	
+	$("#content").mousedown(function(e){
+		 if (!$(e.target).hasClass('StatContent') && !$(e.target).hasClass('active') && !$(e.target).hasClass('tabs') && !$(e.target).hasClass('repair') && !$(e.target).hasClass('spacedR') && !$(e.target).hasClass('cost') && !$(e.target).hasClass('income') && !$(e.target).hasClass('net') && !$(e.target).hasClass('standard') && !$(e.target).hasClass('tab') && !$(e.target).hasClass('table') && !$(e.target).hasClass('tab-content')&& !$(e.target).hasClass('spaced')) 
+			 return;
+		 
+		 wCore.dragMove();
+		});	
 
 
 //jQuery spaghetti for displaying comparison charts
@@ -267,6 +274,8 @@ $('#RCprimary').change(function(){ // !!! I could encapsulate the callback so i 
 });
 
 $('#RCsecondary').mousedown(function(){
+	// !!! I could make array look up and call shit with something like this: console.log("this: ", "'#" + this.id + "'");
+	awgaerhearh = "'#" + this.id + "'";
 	$(currentTable).hide();
 	currentTable = '#sideSecondary';
 	$("#sideSecondary").fadeIn();

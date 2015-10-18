@@ -3,26 +3,31 @@ define(["jquery", "jqueryUI"], function ($) {
 
 		function updateSettings(){//Update localStorage with newest settings
 			var temp = JSON.parse(localStorage.getItem("Settings"));
-		
+
+			
 			temp.Rgrab = $( "#grabSlider" ).slider( "value" );
 			temp.Rafter = $( "#afterSlider" ).slider( "value" );
 			temp.Rbefore = $( "#beforeSlider" ).slider( "value" );
-
-			temp.enableRecord = (document.getElementById("enableRecord").checked?true:false);
-			temp.autoLaunch = (document.getElementById("autoLaunch").checked?true:false);
-			temp.closeOnEnd = (document.getElementById("closeOnEnd").checked?true:false);
-			temp.restoreOnTab = (document.getElementById('restoreOnTab').checked?true:false);
-			temp.minimizeOnTab = (document.getElementById('minimizeOnTab').checked?true:false);
-			temp.Rkill = (document.getElementById("kill").checked?true:false);
-			temp.Rdefib = (document.getElementById("defibkill").checked?true:false);
-			temp.Rseverekill = (document.getElementById("severekill").checked?true:false);
-			temp.Rperfkill = (document.getElementById("perfkill").checked?true:false);
-			temp.Rflagkill = (document.getElementById("flagkill").checked?true:false);
-			temp.Rminekill = (document.getElementById("minekill").checked?true:false);
-			temp.Rdoublekill = (document.getElementById("doublekill").checked?true:false);
-			temp.Rtriplekill = (document.getElementById("triplekill").checked?true:false);
-			temp.Rachievepic = (document.getElementById('screenshot').checked?true:false);
-			temp.Rachievevid = (document.getElementById('achievevid').checked?true:false);
+		
+			
+			temp.toggleADS = document.getElementById('toggleADS').checked;
+			temp.rightClickADS = document.getElementById('rightClickADS').checked;
+			
+			temp.enableRecord = document.getElementById("enableRecord").checked;
+			temp.autoLaunch = document.getElementById("autoLaunch").checked;
+			temp.closeOnEnd = document.getElementById("closeOnEnd").checked;
+			temp.restoreOnTab = document.getElementById('restoreOnTab').checked;
+			temp.minimizeOnTab = document.getElementById('minimizeOnTab').checked;
+			temp.Rkill = document.getElementById("kill").checked;
+			temp.Rdefib = document.getElementById("defibkill").checked;
+			temp.Rseverekill = document.getElementById("severekill").checked;
+			temp.Rperfkill = document.getElementById("perfkill").checked;
+			temp.Rflagkill = document.getElementById("flagkill").checked;
+			temp.Rminekill = document.getElementById("minekill").checked;
+			temp.Rdoublekill = document.getElementById("doublekill").checked;
+			temp.Rtriplekill = document.getElementById("triplekill").checked;
+			temp.Rachievepic = document.getElementById('screenshot').checked;
+			temp.Rachievevid = document.getElementById('achievevid').checked;
 			//temp.Rslidekill = (document.getElementById("slidekill").checked?true:false);
 			//temp.Rcombokill = (document.getElementById("combokill").checked?true:false);
 			

@@ -376,6 +376,7 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 	-moz-box-shadow: 0px 1px 3px #666666;
 	box-shadow: 0px 1px 3px #666666;
 	border-radius: 2px;
+	opacity: .9;
 }
 .sp-replacer:hover, .sp-replacer.sp-active {
     border-color: #F0C49B;

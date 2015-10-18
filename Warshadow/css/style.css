@@ -19,6 +19,7 @@
   background: #323232;
   border-radius: 4px;
   box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.4);
+  opacity: .9;
 }
 .normalCheckbox label:after {
   content: '';
@@ -86,6 +87,7 @@
   background: #323232;
   border-radius: 4px;
   box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.4);
+  opacity: .9;
 }
 .bigCheckbox label:after {
   content: '';
@@ -128,7 +130,7 @@
 }
 
 
-.button:hover, .subbutton:hover{
+.button:hover, .subbutton:hover, .smallbutton:hover{
     border-color: #F0C49B;
 }
 
@@ -204,6 +206,32 @@ body
 	right: 10px;
 }
 
+.smallbutton{
+  width: 20px;
+  height: 20px;
+  -webkit-border-radius: 2;
+  -moz-border-radius: 2;
+  border-radius: 2px;
+  font-family: Helvetica;
+  color: #ffffff;
+  background: #323232;
+  text-decoration: bold;
+  font-weight: bold;
+  border: solid 1px #323232;
+  outline: none;
+  text-align: center;
+    -webkit-box-shadow: 0px 1px 3px #666666;
+	-moz-box-shadow: 0px 1px 3px #666666;
+	box-shadow: 0px 1px 3px #666666;
+  display: block;
+  opacity: .9;
+  	position: absolute;
+}
+
+label{
+	opacity: .9;
+}
+
 .button{
     text-align: center;
     padding: 3px; 
@@ -221,6 +249,7 @@ body
 	outline: none;
 	margin: 2px auto;
 	display: block;
+	opacity: .9;
 }
 
 #colorbuttons{
@@ -230,7 +259,6 @@ body
 
 
 .subbutton{
- 
     text-align: center;
     padding: 3px; 
     width:140px;
@@ -250,28 +278,28 @@ body
 }
 
 
-#settingsWin{
-	background-size: 15px 15px;
-	background-repeat:no-repeat;
-	width: 15px;
-	height:15px;
-	position: absolute;
-	top:2px;
-	left:101px;
-	z-index:1;
-	opacity: .8;
-}
 
 #info{
-	background-size: 15px 15px;
-	background-repeat:no-repeat;
-	width: 15px;
-	height:15px;
-	position: absolute;
 	top:2px;
-	left:118px;
-	opacity: .8;
-	z-index:1;
+	left:94px;
+}
+
+#minimize{
+top:2px;
+left:116px;
+font-size: 15px;
+}
+#close{
+top:2px;
+left:138px;
+font-size: 15px;
+}
+#settingsWin{
+	background: url("../images/options.png") no-repeat scroll 0 0 transparent;
+	background-size: 18px 18px;
+	background-repeat:no-repeat;
+	top:2px;
+	left:72px;
 }
 
 #resize{
@@ -281,17 +309,5 @@ z-index:0;
 top: 0px;
 left: 0px;
 position: absolute;
-opacity: .8;
-}
-
-#close{
-background-size: 15px 15px;
-background-repeat:no-repeat;
-width: 15px;
-height:15px;
-position: absolute;
-top:2px;
-left:135px;
-z-index:1;
 opacity: .8;
 }

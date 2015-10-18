@@ -5,11 +5,11 @@ require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters
 		
 	function avgChain(){
 		//the commented out stuff was before they changed how combos were registered in the game
-		var headshot1 = counters.getHeadshot(1); //parseInt(localStorage.getItem("headshot1"));
-		var headshot2 = counters.getHeadshot(2); //parseInt(localStorage.getItem('headshot2'));
-		var headshot3 = counters.getHeadshot(3); //parseInt(localStorage.getItem('headshot3'));
-		var headshot4 = counters.getHeadshot(4); //parseInt(localStorage.getItem('headshot4'));
-		var headshot5 = counters.getHeadshot(5); //parseInt(localStorage.getItem('headshot5'));
+		var headshot1 = counters.getHeadshot(1);
+		var headshot2 = counters.getHeadshot(2);
+		var headshot3 = counters.getHeadshot(3);
+		var headshot4 = counters.getHeadshot(4);
+		var headshot5 = counters.getHeadshot(5);
 		
 		//Since we know how many headshots have happened (kept in localStorage), all we need to do is figure out how many individual chains there were.
 

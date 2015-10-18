@@ -34,6 +34,8 @@ require.config({
 			counters: 'assets/counters',
 			launchManager: 'assets/launchManager',
 			localStorageInit: 'assets/localStorageInit',
-			spectrum: 'lib/spectrum'
+			spectrum: 'lib/spectrum',
+			crosshair: 'crosshair',
+			popup: 'popup'
 		}
 });

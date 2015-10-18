@@ -1,4 +1,9 @@
-define(function () {		
+define(["refreshHUD"], function(rec) {		
+
+	overwolf.media.onScreenshotTaken.addListener(function(){
+		localStorage.setItem('message', "Screenshot taken");
+		rHUD.refreshHelper(true,"popup");
+	});
 
 	function turnOn(){
 		overwolf.media.replays.turnOn(
@@ -7,6 +12,8 @@ define(function () {
 				console.log(result);
 				if(result.status== "success"){
 					localStorage.setItem('recordingOn', true);
+					localStorage.setItem('message', "Replay Started");
+					rHUD.refreshHelper(true,"popup");
 				}else{
 					if(result.error == "Already turned on." && JSON.parse(localStorage.getItem('recordingOn')) === false){
 						alert("Another app hijacked the recording feature!! I can't believe you have another recording app, I thought what we had was special :( \n\n This problem happens because only 1 recording can happen at a time. To fix this problem open up the other program and turn off the recording. To prevent this issue in the future you could prevent it from auto-launching with each game (assuming it has this option). If you really don't want to use my awesome auto-recording feature, I have made it easy to disable it in settings.");
@@ -52,7 +59,7 @@ function capture(before, after){
 	
 	if(after == -1){ //I call this function with a -1 every time for "manual capture" 
 		overwolf.media.replays.capture(parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000, after, // !!! I just took out the 'before+' that was before getting Rgrab
-			function(result){console.log("first",result);},
+			function(result){console.log("first",result); localStorage.setItem('message', "Video Captured"); rHUD.refreshHelper(true,"popup");},
 			function(results){
 				console.log("second",results);
 				if(results.status== "success"){

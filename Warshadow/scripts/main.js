@@ -3,18 +3,108 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 
   		document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
 		document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-		document.getElementById("contentWrapper").style.borderImage = "url('../images/boxBorderNoDots.png') 40% 15% 40% 15% stretch round";
+		document.getElementById("contentWrapper").style.borderImage = "url('../images/boxBorderNoDots.png') 40% 15% 50% 15% stretch round";
 
+	function plugin() {
+        return document.querySelector('#plugin');
+	}
+	
+	(plugin() == null) ? console.log("Plugin couldn't be loaded??") : pluginListeners();
+
+	
+	//these variables are basically used as temps so that i don't have to get the settings from localStorage each time the events are triggered
+	var rightclick = true;
+	var altkey = 221;
+	var toggle = true;
+	var gamefocus = true;
+	function updateADS(){
+		altkey = parseInt(localStorage.getItem("ADSkey"));
+		temp = JSON.parse(localStorage.getItem("Settings"));
+		rightclick = temp.rightClickADS;
+		toggle = temp.toggleADS;
+		overwolf.games.getRunningGameInfo(function(info){
+			if(info === null)
+				gamefocus = false;
+			else
+				gamefocus = info.isInFocus;
+		});
+		plugin().onMouseRButtonDown = null;
+		plugin().onMouseRButtonUP = null;
+		plugin().onKeyDown = null;
+		plugin().onKeyup = null;
+		pluginListeners();
+	};
+	updateADS();
+	
+	var zoomed = false;
+	function pluginListeners(){
+		//console.log("plisten");
+		//if(gamefocus){
 		
+			
+			var toggleCounter = 0;
+			if(rightclick && toggle){
+				plugin().onMouseRButtonDown = function (x,y) {
+					toggleCounter++;
+					toggleCounter%2 == 0 ? overwolf.windows.minimize('Crosshair') : overwolf.windows.restore('Crosshair');
+				};
+
+			}else if(rightclick && !toggle){
+				plugin().onMouseRButtonDown = function (x,y) {
+					console.log("onMouseRButtonDown: ", x,y);
+					overwolf.windows.minimize('Crosshair');
+				};
+				plugin().onMouseRButtonUP = function (x,y) {
+					console.log("onMouseRButtonUP: ", x,y);
+					overwolf.windows.restore('Crosshair');
+				};
+			}else if(!rightclick && toggle){
+				plugin().onKeyDown = function (e) {
+					console.log("onKeyDown", e);
+					if(parseInt(altkey) == parseInt(e)){
+						toggleCounter++;
+						toggleCounter%2 == 0 ? overwolf.windows.minimize('Crosshair') : overwolf.windows.restore('Crosshair');
+					}
+				};
+			}else if(!rightclick && !toggle){
+				plugin().onKeyDown = function (e) {
+					console.log("onKeyDown", e);
+					console.log("altkey", altkey);
+					if(parseInt(altkey) == parseInt(e)){
+						overwolf.windows.minimize('Crosshair');
+					}
+				};
+				plugin().onKeyup = function (e) {
+					console.log("onKeyUp", e);
+					if(parseInt(altkey) == parseInt(e)){
+						overwolf.windows.restore('Crosshair');
+					}
+				};
+			}
+		//}
+	};
+
+		// !!!!!! crashing when exiting settings page
+		// !!! mainwindow didn't open into warface, idk why
+		
+		// !!! consolidate listeners with multi-selectors
 		// !!! MainWindow resize window not working with name, only ID
-		//hotkey ideas: minimize only main window
-		
+		// !!!hotkey ideas??
+		// !!!disable_restore_animation on what windows
+		// !!! tooltips?
+		// !!! launching lowering music volume?
+		// !!! finish easy coderbytes
+		// !!! read the callback, this, and closure sexyjs articles again
+		// !!! fix outputting the file name to the list in crosshair js
+		// !!! make pop up windows for recording enabled and capture/screenshot taken
+		// !!! sexify crosshair window
+		// !!! get overwolf language and make the app that language as well
 		
 	var smallwindow = false; // its not global cuz module
 	
 	//check if the window was closed while collapsed last session. If so, resize it when launching.
 	overwolf.windows.getCurrentWindow(function(window){
-		console.log("window", window);
+	//	console.log("window", window);
 		if(window.window.width < 150){
 			smallwindow = true;
 			ResizeMain();
@@ -34,13 +124,7 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 			color: localStorage.getItem('color1'),
 			preferredFormat: "rgb",
 			showAlpha: true,
-			//clickoutFiresChange: true,
 			showButtons: false,
-			/*change: function(color) {
-				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+ color + "," + $("#cpicker2").spectrum("get") + ")";
-				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-				localStorage.setItem('color1', color);
-			},*/
 			move: function(color) {
 				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+ color + "," + $("#cpicker2").spectrum("get") + ")";
 				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
@@ -52,13 +136,7 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 			color: localStorage.getItem('color2'),
 			preferredFormat: "rgb",
 			showAlpha: true,
-			//clickoutFiresChange: true,
 			showButtons: false,
-			/*change: function(color) {
-				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+ $("#cpicker1").spectrum("get") + ","  + color + ")";
-				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-				localStorage.setItem('color2', color);
-			},*/
 			move: function(color) {
 				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+ $("#cpicker1").spectrum("get") + ","  + color + ")";
 				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
@@ -77,18 +155,18 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 			if(smallwindow === true){
 				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  $("#cpicker1").spectrum("get") + "," + $("#cpicker2").spectrum("get") + ")";
 				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-				document.getElementById("contentWrapper").style.borderImage = "url('../images/boxBorderNoDots.png') 40% 15% 40% 15% stretch round";
+				document.getElementById("contentWrapper").style.borderImage = "url('../images/boxBorderNoDots.png') 40% 15% 50% 15% stretch round";
 				document.getElementById("content").style.padding = "5px";
-				//overwolf.windows.changeSize(localStorage.getItem("MainID"), 200, 460);//160
-				overwolf.windows.changeSize('MainWindow', 200, 460);//160
+				overwolf.windows.changeSize(localStorage.getItem("MainID"), 200, 460);
+				//overwolf.windows.changeSize('MainWindow', 200, 460);//160
 				smallwindow=false;		
 			}else if(smallwindow === false){
 				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,rgba(256,256,256,0),rgba(256,256,256,0))";
 				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
 				document.getElementById("contentWrapper").style.borderImage = "url('../images/closed3.png') 20% fill stretch";
 				document.getElementById("content").style.padding = "1px";
-				//overwolf.windows.changeSize(localStorage.getItem("MainID"), 80, 80);// 50 without borders
-				overwolf.windows.changeSize('MainWindow', 80, 80);// 50 without borders
+				overwolf.windows.changeSize(localStorage.getItem("MainID"), 80, 80);
+				//overwolf.windows.changeSize('MainWindow', 80, 80);// 50 without borders
 				smallwindow=true;
 			}else
 				alert("Houston we have a problem");
@@ -123,7 +201,10 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 				}
 			}
 		);
+		
 //$(document).ready(function(){});
+
+		window.addEventListener("storage", updateADS, false);
 			
 			overwolf.settings.registerHotKey("resetCounters", function(arg) {
 				if (arg.status == "success") {
@@ -148,26 +229,26 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 				}
 			});
 			
+			var zoomed = true;
+			overwolf.settings.registerHotKey("crosshair", function(arg) {
+				if (arg.status == "success") {
+					if(zoomed === true){
+						overwolf.windows.minimize('Crosshair');
+						zoomed = false;
+					}else if(zoomed === false){
+						overwolf.windows.restore('Crosshair');
+						zoomed = true;
+					}
+				}
+			});
+			
+			
 			overwolf.settings.registerHotKey("showHideWindows", function(arg) {
 				if (arg.status == "success") {
 					overwolf.windows.getCurrentWindow(function(window){
 						console.log("window", window);
 						if(window.window.isVisible === true){
 							minimizeAllWindows();
-						}else{
-							restoreAllWindows();
-						}
-					});
-				}
-			});
-			
-			
-			overwolf.settings.registerHotKey("showHideMain", function(arg) {
-				if (arg.status == "success") {
-					overwolf.windows.getCurrentWindow(function(window){
-						console.log("window", window);
-						if(window.window.isVisible === true){
-							overwolf.windows.minimize('MainWindow');
 						}else{
 							restoreAllWindows();
 						}
@@ -197,9 +278,13 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		 wCore.dragMove();
 		});		
 		
+		// !!! put in the popup "in_game_only": true,
+		
 		//menu buttons
 		$("#resize").dblclick(function(){ResizeMain();});
-		$("#close").click(function(){wCore.minimizeWindow();});
+		$("#minimize").click(function(){wCore.minimizeWindow();});
+		$("#popup").click(function(){rHUD.refreshHelper(true, 'popup');});
+		$("#close").click(function(){wCore.closeWindow();});
 		$("#cold").click(function(){cold();});
 		$("#tower").click(function(){tower();});
 		$("#info").click(function(){rHUD.refreshHelper(true, 'Info');});
@@ -209,6 +294,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		
 		//menu checkboxes
 		$("#HSNum").change(function(){rHUD.refreshHUD();});
+		$("#crosshair").change(function(){rHUD.refreshHUD();});
 		$("#HSPerc").change(function(){rHUD.refreshHUD();});
 		$("#HSChain").change(function(){rHUD.refreshHUD();});
 		//$("#KDRate").change(function(){rHUD.refreshHUD();});
@@ -294,6 +380,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 							minimizeAllWindows();
 						}
 					}
+					updateADS();
 				}
 			}
 		);

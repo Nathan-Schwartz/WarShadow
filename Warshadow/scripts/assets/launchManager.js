@@ -9,12 +9,12 @@ function launchData(){
 	var launchData = new Object;
 	
 	overwolf.windows.getCurrentWindow(function(data){
-		console.log('currentwindow', data);
+		//console.log('currentwindow', data);
 		launchData.autoLaunch = !data.window.isVisible;
 	});
 	
 	overwolf.games.getRunningGameInfo(function(data){
-		console.log("runningGameInfo",data);
+		//console.log("runningGameInfo",data);
 		if(data !== null){
 			launchData.focused = data.isInFocus;
 
@@ -31,7 +31,7 @@ function launchData(){
 var launch = launchData();
 	
 setTimeout(function(){ //all properties of launch were returning as undefined until i delayed using them.
-	console.log("launch", launch);
+	//console.log("launch", launch);
 
 	if(launch.autoLaunch === true || (launch.autoLaunch === false && launch.playing === false)){
 		console.log("auto or prelaunch");

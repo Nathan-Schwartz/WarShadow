@@ -41,6 +41,9 @@ body {
 	font-weight: bold;
 }
 
+#inputADSContainer{
+	display: none;
+}
 
 #repCalc{
 	height: 150px;

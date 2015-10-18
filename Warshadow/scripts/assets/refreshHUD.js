@@ -21,7 +21,7 @@ define(function () {
 							overwolf.windows.restore(name);
 					}
 				);
-				overwolf.windows.restore(name); //now that I know the window is running, open it.
+				overwolf.windows.restore(name); // !!! necessary?
 			
 			}else{
 				overwolf.windows.close(name);
@@ -35,6 +35,7 @@ define(function () {
 			document.getElementById('HSChain').checked ? refreshHelper(true,"HSChains") : refreshHelper(false,"HSChains");
 			document.getElementById('HSPerc').checked ? refreshHelper(true,"HSPercent") : refreshHelper(false,"HSPercent");
 			//document.getElementById('KDRate').checked ? refreshHelper(true,"KDR") : refreshHelper(false,"KDR");
+			document.getElementById('crosshair').checked ? refreshHelper(true,"Crosshair") : refreshHelper(false,"Crosshair");
 		};
 		
 		return {
