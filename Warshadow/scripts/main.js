@@ -3,7 +3,7 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 
   		document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
 		document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-		document.getElementById("contentWrapper").style.borderImage = "url('../images/boxBorderNoDots.png') 40% 15% 50% 15% stretch round";
+		document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
 
 	function plugin() {
         return document.querySelector('#plugin');
@@ -155,7 +155,7 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 			if(smallwindow === true){
 				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  $("#cpicker1").spectrum("get") + "," + $("#cpicker2").spectrum("get") + ")";
 				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-				document.getElementById("contentWrapper").style.borderImage = "url('../images/boxBorderNoDots.png') 40% 15% 50% 15% stretch round";
+				document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
 				document.getElementById("content").style.padding = "5px";
 				overwolf.windows.changeSize(localStorage.getItem("MainID"), 200, 460);
 				//overwolf.windows.changeSize('MainWindow', 200, 460);//160
@@ -163,7 +163,7 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 			}else if(smallwindow === false){
 				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,rgba(256,256,256,0),rgba(256,256,256,0))";
 				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-				document.getElementById("contentWrapper").style.borderImage = "url('../images/closed3.png') 20% fill stretch";
+				document.getElementById("contentWrapper").style.borderImage = "url('../images/closed.png') 20% fill stretch";
 				document.getElementById("content").style.padding = "1px";
 				overwolf.windows.changeSize(localStorage.getItem("MainID"), 80, 80);
 				//overwolf.windows.changeSize('MainWindow', 80, 80);// 50 without borders

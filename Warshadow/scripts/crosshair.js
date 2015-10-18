@@ -117,7 +117,7 @@ function setX(){
 	document.getElementById("form").innerHTML = url;
 	$( "#preview" ).remove();
 };
-document.getElementById("content").style.borderImage = "url('../images/boxBorderNoDots.png') 40% 15% 50% 15% stretch round";
+document.getElementById("content").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
 document.getElementById("drop").onchange = function(){setXPreview(document.getElementById("drop").value);};
 document.getElementById("content").onmousedown = function(){wCore.dragMove();};
 document.getElementById("hide").onmousedown = function(){
