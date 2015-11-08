@@ -1,4 +1,3 @@
-
 require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters){
 			
 	function calcKD(){

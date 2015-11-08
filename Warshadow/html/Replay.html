@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<link rel="stylesheet" href="../css/popup.css" />
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
+		<title>MediaPlayer</title>
+	</head>
+	<body>
+		<div id="Replay">
+			<button id="play" class="control"> Play </button>
+			<button id="back10" class="control"> <-10 </button>
+			<button id="stop" class="control"> Stop </button>
+			<button id="volumeUp" class="control"> V up </button>
+			<button id="volumeDown" class="control"> V down </button>
+			
+		</div>
+		<script>
+		require(["requireConfig"], function(){
+					require(["Replay"]);
+				});
+		</script>
+	</body>
+</html>

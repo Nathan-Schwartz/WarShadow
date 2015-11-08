@@ -1,4 +1,3 @@
-
 require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters){
 
 	document.getElementById("HScount").innerHTML = 0 + " Hs";

@@ -1,9 +1,7 @@
-
 define(['goog!visualization,1,packages:[corechart,line]'], function(){
 	//gAPI.google.load('visualization', '1', {packages: ['corechart', 'line']}); //syntax before implementing Require.js plugin
 	
-function graphIT(myData) {
-// fontName: <string>,color: <string>,fontSize: 20,
+	function graphIT(myData) {
 		var options = {
 			legend: { position: 'bottom' },
 			backgroundColor: {stroke: 'black',strokeWidth: 3, fill: '#F9F9F9'},

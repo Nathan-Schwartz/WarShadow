@@ -7,7 +7,7 @@
 .normalCheckbox {
   width: 20px;
   position: relative;
-  left:4px;
+  left:5px;
 
 }
 .normalCheckbox label {
@@ -79,12 +79,13 @@
   bottom: 5px;
 }
 .bigCheckbox label {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   position: absolute;
   top: 0;
   left: 0;
   background: #323232;
+  border: solid 1px #323232;
   border-radius: 4px;
   box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.4);
   opacity: .9;
@@ -130,7 +131,7 @@
 }
 
 
-.button:hover, .subbutton:hover, .smallbutton:hover{
+.button:hover, .subbutton:hover, .bigCheckbox label:hover, .smallbutton:hover{
     border-color: #F0C49B;
 }
 
@@ -147,12 +148,8 @@ body
 {
 	color: rgb(250,250,250);
 	font-family: Helvetica;	
-	text-shadow:
-		-1px -1px 0 #000,  
-		1px -1px 0 #000,
-		-1px 1px 0 #000,
-		1px 1px 0 #000;
-		}
+	text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;
+}
 
 #turnOff{
 	margin-bottom: 5px;
@@ -171,7 +168,6 @@ body
 	-webkit-background-clip: padding;
 	background-clip: padding-box1;
 	-webkit-user-select: none;
-	
 	border: 10px solid transparent;
 	/*
 	border-image-source: url(../images/boxBorderNoDots.png);
@@ -225,7 +221,7 @@ body
 	box-shadow: 0px 1px 3px #666666;
   display: block;
   opacity: .9;
-  	position: absolute;
+  position: absolute;
 }
 
 label{
@@ -262,8 +258,8 @@ label{
     text-align: center;
     padding: 3px; 
     width:140px;
-	border: solid 1px #8c9194;/*#91765d;*/
-	background: #8c9194;
+	border: solid 1px #484848  ;/*#91765d;*/
+	background: #484848  ;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	border-radius: 0px;
@@ -275,6 +271,7 @@ label{
 	outline: none;
 	margin: 2px auto;
 	display: block;
+	opacity: .9;
 }
 
 
@@ -285,14 +282,16 @@ label{
 }
 
 #minimize{
-top:2px;
-left:116px;
-font-size: 15px;
+	top:2px;
+	left:116px;
+	font-size: 15px;
 }
+
 #close{
-top:2px;
-left:138px;
-font-size: 15px;
+	top:2px;
+	left:138px;
+	font-size: 15px;
+	padding: 0px 3px 6px 3px;
 }
 #settingsWin{
 	background: url("../images/options.png") no-repeat scroll 0 0 transparent;
@@ -303,11 +302,11 @@ font-size: 15px;
 }
 
 #resize{
-width:40px;
-height:40px;
-z-index:0;
-top: 0px;
-left: 0px;
-position: absolute;
-opacity: .8;
+	width:40px;
+	height:40px;
+	z-index:0;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	opacity: .8;
 }

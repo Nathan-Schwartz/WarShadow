@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<link rel="stylesheet" href="../css/popup.css" />
+		<link rel="stylesheet" href="../css/Aristo/theme.css" />
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
+		<title>MediaPlayer</title>
+	</head>
+	<body>
+		<div id="Replay">
+		<br>
+			<button id="turnOn" class="button" tabindex="-1"> Enable Recording </button>
+			<div id="onceEnabled">
+				<button id="start" class="button" tabindex="-1"> Start Recording </button> 
+				<button id="capture" class="button" tabindex="-1"> <- 1 min </button> 
+				<button id="replayWindow" class="button" tabindex="-1"> Replay </button>
+			</div>
+			<button class="smallbutton" id="settingsWin" tabindex="-1"></button>
+			<br>
+		</div>
+
+		<script>
+		require(["requireConfig"], function(){
+			require(["recordingMenu"]);
+		});
+		</script>
+	</body>
+</html>

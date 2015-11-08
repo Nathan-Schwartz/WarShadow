@@ -1,10 +1,5 @@
 
-/*--------------------MAAATTHHHH TIMEEEEEE----------------------------		
-			
-Pseudocode in excel logic (its cuz I used the same logic when I built a comparable calculator in google docs, but it was server sided so all users would have to take turns selecting selecting weapons.	
-I also put on the stat sheet and in Warface Forums that I expected Overwolf App developers to contact me if they intended to use my project in their apps. If you see anyone with a google doc link that doesn't work (in another project), 
-its most likely because I relocated the google sheet and only gave the new address to people who asked permission to use it.
-
+/*		
 Milliseconds between bullets = 	60000/rpm
 # of shots to kill = 	ROUNDUP(Vest hp value/Damage_Used) + if(vest_type = deflect, 1,0))
 damage_reduction = 	if(distance>min_range, Distance - min_range, return zero) * damage/meter-lost * damage/meter-silencer-modifier
@@ -15,61 +10,57 @@ vest_mod = 	if(vest absorbs 10 damage, 10, 0)
 min_damage(modded) = 	gun_min damage * point_blank_silencer_mod - vest_mod
 */
 
-//sorry for the switch in naming style, it was easier for me to look at since the names are all technical and errors would largely go unnoticed.
+//sorry for the switch in naming style, it was easier for me to look at since the names are all technical.
 
 define(function () {
 
-function NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, pellets){
-	var tank = 0;
-	
-	if(Repelshot == true)
-		tank = 1;
-	
-	var NTK = (  (vestHP / damageCalc(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets)) - tank  );
-	NTK = Math.ceil(NTK);
-	return NTK;
-}
+	function NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, pellets){
+		var tank = 0;
 
-function NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, pellets){
-	var HSmult = 5;
-	
-	if(weapon_archetype == "E")
-		HSmult = 4;
-	else if(weapon_archetype == "M")
-		HSmult = 1.2;
-	
-	/*console.log("HSmult = " + HSmult);
-	console.log("vestHP = " + vestHP);
-	console.log("Hdamage_reduc = " + Hdamage_reduc);
-	console.log("weapon_archetype = " + weapon_archetype);*/
+		if(Repelshot == true)
+			tank = 1;
 
-	
-	var NTK = vestHP / (damageCalc(damage_default, min_default, attachment_equipped, false, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets) * Hdamage_reduc * HSmult);
-	NTK = Math.ceil(NTK);
-//	console.log(NTK);
-	return NTK;
+		var NTK = (  (vestHP / damageCalc(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets)) - tank  );
+		NTK = Math.ceil(NTK);
+		return NTK;
 	}
-	
 
-function TTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, RPM, pellets){
+	function NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, pellets){
+		var HSmult = 5;
+		
+		if(weapon_archetype == "E")
+			HSmult = 4;
+		else if(weapon_archetype == "M")
+			HSmult = 1.2;
+		
+		/*console.log("HSmult = " + HSmult);
+		console.log("vestHP = " + vestHP);
+		console.log("Hdamage_reduc = " + Hdamage_reduc);
+		console.log("weapon_archetype = " + weapon_archetype);*/
 
-	var milliseconds_between_shots = 60000/RPM;
-	return (NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, pellets)* milliseconds_between_shots) - milliseconds_between_shots;
-	
-}
+		
+		var NTK = vestHP / (damageCalc(damage_default, min_default, attachment_equipped, false, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets) * Hdamage_reduc * HSmult);
+		NTK = Math.ceil(NTK);
+	//	console.log(NTK);
+		return NTK;
+		}
+		
 
-function TTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, RPM, pellets){
-	var milliseconds_between_shots = 60000/RPM;
-	return (NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, pellets)* milliseconds_between_shots) - milliseconds_between_shots;
-}
+	function TTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, RPM, pellets){
 
+		var milliseconds_between_shots = 60000/RPM;
+		return (NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, pellets)* milliseconds_between_shots) - milliseconds_between_shots;
+		
+	}
 
-	
+	function TTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, RPM, pellets){
+		var milliseconds_between_shots = 60000/RPM;
+		return (NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, pellets)* milliseconds_between_shots) - milliseconds_between_shots;
+	}
 
 	function damageCalc(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets){
 	//This is the main damage function, the ones below are just helpers
-//console.log("pellets: " + pellets);
-	
+	//console.log("pellets: " + pellets);
 	
 		var silencer_reduc_mult = 1;
 		var silencer_fall_off_mult = 1;
@@ -100,11 +91,11 @@ function TTKvest(damage_default, min_default, attachment_equipped, RFProt, dista
 		
 		This will be annoying and more complicated unfortunately
 		
-		Minimum damage won't apply 90% of the time because its rare to hit with all pellets
+		Minimum damage won't apply 90% of the time because its rare to hit with all pellets at long distances
 		Its hard to calculate damage accurately. All I can do realistically is compare shotguns against other shotguns.
 		
 		My current Idea is to estimate how many pellets hit and reduce the % as distance increases. Then multiply damage per pellet by the % of pellets that hit.
-		I'm not sure how to estimate % of pellets that hit at a given range, but i'll do some testing.
+		My current method is to set relate it inversely to distance so 100 meters = 0% hit, 99 meters 1% hit, 50 meters 50% hit, etc. Seems reasonable.
 		
 		Headshots calculations are gonna be totally messed up because even less pellets hit the head.
 		To compensate i guess i could just reduce by more %
@@ -141,7 +132,6 @@ function TTKvest(damage_default, min_default, attachment_equipped, RFProt, dista
 		return adjusted_min_damage;
 	};
 	
-	
 	function damageFallOff(distance_selected, weapon_range, weapon_class, damage_lost_p_meter, silencer_fall_off_mult){
 		
 		var fall_off_distance = 0;
@@ -154,8 +144,8 @@ function TTKvest(damage_default, min_default, attachment_equipped, RFProt, dista
 			damage_lost = fall_off_distance * (damage_lost_p_meter * silencer_fall_off_mult);	
 		}
 		return damage_lost;
+	}
 	
-	};
 	return{
 		TTKhead:TTKhead,
 		TTKvest:TTKvest,

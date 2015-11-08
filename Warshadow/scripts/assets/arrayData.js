@@ -4,9 +4,7 @@ define( function(){
 		var myA = [];
 		for(var iter = 0; iter < 100; iter++){
 			myA.push([]);
-		}
-		for(var iters = 0; iters < 100; iters++){
-			myA[iters][0] = iters;
+			myA[iter][0] = iter;
 		}
 		sessionStorage.setItem('array', JSON.stringify(myA));
 	};

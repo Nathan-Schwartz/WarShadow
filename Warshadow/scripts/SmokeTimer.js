@@ -1,4 +1,3 @@
-
 require(['windowCoreFunctions', 'jquery'], function(wCore, $){
 			
 	function startTimer(timer) {
@@ -19,5 +18,4 @@ require(['windowCoreFunctions', 'jquery'], function(wCore, $){
 	startTimer(15);
 	document.getElementById("smoke_content").innerHTML = 14;
 	$("#content").mousedown(function(){wCore.dragMove();});
-	});
-		
+});

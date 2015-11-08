@@ -1,13 +1,11 @@
-	
 require(['jquery', 'windowCoreFunctions'], function($, wCore){
-
-// !!! directory pluging is image file
-
+	
 	var appPath = "";
 
 	function plugin() {
         return document.querySelector('#plugin');
 	}
+	
 	(plugin() == null) ? console.log("Plugin couldn't be loaded??") : getMyWebAppDirectory(getDirectory);
 
 	function getDirectory(mypath, status){
@@ -53,80 +51,82 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 		});
 	};
 
-	(function(){
+	(function(){ // !!! figure out where to grab files from before releasing
 		appPath += "\\images\\";
 		for(var i=0; i<10;i++){
-			plugin().fileExists(appPath+"customX"+i+".png", function(status){
-				if(status)
-					document.getElementById("drop").innerHTML += "<option value='customX"+String(i)+"'> Custom X"+ String(i) +"</option>";// add file to list
-			});
+			(function(j){
+				plugin().fileExists(appPath+"customX"+i+".png", function(status, i){
+					if(status)
+						document.getElementById("drop").innerHTML += "<option value='customX"+String(i)+"'> Custom X"+ String(i) +"</option>";// add file to list
+				});
+			})(i);
 		}
 		for(var i=0; i<10;i++){
-			plugin().fileExists(plugin().DESKTOP + "/WarShadow/gitwarshadow/Warshadow/images/customX"+i+".png", function(status){
-				if(status)
-					document.getElementById("drop").innerHTML += "<option value='customX"+String(i)+"'> Custom X"+ String(i) +"</option>";// add file to list
-			});
+			(function(j){
+				plugin().fileExists(plugin().DESKTOP + "/WarShadow/gitwarshadow/Warshadow/images/customX"+j+".png", function(status){
+					if(status)
+						document.getElementById("drop").innerHTML += "<option value='customX"+j+"'> Custom X"+ j +"</option>";// add file to list
+				});
+			})(i);
 		}
 	})();
 
-var url = "";
-function setXPreview(value, name){
+	var url = "";
+	function setXPreview(value, name){
+		switch(value){
+			case "scope":
+				url = "<img src='../images/crosshair1.png' id='reticle'>";
+				break;
+			case "cyan":
+				url = "<img src='../images/cyan.png' id='reticle'>";
+				break;	
+			case "customX0":
+				url = "<img src='../images/customX0.png' id='reticle'>";
+				break;
+			case "customX1":
+				url = "<img src='../images/customX1.png' id='reticle'>";
+				break;
+			case "customX2":
+				url = "<img src='../images/customX2.png' id='reticle'>";
+				break;
+			case "customX3":
+				url = "<img src='../images/customX3.png' id='reticle'>";
+				break;
+			case "customX4":
+				url = "<img src='../images/customX4.png' id='reticle'>";
+				break;
+			case "customX5":
+				url = "<img src='../images/customX5.png' id='reticle'>";
+				break;
+			case "customX6":
+				url = "<img src='../images/customX6.png' id='reticle'>";
+				break;
+			case "customX7":
+				url = "<img src='../images/customX7.png' id='reticle'>";
+				break;
+			case "customX8":
+				url = "<img src='../images/customX8.png' id='reticle'>";
+				break;
+			case "customX9":
+				url = "<img src='../images/customX9.png' id='reticle'>";
+				break;			
+		}	
+		document.getElementById("preview").innerHTML = url;
+	};
 
-	switch(value){
-		case "scope":
-			url = "<img src='../images/crosshair1.png' id='reticle'>";
-			break;
-		case "cyan":
-			url = "<img src='../images/cyan.png' id='reticle'>";
-			break;	
-		case "customX0":
-			url = "<img src='../images/customX0.png' id='reticle'>";
-			break;
-		case "customX1":
-			url = "<img src='../images/customX1.png' id='reticle'>";
-			break;
-		case "customX2":
-			url = "<img src='../images/customX2.png' id='reticle'>";
-			break;
-		case "customX3":
-			url = "<img src='../images/customX3.png' id='reticle'>";
-			break;
-		case "customX4":
-			url = "<img src='../images/customX4.png' id='reticle'>";
-			break;
-		case "customX5":
-			url = "<img src='../images/customX5.png' id='reticle'>";
-			break;
-		case "customX6":
-			url = "<img src='../images/customX6.png' id='reticle'>";
-			break;
-		case "customX7":
-			url = "<img src='../images/customX7.png' id='reticle'>";
-			break;
-		case "customX8":
-			url = "<img src='../images/customX8.png' id='reticle'>";
-			break;
-		case "customX9":
-			url = "<img src='../images/customX9.png' id='reticle'>";
-			break;			
-	}	
-	document.getElementById("preview").innerHTML += url;
-};
+	function setX(){
+		document.getElementById("form").innerHTML = url;
+		$( "#preview" ).remove();
+	};
 
-function setX(){
-	document.getElementById("form").innerHTML = url;
-	$( "#preview" ).remove();
-};
-document.getElementById("content").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
-document.getElementById("drop").onchange = function(){setXPreview(document.getElementById("drop").value);};
-document.getElementById("content").onmousedown = function(){wCore.dragMove();};
-document.getElementById("hide").onmousedown = function(){
-	setX(); document.getElementById("content").style.backgroundColor = 'transparent'; 
-	document.getElementById("content").style.borderImageWidth = "0px";
-	document.getElementById("form").style.left = "25px";
-	document.getElementById("form").style.top = "50px";
-};    
-
-
+	document.getElementById("content").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+	document.getElementById("drop").onchange = function(){setXPreview(document.getElementById("drop").value);};
+	document.getElementById("content").onmousedown = function(){wCore.dragMove();};
+	document.getElementById("hide").onmousedown = function(){
+		setX(); document.getElementById("content").style.backgroundColor = 'transparent'; 
+		document.getElementById("content").style.borderImageWidth = "0px";
+		document.getElementById("form").style.left = "25px";
+		document.getElementById("form").style.top = "52px";
+	};    
 });
 

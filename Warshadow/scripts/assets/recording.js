@@ -1,8 +1,8 @@
-define(["refreshHUD"], function(rec) {		
+define(["refreshHUD"], function(rHUD){
 
 	overwolf.media.onScreenshotTaken.addListener(function(){
-		localStorage.setItem('message', "Screenshot taken");
-		rHUD.refreshHelper(true,"popup");
+		//localStorage.setItem('message', "alertScreenshot");
+		//rHUD.refreshHelper(true,"popup");
 	});
 
 	function turnOn(){
@@ -12,7 +12,7 @@ define(["refreshHUD"], function(rec) {
 				console.log(result);
 				if(result.status== "success"){
 					localStorage.setItem('recordingOn', true);
-					localStorage.setItem('message', "Replay Started");
+					localStorage.setItem('message', "alertEnabled");
 					rHUD.refreshHelper(true,"popup");
 				}else{
 					if(result.error == "Already turned on." && JSON.parse(localStorage.getItem('recordingOn')) === false){
@@ -31,72 +31,71 @@ define(["refreshHUD"], function(rec) {
 		overwolf.media.replays.turnOff(
 			function(result) {
 				console.log(result);
-				if(result.status== "success"){}
-					//alert("success");
-				else
-					alert(result.error);
+				if(result.status== "success"){
+					localStorage.setItem('message', "alertDisabled");
+				}else
+					console.log(result.error);
+			}
+		);
+		localStorage.setItem('recordingOn', false);
+	};
+		
+	var url = "";	
+		
+	function startCapture(){
+		overwolf.media.replays.startCapture(1, // !!!This was just used for testing. The startCapture function is broken (confirmed by Overwolf, should be patched in next dev platform update)
+			function(result){
+				console.log(result);
+				url = result.url;
 			}
 		);
 	};
-	
-var url = "";	
-	
-function startCapture(){
-	overwolf.media.replays.startCapture(500000, // !!!This was just used for testing. The startCapture function is broken (confirmed by Overwolf, should be patched in next dev platform update)
-		function(result){
-			console.log(result);
-			url = result.url;
-		}
-	);
-};
 
-function finishCapture(){
-	overwolf.media.replays.finishCapture(url, function(result){console.log(result);});
-	
-};
-		
-function capture(before, after){
-	
-	if(after == -1){ //I call this function with a -1 every time for "manual capture" 
-		overwolf.media.replays.capture(parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000, after, // !!! I just took out the 'before+' that was before getting Rgrab
-			function(result){console.log("first",result); localStorage.setItem('message', "Video Captured"); rHUD.refreshHelper(true,"popup");},
+	function finishCapture(){
+		overwolf.media.replays.finishCapture(url, function(result){console.log(result);});
+	};
+			
+	function capture(before, after){
+		if(after < 2){ //I call this function with a -1 every time for "manual capture" 
+			after=2;
+			180000
+			//overwolf.media.replays.capture(parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000
+			, after, // !!! I just took out the 'before+' that was before getting Rgrab
+			function(result){console.log("first",result); localStorage.setItem('message', "alertVideo"); rHUD.refreshHelper(true,"popup");},
 			function(results){
 				console.log("second",results);
 				if(results.status== "success"){
+					localStorage.setItem("url", results.url);
 					overwolf.media.replays.finishCapture(results.url,
 						function(results){
 							console.log("finish capture: ", results);
 							if(results.status== "success"){
-								//alert("success");
 							}else{
-								//alert(results.error);
 							}
 						}	
 					);				
 				}
 			}
-		);
-	}else{
-		overwolf.media.replays.capture(before, after,
-			function(result){if(result) console.log("first",result);},
-			function(results){
-				console.log("second",results);
-				if(results.status== "success"){
-					overwolf.media.replays.finishCapture(results.url,
-						function(results){
-							console.log(results);
-							if(results.status== "success"){
-								//alert("success");
-							}else{
-								//alert(results.error);
+		}else{
+			overwolf.media.replays.capture(before, after,
+				function(result){if(result) console.log("first",result);},
+				function(results){
+					console.log("second",results);
+					if(results.status== "success"){
+						localStorage.setItem("url", results.url);
+						overwolf.media.replays.finishCapture(results.url,
+							function(results){
+								console.log(results);
+								if(results.status== "success"){
+								}else{
+								}
 							}
-						}
-					);			
+						);			
+					}
 				}
-			}
-		);
-	}
-};
+			);
+		}
+	};
 
 	return{
 		capture:capture,
@@ -105,5 +104,4 @@ function capture(before, after){
 		startCapture:startCapture,
 		finishCapture:finishCapture,
 	};
-
 });

@@ -1,15 +1,12 @@
 define(['gearData', 'calcData', 'graph', 'arrayData'], function(gData, cData, graph, arrayData){
 
-
-
 	function updateData(elementNum){
-
 		var weapon = "";
 		var attach = "";
 		var arrnum = elementNum;
 		var myA = arrayData.getArray();
 		var dataLimit = 2; 
-		
+
 		//This will stop the function from trying to enter too much data into the array. Google Charts is very strict about how much is in the array.
 		if(document.getElementById("showsecond").checked == true){
 			dataLimit++;
@@ -22,12 +19,12 @@ define(['gearData', 'calcData', 'graph', 'arrayData'], function(gData, cData, gr
 				}
 			}
 		}
-		
+
 		//if the weapon being updated is unselected don't let it graph data or update array
 		if(dataLimit <= arrnum){
 			return;
 		}
-		
+
 		//figure out which weapon's data to update
 		if(elementNum == 1){
 			weapon = "weaponSelect1";
@@ -50,20 +47,17 @@ define(['gearData', 'calcData', 'graph', 'arrayData'], function(gData, cData, gr
 			updateData(3);
 			updateData(2);
 			updateData(1);
-			
-			//alert("updated all");
 			return; //we don't need to finish the code if we are just using the recursive shortcut
 		}
-			
-	
+
 		//values to get from other objects
 		var RFP = false;
 		var vestHP = 0;
 		var Repelshot = false;
 		var Hdamage_reduc = 0;
-				
+
 		var vestsArr = gData.getVests();//format {"key":"default","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0,"Special":"none"},
-		for(var i = 0; i < vestsArr.length; i++){
+		for(var i = 0, limit = vestsArr.length; i < limit; i++){
 		//	console.log(document.getElementById("enemyVest1").value);
 			if(vestsArr[i].key == document.getElementById("enemyVest1").value){
 				if(vestsArr[i].RFProtection == "TRUE")
@@ -73,17 +67,17 @@ define(['gearData', 'calcData', 'graph', 'arrayData'], function(gData, cData, gr
 				vestHP = parseInt(vestsArr[i].HP);
 			}
 		}
-				
+
 		var helmsArr = gData.getHelmets(); //format {"key":"Advanced","HP_regen":0,"Damage_reduc":20,"Mine":"FALSE","Flash":"FALSE"},
-		for(var i = 0; i < helmsArr.length; i++){
+		for(var i = 0, limit = helmsArr.length; i < limit; i++){
 			if(helmsArr[i].key == document.getElementById("enemyHelmet1").value){
 				Hdamage_reduc = helmsArr[i].Damage_reduc;		
 			}
 		}
-	
+
 		//This is where the number crunching for the graph data happens
 		var weaponArr = gData.getWeapons();
-		for(var i = 0; i < weaponArr.length; i++){
+		for(var i = 0, limit = weaponArr.length; i < limit; i++){
 			if((weaponArr[i].key == document.getElementById(weapon).value) || document.getElementById(weapon).value == "none"){			
 				for(var iters = 0; iters < myA.length; iters++){
 					
@@ -117,6 +111,5 @@ define(['gearData', 'calcData', 'graph', 'arrayData'], function(gData, cData, gr
 	graph.graphIT(myA);
 };
 
-	return { updateData : updateData};
-
+	return {updateData : updateData};
 });

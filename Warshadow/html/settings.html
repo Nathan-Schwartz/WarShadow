@@ -7,148 +7,134 @@
 		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
 		<title>WarShadow Options</title>
 		
-	<embed  id="plugin" 
-            type="application/x-inputtracker-plugin" 
-            width=0px 
-            height=0px>
-    </embed>
-	<script>
-		  navigator.plugins.refresh(false);
-	</script>
-	
-		
+		<embed  id="plugin" 
+				type="application/x-inputtracker-plugin" 
+				width=0px 
+				height=0px>
+		</embed>
+		<script>
+			  navigator.plugins.refresh(false);
+		</script>
 	</head>
-			
 
 	<body>
-
-	<img src="../images/25hg.png" id="banner" alt="logo">
-	<div id="allSettings">
-	<fieldset id="gensetfield" class="settings">
-		<legend><b>General Options:</b></legend><br>
-	
-	
-	<input type="checkbox" id="autoLaunch"> Start Warshadow when I play Warface<br><br>
-	
-	<input type="checkbox" id="closeOnEnd"> Close WarShadow when I'm done playing <br><br>
-		
-	<input type="checkbox" id="minimizeOnTab"> Minimize WarShadow when I tab out of Warface <br><br>
-	
-	<input type="checkbox" id="restoreOnTab"> Restore WarShadow when I tab to Warface<br><br>
-	
-	<input type="checkbox" id="enableRecord"> Enable Recording when Warshadow starts<br><br>
-	
-	</fieldset>
-	
-	
-	<fieldset class="settings"><legend><b>Displays </b></legend>
-		
-		<b>Crosshair Settings:</b><br>
-		<input type="checkbox" id="rightClickADS" checked> I use right click to aim down sights (ADS).<br>
-		<input type="radio" name="toggleORhold" id="toggleADS" checked> Use Toggle to aim<br>
-		<input type="radio" name="toggleORhold" id="holdADS"> Use Hold to aim<br>
-		
-		<div id="inputADSContainer">
-			Click "Grab ADS" and then push the key you use for aiming.<br>
-			<button id="grabADS" class="button"> Grab ADS </button><br><div id="displayWhenADS">This area will flash when the bound ADS key is pressed</div>
-			
-		</div>
-	<br>
-	
-		<b>Counter Settings:</b><br>
-		
-		<button id="resetLS" class="button"> Reset HUD Counters </button><br>
-	</fieldset>
-	
-
-	<fieldset  id="vidsetfield" class="settings"> <legend> <b>Video Recording Settings</b></legend> 
-		<p>To change encoder, resolution, fps, or any other video options click the button below. </p>
-		<button id='openSettings' class="button"> Video Recording Settings </button><br>
-	
-<fieldset id="autocapfield" class="embeddedSettings">
-		<legend><b> AutoCapture Options</b></legend>
-			<br>
-			<label for="beforeSliderValue">Time before first kill:</label>
-			<input type="text" id="beforeSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
-			<div id='beforeSlider' class="sliders"> </div>
-
-			<br><br> 
-				<label for="afterSliderValue">Time after event:</label>
-				<input type="text" id="afterSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
-				<div id='afterSlider' class="sliders"> </div>
-			<br>
-				
-				
-				
-		<div id="triggers">
-		
-		<fieldset class="embeddedSettings">
-		<legend><b>Triggers </b></legend><br>
-			 Minimum HS Combo <br>
-			<select id="HSlength">
-				<option value="none"> Don't Record</option> <br>
-				<option value="headshot"> 1</option> <br>
-				<option value="twoheadshots" > 2 </option> <br>
-				<option value="threeheadshots"> 3 </option> <br>
-				<option value="fourheadshots" > 4 </option> <br> 
-				<option value="fiveheadshots"> 5 </option> <br>
-			</select> <br> <br>
-			
-			 Minimum Nade Combo<br>
-			<select id="Grenlength">
-				<option value="none"> Don't Record </option> <br>
-				<option value="grenadekill"> Single </option><br>
-				<option value="grenadeONEkill"> Grenadier </option><br>
-				<option value="grenadeTWOkill"> Mega Grenadier </option><br>
-				<option value="grenadeTHREEkill"> Uber Grenadier </option><br>
-			</select> <br><br>
-			
-			 Minimum Melee Combo <br>
-			<select id="Meleelength">
-				<option value="none"> Don't Record </option> <br>
-				<option value="meleekill"> Single </option><br>
-				<option value="meleeONEkill"> Butcher </option><br>
-				<option value="meleeTWOkill"> Bloody Butcher </option><br>
-				<option value="meleeTHREEkill"> Hell Butcher </option><br>
-			</select> <br> <br>
-
-				<input type="checkbox" id="kill"> Kill <br>
-				<input type="checkbox" id="defibkill"> Defib Kill <br>
-				<input type="checkbox" id="minekill"> Mine kill <br>
-				<!-- BROKEN CYTEK HASNT FIXED IT                 input type="checkbox" id="slidekill"> Sliding Kill <br-->
-				<input type="checkbox" id="perfkill"> Perforating Kills <br>
-				<input type="checkbox" id="severekill"> Severe Murder <br>
-		
-				<input type="checkbox" id="doublekill"> Double Kill (PvP)<br>
-				<input type="checkbox" id="triplekill"> Triple Kill (PvP)<br>
-				<!--	HASNT BEEN IMPLEMENTED BY CRYTEK YET, DISABLED IN LOAD & UPDATE SETTINGS		input type="checkbox" id="combokill"> Combo Kill <br-->
-				<input type="checkbox" id="flagkill"> Flag-bearer Kill (PvP)<br> <br>
-				<input type="checkbox" id="achievevid" checked> Record Achievements <br>
-				<input type="checkbox" id="screenshot" checked> Screenshot Achievements <br><br>
-			</fieldset>
-		</div>
-		
-			<button id="showfeatures" class="button"> Show Triggers </button>	
-		
+		<img src="../images/25hg.png" id="banner" alt="logo">
+		<div id="allSettings">
+		<fieldset id="gensetfield" class="settings">
+			<legend><b>General Options:</b></legend><br>
+			<span class="normalCheckbox"><input type="checkbox" id="autoLaunch"><label for="autoLaunch"></label></span><label for="autoLaunch"> Start Warshadow when I play Warface</label><br><br>
+			<span class="normalCheckbox"><input type="checkbox" id="closeOnEnd"><label for="closeOnEnd"></label></span><label for="closeOnEnd"> Close WarShadow when I'm done playing </label><br><br>
+			<span class="normalCheckbox"><input type="checkbox" id="minimizeOnTab"><label for="minimizeOnTab"></label></span><label for="minimizeOnTab"> Minimize WarShadow when I tab out of Warface </label><br><br>
+			<span class="normalCheckbox"><input type="checkbox" id="restoreOnTab"><label for="restoreOnTab"></label></span><label for="restoreOnTab"> Restore WarShadow when I tab to Warface</label><br><br>
+			<span class="normalCheckbox"><input type="checkbox" id="enableRecord"><label for="enableRecord"></label></span><label for="enableRecord"> Enable Recording when Warshadow starts</label><br><br>
+			<button id='openHotkeys' class="button"> Hotkeys </button><br>
 		</fieldset>
-		<br>
-			<fieldset class="settings">
-		<legend><b>Manual Capture Options:</b></legend>
+
+		<fieldset class="settings"><legend><b>Displays </b></legend>
+			
+			<b>Crosshair Settings:</b><br>
+			<input type="checkbox" id="rightClickADS" checked> I use right click to aim down sights (ADS).<br><br>
+			<input type="radio" name="toggleORhold" id="toggleADS" checked> Use Toggle to aim<br>
+			<input type="radio" name="toggleORhold" id="holdADS"> Use Hold to aim<br><br>
+
+			<div id="inputADSContainer">
+				Click "Grab ADS" and then push the key you use for aiming.<br>
+				<button id="grabADS" class="button"> Grab ADS </button><br>
+				<div id="displayWhenADS">This area will flash when the bound ADS key is pressed</div>
+				
+			</div>
 			<br>
-			<label for="grabSliderValue">Capture Length:</label>
-			<input type="text" id="grabSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
-			<div id='grabSlider' class="sliders"> </div><br>
-			</fieldset></fieldset>
-			<br><br>
-</div>
-			<script>
+		
+			<b>Counter Settings:</b><br>
+			
+			<button id="resetLS" class="button"> Reset HUD Counters </button><br>
+		</fieldset>
+		
+
+		<fieldset  id="vidsetfield" class="settings"> <legend> <b>Video Recording Settings</b></legend> 
+			<p>To change encoder, resolution, fps, or any other video options click the button below. </p>
+			<button id='openSettings' class="button"> Video Recording Settings </button><br>
+		
+			<fieldset id="autocapfield" class="embeddedSettings">
+			<legend><b> AutoCapture Options</b></legend>
+				<br>
+				<label for="beforeSliderValue">Time before event:</label>
+				<input type="text" id="beforeSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
+				<div id='beforeSlider' class="sliders"> </div>
+
+				<br><br> 
+					<label for="afterSliderValue">Time after event:</label>
+					<input type="text" id="afterSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
+					<div id='afterSlider' class="sliders"> </div>
+				<br>
+					
+					
+					
+				<div id="triggers">
+					<fieldset class="embeddedSettings">
+					<legend><b>Triggers </b></legend><br>
+						 Minimum HS Combo <br>
+						<select id="HSlength">
+							<option value="none"> Don't Record</option> <br>
+							<option value="headshot"> 1</option> <br>
+							<option value="twoheadshots" > 2 </option> <br>
+							<option value="threeheadshots"> 3 </option> <br>
+							<option value="fourheadshots" > 4 </option> <br> 
+							<option value="fiveheadshots"> 5 </option> <br>
+						</select> <br> <br>
+						
+						 Minimum Nade Combo<br>
+						<select id="Grenlength">
+							<option value="none"> Don't Record </option> <br>
+							<option value="grenadekill"> Single </option><br>
+							<option value="grenadeONEkill"> Grenadier </option><br>
+							<option value="grenadeTWOkill"> Mega Grenadier </option><br>
+							<option value="grenadeTHREEkill"> Uber Grenadier </option><br>
+						</select> <br><br>
+						
+						 Minimum Melee Combo <br>
+						<select id="Meleelength">
+							<option value="none"> Don't Record </option> <br>
+							<option value="meleekill"> Single </option><br>
+							<option value="meleeONEkill"> Butcher </option><br>
+							<option value="meleeTWOkill"> Bloody Butcher </option><br>
+							<option value="meleeTHREEkill"> Hell Butcher </option><br>
+						</select> <br> <br>
+
+						<input type="checkbox" id="kill"> Kill <br>
+						<input type="checkbox" id="defibkill"> Defib Kill <br>
+						<input type="checkbox" id="minekill"> Mine kill <br>
+						<!-- BROKEN CYTEK HASNT FIXED IT                 input type="checkbox" id="slidekill"> Sliding Kill <br-->
+						<input type="checkbox" id="perfkill"> Perforating Kills <br>
+						<input type="checkbox" id="severekill"> Severe Murder <br>
+				
+						<input type="checkbox" id="doublekill"> Double Kill (PvP)<br>
+						<input type="checkbox" id="triplekill"> Triple Kill (PvP)<br>
+						<!--	HASNT BEEN IMPLEMENTED BY CRYTEK YET, DISABLED IN LOAD & UPDATE SETTINGS		input type="checkbox" id="combokill"> Combo Kill <br-->
+						<input type="checkbox" id="flagkill"> Flag-bearer Kill (PvP)<br> <br>
+						<input type="checkbox" id="achievevid" checked> Record Achievements <br>
+						<input type="checkbox" id="screenshot" checked> Screenshot Achievements <br><br>
+					</fieldset>
+				</div>
+			
+				<button id="showfeatures" class="button"> Show Triggers </button>	
+			
+			</fieldset>
+			<br>
+			<fieldset class="settings">
+				<legend><b>Manual Capture Options:</b></legend>
+				<br>
+				<label for="grabSliderValue">Capture Length:</label>
+				<input type="text" id="grabSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
+				<div id='grabSlider' class="sliders"> </div><br>
+			</fieldset>
+		</fieldset>
+		<br><br>
+	</div>
+		<script>
 			require(["requireConfig"], function(){
-					require(["appSettings"]);
-				});
-			
-			
-			</script>
-			
+				require(["appSettings"]);
+			});
+		</script>
 	</body>
-	
 </html>
