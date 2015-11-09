@@ -1,8 +1,8 @@
 define(["refreshHUD"], function(rHUD){
 
 	overwolf.media.onScreenshotTaken.addListener(function(){
-		//localStorage.setItem('message', "alertScreenshot");
-		//rHUD.refreshHelper(true,"popup");
+		localStorage.setItem('message', "alertScreenshot");
+		rHUD.refreshHelper(true,"popup");
 	});
 
 	function turnOn(){
@@ -33,20 +33,22 @@ define(["refreshHUD"], function(rHUD){
 				console.log(result);
 				if(result.status== "success"){
 					localStorage.setItem('message', "alertDisabled");
+					localStorage.setItem('recordingOn', false);
+					rHUD.refreshHelper(true,"popup");
 				}else
 					console.log(result.error);
 			}
 		);
-		localStorage.setItem('recordingOn', false);
 	};
 		
 	var url = "";	
 		
 	function startCapture(){
-		overwolf.media.replays.startCapture(1, // !!!This was just used for testing. The startCapture function is broken (confirmed by Overwolf, should be patched in next dev platform update)
+		overwolf.media.replays.startCapture(1,
 			function(result){
 				console.log(result);
 				url = result.url;
+				localStorage.setItem("url", results.url);
 			}
 		);
 	};
@@ -56,45 +58,23 @@ define(["refreshHUD"], function(rHUD){
 	};
 			
 	function capture(before, after){
-		if(after < 2){ //I call this function with a -1 every time for "manual capture" 
-			after=2;
-			180000
-			//overwolf.media.replays.capture(parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000
-			, after, // !!! I just took out the 'before+' that was before getting Rgrab
-			function(result){console.log("first",result); localStorage.setItem('message', "alertVideo"); rHUD.refreshHelper(true,"popup");},
+		overwolf.media.replays.capture(before, after,
+			function(result){if(result) console.log("first",result);},
 			function(results){
 				console.log("second",results);
 				if(results.status== "success"){
 					localStorage.setItem("url", results.url);
 					overwolf.media.replays.finishCapture(results.url,
 						function(results){
-							console.log("finish capture: ", results);
-							if(results.status== "success"){
+							console.log('results',results);
+							/*if(results.status== "success"){
 							}else{
-							}
-						}	
-					);				
+							}*/
+						}
+					);
 				}
 			}
-		}else{
-			overwolf.media.replays.capture(before, after,
-				function(result){if(result) console.log("first",result);},
-				function(results){
-					console.log("second",results);
-					if(results.status== "success"){
-						localStorage.setItem("url", results.url);
-						overwolf.media.replays.finishCapture(results.url,
-							function(results){
-								console.log(results);
-								if(results.status== "success"){
-								}else{
-								}
-							}
-						);			
-					}
-				}
-			);
-		}
+		);
 	};
 
 	return{

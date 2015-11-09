@@ -1,9 +1,10 @@
-require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "launchManager", "localStorageInit", "spectrum", 'counters'], function($ ,gEvent, wCore, rHUD, rec, launcher, localStorageInit, spectrum, counters){ 
+require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "launchManager", "localStorageInit", "spectrum", 'counters', 'jqueryUI'], function($ ,gEvent, wCore, rHUD, rec, launcher, localStorageInit, spectrum, counters, jqueryUI){ 
 /*
+// !!! need failsafes for capture hotkey
 
-	Check that the future duration compensation in gameEventHandler isn't exceeding maximum past duration for Overwolf's replay capture method
+	store_icon in manifest
+
 	scale window size to game resolution
-	Give recording HUD its own window
 	make mediaplayer buttons
 	crashing when exiting settings page
 	consolidate listeners with multi-selectors
@@ -16,7 +17,49 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 	get overwolf language and make the app that language as well
 	figure out how to correctly link the steam guides
 
-*/
+*/	
+
+	var dialogCounter = 1;
+	$(function() {
+		$( "#dialog" ).dialog({
+			autoOpen: false,
+			resizable: false,
+			height:400,
+			width: 175,
+			modal: true,
+			buttons: {
+				"Continue": function() {
+					dialogCounter++;
+					
+					if(dialogCounter == 2){
+						document.getElementById("page2").style.display = "block";
+						document.getElementById("page1").style.display = "none";
+					}else if(dialogCounter == 3){
+						document.getElementById("page3").style.display = "block";
+						document.getElementById("page2").style.display = "none";
+					}else if(dialogCounter == 4){
+						document.getElementById("page4").style.display = "block";
+						document.getElementById("page3").style.display = "none";	
+					}else if(dialogCounter == 5){
+						document.getElementById("page5").style.display = "block";
+						document.getElementById("page4").style.display = "none";
+					}else if(dialogCounter == 6){
+						document.getElementById("page6").style.display = "block";
+						document.getElementById("page5").style.display = "none";
+					}else if(dialogCounter == 7){
+						document.getElementById("page7").style.display = "block";
+						document.getElementById("page6").style.display = "none";
+					}else if(dialogCounter > 6){
+						$( this ).dialog( "close" );
+					}
+				},
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+	});
+
   	document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
 	document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
 	document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
@@ -225,6 +268,11 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		});
 		
 		
+		overwolf.settings.registerHotKey("capture", function(arg){
+			rec.capture(1,parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000);
+		});
+		
+		
 		overwolf.settings.registerHotKey("showHideWindows", function(arg) {
 			if (arg.status == "success") {
 				overwolf.windows.getCurrentWindow(function(window){
@@ -329,7 +377,6 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		overwolf.games.onGameInfoUpdated.addListener(
 			function(resultA){
 				var test = JSON.parse(localStorage.getItem("Settings"));
-		//		console.log(test);
 				if(test.closeOnEnd == true){
 					if(resultA.runningChanged == true){
 						overwolf.games.getRunningGameInfo(

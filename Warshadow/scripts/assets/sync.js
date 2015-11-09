@@ -3,7 +3,7 @@ define(['jquery','gearData'], function($,gData){
 	function plugin() {
 		return document.querySelector('#plugin');
 	}
-		  
+
 	function testPlugin(){
 		return (plugin() == null)? false : true;
 	};

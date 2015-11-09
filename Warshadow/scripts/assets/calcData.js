@@ -15,14 +15,10 @@ min_damage(modded) = 	gun_min damage * point_blank_silencer_mod - vest_mod
 define(function () {
 
 	function NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, pellets){
-		var tank = 0;
-
-		if(Repelshot == true)
-			tank = 1;
+		var tank = Repelshot === true ? 1 : 0;
 
 		var NTK = (  (vestHP / damageCalc(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets)) - tank  );
-		NTK = Math.ceil(NTK);
-		return NTK;
+		return Math.ceil(NTK);
 	}
 
 	function NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, pellets){
@@ -31,31 +27,22 @@ define(function () {
 		if(weapon_archetype == "E")
 			HSmult = 4;
 		else if(weapon_archetype == "M")
-			HSmult = 1.2;
-		
-		/*console.log("HSmult = " + HSmult);
-		console.log("vestHP = " + vestHP);
-		console.log("Hdamage_reduc = " + Hdamage_reduc);
-		console.log("weapon_archetype = " + weapon_archetype);*/
-
+			HSmult = 1.2 * (Math.round(pellets * (100 - distance_selected)/100)-pellets)/pellets;//should be 1.2, but accounting for pellets missin I'm changing it to be based on a percentage. 
 		
 		var NTK = vestHP / (damageCalc(damage_default, min_default, attachment_equipped, false, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets) * Hdamage_reduc * HSmult);
-		NTK = Math.ceil(NTK);
-	//	console.log(NTK);
-		return NTK;
+		return Math.ceil(NTK);
 		}
 		
 
 	function TTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, RPM, pellets){
 
 		var milliseconds_between_shots = 60000/RPM;
-		return (NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, pellets)* milliseconds_between_shots) - milliseconds_between_shots;
-		
+		return Math.round(((NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, pellets)* milliseconds_between_shots) - milliseconds_between_shots)*100)/100;
 	}
 
 	function TTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, RPM, pellets){
 		var milliseconds_between_shots = 60000/RPM;
-		return (NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, pellets)* milliseconds_between_shots) - milliseconds_between_shots;
+		return Math.round(((NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, pellets)* milliseconds_between_shots) - milliseconds_between_shots)*100)/100;
 	}
 
 	function damageCalc(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets){
@@ -83,8 +70,6 @@ define(function () {
 		}else if(attachment_equipped == "suppressor")
 			weaponrange = weapon_range*1.2;
 		
-				//console.log("testdamage" + test_damage);
-		
 		if(weapon_class == 'M'){
 		/*
 		Shotgun calculations
@@ -110,39 +95,31 @@ define(function () {
 			
 			test_damage_per_pellet = test_damage_per_pellet < minDamage_per_pellet ? minDamage_per_pellet : test_damage_per_pellet; //don't let individual pellets go below minimum damage
 			
-			return ((test_damage_per_pellet * pellets_hit_bogus) - vest_reduc) < 0 ? 0 : ((test_damage_per_pellet * pellets_hit_bogus) - vest_reduc); //If damage is less than a single pellet return single pellet
+			return ((test_damage_per_pellet * pellets_hit_bogus) - vest_reduc) < 0 ? 0 :  Math.round(((test_damage_per_pellet * pellets_hit_bogus) - vest_reduc)*100)/100; //If damage is less than a single pellet return single pellet
 			
 		}else{
 			test_damage = ((damage_default - damageFallOff(distance_selected, weaponrange, weapon_class, damage_lost_p_meter, silencer_fall_off_mult)) * silencer_reduc_mult) - vest_reduc;
 
-			if(test_damage <= minDamage(min_default, vest_reduc, silencer_reduc_mult)) 
-				return minDamage(min_default, vest_reduc, silencer_reduc_mult);
-			
-			else
-				return test_damage;
+			var minDamTemp = minDamage(min_default, vest_reduc, silencer_reduc_mult);
+			return (test_damage <= minDamTemp) ? Math.round(minDamTemp*100)/100 : Math.round(test_damage*100)/100;
 		}
 	}
 			
 	function minDamage(min_default, vest_reduc, silencer_reduc_mult){
 	
 		var adjusted_min_damage = 0;
-			
 		adjusted_min_damage = min_default * silencer_reduc_mult - vest_reduc;
-		//console.log("adj min " + adjusted_min_damage);
 		return adjusted_min_damage;
 	};
 	
 	function damageFallOff(distance_selected, weapon_range, weapon_class, damage_lost_p_meter, silencer_fall_off_mult){
 		
-		var fall_off_distance = 0;
+		var fall_off_distance = distance_selected - weapon_range;
 		var damage_lost = 0;
-		//console.log("damage lost per meter"+ damage_lost_p_meter);
 		
-		if(distance_selected > weapon_range){
-		
-			fall_off_distance = distance_selected - weapon_range;
+		if(distance_selected > weapon_range)
 			damage_lost = fall_off_distance * (damage_lost_p_meter * silencer_fall_off_mult);	
-		}
+
 		return damage_lost;
 	}
 	

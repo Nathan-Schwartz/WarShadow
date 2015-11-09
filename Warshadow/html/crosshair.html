@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 	<head> 
 		<link rel="stylesheet" href="../css/crosshair.css" />
@@ -9,24 +8,21 @@
 		<script>
 			navigator.plugins.refresh(false);
 		</script>
-
 		<embed  id='plugin' 
-				type='application/x-io-plugin'
-				width=0px 
-				height=0px>
+			type='application/x-io-plugin'
+			width=0px 
+			height=0px>
 		</embed>
-		
 	</head>
 
 	<body>
-	
-	
 		<div id="content">
 			<div id="form">
 				<select id="drop">
 					<option value="none">Choose a reticle</option>
-					<option value="scope">Thin Scope</option>
-					<option value="cyan">Cyan 45 degree</option>
+					<option value="default1">Black Reticle</option>
+					<option value="default2">Popty's</option>
+					<option value="default3">Zero's</option>
 				</select>
 				<br>
 				<button id="hide" class="button">Select</button>
@@ -35,9 +31,8 @@
 		</div>
 	<script>
 	require(["requireConfig"], function(){
-					require(["crosshair"]);
-				});
-			
+		require(["crosshair"]);
+	});
 	</script>
 	</body>
 </html>

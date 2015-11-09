@@ -1,6 +1,6 @@
 require(['jquery','windowCoreFunctions', 'loadSettings','updateSettings', 'counters', 'jqueryUI'], function($,wCore, loadS, updateS, counters, jqueryUI){
 
-	if(JSON.parse(localStorage.getItem('optionsCalledBy')) === true){
+	if(JSON.parse(localStorage.getItem('optionsCalledBy')) == true){
 		window.location.hash = '#vidsetfield';
 		localStorage.setItem('optionsCalledBy', false);
 	}
@@ -83,7 +83,7 @@ require(['jquery','windowCoreFunctions', 'loadSettings','updateSettings', 'count
 			range: "min",
 			value:50,
 			min: 1,
-			max: 90,
+			max: 180,
 			change: function( event, ui ) {console.log("value", ui.value); updateS.updateSettings();},
 			slide: function( event, ui ) {
 				$( "#grabSliderValue" ).val( ui.value  + " seconds");

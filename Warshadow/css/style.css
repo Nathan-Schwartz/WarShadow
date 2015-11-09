@@ -114,14 +114,16 @@
   opacity: 1;
 }
 
-
-
-#contentbuttons{
+#contentbuttons, #dialog, #Roptions, #page2, #page3, #page4, #page5, #page6, #page7{
 	display: none;
 }
-#Roptions{
-	display: none;	
+
+#dialog{
+	color: black;
+	font-family: Helvetica;	
+	text-shadow:none;
 }
+
 
 
 .feedback{

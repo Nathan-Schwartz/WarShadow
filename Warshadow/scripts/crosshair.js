@@ -15,7 +15,6 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 	
 	function getMyWebAppDirectory(callback) {
 		var mypath = plugin().LOCALAPPDATA + "\\Overwolf\\Extensions";
-
 		var fallback = function() {
 			var pluginStr = window.location.host;
 			pluginStr = pluginStr.replace("Window_Extension_", "");
@@ -24,7 +23,6 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 			if (index != -1) {
 				pluginStr = pluginStr.slice(0,index);
 			}
-
 			mypath += "\\" + pluginStr + "\\" + "1.0.0";
 		}
 
@@ -74,11 +72,14 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 	var url = "";
 	function setXPreview(value, name){
 		switch(value){
-			case "scope":
-				url = "<img src='../images/crosshair1.png' id='reticle'>";
+			case "default1":
+				url = "<img src='../images/default1.png' id='reticle'>";
 				break;
-			case "cyan":
-				url = "<img src='../images/cyan.png' id='reticle'>";
+			case "default2":
+				url = "<img src='../images/default2.png' id='reticle'>";
+				break;
+			case "default3":
+				url = "<img src='../images/default3.png' id='reticle'>";
 				break;	
 			case "customX0":
 				url = "<img src='../images/customX0.png' id='reticle'>";

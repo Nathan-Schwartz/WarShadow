@@ -1,8 +1,8 @@
-define( function(){
+define( ["jquery","jqueryUI"], function($, ui){
 
 	function getWinID(name, ID){
 	//Start the process of the window named, retrieve and save its ID, and then end the process if it is not the main window.
-		overwolf.windows.obtainDeclaredWindow(name, 
+		overwolf.windows.obtainDeclaredWindow(name,
 			function(result){
 				if (result.status == "success"){
 					localStorage.setItem(ID, result.window.id);
@@ -12,12 +12,7 @@ define( function(){
 				}
 			}
 		);
-	};	
-
-	//localStorage.removeItem('message');
-	if(!localStorage.getItem("message")){
-		localStorage.setItem("message", "Generic Message");
-	}
+	};
 
 	//localStorage.removeItem('ADSkey');
 	if(!localStorage.getItem("ADSkey")){
@@ -34,7 +29,7 @@ define( function(){
 		localStorage.setItem('color2', 'rgba(36, 220, 143, 0.3)');
 	}
 
-	//localStorage.removeItem('Settings');
+	localStorage.removeItem('Settings');
 	if(!localStorage.getItem('Settings')){
 		var Settings = {
 			toggleADS : true,
@@ -65,18 +60,15 @@ define( function(){
 		};
 		localStorage.setItem('Settings', JSON.stringify(Settings));
 		console.log("Settings: " + localStorage.getItem('Settings'));
-		/*if (confirm("Welcome to WarShadow! Would you like to go on the '3-click' tour?") == true){
-			alert("To collapse the main menu, simply double click on the Warface Logo.");
-			alert("To automatically record your best moments, turn on Auto-Capture. Customize your recordings through Settings!");
-			alert("Click on the 'info' button to learn more!"); // !!! These will need updating.
-		}*/
+		setTimeout( function(){$( "#dialog" ).dialog( "open" );}, 100);
 	}
 	localStorage.setItem('recordingOn', false); //This is a side effect of my turnOn() recording function. I use this to determine if recording is being used by another app or by me.
 	localStorage.setItem('optionsCalledBy', false);
 
-	//Get ID's of each window
+	//Get ID's of each window. No longer used cuz the window name works on most windows
 		getWinID("MainWindow",'MainID');
-	/*	getWinID("HSCounter",'HSCounterID');
+	/*	
+		getWinID("HSCounter",'HSCounterID');
 		getWinID("HSPercent",'HSPercentID');
 		getWinID("HSChains",'HSChainsID');
 		getWinID("SmokeTimer",'SmokeTimerID');

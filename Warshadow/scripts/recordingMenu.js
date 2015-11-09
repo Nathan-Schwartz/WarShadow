@@ -1,8 +1,8 @@
-require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'recording', 'refreshHUD'], function(wCore, $, jqueryUI, rec, rHUD){
+require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording'], function(wCore, $, jqueryUI, rHUD, rec){
 
-	document.getElementById("Replay").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
-	document.getElementById("Replay").style.backgroundClip = "padding-box";
-	document.getElementById("Replay").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+	document.getElementById("menu").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
+	document.getElementById("menu").style.backgroundClip = "padding-box";
+	document.getElementById("menu").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
 
 	//before slider
 	$(function() {
@@ -49,30 +49,57 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'recording', 'refreshHUD']
 		$( "#grabSliderValue" ).val( $( "#grabSlider" ).slider( "value" )  + " seconds");
 	});
 
-	$("#Replay").fadeIn();
+	$("#menu").fadeIn();
 	
 	
 //		Menu Listeners
 
 	//menu buttons
-	$("#showSettings").click(function(){$("#appSettings").fadeToggle();});
-	$("#settingsWin").click(function(){rHUD.refreshHelper(true, 'Settings');});
+	$("#settingsWin").click(function(){ localStorage.setItem('optionsCalledBy', true); rHUD.refreshHelper(true, 'Settings');});
 	
 	var recording = false;
 	var enabled = false;
 	
 	JSON.parse(localStorage.getItem('recordingOn')) ? (function(){document.getElementById("turnOn").innerHTML = "Disable Recording"; $("#onceEnabled").fadeIn();})() : document.getElementById("turnOn").innerHTML = "Enable Recording";
 	
+	var url = "";	
+		
+	function startCapture(){
+		overwolf.media.replays.startCapture(1, // !!!This was just used for testing. The startCapture function is broken (confirmed by Overwolf, should be patched in next dev platform update)
+			function(result){
+				console.log(result);
+				url = result.url;
+				localStorage.setItem("url", results.url);
+			}
+		);
+	};
+
+	function finishCapture(){
+		overwolf.media.replays.finishCapture(url, function(result){console.log(result);});
+	};
+	
 	$("#turnOn").click(function(){
 		enabled = JSON.parse(localStorage.getItem('recordingOn'));
 		if(enabled===true){
-			rec.turnOff();
-			document.getElementById("turnOn").innerHTML = "Enable Recording";
-			$("#onceEnabled").hide();
+			overwolf.media.replays.turnOff(function(result){
+				if(result.status== "success"){
+					localStorage.setItem('message', "alertDisabled");
+					localStorage.setItem('recordingOn', false);
+					rHUD.refreshHelper(true,"popup");
+					document.getElementById("turnOn").innerHTML = "Enable Recording";
+					$("#onceEnabled").hide();
+				}
+			});
 		}else{
-			rec.turnOn();
-			document.getElementById("turnOn").innerHTML = "Disable Recording";
-			$("#onceEnabled").fadeIn();
+			overwolf.media.replays.turnOn({},function(result){
+				if(result.status== "success"){
+					localStorage.setItem('recordingOn', true);
+					localStorage.setItem('message', "alertEnabled");
+					rHUD.refreshHelper(true,"popup");
+					document.getElementById("turnOn").innerHTML = "Disable Recording";
+					$("#onceEnabled").fadeIn();
+				}
+			});
 		}
 	});
 	
@@ -88,9 +115,9 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'recording', 'refreshHUD']
 		recording = !recording;
 	});
 	
-	$("#Replay").mousedown(function(){wCore.dragMove();});
+	$("#menu").mousedown(function(){wCore.dragMove();});
 	$("#replayWindow").click(function(){rHUD.refreshHelper(true,"Replay");});
 	$("#capture").click(function(){
-		rec.capture(1,-1);
+		rec.capture(1,parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000);
 	});
 });
