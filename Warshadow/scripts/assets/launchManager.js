@@ -5,86 +5,93 @@ define(["recording"], function(rec){
 //else check if game is running, if true initiate recording, else use FPS listener method	
 
 
-	function launchData(){
-		var launchData = new Object;
-		
+	var launch = {};
+	
+	(function initLaunch(){
 		overwolf.windows.getCurrentWindow(function(data){
-			//console.log('currentwindow', data);
-			launchData.autoLaunch = !data.window.isVisible;
+			launch.autoLaunch = !data.window.isVisible;
+			checkRunningGame();
 		});
 		
-		overwolf.games.getRunningGameInfo(function(data){
-			//console.log("runningGameInfo",data);
-			if(data !== null){
-				launchData.focused = data.isInFocus;
-				launchData.playing = data.isRunning;
-			}else{
-				launchData.playing = false;
-				launchData.focused = false;
-			}
-		});
-		return launchData;
-	};
-
-	var launch = launchData();
+		function checkRunningGame(){
+			overwolf.games.getRunningGameInfo(function(data){
+				if(data !== null){
+					launch.focused = data.isInFocus;
+					launch.playing = data.isRunning;
+				}else{
+					launch.playing = false;
+					launch.focused = false;
+				}
+				continueLaunch();
+			});
+		}
+	})();
+	
+	function continueLaunch(){
+		alert(launch.autoLaunch);
+		var alerted = false;		
+		var scenario = "";
 		
-	setTimeout(function(){ //all properties of launch were returning as undefined until i delayed using them.
-		//console.log("launch", launch);
-
-		if(launch.autoLaunch === true || (launch.autoLaunch === false && launch.playing === false)){
-			console.log("auto or prelaunch");
-			var alerted = false;
-
-			if(JSON.parse(localStorage.getItem("Settings")).autoLaunch == false && launch.autoLaunch === true)// If they don't want it to autolaunch, and it autolaunched, close it.
-				overwolf.windows.close(localStorage.getItem('MainID'));
+		// If user doesn't want app to autolaunch, and it autolaunched, close app.
+		if(JSON.parse(localStorage.getItem("Settings")).autoLaunch == false && launch.autoLaunch === true)
+			overwolf.windows.close(localStorage.getItem('MainID'));
+	
+		if(launch.autoLaunch === true){
+			console.log("auto-launch");
+			scenario = "auto";
+		}else if(launch.autoLaunch === false && launch.playing === false){
+			console.log("pre-launch");
+			scenario = "pre";
+		}else if(launch.playing === true){
+			console.log("manual-launch")
+			scenario = "manual";
+		}
+				
+		switch(scenario){
+			case "auto":
+			case "pre":
+				fpsLaunch();
+				break;
+			case "manual":
+				if(!tryLaunch()){
+					fpsLaunch();
+				}
+				break;
+				
+			default:
+				tryLaunch();
+				break;
+		}
 		
+		function fpsLaunch(){
 			overwolf.games.onMajorFrameRateChange.addListener(function(data){
-				console.log("frame rate change data", data);
-
-				if(data.fps > 15 && data.fps_status == "Stable"){
-				
-					overwolf.games.getRunningGameInfo(function(value){
-					
-						console.log("focus callback", value.isInFocus);
-				
-						if(value.isInFocus === false){// !!! This method of delaying the enabling of recording hasn't been verified to work yet
-							/*console.log('out of focus');
-							overwolf.games.onGameInfoUpdated.addListener(function(data){ 
-								if(data.focusChanged === true && !alerted){
-									console.log("trying rec");
-									if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
-										rec.turnOn();
-									}
-									alerted = true;
-									overwolf.windows.restore(localStorage.getItem('MainID'));
-								}
-							});*/
-							alerted = true;
-							overwolf.windows.restore(localStorage.getItem('MainID'));
-						}else if(value.isInFocus === true && !alerted){
-							console.log("tracker");
-							if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
-								rec.turnOn();
-							}
-							alerted = true;
-							overwolf.windows.restore(localStorage.getItem('MainID'));
-						}
-					});
+				if(data.fps > 15 && data.fps_status == "Stable" && !alerted){
+					//console.log("stable and over 15");
+					tryLaunch();
 				}
 			});
-
-		}else if(launch.playing === true){
-			console.log("manual launch in game");
-			if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
-				rec.turnOn();
-			}
-			overwolf.windows.restore(localStorage.getItem('MainID'));
-		}else{
-			console.log("else");
-			if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
-				rec.turnOn(); 
-			}
-			overwolf.windows.restore(localStorage.getItem('MainID')); 
-		}
-	}, 1000);
+		};
+		
+		function tryLaunch(){
+			overwolf.games.getRunningGameInfo(function(value){
+			//	console.log("focus callback", value.isInFocus);
+				if(value.isInFocus === true && !alerted){
+					if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
+						rec.turnOn(function(result){
+							if(result.status == "success"){
+								alerted = true;
+								overwolf.windows.restore(localStorage.getItem('MainID'));
+								return true;
+							}else{
+								console.log("error was", result.error);
+								//return false;
+							}
+						});
+					}
+				}else{
+					return false;
+				}
+			});
+		};
+	};
 });

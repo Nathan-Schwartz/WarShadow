@@ -63,9 +63,10 @@ define(['jquery','gearData'], function($,gData){
 		}
 	};
 
-
-	// !!! implemenent failsafes for user doesn't want to sync              put a copy of shop_get_offers.xml in the install folder just in case? Would have to figure out how to load it.
 	function getNewData(){
+		if(JSON.parse(localStorage.getItem("Settings")).allowSync == false)
+			return false;
+		
 		plugin().fileExists(
 			plugin().PROFILE + "/Saved Games/My Games/WarfaceWest/QueryCache/shop_get_offers.xml", 
 			function(status) {
@@ -74,13 +75,13 @@ define(['jquery','gearData'], function($,gData){
 					plugin().getTextFile(
 						plugin().PROFILE + 
 						"/Saved Games/My Games/WarfaceWest/QueryCache/shop_get_offers.xml", 
-						false, // not a widechars file (i.e. not ucs-2)
+						false,
 						function(status, data) {
 							syncRepairs(status, data);
 						}
 					);
 				} else{
-					alert("I'm sorry, my app failed to update current repair costs. If you would like to sync repair costs, please make sure you have Warface installed. \n\nIf you do, please try launching the game again and then locate the get_shop_offers.xml file on your computer and move it to \n'Users/<your-name>/Saved Games/WarfaceWest/QueryCache/'. \n\nIt will be necessary to copy in a new shop_get_offers.xml whenever you want to update the data again. The game will update the file on each launch.");
+					alert("I'm sorry, my app failed to update current repair costs. If you would like to sync repair costs, please make sure you have Warface installed. \n\nIf you do, please try launching the game again and then locate the get_shop_offers.xml file on your computer and move it to \n'Users/<your-name>/Saved Games/WarfaceWest/QueryCache/'. \n\nIt will be necessary to copy in a new shop_get_offers.xml whenever you want to update the data again. The game will update the file on each launch.");// !!!!its an alert
 				}
 			}
 		);

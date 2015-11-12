@@ -1,4 +1,4 @@
-require(['jquery','windowCoreFunctions', 'loadSettings','updateSettings', 'counters', 'jqueryUI'], function($,wCore, loadS, updateS, counters, jqueryUI){
+require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'], function($,wCore, settingH, counters, jqueryUI){
 
 	if(JSON.parse(localStorage.getItem('optionsCalledBy')) == true){
 		window.location.hash = '#vidsetfield';
@@ -37,7 +37,7 @@ require(['jquery','windowCoreFunctions', 'loadSettings','updateSettings', 'count
 			console.log("key registered", e);
 			if(set === false){
 				localStorage.setItem("ADSkey", String(e));
-				updateS.updateSettings();
+				settingH.update();
 				document.getElementById("grabADS").innerHTML = "Grab ADS";
 			}
 			set = true;
@@ -54,7 +54,7 @@ require(['jquery','windowCoreFunctions', 'loadSettings','updateSettings', 'count
 			value:5,
 			min: 1,
 			max: 90,
-			change: function( event, ui ) {console.log("value", ui.value); updateS.updateSettings();},
+			change: function( event, ui ) {console.log("value", ui.value); settingH.update();},
 			slide: function( event, ui ) {
 				$( "#beforeSliderValue" ).val( ui.value + " seconds");
 			}
@@ -69,7 +69,7 @@ require(['jquery','windowCoreFunctions', 'loadSettings','updateSettings', 'count
 			value:5,
 			min: 1,
 			max: 90,
-			change: function( event, ui ) {console.log("value", ui.value); updateS.updateSettings();},
+			change: function( event, ui ) {console.log("value", ui.value); settingH.update();},
 			slide: function( event, ui ) {
 				$( "#afterSliderValue" ).val( ui.value + " seconds");
 			}
@@ -84,7 +84,7 @@ require(['jquery','windowCoreFunctions', 'loadSettings','updateSettings', 'count
 			value:50,
 			min: 1,
 			max: 180,
-			change: function( event, ui ) {console.log("value", ui.value); updateS.updateSettings();},
+			change: function( event, ui ) {console.log("value", ui.value); settingH.update();},
 			slide: function( event, ui ) {
 				$( "#grabSliderValue" ).val( ui.value  + " seconds");
 			}
@@ -93,7 +93,7 @@ require(['jquery','windowCoreFunctions', 'loadSettings','updateSettings', 'count
 	});
 		
 
-	loadS.loadSettings();	// This will load current setting that were previously stored in localStorage
+	settingH.load();	// This will load current setting that were previously stored in localStorage
 			
 //		Menu Listeners
 
@@ -114,19 +114,19 @@ require(['jquery','windowCoreFunctions', 'loadSettings','updateSettings', 'count
 	});
 	
 	//menu checkboxes //
-	$("#enableRecord, #autoLaunch, #minimizeOnTab, #restoreOnTab, #closeOnEnd, #kill, #doublekill, #triplekill, #perfkill, #flagkill, #screenshot, #achievevid, #severekill, #HSlength, #Grenlength, #Meleelength, #minekill, #defibkill").change(function(){updateS.updateSettings();});
+	$("#enableRecord, #autoLaunch, #minimizeOnTab, #restoreOnTab, #closeOnEnd, #kill, #doublekill, #triplekill, #perfkill, #flagkill, #screenshot, #achievevid, #severekill, #HSlength, #Grenlength, #Meleelength, #minekill, #defibkill, #allowSync").change(function(){settingH.update();});
 	$("#rightClickADS").change(function(){
 		document.getElementById("rightClickADS").checked 
 		? $("#inputADSContainer").fadeOut()
 		: $("#inputADSContainer").fadeIn();
-		updateS.updateSettings();
+		settingH.update();
 	});
-	//$("#combokill").change(function(){updateS.updateSettings();});
-	//$("#slidekill").change(function(){updateS.updateSettings();});
+	//$("#combokill").change(function(){settingH.update();});
+	//$("#slidekill").change(function(){settingH.update();});
 
 	//Menu radio
-	$("#holdADS").change(function(){updateS.updateSettings();});
-	$("#toggleADS").change(function(){updateS.updateSettings();});
+	$("#holdADS").change(function(){settingH.update();});
+	$("#toggleADS").change(function(){settingH.update();});
 		
 
 });

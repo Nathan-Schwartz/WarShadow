@@ -2,12 +2,18 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 /*
 // !!! need failsafes for capture hotkey
 
+	info page
+	-explain design and shortcomings of features
+	-explain how to fix sync issues
+	-explain how to fix recording conflict issues
+
 	store_icon in manifest
 
+	don't allow multiple forms of recording simultaneously
+	
 	scale window size to game resolution
 	make mediaplayer buttons
-	crashing when exiting settings page
-	consolidate listeners with multi-selectors
+	crashing when exiting settings page due to ADS key grab
 	image sprites
 	MainWindow resize window not working with name, only ID
 	hotkey ideas??
@@ -16,45 +22,62 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 	launching lowering music volume?
 	get overwolf language and make the app that language as well
 	figure out how to correctly link the steam guides
-
 */	
+
+	$( document ).tooltip({
+		track: true,
+		show:{delay:1000},
+		hide:false,
+		open: function (event, ui) {
+			ui.tooltip.css("max-width", "70px");
+		},
+		position:{ my: "left+3 bottom-3", of: event, collision: "fit"}
+	});
 
 	var dialogCounter = 1;
 	$(function() {
 		$( "#dialog" ).dialog({
 			autoOpen: false,
 			resizable: false,
-			height:400,
+			draggable: false,
+			height:320,
 			width: 175,
 			modal: true,
 			buttons: {
-				"Continue": function() {
-					dialogCounter++;
+				Proceed:{
+                    text: 'Next',
+                    click : function (){
+						dialogCounter++;
 					
-					if(dialogCounter == 2){
-						document.getElementById("page2").style.display = "block";
-						document.getElementById("page1").style.display = "none";
-					}else if(dialogCounter == 3){
-						document.getElementById("page3").style.display = "block";
-						document.getElementById("page2").style.display = "none";
-					}else if(dialogCounter == 4){
-						document.getElementById("page4").style.display = "block";
-						document.getElementById("page3").style.display = "none";	
-					}else if(dialogCounter == 5){
-						document.getElementById("page5").style.display = "block";
-						document.getElementById("page4").style.display = "none";
-					}else if(dialogCounter == 6){
-						document.getElementById("page6").style.display = "block";
-						document.getElementById("page5").style.display = "none";
-					}else if(dialogCounter == 7){
-						document.getElementById("page7").style.display = "block";
-						document.getElementById("page6").style.display = "none";
-					}else if(dialogCounter > 6){
+						if(dialogCounter == 2){
+							document.getElementById("page2").style.display = "block";
+							document.getElementById("page1").style.display = "none";
+						}else if(dialogCounter == 3){
+							document.getElementById("page3").style.display = "block";
+							document.getElementById("page2").style.display = "none";
+						}else if(dialogCounter == 4){
+							document.getElementById("page4").style.display = "block";
+							document.getElementById("page3").style.display = "none";	
+						}else if(dialogCounter == 5){
+							document.getElementById("page5").style.display = "block";
+							document.getElementById("page4").style.display = "none";
+						}else if(dialogCounter == 6){
+							document.getElementById("page6").style.display = "block";
+							document.getElementById("page5").style.display = "none";
+						}else if(dialogCounter == 7){
+							document.getElementById("page7").style.display = "block";
+							document.getElementById("page6").style.display = "none";
+						}else if(dialogCounter > 6){
+							$( this ).dialog( "close" );
+						}
+                    }
+				},
+				Cancel:{
+					class: 'rightButton',
+                    text: 'Cancel',
+                    click : function() {
 						$( this ).dialog( "close" );
 					}
-				},
-				Cancel: function() {
-					$( this ).dialog( "close" );
 				}
 			}
 		});
@@ -68,10 +91,10 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
         return document.querySelector('#plugin');
 	}
 	
-	(plugin() == null) ? console.log("Plugin couldn't be loaded??") : pluginListeners();
+	(plugin() == null) ? console.log("Plugin couldn't be loaded.") : pluginListeners();
 
 	
-	//these variables are basically used as temps so that i don't have to get the settings from localStorage each time the events are triggered
+	//these variables are used as temps so that i don't have to get the settings from localStorage each time the events are triggered
 	var rightclick = true;
 	var altkey = 221;
 	var toggle = true;
@@ -217,192 +240,193 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 	};
 	
 //		Game Events Listener
-		overwolf.games.events.onNewEvents.addListener(
-			function (value) {
-				var i = 0;
-				for(; i < value.events.length; i++){
-					console.log("Event: " + value.events[i].name);
-					gEvent.nameHandler(value.events[i].name);
-				}
+	overwolf.games.events.onNewEvents.addListener(
+		function (value) {
+			var i = 0;
+			for(; i < value.events.length; i++){
+				console.log("Event: " + value.events[i].name);
+				gEvent.nameHandler(value.events[i].name);
 			}
-		);
+		}
+	);
 		
 //$(document).ready(function(){});
 
-		window.addEventListener("storage", updateADS, false);
+	window.addEventListener("storage", updateADS, false);
+	
+	overwolf.settings.registerHotKey("resetCounters", function(arg) {
+		if (arg.status == "success") {
+			counters.resetCounters();
+		}
+	});
+	
+	var smoking = false;
+	var timeout = 0;
+	overwolf.settings.registerHotKey("smokeTimer", function(arg) {
+		if (arg.status == "success") {
+			if(smoking === false){
+				smoking = true;
+				rHUD.refreshHelper(true,"SmokeTimer");
+				timeout = setTimeout(function(){smoking = false}, 15000);
+			}else if(smoking === true){
+				clearTimeout(timeout);
+				rHUD.refreshHelper(false,"SmokeTimer");
+				rHUD.refreshHelper(true,"SmokeTimer");
+				timeout = setTimeout(function(){smoking = false}, 15000);
+			}
+		}
+	});
+	
+	var zoomed = true;
+	overwolf.settings.registerHotKey("crosshair", function(arg) {
+		if (arg.status == "success") {
+			if(zoomed === true){
+				overwolf.windows.minimize('Crosshair');
+				zoomed = false;
+			}else if(zoomed === false){
+				overwolf.windows.restore('Crosshair');
+				zoomed = true;
+			}
+		}
+	});
+	
+	
+	overwolf.settings.registerHotKey("capture", function(arg){
+		rec.capture(1,parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000);
+	});
+	
+	
+	overwolf.settings.registerHotKey("showHideWindows", function(arg) {
+		if (arg.status == "success") {
+			overwolf.windows.getCurrentWindow(function(window){
+				console.log("window", window);
+				if(window.window.isVisible === true){
+					minimizeAllWindows();
+				}else{
+					restoreAllWindows();
+				}
+			});
+		}
+	});
+	
+	//Slider for content
+	$("#showcontent").click(function(){
+		$("#contentbuttons").slideToggle(200);
+	});
 		
-		overwolf.settings.registerHotKey("resetCounters", function(arg) {
-			if (arg.status == "success") {
-				counters.resetCounters();
+//		Menu Listeners
+	$("#contentWrapper").mousedown(function(e){
+	 if (!$(e.target).hasClass('draggable')) 
+		 return;
+	 
+		wCore.dragMove();
+	});		
+
+	//menu buttons
+	$("#resize").dblclick(function(){ResizeMain();});
+	$("#minimize").click(function(){wCore.minimizeWindow();});
+	$("#popup").click(function(){rHUD.refreshHelper(true, 'popup');});
+	$("#close").click(function(){wCore.closeWindow();});
+	$("#cold").click(function(){window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=352301863");});
+	$("#tower").click(function(){window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=299691346");});
+	$("#info").click(function(){rHUD.refreshHelper(true, 'Info');});
+	$("#settingsWin").click(function(){rHUD.refreshHelper(true, 'Settings');});
+	$("#Stats").click(function(){rHUD.refreshHelper(true,"StatCrack");});
+	$("#record").click(function(){rHUD.refreshHelper(true,"Recording");});
+	
+	//menu checkboxes
+	$("#HSNum").change(function(){rHUD.refreshHUD();});
+	$("#crosshair").change(function(){rHUD.refreshHUD();});
+	$("#HSPerc").change(function(){rHUD.refreshHUD();});
+	$("#HSChain").change(function(){rHUD.refreshHUD();});
+	//$("#KDRate").change(function(){rHUD.refreshHUD();});
+	$("#autoon").change(function(){
+		rec.turnOn(function(result){
+			if(result.status != "success" && result.error != "Already turned on."){
+				document.getElementById("autoon").checked = false;
+				alert("I'm sorry, the recording feature wasn't able to start properly. Overwolf says the error is: " + result.error);
 			}
 		});
-		
-		var smoking = false;
-		var timeout = 0;
-		overwolf.settings.registerHotKey("smokeTimer", function(arg) {
-			if (arg.status == "success") {
-				if(smoking === false){
-					smoking = true;
-					rHUD.refreshHelper(true,"SmokeTimer");
-					timeout = setTimeout(function(){smoking = false}, 15000);
-				}else if(smoking === true){
-					clearTimeout(timeout);
-					rHUD.refreshHelper(false,"SmokeTimer");
-					rHUD.refreshHelper(true,"SmokeTimer");
-					timeout = setTimeout(function(){smoking = false}, 15000);
+	});
+	$("#colorContainer input:checkbox[id=colorVis]").click(function() {
+		var $this = $(this);
+		if ($this.attr("checked")) {
+			$('#container').toggleClass("bigCheckbox normalCheckbox");
+		} else {
+			$this.parent().toggleClass("normalCheckbox bigCheckbox");
+		}
+	});
+	$("#colorVis").change(function(e){ 
+		if(document.getElementById("colorVis").checked === true){
+			$("#colorText").hide();
+			$("#colorbuttons").fadeIn();
+			document.getElementById("colorContainer").style.left = '5px';
+			
+		} else{			
+			$("#colorText").fadeIn();
+			$("#colorbuttons").hide();
+			document.getElementById("colorContainer").style.left = '0px';
+		}
+	});
+	
+	//Restore all windows together
+	overwolf.windows.onMainWindowRestored.addListener(
+		function (value) {
+			rHUD.refreshHUD();
+		}
+	);
+	
+	
+	function restoreAllWindows(){
+		overwolf.windows.restore(localStorage.getItem("MainID"));//"MainWindow");
+		overwolf.windows.restore("Info");
+		overwolf.windows.restore("Settings");
+		overwolf.windows.restore("StatCrack");
+		rHUD.refreshHUD();
+	};
+	
+	function minimizeAllWindows(){
+		overwolf.windows.minimize('SmokeTimer');
+		overwolf.windows.minimize('HSCounter');
+		overwolf.windows.minimize('HSChains');
+		overwolf.windows.minimize('HSPercent');
+		overwolf.windows.minimize('KDR');
+		overwolf.windows.minimize('Info');
+		overwolf.windows.minimize(localStorage.getItem("MainID"));//'MainWindow');
+		overwolf.windows.minimize('Settings');
+		overwolf.windows.minimize('StatCrack');
+	};
+	
+	//If game ends close the program, focus change manager
+	overwolf.games.onGameInfoUpdated.addListener(
+		function(resultA){
+			var test = JSON.parse(localStorage.getItem("Settings"));
+			if(test.closeOnEnd == true){
+				if(resultA.runningChanged == true){
+					overwolf.games.getRunningGameInfo(
+						function (resultB){
+							if (resultB == null)
+								overwolf.windows.close(localStorage.getItem("MainID"));//'MainWindow');//game closed
+						}
+					);
 				}
 			}
-		});
-		
-		var zoomed = true;
-		overwolf.settings.registerHotKey("crosshair", function(arg) {
-			if (arg.status == "success") {
-				if(zoomed === true){
-					overwolf.windows.minimize('Crosshair');
-					zoomed = false;
-				}else if(zoomed === false){
-					overwolf.windows.restore('Crosshair');
-					zoomed = true;
-				}
-			}
-		});
-		
-		
-		overwolf.settings.registerHotKey("capture", function(arg){
-			rec.capture(1,parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000);
-		});
-		
-		
-		overwolf.settings.registerHotKey("showHideWindows", function(arg) {
-			if (arg.status == "success") {
-				overwolf.windows.getCurrentWindow(function(window){
-					console.log("window", window);
-					if(window.window.isVisible === true){
-						minimizeAllWindows();
-					}else{
+			if(resultA.focusChanged === true){ // if open and minimize are disabled, app can disapear behind other apps when tabbed out, and will open in game if not minimized. 
+				if (resultA.gameInfo.isInFocus  === true){
+					if(test.restoreOnTab === true){
+						//game is in focus so restore all except settings and statcrack
 						restoreAllWindows();
 					}
-				});
-			}
-		});
-		
-		//Slider for content
-		$("#showcontent").click(function(){
-			$("#contentbuttons").slideToggle(200);
-		});
-			
-//		Menu Listeners
-		$("#contentWrapper").mousedown(function(e){
-		 if (!$(e.target).hasClass('draggable')) 
-			 return;
-		 
-			wCore.dragMove();
-		});		
-
-		//menu buttons
-		$("#resize").dblclick(function(){ResizeMain();});
-		$("#minimize").click(function(){wCore.minimizeWindow();});
-		$("#popup").click(function(){rHUD.refreshHelper(true, 'popup');});
-		$("#close").click(function(){wCore.closeWindow();});
-		$("#cold").click(function(){window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=352301863");});
-		$("#tower").click(function(){window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=299691346");});
-		$("#info").click(function(){rHUD.refreshHelper(true, 'Info');});
-		$("#settingsWin").click(function(){rHUD.refreshHelper(true, 'Settings');});
-		$("#Stats").click(function(){rHUD.refreshHelper(true,"StatCrack");});
-		$("#record").click(function(){rHUD.refreshHelper(true,"Recording");});
-		
-		//menu checkboxes
-		$("#HSNum").change(function(){rHUD.refreshHUD();});
-		$("#crosshair").change(function(){rHUD.refreshHUD();});
-		$("#HSPerc").change(function(){rHUD.refreshHUD();});
-		$("#HSChain").change(function(){rHUD.refreshHUD();});
-		//$("#KDRate").change(function(){rHUD.refreshHUD();});
-		$("#autoon").change(function(){rec.turnOn();});
-		$("#colorContainer input:checkbox[id=colorVis]").click(function() {
-			var $this = $(this);
-			if ($this.attr("checked")) {
-				$('#container').toggleClass("bigCheckbox normalCheckbox");
-			} else {
-				$this.parent().toggleClass("normalCheckbox bigCheckbox");
-			}
-		});
-		$("#colorVis").change(function(e){ 
-			if(document.getElementById("colorVis").checked === true){
-				$("#colorText").hide();
-				$("#colorbuttons").fadeIn();
-				document.getElementById("colorContainer").style.left = '5px';
-				
-			} else{			
-				$("#colorText").fadeIn();
-				$("#colorbuttons").hide();
-				document.getElementById("colorContainer").style.left = '0px';
-			}
-		});
-		
-		//replay testing
-		$("#turnOff").click(function(){rec.turnOff();});
-		$("#turnOn").click(function(){rec.turnOn();});
-		$("#capture").click(function(){rec.capture(1,-1);});
-
-		
-		//Restore all windows together
-		overwolf.windows.onMainWindowRestored.addListener(
-			function (value) {
-				rHUD.refreshHUD();
-			}
-		);
-		
-		
-		function restoreAllWindows(){
-			overwolf.windows.restore("MainWindow");
-			overwolf.windows.restore("Info");
-			overwolf.windows.restore("Settings");
-			overwolf.windows.restore("StatCrack");
-			rHUD.refreshHUD();
-		};
-		
-		function minimizeAllWindows(){
-			overwolf.windows.minimize('SmokeTimer');
-			overwolf.windows.minimize('HSCounter');
-			overwolf.windows.minimize('HSChains');
-			overwolf.windows.minimize('HSPercent');
-			overwolf.windows.minimize('KDR');
-			overwolf.windows.minimize('Info');
-			overwolf.windows.minimize('MainWindow');
-			overwolf.windows.minimize('Settings');
-			overwolf.windows.minimize('StatCrack');
-		};
-		
-		//If game ends close the program, focus change manager
-		overwolf.games.onGameInfoUpdated.addListener(
-			function(resultA){
-				var test = JSON.parse(localStorage.getItem("Settings"));
-				if(test.closeOnEnd == true){
-					if(resultA.runningChanged == true){
-						overwolf.games.getRunningGameInfo(
-							function (resultB){
-								if (resultB == null)
-									overwolf.windows.close('MainWindow');//game closed
-							}
-						);
+				}else{
+					if(test.minimizeOnTab === true){
+						//game is out of focus so minimize all
+						minimizeAllWindows();
 					}
 				}
-				if(resultA.focusChanged === true){ // if open and minimize are disabled, app can disapear behind other apps when tabbed out, and will open in game if not minimized. 
-					if (resultA.gameInfo.isInFocus  === true){
-						if(test.restoreOnTab === true){
-							//game is in focus so restore all except settings and statcrack
-							restoreAllWindows();
-						}
-					}else{
-						if(test.minimizeOnTab === true){
-							//game is out of focus so minimize all
-							minimizeAllWindows();
-						}
-					}
-					updateADS();
-				}
+				updateADS();
 			}
-		);
+		}
+	);
 });
 			
 			

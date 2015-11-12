@@ -16,7 +16,6 @@ define(function () {
 
 	function NTKvest(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Repelshot, pellets){
 		var tank = Repelshot === true ? 1 : 0;
-
 		var NTK = (  (vestHP / damageCalc(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets)) - tank  );
 		return Math.ceil(NTK);
 	}
@@ -27,15 +26,13 @@ define(function () {
 		if(weapon_archetype == "E")
 			HSmult = 4;
 		else if(weapon_archetype == "M")
-			HSmult = 1.2 * (Math.round(pellets * (100 - distance_selected)/100)-pellets)/pellets;//should be 1.2, but accounting for pellets missin I'm changing it to be based on a percentage. 
+			HSmult = .1 * 1.2 * (Math.round(pellets * (100 - distance_selected)/100)-pellets)/pellets;//should be 1.2, but accounting for pellets missin I'm changing it to be based on a percentage. 
 		
 		var NTK = vestHP / (damageCalc(damage_default, min_default, attachment_equipped, false, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets) * Hdamage_reduc * HSmult);
 		return Math.ceil(NTK);
-		}
-		
+	}
 
 	function TTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, RPM, pellets){
-
 		var milliseconds_between_shots = 60000/RPM;
 		return Math.round(((NTKhead(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, vestHP, Hdamage_reduc, weapon_archetype, pellets)* milliseconds_between_shots) - milliseconds_between_shots)*100)/100;
 	}
@@ -48,7 +45,6 @@ define(function () {
 	function damageCalc(damage_default, min_default, attachment_equipped, RFProt, distance_selected, weapon_range, weapon_class, damage_lost_p_meter, pellets){
 	//This is the main damage function, the ones below are just helpers
 	//console.log("pellets: " + pellets);
-	
 		var silencer_reduc_mult = 1;
 		var silencer_fall_off_mult = 1;
 		var vest_reduc = 0;
@@ -104,16 +100,14 @@ define(function () {
 			return (test_damage <= minDamTemp) ? Math.round(minDamTemp*100)/100 : Math.round(test_damage*100)/100;
 		}
 	}
-			
+
 	function minDamage(min_default, vest_reduc, silencer_reduc_mult){
-	
 		var adjusted_min_damage = 0;
 		adjusted_min_damage = min_default * silencer_reduc_mult - vest_reduc;
 		return adjusted_min_damage;
 	};
-	
+
 	function damageFallOff(distance_selected, weapon_range, weapon_class, damage_lost_p_meter, silencer_fall_off_mult){
-		
 		var fall_off_distance = distance_selected - weapon_range;
 		var damage_lost = 0;
 		
@@ -122,7 +116,7 @@ define(function () {
 
 		return damage_lost;
 	}
-	
+
 	return{
 		TTKhead:TTKhead,
 		TTKvest:TTKvest,

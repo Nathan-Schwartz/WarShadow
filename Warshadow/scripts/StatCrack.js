@@ -165,6 +165,42 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 		wCore.dragMove();
 	});	
 
+	
+	function primaryCallback(){
+		$(currentTable).hide();
+
+		if((document.getElementById("RCprimary").value == "none")||(document.getElementById("RCprimary").value == "rental")){
+			$("#sidePrimary").fadeIn();
+			currentTable = '#sidePrimary';
+		}else{
+			var weapons = gData.getWeapons();
+			var found = false;
+			for(var i = 0, limit = weapons.length; i < limit; i ++){
+				if(weapons[i].key == document.getElementById("RCprimary").value){
+					if(weapons[i].Class == "M"){
+						$("#sideShotgun").fadeIn();
+						currentTable = '#sideShotgun';
+					}else if(weapons[i].Class == "E"){
+						$("#sideSMG").fadeIn();
+						currentTable = '#sideSMG';
+					}else if(weapons[i].Class == "R"){
+						$("#sideRifle").fadeIn();
+						currentTable = '#sideRifle';
+					}else if(weapons[i].Class == "S"){
+						$("#sideSniper").fadeIn();
+						currentTable = '#sideSniper';
+					}
+					found = true;
+					break;
+				}
+			}
+			if(!found){ //just in case there is a weird value; It would be almost impossible though.
+				$("#sidePrimary").fadeIn();
+				currentTable = '#sidePrimary';
+			}
+		}
+	}
+	
 	//jQuery spaghetti for displaying comparison charts
 	var currentTable = "#sideInstruct";
 		
@@ -192,79 +228,13 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 		$("#sideBoot").fadeIn();
 	});
 
-	$('#RCprimary').mousedown(function(){
-		$(currentTable).hide();
+	$('#RCprimary').mousedown(primaryCallback);
 
-		if((document.getElementById("RCprimary").value == "none")||(document.getElementById("RCprimary").value == "rental")){
-			$("#sidePrimary").fadeIn();
-			currentTable = '#sidePrimary';
-		}else{
-			var weapons = gData.getWeapons();
-			var found = false;
-			for(var i = 0, limit = weapons.length; i < limit; i ++){
-				if(weapons[i].key == document.getElementById("RCprimary").value){
-					if(weapons[i].Class == "M"){
-						$("#sideShotgun").fadeIn();
-						currentTable = '#sideShotgun';
-					}else if(weapons[i].Class == "E"){
-						$("#sideSMG").fadeIn();
-						currentTable = '#sideSMG';
-					}else if(weapons[i].Class == "R"){
-						$("#sideRifle").fadeIn();
-						currentTable = '#sideRifle';
-					}else if(weapons[i].Class == "S"){
-						$("#sideSniper").fadeIn();
-						currentTable = '#sideSniper';
-					}
-					found = true;
-					break;
-				}
-			}
-			if(!found){ //just in case there is a weird value; It would be almost impossible though.
-				$("#sidePrimary").fadeIn();
-				currentTable = '#sidePrimary';
-			}
-		}
-	});
-
-	$('#RCprimary').change(function(){ // !!! I could encapsulate the callback so i don't have to copy paste it for change and mouseover
-		$(currentTable).hide();
-
-		if((document.getElementById("RCprimary").value == "none")||(document.getElementById("RCprimary").value == "rental")){
-			$("#sidePrimary").fadeIn();
-			currentTable = '#sidePrimary';
-		}else{
-			var weapons = gData.getWeapons();
-			var found = false;
-			for(var i = 0, limit = weapons.length; i < limit; i ++){
-				if(weapons[i].key == document.getElementById("RCprimary").value){
-					if(weapons[i].Class == "M"){
-						$("#sideShotgun").fadeIn();
-						currentTable = '#sideShotgun';
-					}else if(weapons[i].Class == "E"){
-						$("#sideSMG").fadeIn();
-						currentTable = '#sideSMG';
-					}else if(weapons[i].Class == "R"){
-						$("#sideRifle").fadeIn();
-						currentTable = '#sideRifle';
-					}else if(weapons[i].Class == "S"){
-						$("#sideSniper").fadeIn();
-						currentTable = '#sideSniper';
-					}
-					found = true;
-					break;
-				}
-			}
-			if(!found){ //just in case there is a weird value; It would be almost impossible though.
-				$("#sidePrimary").fadeIn();
-				currentTable = '#sidePrimary';
-			}
-		}
-	});
+	$('#RCprimary').change(primaryCallback);
 
 	$('#RCsecondary').mousedown(function(){
-		// !!! I could make array look up and call shit with something like this: console.log("this: ", "'#" + this.id + "'");
-		awgaerhearh = "'#" + this.id + "'";
+		// !!! I could make array look up and call shit with something like this: 
+		console.log("this: ", "'#" + this.id + "'");
 		$(currentTable).hide();
 		currentTable = '#sideSecondary';
 		$("#sideSecondary").fadeIn();

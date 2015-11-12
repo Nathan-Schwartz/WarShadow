@@ -19,7 +19,6 @@ define(function () {
 						overwolf.windows.restore(name);
 				}
 			);
-			overwolf.windows.restore(name); // !!! necessary?
 		}else{
 			overwolf.windows.close(name);
 		}

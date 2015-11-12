@@ -29,9 +29,10 @@ define( ["jquery","jqueryUI"], function($, ui){
 		localStorage.setItem('color2', 'rgba(36, 220, 143, 0.3)');
 	}
 
-	localStorage.removeItem('Settings');
+	//localStorage.removeItem('Settings');
 	if(!localStorage.getItem('Settings')){
 		var Settings = {
+			allowSync: true,
 			toggleADS : true,
 			rightClickADS : true,
 			enableRecord: false,

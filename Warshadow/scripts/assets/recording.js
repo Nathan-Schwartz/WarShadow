@@ -5,32 +5,40 @@ define(["refreshHUD"], function(rHUD){
 		rHUD.refreshHelper(true,"popup");
 	});
 
-	function turnOn(){
+	function isFunction(arg){
+		if(typeof arg == "function")
+			return true;
+		
+		return false;
+	};
+	
+	function turnOn(callback){
 		overwolf.media.replays.turnOn(
 			{}, 
 			function(result) {
+				if(isFunction(callback))
+					callback(result);
+					
+				if(result.error == "Already turned on." && JSON.parse(localStorage.getItem('recordingOn')) === false)
+					alert("Another app hijacked the recording feature!! I can't believe you have another recording app, I thought what we had was special :( \n\n Learn more in the Info page");
+
+				
 				console.log(result);
 				if(result.status== "success"){
 					localStorage.setItem('recordingOn', true);
 					localStorage.setItem('message', "alertEnabled");
 					rHUD.refreshHelper(true,"popup");
-				}else{
-					if(result.error == "Already turned on." && JSON.parse(localStorage.getItem('recordingOn')) === false){
-						alert("Another app hijacked the recording feature!! I can't believe you have another recording app, I thought what we had was special :( \n\n This problem happens because only 1 recording can happen at a time. To fix this problem open up the other program and turn off the recording. To prevent this issue in the future you could prevent it from auto-launching with each game (assuming it has this option). If you really don't want to use my awesome auto-recording feature, I have made it easy to disable it in settings.");
-						document.getElementById("autoon").checked = false;
-					}else if(result.error != "Already turned on."){
-						alert("I'm sorry, the recording feature wasn't able to start properly. Overwolf says the error is: " + result.error);
-						document.getElementById("autoon").checked = false;
-					}
 				}
 			}
 		);
 	};
 
-	function turnOff(){
+	function turnOff(callback){
 		overwolf.media.replays.turnOff(
 			function(result) {
 				console.log(result);
+				if(isFunction(callback))
+					callback(result);
 				if(result.status== "success"){
 					localStorage.setItem('message', "alertDisabled");
 					localStorage.setItem('recordingOn', false);
@@ -43,41 +51,74 @@ define(["refreshHUD"], function(rHUD){
 		
 	var url = "";	
 		
-	function startCapture(){
+	function startCapture(callback){
 		overwolf.media.replays.startCapture(1,
 			function(result){
+				if(isFunction(callback))
+					callback(result);
 				console.log(result);
 				url = result.url;
-				localStorage.setItem("url", results.url);
+				localStorage.setItem("url", result.url);
 			}
 		);
 	};
 
-	function finishCapture(){
-		overwolf.media.replays.finishCapture(url, function(result){console.log(result);});
+	function finishCapture(callback){
+		overwolf.media.replays.finishCapture(url, function(result){
+			if(isFunction(callback))
+				callback(result);
+			console.log(result);
+		});
 	};
-			
-	function capture(before, after){
+
+	function capture(before, after, callback){
 		overwolf.media.replays.capture(before, after,
 			function(result){if(result) console.log("first",result);},
-			function(results){
-				console.log("second",results);
-				if(results.status== "success"){
-					localStorage.setItem("url", results.url);
-					overwolf.media.replays.finishCapture(results.url,
-						function(results){
-							console.log('results',results);
-							/*if(results.status== "success"){
-							}else{
-							}*/
+			function(result){
+				console.log("second",result);
+				if(result.status== "success"){
+					localStorage.setItem("url", result.url);
+					overwolf.media.replays.finishCapture(result.url,
+						function(result){
+							console.log('result',result);
+							if(isFunction(callback))
+								callback(result);
 						}
 					);
 				}
 			}
 		);
 	};
+	
+	function memScreen(){
+		overwolf.media.getScreenshotUrl(
+			{
+				/*
+				//Optional - Crop the screen (happens before the rescale, if both are used).
+				//Positive values are absolute, negative values are relative (-1.0 - 0)
+				crop: {
+					x: -0.5, //Start cropping at the middle of the screen
+					y: 0,
+					width: 400,
+					height: -1.0 //Use 100% of the height
+				},
+				//Optional - Rescale the final image to these dimensions
+				rescale: {
+					width: 1920,
+					height: -0.4
+				}*/
+			},
+			function(result) {
+				if (result.status == "success"){
+					localStorage.setItem("url", result.url)
+					console.log("Screenshot URL result", result.url);
+				}
+			}
+		);
+	};
 
 	return{
+		memScreen:memScreen,
 		capture:capture,
 		turnOff:turnOff,
 		turnOn:turnOn,

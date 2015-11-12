@@ -125,13 +125,17 @@
 }
 
 
-
 .feedback{
 	display: none;
 	color: red;
 	text-shadow:none;
 }
 
+.rightButton{
+	position: relative;
+	bottom: 49px;
+	left: 85px;
+}
 
 .button:hover, .subbutton:hover, .bigCheckbox label:hover, .smallbutton:hover{
     border-color: #F0C49B;
@@ -205,25 +209,25 @@ body
 }
 
 .smallbutton{
-  width: 20px;
-  height: 20px;
-  -webkit-border-radius: 2;
-  -moz-border-radius: 2;
-  border-radius: 2px;
-  font-family: Helvetica;
-  color: #ffffff;
-  background: #323232;
-  text-decoration: bold;
-  font-weight: bold;
-  border: solid 1px #323232;
-  outline: none;
-  text-align: center;
+	width: 20px;
+	height: 20px;
+	-webkit-border-radius: 2;
+	-moz-border-radius: 2;
+	border-radius: 2px;
+	font-family: Helvetica;
+	color: #ffffff;
+	background: #323232;
+	text-decoration: bold;
+	font-weight: bold;
+	border: solid 1px #323232;
+	outline: none;
+	text-align: center;
     -webkit-box-shadow: 0px 1px 3px #666666;
 	-moz-box-shadow: 0px 1px 3px #666666;
 	box-shadow: 0px 1px 3px #666666;
-  display: block;
-  opacity: .9;
-  position: absolute;
+	display: block;
+	opacity: .9;
+	position: absolute;
 }
 
 label{
