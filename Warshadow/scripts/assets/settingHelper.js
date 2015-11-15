@@ -35,34 +35,55 @@ define(["jquery", "jqueryUI"], function ($) {
 		$( "#beforeSlider" ).slider( "value", parseInt(temp.Rbefore));
 		$( "#beforeSliderValue" ).val( $( "#beforeSlider" ).slider( "value" ) + " seconds");
 		
-		if(temp.Rheadshot == 1)
-			document.getElementById("HSlength").value = "headshot";
-		else if(temp.Rheadshot == 2)
-			document.getElementById("HSlength").value = "twoheadshots";
-		else if(temp.Rheadshot == 3)
-			document.getElementById("HSlength").value = "threeheadshots";
-		else if(temp.Rheadshot == 4)
-			document.getElementById("HSlength").value = "fourheadshots";
-		else if(temp.Rheadshot == 5)
-			document.getElementById("HSlength").value = "fiveheadshots";
+		function returnHS(){
+			if(temp.Rheadshot == 0)
+				return "none";
+			else if(temp.Rheadshot == 1)
+				return "headshot";
+			else if(temp.Rheadshot == 2)
+				return "twoheadshots";
+			else if(temp.Rheadshot == 3)
+				return "threeheadshots";
+			else if(temp.Rheadshot == 4)
+				return "fourheadshots";
+			else if(temp.Rheadshot == 5)
+				return "fiveheadshots";
+		}
+			
+		$('#HSlength').val(returnHS());
+		$("#HSlength").selectmenu("refresh");
 		
-		if(temp.Rmelee == 1)
-			document.getElementById("Meleelength").value = "meleekill";
-		else if(temp.Rheadshot == 2)
-			document.getElementById("Meleelength").value = "meleeONEkill";
-		else if(temp.Rheadshot == 3)
-			document.getElementById("Meleelength").value = "meleeTWOkill";
-		else if(temp.Rheadshot == 5)
-			document.getElementById("Meleelength").value = "meleeTHREEkill";
+		function returnMelee(){
+			if(temp.Rmelee == 0)
+				return "none";
+			else if(temp.Rmelee == 1)
+				return "meleekill";
+			else if(temp.Rmelee == 2)
+				return "meleeONEkill";
+			else if(temp.Rmelee == 3)
+				return "meleeTWOkill";
+			else if(temp.Rmelee == 5)
+				return "meleeTHREEkill";
+		}
 		
-		if(temp.Rnade == 1)
-			document.getElementById("Grenlength").value = "grenadekill";
-		else if(temp.Rheadshot == 2)
-			document.getElementById("Grenlength").value = "grenadeONEkill";
-		else if(temp.Rheadshot == 3)
-			document.getElementById("Grenlength").value = "grenadeTWOkill";
-		else if(temp.Rheadshot == 5)
-			document.getElementById("Grenlength").value = "grenadeTHREEkill";
+		$('#Meleelength').val(returnMelee());
+		$("#Meleelength").selectmenu("refresh");
+		
+		function returnNade(){
+			if(temp.Rnade == 0)
+				return "none";
+			else if(temp.Rnade == 1)
+				return "grenadekill";
+			else if(temp.Rnade == 2)
+				return "grenadeONEkill";
+			else if(temp.Rnade == 3)
+				return "grenadeTWOkill";
+			else if(temp.Rnade == 5)
+				return "grenadeTHREEkill";
+		}
+		
+		$('#Grenlength').val(returnNade());
+		$("#Grenlength").selectmenu("refresh");
 	};
 	
 	function update(){//Update localStorage with newest settings
@@ -89,48 +110,69 @@ define(["jquery", "jqueryUI"], function ($) {
 		//temp.Rslidekill = (document.getElementById("slidekill").checked?true:false);
 		//temp.Rcombokill = (document.getElementById("combokill").checked?true:false);
 
-		if(document.getElementById("HSlength").value == "none")
-			temp.Rheadshot = 0;
-		else if(document.getElementById("HSlength").value == "headshot")
-			temp.Rheadshot = 1;
-		else if(document.getElementById("HSlength").value == "twoheadshots")
-			temp.Rheadshot = 2;
-		else if(document.getElementById("HSlength").value == "threeheadshots")
-			temp.Rheadshot = 3;
-		else if(document.getElementById("HSlength").value == "fourheadshots")
-			temp.Rheadshot = 4;
-		else if(document.getElementById("HSlength").value == "fiveheadshots")
-			temp.Rheadshot = 5;
-
-		if(document.getElementById("Meleelength").value == "none")
-			temp.Rmelee = 0;
-		else if(document.getElementById("Meleelength").value == "meleekill")
-			temp.Rmelee = 1;
-		else if(document.getElementById("Meleelength").value == "meleeONEkill")
-			temp.Rmelee = 2;
-		else if(document.getElementById("Meleelength").value == "meleeTWOkill")
-			temp.Rmelee = 3;
-		else if(document.getElementById("Meleelength").value == "meleeTHREEkill")
-			temp.Rmelee = 5;
-
-		if(document.getElementById("Grenlength").value == "none")
-			temp.Rnade = 0;
-		else if(document.getElementById("Grenlength").value == "grenadekill")
-			temp.Rnade = 1;
-		else if(document.getElementById("Grenlength").value == "grenadeONEkill")
-			temp.Rnade = 2;
-		else if(document.getElementById("Grenlength").value == "grenadeTWOkill")
-			temp.Rnade = 3;
-		else if(document.getElementById("Grenlength").value == "grenadeTHREEkill")
-			temp.Rnade = 5;
-
 		temp.Rgrab = $( "#grabSlider" ).slider( "value" );
 		temp.Rafter = $( "#afterSlider" ).slider( "value" );
 		temp.Rbefore = $( "#beforeSlider" ).slider( "value" );
 
 		localStorage.setItem("Settings", JSON.stringify(temp));
 	};
+	
+	function updateHS(val){
+		var temp = JSON.parse(localStorage.getItem("Settings"));
 		
+		if(val == "none")
+			temp.Rheadshot = 0;
+		else if(val == "headshot")
+			temp.Rheadshot = 1;
+		else if(val == "twoheadshots")
+			temp.Rheadshot = 2;
+		else if(val == "threeheadshots")
+			temp.Rheadshot = 3;
+		else if(val == "fourheadshots")
+			temp.Rheadshot = 4;
+		else if(val == "fiveheadshots")
+			temp.Rheadshot = 5;
+		
+		localStorage.setItem("Settings", JSON.stringify(temp));
+	}
+
+	function updateMelee(val){
+		var temp = JSON.parse(localStorage.getItem("Settings"));
+		
+		if(val == "none")
+			temp.Rmelee = 0;
+		else if(val == "meleekill")
+			temp.Rmelee = 1;
+		else if(val == "meleeONEkill")
+			temp.Rmelee = 2;
+		else if(val == "meleeTWOkill")
+			temp.Rmelee = 3;
+		else if(val == "meleeTHREEkill")
+			temp.Rmelee = 5;
+		
+		localStorage.setItem("Settings", JSON.stringify(temp));
+	}
+
+	function updateGren(val){
+		var temp = JSON.parse(localStorage.getItem("Settings"));
+		
+		if(val == "none")
+			temp.Rnade = 0;
+		else if(val == "grenadekill")
+			temp.Rnade = 1;
+		else if(val == "grenadeONEkill")
+			temp.Rnade = 2;
+		else if(val == "grenadeTWOkill")
+			temp.Rnade = 3;
+		else if(val == "grenadeTHREEkill")
+			temp.Rnade = 5;
+		
+		localStorage.setItem("Settings", JSON.stringify(temp));
+	}
+
 	return {update : update,
-			load : load};
+			load : load,
+			updateGren: updateGren,
+			updateMelee: updateMelee,
+			updateHS: updateHS};
 });

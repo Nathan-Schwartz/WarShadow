@@ -437,8 +437,6 @@ define(function () {
 		localStorage.setItem("vests", JSON.stringify(arr));
 	};
 
-	initStats();
-
 	return {
 		initStats : initStats,
 		clearStats:clearStats,

@@ -1,19 +1,12 @@
 define(function(){
-
-	localStorage.setItem("kill", 0);
-	localStorage.setItem("headshot1" ,0);
-	localStorage.setItem("headshot2" ,0);
-	localStorage.setItem("headshot3" ,0);
-	localStorage.setItem("headshot4" ,0);
-	localStorage.setItem("headshot5" ,0);
 	
 	function resetCounters(){
-	localStorage.setItem("kill", 0);
-	localStorage.setItem("headshot1" ,0);
-	localStorage.setItem("headshot2" ,0);
-	localStorage.setItem("headshot3" ,0);
-	localStorage.setItem("headshot4" ,0);
-	localStorage.setItem("headshot5" ,0);
+		localStorage.setItem("kill", 0);
+		localStorage.setItem("headshot1" ,0);
+		localStorage.setItem("headshot2" ,0);
+		localStorage.setItem("headshot3" ,0);
+		localStorage.setItem("headshot4" ,0);
+		localStorage.setItem("headshot5" ,0);
 	}
 	
 	function incrementKill(){

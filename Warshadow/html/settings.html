@@ -34,7 +34,7 @@
 		<fieldset class="settings"><legend><b>Displays </b></legend>
 			
 			<b>Crosshair Settings:</b><br>
-			<input type="checkbox" id="rightClickADS" checked> I use right click to aim down sights (ADS).<br><br>
+			<span class="normalCheckbox"><input type="checkbox" id="rightClickADS"><label for="rightClickADS"></label></span><label for="rightClickADS">  Use right click to aim down sights (ADS)</label><br><br>
 			<input type="radio" name="toggleORhold" id="toggleADS" checked> Use Toggle to aim<br>
 			<input type="radio" name="toggleORhold" id="holdADS"> Use Hold to aim<br><br>
 
@@ -74,47 +74,46 @@
 				<div id="triggers">
 					<fieldset class="embeddedSettings">
 					<legend><b>Triggers </b></legend><br>
-						 Minimum HS Combo <br>
+						<label class="selectLabel" for "HSlength">Minimum HS Combo</label><br>
 						<select id="HSlength">
-							<option value="none"> Don't Record</option> <br>
-							<option value="headshot"> 1</option> <br>
-							<option value="twoheadshots" > 2 </option> <br>
-							<option value="threeheadshots"> 3 </option> <br>
-							<option value="fourheadshots" > 4 </option> <br> 
-							<option value="fiveheadshots"> 5 </option> <br>
+							<option value="none"> Don't Record</option>
+							<option value="headshot"> 1</option>
+							<option value="twoheadshots" > 2 </option>
+							<option value="threeheadshots"> 3 </option>
+							<option value="fourheadshots" > 4 </option> 
+							<option value="fiveheadshots"> 5 </option>
 						</select> <br> <br>
 						
-						 Minimum Nade Combo<br>
+						<label class="selectLabel" for "Grenlength">Minimum Nade Combo</label><br>
 						<select id="Grenlength">
-							<option value="none"> Don't Record </option> <br>
-							<option value="grenadekill"> Single </option><br>
-							<option value="grenadeONEkill"> Grenadier </option><br>
-							<option value="grenadeTWOkill"> Mega Grenadier </option><br>
-							<option value="grenadeTHREEkill"> Uber Grenadier </option><br>
+							<option value="none"> Don't Record </option>
+							<option value="grenadekill"> Single </option>
+							<option value="grenadeONEkill"> Grenadier </option>
+							<option value="grenadeTWOkill"> Mega Grenadier </option>
+							<option value="grenadeTHREEkill"> Uber Grenadier </option>
 						</select> <br><br>
 						
-						 Minimum Melee Combo <br>
+						<label class="selectLabel" for "Meleelength">Minimum Melee Combo</label><br>
 						<select id="Meleelength">
-							<option value="none"> Don't Record </option> <br>
-							<option value="meleekill"> Single </option><br>
-							<option value="meleeONEkill"> Butcher </option><br>
-							<option value="meleeTWOkill"> Bloody Butcher </option><br>
-							<option value="meleeTHREEkill"> Hell Butcher </option><br>
+							<option value="none"> Don't Record </option>
+							<option value="meleekill"> Single </option>
+							<option value="meleeONEkill"> Butcher </option>
+							<option value="meleeTWOkill"> Bloody Butcher </option>
+							<option value="meleeTHREEkill"> Hell Butcher </option>
 						</select> <br> <br>
+						<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="kill" tabindex="-1"><label for="kill"></label></span><label for="kill"> Kill </label><br>
+						<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="defibkill" tabindex="-1"><label for="defibkill"></label></span><label for="defibkill"> Defib Kill </label><br>
+						<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="minekill" tabindex="-1"><label for="minekill"></label></span><label for="minekill"> Mine kill </label><br>
+						<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="perfkill" tabindex="-1"><label for="perfkill"></label></span><label for="perfkill"> Perforating Kills </label><br>
+						<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="severekill" tabindex="-1"><label for="severekill"></label></span><label for="severekill"> Severe Murder </label><br>
+						<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="doublekill" tabindex="-1"><label for="doublekill"></label></span><label for="doublekill"> Double Kill (PvP) </label><br>
+						<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="triplekill" tabindex="-1"><label for="triplekill"></label></span><label for="triplekill"> Triple Kill (PvP) </label><br>
+						<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="flagkill" tabindex="-1"><label for="flagkill"></label></span><label for="flagkill"> Flag-bearer Kill (PvP) </label><br><br>
+						<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="achievevid" tabindex="-1"><label for="achievevid"></label></span><label for="achievevid"> Record Achievements </label><br>
+						<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="screenshot" tabindex="-1"><label for="screenshot"></label></span><label for="screenshot"> Screenshot Achievements </label><br>
+						<!--BROKEN CYTEK HASNT FIXED IT                 input type="checkbox" id="slidekill"> Sliding Kill <br-->
+						<!--HASNT BEEN IMPLEMENTED BY CRYTEK YET, DISABLED IN LOAD & UPDATE SETTINGS		input type="checkbox" id="combokill"> Combo Kill <br-->
 
-						<input type="checkbox" id="kill"> Kill <br>
-						<input type="checkbox" id="defibkill"> Defib Kill <br>
-						<input type="checkbox" id="minekill"> Mine kill <br>
-						<!-- BROKEN CYTEK HASNT FIXED IT                 input type="checkbox" id="slidekill"> Sliding Kill <br-->
-						<input type="checkbox" id="perfkill"> Perforating Kills <br>
-						<input type="checkbox" id="severekill"> Severe Murder <br>
-				
-						<input type="checkbox" id="doublekill"> Double Kill (PvP)<br>
-						<input type="checkbox" id="triplekill"> Triple Kill (PvP)<br>
-						<!--	HASNT BEEN IMPLEMENTED BY CRYTEK YET, DISABLED IN LOAD & UPDATE SETTINGS		input type="checkbox" id="combokill"> Combo Kill <br-->
-						<input type="checkbox" id="flagkill"> Flag-bearer Kill (PvP)<br> <br>
-						<input type="checkbox" id="achievevid" checked> Record Achievements <br>
-						<input type="checkbox" id="screenshot" checked> Screenshot Achievements <br><br>
 					</fieldset>
 				</div>
 			

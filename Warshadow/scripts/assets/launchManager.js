@@ -28,7 +28,6 @@ define(["recording"], function(rec){
 	})();
 	
 	function continueLaunch(){
-		alert(launch.autoLaunch);
 		var alerted = false;		
 		var scenario = "";
 		

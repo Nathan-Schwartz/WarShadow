@@ -1,4 +1,4 @@
-define( ["jquery","jqueryUI"], function($, ui){
+define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 
 	function getWinID(name, ID){
 	//Start the process of the window named, retrieve and save its ID, and then end the process if it is not the main window.
@@ -13,6 +13,18 @@ define( ["jquery","jqueryUI"], function($, ui){
 			}
 		);
 	};
+	
+	//for counters.js
+	localStorage.setItem("kill", 0);
+	localStorage.setItem("headshot1" ,0);
+	localStorage.setItem("headshot2" ,0);
+	localStorage.setItem("headshot3" ,0);
+	localStorage.setItem("headshot4" ,0);
+	localStorage.setItem("headshot5" ,0);
+	
+	//gData.clearStats();
+	if(!localStorage.getItem('vests'))
+		gData.initStats();
 
 	//localStorage.removeItem('ADSkey');
 	if(!localStorage.getItem("ADSkey")){
@@ -29,7 +41,7 @@ define( ["jquery","jqueryUI"], function($, ui){
 		localStorage.setItem('color2', 'rgba(36, 220, 143, 0.3)');
 	}
 
-	//localStorage.removeItem('Settings');
+	localStorage.removeItem('Settings');
 	if(!localStorage.getItem('Settings')){
 		var Settings = {
 			allowSync: true,
@@ -61,7 +73,7 @@ define( ["jquery","jqueryUI"], function($, ui){
 		};
 		localStorage.setItem('Settings', JSON.stringify(Settings));
 		console.log("Settings: " + localStorage.getItem('Settings'));
-		setTimeout( function(){$( "#dialog" ).dialog( "open" );}, 100);
+		setTimeout( function(){$( "#dialog" ).dialog( "open" );}, 100);// !!!I would use a callback but none was provided.
 	}
 	localStorage.setItem('recordingOn', false); //This is a side effect of my turnOn() recording function. I use this to determine if recording is being used by another app or by me.
 	localStorage.setItem('optionsCalledBy', false);

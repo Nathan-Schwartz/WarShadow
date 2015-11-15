@@ -133,8 +133,10 @@
 
 .rightButton{
 	position: relative;
-	bottom: 49px;
-	left: 85px;
+/*	bottom: 49px;
+	left: 85px;*/
+	bottom:0px;
+	left:10px;
 }
 
 .button:hover, .subbutton:hover, .bigCheckbox label:hover, .smallbutton:hover{

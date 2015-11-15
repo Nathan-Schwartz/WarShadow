@@ -37,5 +37,7 @@ require.config({
 		popup: 'popup',
 		Replay: 'Replay',
 		recordingMenu: 'recordingMenu',
+		KPminute: 'KPminute',
+		info: 'Info',
 	}
 });

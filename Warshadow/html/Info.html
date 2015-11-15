@@ -2,63 +2,199 @@
 <html>
 	<head> 
 		<link rel="stylesheet" href="../css/info.css" />
+		<!--link rel="stylesheet" href="../css/jquery-ui/jquery-ui.structure.min.css"/-->
+		<link rel="stylesheet" href="../css/Aristo/theme.css" />
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<script data-main='../scripts/requireConfig' src='../scripts/lib/require.js'></script>
 		<title>Info</title>
 	</head>
-	
 	<body>
-		<div id="content">
-		<b><h1 id = "title"> I haven't updated this page since probably the second week of the competition. Things have been changing so much it hasn't been worth the time to keep it up-to date</h1></b><!--
-		<h3>
-		<h1>NEEDS TO BE UPDATED</h1>
+		<div id="infoContent">
+			<div id="infoTabs">
+				<ul>
+					<li><a href="#tabs-1">HUD features</a></li>
+					<li><a href="#tabs-2">Recording</a></li>
+					<li><a href="#tabs-3">StatCrack</a></li>
+					<li><a href="#tabs-4">About Me</a></li>
+				</ul>
+				<div id="tabs-1">
+					<!--div id="vertTabs">
+						  <ul>
+							<li><a href="#tabs-1">Nunc tincidunt</a></li>
+							<li><a href="#tabs-2">Proin dolor</a></li>
+							<li><a href="#tabs-3">Aenean lacinia</a></li>
+						  </ul>
+						  <div id="tabs-1">
+							<h2>Content heading 1</h2>
+							<p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+						  </div>
+						  <div id="tabs-2">
+							<h2>Content heading 2</h2>
+							<p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+						  </div>
+						  <div id="tabs-3">
+							<h2>Content heading 3</h2>
+							<p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+							<p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+						  </div>
+						</div-->
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					
+						<div id="accordion">
+					  <h3>Section 1</h3>
+					  <div>
+						<p>
+						Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+						ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+						amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+						odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+						</p>
+					  </div>
+					  <h3>Section 2</h3>
+					  <div>
+						<p>
+						Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+						purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+						velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+						suscipit faucibus urna.
+						</p>
+					  </div>
+					  <h3>Section 3</h3>
+					  <div>
+						<p>
+						Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+						Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
+						ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
+						lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+						</p>
+						<ul>
+						  <li>List item one</li>
+						  <li>List item two</li>
+						  <li>List item three</li>
+						</ul>
+					  </div>
+					  <h3>Section 4</h3>
+					  <div>
+						<p>
+						Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+						et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+						faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+						mauris vel est.
+						</p>
+						<p>
+						Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
+						Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+						inceptos himenaeos.
+						</p>
+					  </div>
+					</div>
+				</div>
+				<div id="tabs-2">
+			
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+				</div>
+				<div id="tabs-3">
+					<p>Where do you get the data?</p>
+					<p>Why is the damage graph on Shotguns so weird</p>
+					<p>Is [generic item] correct?</p>
+					<p></p>
+					<p></p>
+					<p></p>
+				</div>
+				<div id="tabs-4">
+					<p>My name is Nathan and in Warface I am known as GreyPhoenix. I have played Warface since May 2014 and haven't played much since I got to Level 70.</p>
+					<p>I discovered my love of programming a few years ago when I took a C++ class but I didn't pursue programming again until I heard about the Nvidia Overwolf App Contest. This app is my first project in HTML, CSS, or Javascript. There are always things to add and fix, but I'm happy with the result and my progress.</p>
+					<p>Most played class: Medic</p>
+					<p>Favourite weapon: ZX84 USP</p>
+					<p>Favourite flavor of ice cream: Yes.</p>
+					<p>Favourite color: Grey</p>
+					<p>Enemies: Anyone who says grey isn't a color.</p>
+				</div>
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		
-		<ul>
-			<li>This program is pretty straightforward once you understand it, but there are a few aspects of it that aren't immediately obvious.
-		</li><br><li>
-		<h2><u>HUD elements </u></h2> <br>
-			These are little pop-up windows you can launch by clicking a checkbox on the menu. These windows display some sort of information to aide the user. The information is updated in constantly. They can be moved to different locations on the screen by dragging them. Upon double clicking the image on the pop-up, the window's position is saved. The next time the window is launched it will relocate to where it was last time. To close a window, simply un-select its checkbox. 
-		</li><br><li>
-		<u>Smoke Timer </u> <br>
-			This is one of the more practical features in the app. When you throw a smoke grenade, a window will pop up automatically and count down how many seconds are left on that smoke grenade. It will say "NOW" when the smoke is almost out and then close automatically.
-		</li><br><li>
-		<u># of Headshots</u> <br>
-		This is a simple counter that will count how many headshots you have gotten and update in real-time.
-		</li><br><li>
-		<u>% of Headshots</u> <br>
-		This will use your total kills and headshots to calculate what percent of your kills are headshots in realtime.
-		</li><br><li>
-		<u>HS Chain AVG</u> <br>
-		This feature will track your headshot combos. It will then calculate how many headshots your average "headshot streak" consists of in realtime. Note: Because there are no built in headshot combos after brain annhilator, the max avg is 5. I may try to extend it in the future.
-		</li><br><li>
-		<u>KDR</u> <br>
-			This feature will track your PvP Kill/Death ratio for your whole session so you can see how you did more accurately.
-		</li>
-		<br><br><br>
-		<li>
-		<h2><u>Capturing</u></h2><br>
-			This feature takes video recordings and screenshots. It has 2 modes: Auto-capture and Manual. 
-		<br> 
-			The way that video recording works in this app is similar to that of ShadowPlay by Nvidia. First a recording process is started in the background. This can be done by selecting the AutoCapture checkbox, or clicking the "Start Recording" button.
-			 This process doesn't save anything. The differences between Manual and Automatic is how they "capture" the recordings made in the background.
-		<br>
-			The way to use Auto-capture is to select the corresponding checkbox in the menu. This checkbox has the potential to lag a bit because upon selecting it the background recording process is started and this can be resource intensive for a few seconds.
-			After the background process has started, video capturing will be done automatically based on the settings you have chosen under the "Recording" window.
-			</li><br><li>
-		<h2><u>OverWolf Settings </u></h2> <br>
-			There is an overwolf setting so that you can only click on the app's windows when hit hotkey(s).
-		<br>
-			There is also an option to choose which browser links will open in.
-		<br>
-			The "open video after capturing" setting may not function correctly.
-		</li><br><li>
-		<h2 id="FAQ"><u>FAQ</u></h2> <br>
+		
+		
+			<!--
+			<h3>
+				<h1>NEEDS TO BE UPDATED</h1>
+				
+				<ul>
+						<li>This program is pretty straightforward once you understand it, but there are a few aspects of it that aren't immediately obvious.
+					</li><br><li>
+					<h2><u>HUD elements </u></h2> <br>
+						These are little pop-up windows you can launch by clicking a checkbox on the menu. These windows display some sort of information to aide the user. The information is updated in constantly. They can be moved to different locations on the screen by dragging them. Upon double clicking the image on the pop-up, the window's position is saved. The next time the window is launched it will relocate to where it was last time. To close a window, simply un-select its checkbox. 
+					</li><br><li>
+					<u>Smoke Timer </u> <br>
+						This is one of the more practical features in the app. When you throw a smoke grenade, a window will pop up automatically and count down how many seconds are left on that smoke grenade. It will say "NOW" when the smoke is almost out and then close automatically.
+					</li><br><li>
+					<u># of Headshots</u> <br>
+					This is a simple counter that will count how many headshots you have gotten and update in real-time.
+					</li><br><li>
+					<u>% of Headshots</u> <br>
+					This will use your total kills and headshots to calculate what percent of your kills are headshots in realtime.
+					</li><br><li>
+					<u>HS Chain AVG</u> <br>
+					This feature will track your headshot combos. It will then calculate how many headshots your average "headshot streak" consists of in realtime. Note: Because there are no built in headshot combos after brain annhilator, the max avg is 5. I may try to extend it in the future.
+					</li><br><li>
+					<u>KDR</u> <br>
+						This feature will track your PvP Kill/Death ratio for your whole session so you can see how you did more accurately.
+					</li>
+					<br><br><br>
+					<li>
+					<h2><u>Capturing</u></h2><br>
+						This feature takes video recordings and screenshots. It has 2 modes: Auto-capture and Manual. 
+					<br> 
+						The way that video recording works in this app is similar to that of ShadowPlay by Nvidia. First a recording process is started in the background. This can be done by selecting the AutoCapture checkbox, or clicking the "Start Recording" button.
+						 This process doesn't save anything. The differences between Manual and Automatic is how they "capture" the recordings made in the background.
+					<br>
+						The way to use Auto-capture is to select the corresponding checkbox in the menu. This checkbox has the potential to lag a bit because upon selecting it the background recording process is started and this can be resource intensive for a few seconds.
+						After the background process has started, video capturing will be done automatically based on the settings you have chosen under the "Recording" window.
+						</li><br><li>
+					<h2><u>OverWolf Settings </u></h2> <br>
+						There is an overwolf setting so that you can only click on the app's windows when hit hotkey(s).
+					<br>
+						There is also an option to choose which browser links will open in.
+					<br>
+						The "open video after capturing" setting may not function correctly.
+					</li><br><li>
+					<h2 id="FAQ"><u>FAQ</u></h2> <br>
 
-		</li><br><li>
-		<u></u> <br>
-		</li>
-		</ul>
-		
-		</h3>-->
+					</li><br><li>
+					<u></u> <br>
+					</li>
+				</ul>
+				
+			</h3>-->
 		</div>
+		<script>
+			require(['requireConfig'], function(){
+				require(['info']);
+			});
+		</script>
 	</body>
 </html>

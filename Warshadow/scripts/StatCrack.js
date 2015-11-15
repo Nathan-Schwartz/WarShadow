@@ -30,7 +30,7 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 		progress();
 	});
 
-//initialize sliders
+//Sliders
 	//Distance slider
 	$(function() {
 		$( "#distSlider" ).slider({
@@ -75,6 +75,87 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 			}
 		});
 		$( "#gameLengthSliderValue" ).val( $( "#gameLengthSlider" ).slider( "value" ) + " minutes");
+	});
+	
+
+//SelectMenus
+	var repairReCalc = function( event, ui ) {rCalc.repairCalc(); rCalc.rewardCalc();};
+	var currentTable = "#sideInstruct";
+	function primaryCallback(callback){
+		$(currentTable).hide();
+
+		console.log('RCprimary value', document.getElementById("RCprimary").value);
+		
+		if((document.getElementById("RCprimary").value == "none")||(document.getElementById("RCprimary").value == "rental")){
+			$("#sidePrimary").fadeIn();
+			currentTable = '#sidePrimary';
+		}else{
+			var weapons = gData.getWeapons();
+			var found = false;
+			for(var i = 0, limit = weapons.length; i < limit; i ++){
+				if(weapons[i].key == document.getElementById("RCprimary").value){
+					if(weapons[i].Class == "M"){
+						$("#sideShotgun").fadeIn();
+						currentTable = '#sideShotgun';
+					}else if(weapons[i].Class == "E"){
+						$("#sideSMG").fadeIn();
+						currentTable = '#sideSMG';
+					}else if(weapons[i].Class == "R"){
+						$("#sideRifle").fadeIn();
+						currentTable = '#sideRifle';
+					}else if(weapons[i].Class == "S"){
+						$("#sideSniper").fadeIn();
+						currentTable = '#sideSniper';
+					}
+					found = true;
+					break;
+				}
+			}
+			if(!found){ //just in case there is a weird value; It would be almost impossible though.
+				$("#sidePrimary").fadeIn();
+				currentTable = '#sidePrimary';
+			}
+		}
+		if(typeof callback == "function")
+			callback();
+		else
+			console.log("Not a function");
+	}
+	
+	$("#attachmentSelect1, #attachmentSelect2, #attachmentSelect3, #attachmentSelect4, #attachmentSelect5, #enemyVest1, #enemyHelmet1, #selectGData").selectmenu({change: function( event, ui ) {upDat.updateData(0);}});
+	$("#weaponSelect1, #weaponSelect2, #weaponSelect3, #weaponSelect4, #weaponSelect5").selectmenu({change: function( event, ui ) {upDat.updateData(0); setTimeout(function(){$("#chart").slideDown();}, 100);}});
+	
+	$("#RCvest").selectmenu({
+		change: repairReCalc,
+		open: function( event, ui ) {$(currentTable).hide(); currentTable = '#sideVest'; $("#sideVest").fadeIn();}
+	});
+	$("#RCgloves").selectmenu({
+		change: repairReCalc,
+		open: function( event, ui ) {$(currentTable).hide(); currentTable = '#sideGlove'; $("#sideGlove").fadeIn();}
+	});
+	$("#RCboots").selectmenu({
+		change: repairReCalc,
+		open: function( event, ui ) {$(currentTable).hide(); currentTable = '#sideBoot'; $("#sideBoot").fadeIn();}
+	});
+	$("#RCmelee").selectmenu({
+		change: repairReCalc,
+		open: function( event, ui ) {$(currentTable).hide(); currentTable = '#sideKnife'; $("#sideKnife").fadeIn();}
+	});
+	$("#RCsecondary").selectmenu({
+		change: repairReCalc,
+		open: function( event, ui ) {$(currentTable).hide(); currentTable = '#sideSecondary'; $("#sideSecondary").fadeIn();}
+	});
+	$("#RCprimary").selectmenu({
+		change: primaryCallback.bind(this, repairReCalc),
+		open: function( event, ui ) {primaryCallback();}
+	});
+	$("#RChelmet").selectmenu({
+		change: repairReCalc,
+		open: function( event, ui ) {$(currentTable).hide(); currentTable = '#sideHelm'; $("#sideHelm").fadeIn();}
+	});
+	$("#missionType").selectmenu({
+		change: repairReCalc,
+		open: function( event, ui ) {$(currentTable).hide(); currentTable = '#sideRewards';	$("#sideRewards").fadeIn();}	
 	});
 	
 	//Initialize calculators that are dependant on sliders
@@ -163,114 +244,5 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 			return;
 	 
 		wCore.dragMove();
-	});	
-
-	
-	function primaryCallback(){
-		$(currentTable).hide();
-
-		if((document.getElementById("RCprimary").value == "none")||(document.getElementById("RCprimary").value == "rental")){
-			$("#sidePrimary").fadeIn();
-			currentTable = '#sidePrimary';
-		}else{
-			var weapons = gData.getWeapons();
-			var found = false;
-			for(var i = 0, limit = weapons.length; i < limit; i ++){
-				if(weapons[i].key == document.getElementById("RCprimary").value){
-					if(weapons[i].Class == "M"){
-						$("#sideShotgun").fadeIn();
-						currentTable = '#sideShotgun';
-					}else if(weapons[i].Class == "E"){
-						$("#sideSMG").fadeIn();
-						currentTable = '#sideSMG';
-					}else if(weapons[i].Class == "R"){
-						$("#sideRifle").fadeIn();
-						currentTable = '#sideRifle';
-					}else if(weapons[i].Class == "S"){
-						$("#sideSniper").fadeIn();
-						currentTable = '#sideSniper';
-					}
-					found = true;
-					break;
-				}
-			}
-			if(!found){ //just in case there is a weird value; It would be almost impossible though.
-				$("#sidePrimary").fadeIn();
-				currentTable = '#sidePrimary';
-			}
-		}
-	}
-	
-	//jQuery spaghetti for displaying comparison charts
-	var currentTable = "#sideInstruct";
-		
-	$('#RChelmet').mousedown(function(){
-		$(currentTable).hide();
-		currentTable = '#sideHelm';
-		$("#sideHelm").fadeIn();
 	});
-
-	$('#RCvest').mousedown(function(){
-		$(currentTable).hide();
-		currentTable = '#sideVest';
-		$("#sideVest").fadeIn();
-	});
-
-	$('#RCgloves').mousedown(function(){
-		$(currentTable).hide();
-		currentTable = '#sideGlove';
-		$("#sideGlove").fadeIn();
-	});
-
-	$('#RCboots').mousedown(function(){
-		$(currentTable).hide();
-		currentTable = '#sideBoot';
-		$("#sideBoot").fadeIn();
-	});
-
-	$('#RCprimary').mousedown(primaryCallback);
-
-	$('#RCprimary').change(primaryCallback);
-
-	$('#RCsecondary').mousedown(function(){
-		// !!! I could make array look up and call shit with something like this: 
-		console.log("this: ", "'#" + this.id + "'");
-		$(currentTable).hide();
-		currentTable = '#sideSecondary';
-		$("#sideSecondary").fadeIn();
-	});
-
-	$('#RCmelee').mousedown(function(){
-		$(currentTable).hide();
-		currentTable = '#sideKnife';
-		$("#sideKnife").fadeIn();
-	});
-
-	//Jquery for variables that change repair costs or rewards
-	$('#missionType').mousedown(function(){
-		$(currentTable).hide();
-		currentTable = '#sideRewards';
-		$("#sideRewards").fadeIn();
-	});
-
-	$('#missionType').change(function(){
-		rCalc.rewardCalc();
-	});
-			
-	$('#RChelmet, #RCvest, #RCgloves, #RCboots, #RCprimary, #RCsecondary, #RCmelee').change(function(){
-		rCalc.repairCalc();
-		rCalc.rewardCalc();
-	});
-
-	//jQuery for changing weapon / attachment
-	$("#weaponSelect1,#weaponSelect2,#weaponSelect3,#weaponSelect4,#weaponSelect5").change(function(){
-		upDat.updateData(0); setTimeout(function(){$("#chart").slideDown();}, 100);
-	});
-	
-	$("#attachmentSelect1,#attachmentSelect2,#attachmentSelect3,#attachmentSelect4,#attachmentSelect5").change(function(){upDat.updateData(0);});
-
-	//Jquery for changing variables that all weapons in graph calculations.
-	$("#selectGData").change(function(){upDat.updateData(0);});
-	$("#enemyVest1").change(function(){upDat.updateData(0);});
-	$("#enemyHelmet1").change(function(){upDat.updateData(0);});
 });

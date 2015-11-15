@@ -9,7 +9,7 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
         return document.querySelector('#plugin');
 	}
 
-	(plugin() == null) ? console.log("Plugin couldn't be loaded??") : console.log('yayyy');
+	(plugin() == null) ? console.log("Plugin couldn't be loaded??") : console.log('Plugin was loaded.');
 	
 	//OK so the plan here is to grab a button when the user wants one. After 1 button is pushed, make an indicator for when it is toggled again.
 	function checkADS(){
@@ -46,7 +46,7 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
 	};
 	
 	
-	
+//Sliders
 	//before slider
 	$(function() {
 		$( "#beforeSlider" ).slider({
@@ -54,7 +54,7 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
 			value:5,
 			min: 1,
 			max: 90,
-			change: function( event, ui ) {console.log("value", ui.value); settingH.update();},
+			change: function( event, ui ) {/*console.log("value", ui.value);*/ settingH.update();},
 			slide: function( event, ui ) {
 				$( "#beforeSliderValue" ).val( ui.value + " seconds");
 			}
@@ -69,7 +69,7 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
 			value:5,
 			min: 1,
 			max: 90,
-			change: function( event, ui ) {console.log("value", ui.value); settingH.update();},
+			change: function( event, ui ) {/*console.log("value", ui.value);*/ settingH.update();},
 			slide: function( event, ui ) {
 				$( "#afterSliderValue" ).val( ui.value + " seconds");
 			}
@@ -84,14 +84,18 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
 			value:50,
 			min: 1,
 			max: 180,
-			change: function( event, ui ) {console.log("value", ui.value); settingH.update();},
+			change: function( event, ui ) {/*console.log("value", ui.value);*/ settingH.update();},
 			slide: function( event, ui ) {
 				$( "#grabSliderValue" ).val( ui.value  + " seconds");
 			}
 		});
 		$( "#grabSliderValue" ).val( $( "#grabSlider" ).slider( "value" )  + " seconds");
 	});
-		
+
+//SelectMenu
+	$("#HSlength").selectmenu({change: function( event, ui ) {settingH.updateHS(ui.item.value);}});
+	$("#Grenlength").selectmenu({change: function( event, ui ) {settingH.updateGren(ui.item.value);}});
+	$("#Meleelength").selectmenu({change: function( event, ui ) {settingH.updateMelee(ui.item.value);}});
 
 	settingH.load();	// This will load current setting that were previously stored in localStorage
 			
@@ -114,7 +118,7 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
 	});
 	
 	//menu checkboxes //
-	$("#enableRecord, #autoLaunch, #minimizeOnTab, #restoreOnTab, #closeOnEnd, #kill, #doublekill, #triplekill, #perfkill, #flagkill, #screenshot, #achievevid, #severekill, #HSlength, #Grenlength, #Meleelength, #minekill, #defibkill, #allowSync").change(function(){settingH.update();});
+	$("#enableRecord, #autoLaunch, #minimizeOnTab, #restoreOnTab, #closeOnEnd, #kill, #doublekill, #triplekill, #perfkill, #flagkill, #screenshot, #achievevid, #severekill, #minekill, #defibkill, #allowSync").change(function(){settingH.update();});
 	$("#rightClickADS").change(function(){
 		document.getElementById("rightClickADS").checked 
 		? $("#inputADSContainer").fadeOut()
