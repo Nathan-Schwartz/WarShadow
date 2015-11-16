@@ -25,7 +25,7 @@ define(["jquery", "jqueryUI"], function ($) {
 		document.getElementById("triplekill").checked = temp.Rtriplekill;
 		document.getElementById("screenshot").checked = temp.Rachievepic;
 		document.getElementById("achievevid").checked = temp.Rachievevid;
-		//document.getElementById("slidekill").checked = (temp.Rslidekill?true:false);
+		document.getElementById("slidekill").checked = temp.Rslidekill;
 		//document.getElementById("combokill").checked = (temp.Rcombokill?true:false);
 	
 		$( "#grabSlider" ).slider( "value", parseInt(temp.Rgrab));
@@ -107,7 +107,7 @@ define(["jquery", "jqueryUI"], function ($) {
 		temp.Rtriplekill = document.getElementById("triplekill").checked;
 		temp.Rachievepic = document.getElementById('screenshot').checked;
 		temp.Rachievevid = document.getElementById('achievevid').checked;
-		//temp.Rslidekill = (document.getElementById("slidekill").checked?true:false);
+		temp.Rslidekill = document.getElementById("slidekill").checked;
 		//temp.Rcombokill = (document.getElementById("combokill").checked?true:false);
 
 		temp.Rgrab = $( "#grabSlider" ).slider( "value" );

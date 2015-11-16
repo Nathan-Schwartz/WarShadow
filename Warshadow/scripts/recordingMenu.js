@@ -37,7 +37,7 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 		enabled = JSON.parse(localStorage.getItem('recordingOn'));
 		if(enabled===true){
 			successHandler.postCheckCallback = function(){
-				alert("successcheck Callback executed");
+				//alert("successcheck Callback executed");
 				document.getElementById("turnOn").style.backgroundImage = "url('../images/off.png')";
 				$("#onceEnabled").hide();
 			};
@@ -45,7 +45,7 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 			
 		}else{
 			successHandler.postCheckCallback = function(){
-				alert("successcheck Callback executed");
+				//alert("successcheck Callback executed");
 				document.getElementById("turnOn").style.backgroundImage = "url('../images/on.png')";
 				$("#onceEnabled").fadeIn();
 			};

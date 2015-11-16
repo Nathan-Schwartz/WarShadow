@@ -31,6 +31,8 @@ define(function () {
 		document.getElementById('HSPerc').checked ? refreshHelper(true,"HSPercent") : refreshHelper(false,"HSPercent");
 		//document.getElementById('KDRate').checked ? refreshHelper(true,"KDR") : refreshHelper(false,"KDR");
 		document.getElementById('crosshair').checked ? refreshHelper(true,"Crosshair") : refreshHelper(false,"Crosshair");
+		document.getElementById('KPM').checked ? refreshHelper(true,"KPminute") : refreshHelper(false,"KPminute");
+		
 	};
 		
 	return {

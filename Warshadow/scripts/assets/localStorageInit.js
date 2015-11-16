@@ -21,6 +21,7 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 	localStorage.setItem("headshot3" ,0);
 	localStorage.setItem("headshot4" ,0);
 	localStorage.setItem("headshot5" ,0);
+	localStorage.setItem("minutes" ,0);
 	
 	//gData.clearStats();
 	if(!localStorage.getItem('vests'))
@@ -41,7 +42,7 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 		localStorage.setItem('color2', 'rgba(36, 220, 143, 0.3)');
 	}
 
-	localStorage.removeItem('Settings');
+	//localStorage.removeItem('Settings');
 	if(!localStorage.getItem('Settings')){
 		var Settings = {
 			allowSync: true,
@@ -79,8 +80,7 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 	localStorage.setItem('optionsCalledBy', false);
 
 	//Get ID's of each window. No longer used cuz the window name works on most windows
-		getWinID("MainWindow",'MainID');
-	/*	
+		getWinID("MainWindow",'MainID');	
 		getWinID("HSCounter",'HSCounterID');
 		getWinID("HSPercent",'HSPercentID');
 		getWinID("HSChains",'HSChainsID');
@@ -91,5 +91,5 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 		getWinID("Crosshair",'CrosshairID');
 		getWinID("Settings",'SettingsID');
 		getWinID("StatCrack",'StatCrackID');
-	*/
+		getWinID("popup", 'popupID');
 });

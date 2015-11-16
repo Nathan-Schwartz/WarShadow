@@ -1,5 +1,16 @@
 require(['jquery', 'windowCoreFunctions'], function($, wCore){
 	
+	overwolf.games.getRunningGameInfo(function(result){
+		var left = result.width/2;
+		if(result.width < 1200)
+			left = left-100;
+		else
+			left = left-101;
+		
+		overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), left, (result.height/2)-133, function(result){console.log("move result", result);});
+	});
+	$("#content").fadeIn();
+	
 	var appPath = "";
 
 	function plugin() {
@@ -59,14 +70,14 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 				});
 			})(i);
 		}
-		for(var i=0; i<10;i++){
+		/*for(var i=0; i<10;i++){
 			(function(j){
-				plugin().fileExists(plugin().DESKTOP + "/WarShadow/gitwarshadow/Warshadow/images/customX"+j+".png", function(status){
+				plugin().fileExists(plugin().DESKTOP + "/Crosshair/customX"+j+".png", function(status){
 					if(status)
 						document.getElementById("drop").innerHTML += "<option value='customX"+j+"'> Custom X"+ j +"</option>";// add file to list
 				});
 			})(i);
-		}
+		}*/
 	})();
 
 	var url = "";
@@ -122,12 +133,39 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 
 	document.getElementById("content").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
 	document.getElementById("drop").onchange = function(){setXPreview(document.getElementById("drop").value);};
-	document.getElementById("content").onmousedown = function(){wCore.dragMove();};
+	//document.getElementById("content").onmousedown = function(){wCore.dragMove();};
 	document.getElementById("hide").onmousedown = function(){
-		setX(); document.getElementById("content").style.backgroundColor = 'transparent'; 
+		setX(); 
+		document.getElementById("content").style.backgroundColor = 'transparent'; 
 		document.getElementById("content").style.borderImageWidth = "0px";
 		document.getElementById("form").style.left = "25px";
 		document.getElementById("form").style.top = "52px";
-	};    
+		document.getElementById("leftAdjust").style.display = "none";
+		document.getElementById("rightAdjust").style.display = "none";
+		document.getElementById("downAdjust").style.display = "none";
+		document.getElementById("upAdjust").style.display = "none";
+	};
+
+	$("#leftAdjust").click(function(){
+		overwolf.windows.getCurrentWindow(function(results){
+			console.log(results);
+			overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), results.window.left-1, results.window.top);
+		});
+	});
+	$("#rightAdjust").click(function(){
+		overwolf.windows.getCurrentWindow(function(results){
+			overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), results.window.left+1, results.window.top);
+		});
+	});	
+	$("#downAdjust").click(function(){
+		overwolf.windows.getCurrentWindow(function(results){
+			overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), results.window.left, results.window.top+1);
+		});
+	});	
+	$("#upAdjust").click(function(){
+		overwolf.windows.getCurrentWindow(function(results){
+			overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), results.window.left, results.window.top-1);
+		});
+	});	
 });
 

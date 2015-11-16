@@ -17,100 +17,145 @@
 					<li><a href="#tabs-3">StatCrack</a></li>
 					<li><a href="#tabs-4">About Me</a></li>
 				</ul>
-				<div id="tabs-1">
-					<!--div id="vertTabs">
-						  <ul>
-							<li><a href="#tabs-1">Nunc tincidunt</a></li>
-							<li><a href="#tabs-2">Proin dolor</a></li>
-							<li><a href="#tabs-3">Aenean lacinia</a></li>
-						  </ul>
-						  <div id="tabs-1">
-							<h2>Content heading 1</h2>
-							<p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
-						  </div>
-						  <div id="tabs-2">
-							<h2>Content heading 2</h2>
-							<p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
-						  </div>
-						  <div id="tabs-3">
-							<h2>Content heading 3</h2>
-							<p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
-							<p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
-						  </div>
-						</div-->
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
-					
-						<div id="accordion">
-					  <h3>Section 1</h3>
+				<div id="tabs-1">					
+					<div id="HUDaccordion">
+					  <h3>Kills per Minute</h3>
 					  <div>
 						<p>
-						Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-						ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-						amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-						odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+						This feature outputs a ratio of Kills divided by Minutes rounded to nearest hundredths place.
+						The display is updated for each kill as well as every second. This allows higher accuracy than simply updating every minute.
+						</p>
+						<p>
+						The time starts as soon as the K/min window is opened and can be reset using the "Reset Counters" hotkey or via the button in Settings.
 						</p>
 					  </div>
-					  <h3>Section 2</h3>
+					  <h3># Headshot</h3>
 					  <div>
 						<p>
-						Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-						purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-						velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-						suscipit faucibus urna.
+						This feature simply displays the number of headshots achieved by the player. The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
 						</p>
 					  </div>
-					  <h3>Section 3</h3>
+					  <h3>% Headshot</h3>
 					  <div>
 						<p>
-						Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
-						Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
-						ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
-						lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+						This feature displays the result of: <# of Headshots>/<# of Kills> X 100. It is updated after each kill. The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
 						</p>
-						<ul>
-						  <li>List item one</li>
-						  <li>List item two</li>
-						  <li>List item three</li>
-						</ul>
 					  </div>
-					  <h3>Section 4</h3>
+					  <h3>HS Streak Average</h3>
 					  <div>
 						<p>
-						Cras dictum. Pellentesque habitant morbi tristique senectus et netus
-						et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
-						faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
-						mauris vel est.
+						This feature shows how many headshots the player gets in quick succession on average.
+						<br>
+						Examples: If a player only got brain annhilators the window would always display "5 Avg". If a player never got a skull hunter, head crasher, brain smasher, or brain annhilator the window would always display "1 Avg".
 						</p>
 						<p>
-						Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
-						Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-						inceptos himenaeos.
+						The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
 						</p>
 					  </div>
+					  <h3>Crosshair</h3>
+					  <div>
+						<p>
+						This feature allows the user to use a custom crosshair in Warface. The user can use preloaded crosshairs or upload their own.
+						</p>
+						
+						<p>
+						<h4>Setting it up</h4>
+						Open the Settings page and scroll down to the Crosshair section. If you use right click to aim down sights, make sure the box is checked. Select Hold-to-Aim or Toggle-Aim so that it is the same as your Warface settings. If you use Right Click to ADS you are done! 
+						<br>
+						If you use a custom key to aim, click "Grab ADS" and push your ADS key. To make sure that the app recieved the correct key, push it again. If the text below the button flashes grey you are all finished!
+						</p>
+						<p>
+						<h4>"Uploading" your own crosshair</h4>
+						To use a custom crosshair all you need to do is create a folder called "Crosshair" and put it on your desktop. Then get a .png file of your crosshair and put it in the folder. See below for naming the file.						
+						</p>
+						<p>
+						I have provided 10 "slots" for custom user crosshairs. The available file names are:
+						<br>
+						customX0.png, customX1.png, customX2.png, customX3.png, customX4.png, customX5.png, customX6.png, customX7.png, customX8.png, and customX9.png.
+						</p>
+						</div>
+					  <h3>Problems and Troubleshooting</h3>
+					  <p>
+					  I do not anticipate any issues with these features, but if there are any problems please message me via Steam, Warface.com, or email.
+					  </p>
+					  
 					</div>
 				</div>
 				<div id="tabs-2">
-			
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
-					<p></p>
+					<div id="RECaccordion">
+						<h3>General Recording Info</h3>
+						<div>
+							<p>
+							Q: Does the recording work like ShadowPlay or more traditional programs?
+							<br>
+							A: Both. Auto-Recording works like ShadowPlay, but the recording window has the option to do start-stop recordings as well.
+							<br><br>
+							Q: Why won't the Auto-Recording box stay checked?
+							<br>
+							A: It is designed to uncheck itself if the recording process didn't start correctly. This is usually because it wasn't clicked when the user had a game running and in focus. If this wasn't the issue, the recording isn't cooperating with your system. Try other settings and check what error you are getting.
+							<br><br>
+							Q: Why does the program lag when I click Auto-Record or I click the power button in the recording window?
+							<br>
+							A: These buttons are both enabling the ShadowPlay feature and it takes a few seconds for Overwolf to get everything ready.
+							<br><br>
+							Q: Why didn't my recording save?
+							<br>
+							A: Do you remember the slider in Settings that lets you choose how much video you wanted to save after the auto-Recording event happened? When an Auto-Record event is triggered, my app waits that long before saving the video.
+							The reason for this, is because Overwolf only allows one recording at a time. If I didn't wait till after the time was finished, other Auto-Recording events are unsuccessful because the first call is hogging the recording.
+							<br><br>
+							Q: Why should I use Warshadow for recording instead of ReplayHUD?
+							<br>
+							A: 3 reasons. 
+							<br>1) "Auto-Recording", it takes all the recording for you so you can focus on playing the game. 
+							<br>2) The option to do longer videos. ReplayHUD currently only allows 40 second videos. Mine does 3 minutes for Auto-Recording, but I haven't found a time limit for start-stop recording. 
+							<br>3) No recharge time. ReplayHUD currently makes you wait 40 seconds before taking another recording.
+							<br><br>
+							</p>
+						</div>
+					  <h3>Auto-Recording</h3>
+					  <div>
+						<p>
+						This feature outputs a ratio of Kills divided by Minutes rounded to nearest hundredths place.
+						The display is updated instantly for each kill, but the time is updated every 10 seconds. This allows higher accuracy than simply updating every minute.
+						</p>
+						<p>
+						The time starts as soon as the K/min window is opened and can be reset using the "Reset Counters" hotkey or via the button in Settings.
+						</p>
+					  </div>
+					  <h3>Recording Window</h3>
+					  <div>
+						<p>
+						This feature simply displays the number of headshots achieved by the player. The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
+						</p>
+					  </div>
+					  <h3>Replay Video Player</h3>
+					  <div>
+						<p>
+						This feature displays the result of: <# of Headshots>/<# of Kills> X 100. It is updated after each kill. The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
+
+						</p>
+					  </div>
+					  <h3>Limitations and Quirks</h3>
+					  <div>
+						<p>
+						This feature shows how many headshots the player gets in quick succession on average.
+						<br>
+						Examples: If a player only got brain annhilators the window would always display "5 Avg". If a player never got a skull hunter, head crasher, brain smasher, or brain annhilator the window would always display "1 Avg".
+						</p>
+						<p>
+						The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
+						</p>
+					  </div>
+					  <h3>Problems and Troubleshooting</h3>
+					  <p>
+					  The documentation for the recording API has been changing so it is possible, but if there are any problems please message me via Steam, Warface.com, or email.
+					  </p>
+					</div>
 				</div>
 				<div id="tabs-3">
 					<p>Where do you get the data?</p>
 					<p>Why is the damage graph on Shotguns so weird</p>
 					<p>Is [generic item] correct?</p>
-					<p></p>
-					<p></p>
 					<p></p>
 				</div>
 				<div id="tabs-4">
@@ -123,6 +168,7 @@
 					<p>Enemies: Anyone who says grey isn't a color.</p>
 				</div>
 			</div>
+		</div>
 			
 			
 			

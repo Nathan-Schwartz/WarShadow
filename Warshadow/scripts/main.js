@@ -1,4 +1,4 @@
-require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "launchManager", "localStorageInit", "spectrum", 'counters', 'jqueryUI'], function($ ,gEvent, wCore, rHUD, rec, launcher, localStorageInit, spectrum, counters, jqueryUI){ 
+require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "localStorageInit", "launchManager", "spectrum", 'counters', 'jqueryUI'], function($ ,gEvent, wCore, rHUD, rec, localStorageInit, launcher, spectrum, counters, jqueryUI){ 
 /*
 // !!! need failsafes for capture hotkey
 
@@ -67,7 +67,10 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 						}else if(dialogCounter == 7){
 							document.getElementById("page7").style.display = "block";
 							document.getElementById("page6").style.display = "none";
-						}else if(dialogCounter > 6){
+						}else if(dialogCounter == 8){
+							document.getElementById("page8").style.display = "block";
+							document.getElementById("page7").style.display = "none";
+						}else if(dialogCounter > 8){
 							$( this ).dialog( "close" );
 						}
                     }
@@ -92,7 +95,6 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 	}
 	
 	(plugin() == null) ? console.log("Plugin couldn't be loaded.") : pluginListeners();
-
 	
 	//these variables are used as temps so that i don't have to get the settings from localStorage each time the events are triggered
 	var rightclick = true;
@@ -252,7 +254,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		
 //$(document).ready(function(){});
 
-	window.addEventListener("storage", updateADS, false);
+	window.addEventListener("storage", updateADS);
 	
 	overwolf.settings.registerHotKey("resetCounters", function(arg) {
 		if (arg.status == "success") {
@@ -325,7 +327,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 	//menu buttons
 	$("#resize").dblclick(function(){ResizeMain();});
 	$("#minimize").click(function(){wCore.minimizeWindow();});
-	$("#popup").click(function(){rHUD.refreshHelper(true, 'popup');});
+	//$("#popup").click(function(){rHUD.refreshHelper(true, 'popup');});
 	$("#close").click(function(){wCore.closeWindow();});
 	$("#cold").click(function(){window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=352301863");});
 	$("#tower").click(function(){window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=299691346");});
@@ -335,6 +337,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 	$("#record").click(function(){rHUD.refreshHelper(true,"Recording");});
 	
 	//menu checkboxes
+	$("#KPM").change(function(){rHUD.refreshHUD();});
 	$("#HSNum").change(function(){rHUD.refreshHUD();});
 	$("#crosshair").change(function(){rHUD.refreshHUD();});
 	$("#HSPerc").change(function(){rHUD.refreshHUD();});

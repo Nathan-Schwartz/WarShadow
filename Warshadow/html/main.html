@@ -23,13 +23,14 @@
 
 			<div id="dialog"title="Orientation">
 				<br>
-				<div id="page1">Would you like to go on a short tour?</div>
+				<div id="page1">Would you like to go over the basics?</div>
 				<div id="page2">To collapse the main menu, simply double click on the Warface Logo.</div>
-				<div id="page3">To automatically record your best moments, turn on Auto-Record. Customize your recordings through Settings!</div>
-				<div id="page4">Warshadow has some HUD features to track headshot statistics. Open via checkboxes.</div>
-				<div id="page5">Don't forget to check out the Smoke Timer hotkey!</div>
-				<div id="page6">You can use custom crosshairs in the Crosshair feature and even add your own!</div>
-				<div id="page7">Click on the 'info' button to learn more!</div>
+				<div id="page3">To automatically record your best moments, turn on Auto-Record. Customize your recordings through Settings.</div>
+				<div id="page4">If you want to record using Warshadow, make sure you are in-game!</div>
+				<div id="page5">Warshadow has some HUD features to track headshot statistics. Open via checkboxes.</div>
+				<div id="page6">Don't forget to check out the Smoke Timer hotkey!</div>
+				<div id="page7">You can use custom crosshairs in the Crosshair feature and even add your own!</div>
+				<div id="page8">Click on the 'info' button to learn more!</div>
 			</div>
 
 				<img src="../images/IconMouseNormal.png" class="draggable" id="resize" alt="logo">
@@ -40,10 +41,10 @@
 
 				<img src="../images/WarShadow.png" id="WarLogo" class="draggable" alt="settings">
 				<br> <br>  <br><br>
-
+					<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="KPM" tabindex="-1"><label for="KPM"></label></span><label for="KPM"> Kills/Minute </label><br>
 					<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="HSNum" tabindex="-1"><label for="HSNum"></label></span><label for="HSNum"> #  &nbsp;Headshots </label><br>
 					<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="HSPerc" tabindex="-1"><label for="HSPerc"></label></span><label for="HSPerc"> % Headshots </label><br>
-					<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="HSChain" tabindex="-1"><label for="HSChain"></label></span><label for="HSChain"> Hs Chain Avg </label><br>
+					<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="HSChain" tabindex="-1"><label for="HSChain"></label></span><label for="HSChain"> Hs Streak Avg </label><br>
 					<!--span class="normalCheckbox"><input type="checkbox" class="checkbox" id="KDRate" tabindex="-1"><label for="KDRate"></label></span><label for="KDRate"> KDR tracker </label><br-->
 					<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="crosshair" tabindex="-1"><label for="crosshair"></label></span><label for="crosshair"> Crosshair </label><br>
 					<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="autoon" tabindex="-1"><label for="autoon"></label></span><label for="autoon"> Auto-Record </label><br>
@@ -65,7 +66,7 @@
 						<button id="cold" class="subbutton" tabindex="-1">Cold Peak</button> 
 						<button id="tower" class="subbutton" tabindex="-1">Tower & Basics</button>
 					</div>
-					<button id="popup" class="button" tabindex="-1"> Pop-up </button>
+					<!--button id="popup" class="button" tabindex="-1"> Pop-up </button-->
 			</div>
 		</div>
 		<script>

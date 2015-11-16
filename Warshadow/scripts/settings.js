@@ -126,7 +126,7 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
 		settingH.update();
 	});
 	//$("#combokill").change(function(){settingH.update();});
-	//$("#slidekill").change(function(){settingH.update();});
+	$("#slidekill").change(function(){settingH.update();});
 
 	//Menu radio
 	$("#holdADS").change(function(){settingH.update();});

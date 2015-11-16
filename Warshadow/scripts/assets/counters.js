@@ -7,6 +7,17 @@ define(function(){
 		localStorage.setItem("headshot3" ,0);
 		localStorage.setItem("headshot4" ,0);
 		localStorage.setItem("headshot5" ,0);
+		localStorage.setItem("minutes" ,0);
+	}
+	
+	function incrementTime(){
+		var minute = JSON.parse(localStorage.getItem("minutes"));
+		minute++;
+		localStorage.setItem("minutes", minute);
+	};
+	
+	function getTime(){
+		return JSON.parse(localStorage.getItem("minutes"));
 	}
 	
 	function incrementKill(){
@@ -68,6 +79,7 @@ define(function(){
 		incrementKill:incrementKill,
 		incrementHeadshot:incrementHeadshot,
 		getKill:getKill,
-		getHeadshot:getHeadshot
-	};
+		getHeadshot:getHeadshot,
+		incrementTime:incrementTime,
+		getTime:getTime};
 });
