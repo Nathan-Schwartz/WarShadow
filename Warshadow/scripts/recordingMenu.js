@@ -7,6 +7,20 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 	$("#menu").fadeIn();
 	
 	
+	$( document ).tooltip({
+		track: true,
+		show:{delay:1000},
+		hide:false,
+		open: function (event, ui) {
+			ui.tooltip.css("max-width", "70px");
+		},
+		position:{ my: "left+3 bottom-3", of: event, collision: "fit"}
+	});
+	
+	$(document).ready(function(){
+
+});
+	
 //		Menu Listeners
 
 	//menu buttons

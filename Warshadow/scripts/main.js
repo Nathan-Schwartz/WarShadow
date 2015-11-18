@@ -1,4 +1,4 @@
-require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "localStorageInit", "launchManager", "spectrum", 'counters', 'jqueryUI'], function($ ,gEvent, wCore, rHUD, rec, localStorageInit, launcher, spectrum, counters, jqueryUI){ 
+require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "launchManager", "spectrum", 'counters'], function($, jqueryUI, localStorageInit, gEvent, wCore, rHUD, rec, launcher, spectrum, counters){ 
 /*
 // !!! need failsafes for capture hotkey
 
@@ -11,18 +11,19 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 
 	don't allow multiple forms of recording simultaneously
 	
-	scale window size to game resolution
 	make mediaplayer buttons
 	crashing when exiting settings page due to ADS key grab
 	image sprites
 	MainWindow resize window not working with name, only ID
 	hotkey ideas??
 	disable_restore_animation on what windows
-	tooltips?
-	launching lowering music volume?
 	get overwolf language and make the app that language as well
 	figure out how to correctly link the steam guides
 */	
+	document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+	document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+  	document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
+	$("#content").fadeIn();
 
 	$( document ).tooltip({
 		track: true,
@@ -70,6 +71,9 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 						}else if(dialogCounter == 8){
 							document.getElementById("page8").style.display = "block";
 							document.getElementById("page7").style.display = "none";
+						}else if(dialogCounter == 9){
+							document.getElementById("page9").style.display = "block";
+							document.getElementById("page8").style.display = "none";
 						}else if(dialogCounter > 8){
 							$( this ).dialog( "close" );
 						}
@@ -85,10 +89,6 @@ require(['jquery','gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording',
 			}
 		});
 	});
-
-  	document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
-	document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-	document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
 
 	function plugin() {
         return document.querySelector('#plugin');
@@ -216,7 +216,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		}
 	});
 
-	$("#content").fadeIn();
+	
 	
 	var smallwindow = false;
 	function ResizeMain(){
@@ -228,7 +228,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
 			document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
 			document.getElementById("content").style.padding = "5px";
-			overwolf.windows.changeSize(localStorage.getItem("MainID"), 200, 460);
+			overwolf.windows.changeSize(localStorage.getItem("MainID"), 200, 400);
 			//overwolf.windows.changeSize('MainWindow', 200, 460);//This would idealy work, but its not working
 			smallwindow=false;		
 		}else if(smallwindow === false){
@@ -278,7 +278,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			}
 		}
 	});
-	
+	/*
 	var zoomed = true;
 	overwolf.settings.registerHotKey("crosshair", function(arg) {
 		if (arg.status == "success") {
@@ -290,7 +290,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 				zoomed = true;
 			}
 		}
-	});
+	});*/
 	
 	
 	overwolf.settings.registerHotKey("capture", function(arg){

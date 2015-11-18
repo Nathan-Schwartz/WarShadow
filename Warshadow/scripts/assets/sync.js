@@ -21,7 +21,7 @@ define(['jquery','gearData'], function($,gData){
 				}
 			});
 		
-			localStorage.setItem("xml", JSON.stringify(newData));
+			//localStorage.setItem("xml", JSON.stringify(newData));
 
 			var arrData = {};
 			arrData.arrWeap = gData.getWeapons();

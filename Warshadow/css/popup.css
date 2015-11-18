@@ -41,7 +41,6 @@
 	font-family: Helvetica;
 	color: #ffffff;
 	background: #323232;
-	text-decoration: bold;
 	font-weight: bold;
 	border: solid 1px #323232;
 	outline: none;
@@ -133,7 +132,6 @@ body{
 	font-family: Helvetica;
 	color: #ffffff;
 	background: #323232;
-	text-decoration: bold;
 	font-weight: bold;
 	border: solid 1px #323232;
 	outline: none;
@@ -162,7 +160,7 @@ body{
 }
 
 #replayWindow{
-	background: url("../images/off.png") no-repeat scroll 0 0 transparent;
+	background: url("../images/openReplay.png") no-repeat scroll 0 0 transparent;
 	background-size: 18px 18px;
 	background-repeat:no-repeat;
 	width: 20px;
@@ -172,12 +170,22 @@ body{
 }
 
 #capture{
-	background: url("../images/off.png") no-repeat scroll 0 0 transparent;
+	background: url("../images/rewind.png") no-repeat scroll 0 0 transparent;
 	background-size: 18px 18px;
 	background-repeat:no-repeat;
 	width: 20px;
 	height: 20px;
 	left:66px;
+	top: 18px;
+}
+
+#error{
+	background: url("../images/error.png") no-repeat scroll 0 0 transparent;
+	background-size: 18px 18px;
+	background-repeat:no-repeat;
+	width: 20px;
+	height: 20px;
+	left:110px;
 	top: 18px;
 }
 

@@ -372,6 +372,7 @@ position: relative;
 	width: 275px;
 	position: relative;
 	top: 10px;
+	display: block;
 }
 
 #gDataspacer{

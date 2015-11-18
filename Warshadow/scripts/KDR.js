@@ -1,5 +1,5 @@
 require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters){
-			
+		/*	
 	function calcKD(){
 		var KDRatio = Number(localStorage.getItem('kill')) / Number(localStorage.getItem('PVPDeaths'));
 		KDRatio = Math.round( KDRatio * 100 ) / 100;
@@ -9,7 +9,7 @@ require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters
 			
 	window.addEventListener('storage', function( storageEvent ){
 		document.getElementById("KD").innerHTML = calcKD() + " K/D";
-	});
+	});*/
 		
 	$("#content").mousedown(function(){wCore.dragMove();});
 });

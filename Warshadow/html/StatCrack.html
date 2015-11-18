@@ -6,17 +6,16 @@
 		<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 		<meta name='viewport' content='width=device-width, initial-scale=1' >
 		<script data-main='../scripts/requireConfig' src='../scripts/lib/require.js'></script>
-	<script>
-		  navigator.plugins.refresh(false);
-	</script>
-
-    <embed  id='plugin' 
-            type='application/x-io-plugin'
-            width=0px 
-            height=0px>
-    </embed>
-		
 		<title>StatCrack</title>
+		<script>
+			  navigator.plugins.refresh(false);
+		</script>
+
+		<embed  id='plugin' 
+			type='application/x-io-plugin'
+			width=0px 
+			height=0px>
+		</embed>
 	</head>
 	
 
@@ -43,10 +42,10 @@
 		<label for="distSliderValue">Graph Distance:</label>
 		<input type="text" id="distSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
 		
-		<div id='distSlider' class="sliders"> </div>
+		<span id='distSlider' class="sliders"> </span>
 		<span class="spaced" id="gDataspacer">
 		
-		<label class="selectLabel" for "selectGData">Select data to display:</label><br>
+		<label class="selectLabel" for="selectGData">Select data to display:</label><br>
 		<select id='selectGData'>
 				<option value='Ddamage'> Damage </option> <br>
 				<option value='DttkH'> Time to kill (Headshots) </option>
@@ -59,64 +58,64 @@
 	</fieldset> 
 		
 		<fieldset class="standard" id="enemyField">
-		<legend><b>Enemy Options</b></legend><br>
-		
-		<label class="selectLabel" for "enemyHelmet1">Helmet</label><br>	
-		<select id='enemyHelmet1'>
-			<optgroup label='---PvP---'>
-				<option value='Default'> Default </option> <br>
-				<option value='Advanced'> Advanced </option>
-				<option value='Sapper'> Sapper </option>
-				<option value='Tactical'> Tactical </option>
-				<option value='Dread mask'> Dread Mask </option>
-				<option value='Warlord'> Warlord </option> <br>
-				<option value='Elite Crown'> Elite Crown </option>
-			</optgroup>
-			<optgroup label='---PvE---'>
-				<option value='npc'> NPC helmet </option>
-			</optgroup>
-		</select>
+			<legend><b>Enemy Options</b></legend><br>
+			
+			<label class="selectLabel" for="enemyHelmet1">Helmet</label><br>	
+			<select id='enemyHelmet1'>
+				<optgroup label='---PvP---'>
+					<option value='Default'> Default </option> <br>
+					<option value='Advanced'> Advanced </option>
+					<option value='Sapper'> Sapper </option>
+					<option value='Tactical'> Tactical </option>
+					<option value='Dread mask'> Dread Mask </option>
+					<option value='Warlord'> Warlord </option> <br>
+					<option value='Elite Crown'> Elite Crown </option>
+				</optgroup>
+				<optgroup label='---PvE---'>
+					<option value='npc'> NPC helmet </option>
+				</optgroup>
+			</select>
 
-		<span class="spaced">
-		<label class="selectLabel" for "enemyVest1">Vest</label><br>	
-		<select id='enemyVest1'>
-		<optgroup label='---PvP---'>
-			<option value='Default'>Default</option> <br>
-			<option value='Anti-Melee'>Anti-Melee</option> <br>
-			<option value='Atlant'>Atlant</option> <br>
-			<option value='Anti-Explosive'>Anti-Explosive</option> <br>
-			<option value='Assault'>Assault</option> <br>
-			<option value='Strikeforce'>Strikeforce</option> <br>
-			<option value='Titan-II'>Titan-II</option> <br>
-			<option value='Anti-Sniper'>Anti-Sniper</option> <br>
-			<option value='Special Medic/Rifle'>Special Medic/Rifle</option> <br>
-			<option value='Plate'>Plate</option> <br>
-			<option value='Hawk'>Hawk</option> <br>
-			<option value='Scout'>Scout</option> <br>
-			<option value='Special Sniper'>Special Sniper</option> <br>
-			<option value='Crown'>Crown</option> <br>
-			<option value='Rhino'>Rhino</option> <br>
-			<option value='Komodo'>Komodo</option> <br>
-			<option value='Christmas'>Christmas</option> <br>
-			<option value='Frontline'>Frontline</option> <br>
-			<option value='Warlord Medic'>Warlord Medic</option> <br>
-			<option value='Warlord Engi'>Warlord Engi</option> <br>
-			<option value='Warlord Rifle'>Warlord Rifle</option> <br>
-			<option value='Warlord Sniper'>Warlord Sniper</option> <br>
-			<option value='Corundum'>Corundum</option> <br>
-			<option value='Python'>Python</option> <br>
-			<option value='Extra Strong'>Extra Strong</option> <br>
-		</optgroup>
-		<optgroup label='---PvE---'>
-			<option value='CQB / Assault / Sniper'> CQB/Assault/Sniper </option>
-			<option value='Demoman'> Demoman</option>
-			<option value='Spec-Ops'> Spec-Ops </option> <br>
-			<option value='shock1'> Shock Trooper Normal</option>
-			<option value='shock2'> Shock Trooper Hard</option>	
-			<option value='shock3'> Shock Trooper Insane</option>
-		</optgroup>
-		</select>
-		<span>
+			<span class="spaced">
+				<label class="selectLabel" for="enemyVest1">Vest</label><br>	
+				<select id='enemyVest1'>
+					<optgroup label='---PvP---'>
+						<option value='Default'>Default</option> <br>
+						<option value='Anti-Melee'>Anti-Melee</option> <br>
+						<option value='Atlant'>Atlant</option> <br>
+						<option value='Anti-Explosive'>Anti-Explosive</option> <br>
+						<option value='Assault'>Assault</option> <br>
+						<option value='Strikeforce'>Strikeforce</option> <br>
+						<option value='Titan-II'>Titan-II</option> <br>
+						<option value='Anti-Sniper'>Anti-Sniper</option> <br>
+						<option value='Special Medic/Rifle'>Special Medic/Rifle</option> <br>
+						<option value='Plate'>Plate</option> <br>
+						<option value='Hawk'>Hawk</option> <br>
+						<option value='Scout'>Scout</option> <br>
+						<option value='Special Sniper'>Special Sniper</option> <br>
+						<option value='Crown'>Crown</option> <br>
+						<option value='Rhino'>Rhino</option> <br>
+						<option value='Komodo'>Komodo</option> <br>
+						<option value='Christmas'>Christmas</option> <br>
+						<option value='Frontline'>Frontline</option> <br>
+						<option value='Warlord Medic'>Warlord Medic</option> <br>
+						<option value='Warlord Engi'>Warlord Engi</option> <br>
+						<option value='Warlord Rifle'>Warlord Rifle</option> <br>
+						<option value='Warlord Sniper'>Warlord Sniper</option> <br>
+						<option value='Corundum'>Corundum</option> <br>
+						<option value='Python'>Python</option> <br>
+						<option value='Extra Strong'>Extra Strong</option> <br>
+					</optgroup>
+					<optgroup label='---PvE---'>
+						<option value='CQB / Assault / Sniper'> CQB/Assault/Sniper </option>
+						<option value='Demoman'> Demoman</option>
+						<option value='Spec-Ops'> Spec-Ops </option> <br>
+						<option value='shock1'> Shock Trooper Normal</option>
+						<option value='shock2'> Shock Trooper Hard</option>	
+						<option value='shock3'> Shock Trooper Insane</option>
+					</optgroup>
+				</select>
+			</span>
 		</fieldset>
 		
 		
@@ -125,13 +124,13 @@
 <fieldset class="standard">
 		<legend> <b>Weapon Options</b></legend><br>
 		
-		<label class="selectLabel" for "weaponSelect1"></label>
+		<label class="selectLabel" for="weaponSelect1"></label>
 		<select class="weapon" id='weaponSelect1'>
 		<option value='none'> Select a weapon </option>
 		</select> 
 
 <span class="spaced">
-<label class="selectLabel" for "attachmentSelect1"></label><br>
+<label class="selectLabel" for="attachmentSelect1"></label><br>
 <select id='attachmentSelect1'>
 <option value='none'> No attachment </option> <br>
 <option value='suppressor'> Suppressor </option>
@@ -149,13 +148,13 @@
   
   <span id='secondweapon'>
 
-<label class="selectLabel" for "weaponSelect2"></label>
+<label class="selectLabel" for="weaponSelect2"></label>
 <select class="weapon" id='weaponSelect2'>
 <option value='none'> Select a weapon </option>
 </select> 
 
 <span class="spaced">
-<label class="selectLabel" for "attachmentSelect2"></label><br>
+<label class="selectLabel" for="attachmentSelect2"></label><br>
 <select id='attachmentSelect2'>
 <option value='none'> No attachment </option>
 <option value='suppressor'> Suppressor </option>
@@ -171,13 +170,13 @@
   
   <span id='thirdweapon'>
 
-<label class="selectLabel" for "weaponSelect3"></label>
+<label class="selectLabel" for="weaponSelect3"></label>
 <select class="weapon" id='weaponSelect3'> 
 <option value='none'> Select a weapon </option>
 </select>
 
 <span class="spaced">
-<label class="selectLabel" for "attachmentSelect3"></label><br>
+<label class="selectLabel" for="attachmentSelect3"></label><br>
 <select id='attachmentSelect3'>
 <option value='none'> No attachment </option>
 <option value='suppressor'> Suppressor </option>
@@ -192,13 +191,13 @@
   
   <span id='fourthweapon'>
 
-<label class="selectLabel" for "weaponSelect4"></label>
+<label class="selectLabel" for="weaponSelect4"></label>
 <select class="weapon" id='weaponSelect4'>
 <option value='none'> Select a weapon </option>
 </select>
 
 <span class="spaced">
-<label class="selectLabel" for "attachmentSelect4"></label><br>
+<label class="selectLabel" for="attachmentSelect4"></label><br>
 <select id='attachmentSelect4'>
 <option value='none'> No attachment </option>
 <option value='suppressor'> Suppressor </option>
@@ -215,13 +214,13 @@
   
   <span id='fifthweapon'>
 
-<label class="selectLabel" for "weaponSelect5"></label>
+<label class="selectLabel" for="weaponSelect5"></label>
 <select class="weapon" id='weaponSelect5'>
 <option value='none'> Select a weapon </option>
 </select>
 
 <span class="spaced">
-<label class="selectLabel" for "attachmentSelect5"></label><br>
+<label class="selectLabel" for="attachmentSelect5"></label><br>
 <select id='attachmentSelect5'>
 <option value='none'> No attachment </option>
 <option value='suppressor'> Suppressor </option>
@@ -287,15 +286,15 @@
   <legend> <b>Game Variables</b> </legend>
 	<label for="boosterSliderValue">Money Booster:</label>
 	<input type="text" id="boosterSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
-	<div id='boosterSlider' class="sliders"> </div>
+	<span id='boosterSlider' class="sliders"> </span>
   
   <span class="spacedR" id="spacedSlider">
 	<label for="gameLengthSliderValue">Game Duration:</label>
 	<input type="text" id="gameLengthSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">	
-	<div id='gameLengthSlider' class="sliders"> </div>
+	<span id='gameLengthSlider' class="sliders"> </span>
 </span>
   
-<label class="selectLabelR" for "missionType">Mission</label>
+<label class="selectLabelR" for="missionType">Mission</label>
 <select id='missionType'>
 <option value='Normal'> Normal </option>
 <option value='Normal Africa'> Normal Africa </option> <br>
@@ -314,7 +313,7 @@
 	<legend><b> Armor </b> </legend><br>
   
 	<span id="spacingFix2">
-		<label class="selectLabelR" for "RChelmet">Helmet</label>
+		<label class="selectLabelR" for="RChelmet">Helmet</label>
 			<select id='RChelmet'>
 			<option value='rental'> Any Rental </option>
 			<option value='Default'> Default </option> <br>
@@ -327,7 +326,7 @@
 		</select> &nbsp;&nbsp;<span class="cost"  id="helCost"></span>
 
 		<span class="spacedR">
-		<label class="selectLabelR" for "RCvest">Vest&nbsp;&nbsp;</label>
+		<label class="selectLabelR" for="RCvest">Vest&nbsp;&nbsp;</label>
 		<select id='RCvest'>
 			<option value='rental'> Any Rental </option>
 			<option value='Default'>Default</option> <br>
@@ -358,7 +357,7 @@
 		</select>&nbsp;&nbsp; <span class="cost"  id="vesCost"></span></span>
 
 		<span id="spacingFix1">
-			<label class="selectLabelR" for "RCgloves">Gloves</label>
+			<label class="selectLabelR" for="RCgloves">Gloves</label>
 			<select id='RCgloves'>
 				<option value='rental'> Any Rental </option>
 				<option value='Knockdown Gloves'>Knockdown Gloves </option>
@@ -379,7 +378,7 @@
 			</select>&nbsp;&nbsp;&nbsp;<span class="cost"  id="gloCost"></span>
 
 			<span class="spacedR">
-				<label class="selectLabelR" for "RCboots">Boots</label>
+				<label class="selectLabelR" for="RCboots">Boots</label>
 				<select id='RCboots'>
 					<option value='rental'> Any Rental </option>
 					<option value='Fast Anti-directional Mine Shoes'>Fast Anti-directional Mine Shoes </option>
@@ -406,17 +405,17 @@
 <fieldset class="repair">
 	<legend><b> Weapons </b></legend>
 
-<label class="selectLabelR" for "RCprimary">Primary &nbsp;&nbsp;&nbsp;&nbsp;</label>
+<label class="selectLabelR" for="RCprimary">Primary &nbsp;&nbsp;&nbsp;&nbsp;</label>
 <select id='RCprimary'>
 <option value='rental'> Any Rental </option>
 </select> &nbsp;&nbsp;<span class="cost"  id="priCost"> </span><br>
 
-<label class="selectLabelR" for "RCsecondary">Secondary</label>
+<label class="selectLabelR" for="RCsecondary">Secondary</label>
 <select id='RCsecondary'>
 <option value='rental'> Any Rental </option>
 </select> &nbsp;&nbsp;<span class="cost"  id="secCost"> </span><br>
 
-<label class="selectLabelR" for "RCmelee">Melee&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+<label class="selectLabelR" for="RCmelee">Melee&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 	<select id='RCmelee'>
 		<option value='rental'> Any Rental </option>
 		<option value='Executor knife'>Executor knife</option>

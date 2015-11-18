@@ -5,17 +5,18 @@
 		<link rel="stylesheet" href="../css/Aristo/theme.css" />
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
-		<title>MediaPlayer</title>
+		<title>Recording Menu</title>
 	</head>
 	<body>
 		<div id="menu">
 		<br>
-			<button class="smallbutton" id="settingsWin" tabindex="-1"></button>
-			<button class="smallbutton" id="turnOn" tabindex="-1"></button>
+			<button class="smallbutton" id="settingsWin" title="Settings" tabindex="-1"></button>
+			<button class="smallbutton" id="turnOn" title="Enable recording" tabindex="-1"></button>
 			<div id="onceEnabled">
-				<button class="smallbutton" id="start" tabindex="-1"></button> 
-				<button class="smallbutton" id="capture" tabindex="-1"> <- 1 min </button> 
-				<button class="smallbutton" id="replayWindow" tabindex="-1"> Replay </button>
+				<button class="smallbutton" id="start" title="Start/Stop recording" tabindex="-1"></button> 
+				<button class="smallbutton" id="capture" title="Save last X minutes of video" tabindex="-1"></button> 
+				<button class="smallbutton" id="replayWindow" title="Open Replay Window" tabindex="-1"></button>
+				<button class="smallbutton" id="error" title="sample error" tabindex="-1"></button>
 			</div>
 			<br>
 		</div>

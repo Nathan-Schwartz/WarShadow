@@ -13,7 +13,7 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 			}
 		);
 	};
-	
+
 	//for counters.js
 	localStorage.setItem("kill", 0);
 	localStorage.setItem("headshot1" ,0);
@@ -22,6 +22,12 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 	localStorage.setItem("headshot4" ,0);
 	localStorage.setItem("headshot5" ,0);
 	localStorage.setItem("minutes" ,0);
+	
+	if(!localStorage.getItem("url"))
+		localStorage.setItem("url","sampleurl");
+	
+	if(!localStorage.getItem("message"))
+		localStorage.setItem("url","alertEnabled");
 	
 	//gData.clearStats();
 	if(!localStorage.getItem('vests'))
@@ -78,7 +84,9 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 	}
 	localStorage.setItem('recordingOn', false); //This is a side effect of my turnOn() recording function. I use this to determine if recording is being used by another app or by me.
 	localStorage.setItem('optionsCalledBy', false);
-
+	
+	localStorage.setItem("pingADS",0);
+	
 	//Get ID's of each window. No longer used cuz the window name works on most windows
 		getWinID("MainWindow",'MainID');	
 		getWinID("HSCounter",'HSCounterID');

@@ -15,10 +15,20 @@
 		"launch_events": [{
 			"event": "GameLaunch",
 			"event_data": {
-				"game_ids": [7784],
+				"game_ids": [7784]
 			},
 			"start_minimized": true
 		}],
+		"externally_connectable": {
+			"matches": [
+				"http://*.overwolf.com",
+				"https://*.overwolf.com",
+				"http://steamcommunity.com",
+				"https://steamcommunity.com",
+				"http://*.steamcommunity.com",
+				"https://*.steamcommunity.com"
+			]
+		},
 		"start_window":"MainWindow",
 		"windows":{
 			"MainWindow":{
@@ -29,7 +39,7 @@
 				"min_size":{"width":0,"height":0},
 				"show_in_taskbar": true,
 				"grab_keyboard_focus": false,
-				"ignore_keyboard_events":false,
+				"ignore_keyboard_events":false
 			},
 			"HSCounter":{
 				"file":"html/HSCounter.html",
@@ -41,7 +51,7 @@
 				"show_in_taskbar": false,
 				"grab_keyboard_focus": false,
 				"ignore_keyboard_events":true,
-				"disable_restore_animation": true,
+				"disable_restore_animation": true
 			},
 			"HSPercent":{
 				"file":"html/HSPercent.html",
@@ -53,7 +63,7 @@
 				"show_in_taskbar": false,
 				"grab_keyboard_focus": false,
 				"ignore_keyboard_events":true,
-				"disable_restore_animation": true,
+				"disable_restore_animation": true
 			},
 			"HSChains":{
 				"file":"html/HSChains.html",
@@ -65,7 +75,7 @@
 				"show_in_taskbar": false,
 				"grab_keyboard_focus": false,
 				"ignore_keyboard_events":true,
-				"disable_restore_animation": true,
+				"disable_restore_animation": true
 			},
 			"KDR":{
 				"file":"html/KDR.html",
@@ -77,7 +87,7 @@
 				"show_in_taskbar": false,
 				"grab_keyboard_focus": false,
 				"ignore_keyboard_events":true,
-				"disable_restore_animation": true,
+				"disable_restore_animation": true
 			},
 			"KPminute":{
 				"file":"html/KPminute.html",
@@ -89,7 +99,7 @@
 				"show_in_taskbar": false,
 				"grab_keyboard_focus": false,
 				"ignore_keyboard_events":true,
-				"disable_restore_animation": true,
+				"disable_restore_animation": true
 			},
 			"SmokeTimer":{
 				"file":"html/SmokeTimer.html",
@@ -101,7 +111,7 @@
 				"show_in_taskbar": false,
 				"grab_keyboard_focus": false,
 				"ignore_keyboard_events":true,
-				"disable_restore_animation": true,
+				"disable_restore_animation": true
 			},
 			"Crosshair":{
 				"file":"html/crosshair.html",
@@ -114,7 +124,7 @@
 				"ignore_keyboard_events":true,
 				"grab_keyboard_focus": false,
 				"disable_restore_animation": true,
-				"in_game_only": true,
+				"in_game_only": true
 			},
 			"popup":{
 				"file":"html/popup.html",
@@ -126,7 +136,7 @@
 				"ignore_keyboard_events":true,
 				"grab_keyboard_focus": false,
 				"disable_restore_animation": true,
-				"in_game_only": true,
+				"in_game_only": true
 			},
 			"StatCrack":{
 				"file":"html/StatCrack.html",
@@ -165,7 +175,7 @@
 				"show_in_taskbar": false,
 				"grab_keyboard_focus": false,
 				"disable_restore_animation": true,
-				"ignore_keyboard_events":false,
+				"ignore_keyboard_events":false
 			},
 			"Recording":{
 				"file":"html/recordingMenu.html",
@@ -175,7 +185,7 @@
 				"min_size":{"width":25, "height":10},
 				"show_in_taskbar": false,
 				"grab_keyboard_focus": false,
-				"disable_restore_animation": true,
+				"disable_restore_animation": true
 			}
 		},
 		"hotkeys" : {
@@ -183,34 +193,33 @@
 				"title": "Launch/Hide Menu",
 				"action-type": "toggle",
 				"default": "Num 9",
-				"passthrough": true,
+				"passthrough": true
 			},
 			"showHideWindows": {
 				"title": "Show/Hide all Windows",
 				"action-type": "custom",
 				"default": "Num 8",
-				"passthrough": true,
+				"passthrough": true
 			},
 			"resetCounters": {
 				"title": "Reset HUD Counters",
 				"action-type": "custom",
 				"default": "Num 0",
-				"passthrough": true,
+				"passthrough": true
 			},
 			"capture": {
 				"title": "Capture",
 				"action-type": "custom",
 				"default": "Num 7",
-				"passthrough": true,
+				"passthrough": true
 			},
 			"smokeTimer": {
 				"title": "Smoke Timer",
 				"action-type": "custom",
 				"default": "Num 3",
-				"passthrough": true,
-			},
+				"passthrough": true
+			}
 		},
-		
 		"plugins": [
 			"npIOPlugin.dll",
 			"InputTrackerPlugin.dll"
