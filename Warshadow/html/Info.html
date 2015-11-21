@@ -55,7 +55,7 @@
 					  <h3>Crosshair</h3>
 					  <div>
 						<p>
-						This feature allows the user to use a custom crosshair in Warface. The user can use preloaded crosshairs or upload their own.
+						This feature allows the user to use a custom crosshair in Warface. The user can use preloaded crosshairs or upload their own. <b>Only shows up while in-game.</b>
 						</p>
 						
 						<p>
@@ -73,11 +73,14 @@
 						<br>
 						customX0.png, customX1.png, customX2.png, customX3.png, customX4.png, customX5.png, customX6.png, customX7.png, customX8.png, and customX9.png.
 						</p>
+						<p><b>Disclaimer:</b> Sometimes the settings page doesn't detect your ADS key and still displays "Waiting for ADS key". If this happens simply close and reopen Settings. I'm looking into the issue</p>
 						</div>
 					  <h3>Problems and Troubleshooting</h3>
+					  <div>
 					  <p>
-					  I do not anticipate any issues with these features, but if there are any problems please message me via Steam, Warface.com, or email.
+						I do not anticipate any issues with these features, but if there are any problems please message me at WarShadowDev@gmail.com.
 					  </p>
+					  </div>
 					  
 					</div>
 				</div>
@@ -86,24 +89,24 @@
 						<h3>General Recording Info</h3>
 						<div>
 							<p>
-							Q: Does the recording work like ShadowPlay or more traditional programs?
+							<b>Q: Does the recording capability save past gameplay like ShadowPlay or does it do start-stop recording like more traditional programs?</b>
 							<br>
 							A: Both. Auto-Recording works like ShadowPlay, but the recording window has the option to do start-stop recordings as well.
-							<br><br>
-							Q: Why won't the Auto-Recording box stay checked?
+							</p><p>
+							<b>Q: Why won't the Auto-Recording box stay checked?</b>
 							<br>
-							A: It is designed to uncheck itself if the recording process didn't start correctly. This is usually because it wasn't clicked when the user had a game running and in focus. If this wasn't the issue, the recording isn't cooperating with your system. Try other settings and check what error you are getting.
-							<br><br>
-							Q: Why does the program lag when I click Auto-Record or I click the power button in the recording window?
+							A: It is designed to uncheck itself if the recording process didn't start correctly. This is usually because it wasn't clicked when the user had a game running and in focus. If this wasn't the issue, read more in the Problems section below.
+							</p><p>
+							<b>Q: Why does the program lag when I click Auto-Record or I click the power button in the recording window?</b>
 							<br>
 							A: These buttons are both enabling the ShadowPlay feature and it takes a few seconds for Overwolf to get everything ready.
-							<br><br>
-							Q: Why didn't my recording save?
+							</p><p>
+							<b>Q: Why didn't my recording save?</b>
 							<br>
 							A: Do you remember the slider in Settings that lets you choose how much video you wanted to save after the auto-Recording event happened? When an Auto-Record event is triggered, my app waits that long before saving the video.
 							The reason for this, is because Overwolf only allows one recording at a time. If I didn't wait till after the time was finished, other Auto-Recording events are unsuccessful because the first call is hogging the recording.
-							<br><br>
-							Q: Why should I use Warshadow for recording instead of ReplayHUD?
+							</p><p>
+							<b>Q: Why should I use Warshadow for recording instead of ReplayHUD?</b>
 							<br>
 							A: 3 reasons. 
 							<br>1) "Auto-Recording", it takes all the recording for you so you can focus on playing the game. 
@@ -115,48 +118,68 @@
 					  <h3>Auto-Recording</h3>
 					  <div>
 						<p>
-						This feature outputs a ratio of Kills divided by Minutes rounded to nearest hundredths place.
-						The display is updated instantly for each kill, but the time is updated every 10 seconds. This allows higher accuracy than simply updating every minute.
-						</p>
-						<p>
-						The time starts as soon as the K/min window is opened and can be reset using the "Reset Counters" hotkey or via the button in Settings.
+						  This is probably the most useful feature in my app. AutoRec records your best moments for you, so you can focus on the game. No more massive recordings that you comb through later, no more fumbling for the "Save video" Hotkey. 
+						 </p><p> Simply select which moments you want to save (this is done in settings) and click on Auto-Record in the main menu. Whenever an event happens, the app will save the video recording for you and you never have to worry about it.
+						</p><p> You can choose to change the length of the recording. Don't worry about making the times too short, the app has a built in time for each event so that even if you say you want a 2 second recording, you will still get video of your whole brain annihilator.
+						</p><p> It is recommended to have a longer "after" duration if you choose a short combo. Example: If you choose to record all of the 2x headshot chains but you get 5 in a row, the video might not save the last kills.
+						All you have 
 						</p>
 					  </div>
-					  <h3>Recording Window</h3>
+					  <h3>Recording Menu</h3>
 					  <div>
 						<p>
-						This feature simply displays the number of headshots achieved by the player. The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
+						  A low profile, simple menu that has all the controls you need to record and view your gameplay. Note that disabling the recording will uncheck the Auto-Record checkbox.
 						</p>
 					  </div>
 					  <h3>Replay Video Player</h3>
 					  <div>
 						<p>
-						This feature displays the result of: <# of Headshots>/<# of Kills> X 100. It is updated after each kill. The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
-
-						</p>
-					  </div>
-					  <h3>Limitations and Quirks</h3>
-					  <div>
-						<p>
-						This feature shows how many headshots the player gets in quick succession on average.
-						<br>
-						Examples: If a player only got brain annhilators the window would always display "5 Avg". If a player never got a skull hunter, head crasher, brain smasher, or brain annhilator the window would always display "1 Avg".
-						</p>
-						<p>
-						The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
+						  Did you want to view the latest recording RIGHT NOW because it is just too much work to tab out? Got you covered. It is accessible from the Recording Menu. This player doesn't come out of the package pretty, and I didn't have time to add all of the bells and whistles, but it gets the job done.
+						  
 						</p>
 					  </div>
 					  <h3>Problems and Troubleshooting</h3>
+					  <div>
 					  <p>
-					  The documentation for the recording API has been changing so it is possible, but if there are any problems please message me via Steam, Warface.com, or email.
+					  Some people are going to have errors with the recording feature. This can be due to hardware limitations, out of date graphics card, not enough memory, or other reasons.
 					  </p>
+					  <p>
+					  Unfortunately I haven't been provided with a full list of errors or their fixes. My recommendation would be to try the other encodering settings. You can try tweaking other settings as well, but I have no way of knowing what will work, nor a way to fix this error should you have it :(
+					  </p>
+					  <p>
+					   Another possible source of error is a change to the Overwolf API that does the real work making the recordings. I have implemented it to the best of my abilities, but from time to time a bug is uncovered in the API and changes are made. Obviously my app is not infallible either and from time to time there may be bugs.
+					   <br>
+					   I will strive to keep the application up to date so everyone has a positive experience with it. If you encounter any problems, or would like to make suggestions I ask that you contact me at WarShadowDev@gmail.com.
+					  </p>
+					  </div>
 					</div>
 				</div>
 				<div id="tabs-3">
-					<p>Where do you get the data?</p>
-					<p>Why is the damage graph on Shotguns so weird</p>
-					<p>Is [generic item] correct?</p>
-					<p></p>
+					<p><b>Where do you get the data?</b><br>
+					  I maintain plausible deniability regarding the acquisition of any damage related data. That said, I have a friend who has been tremendously helpful with this aspect of the app and I have the utmost confidence in the data's accuracy.
+					</p>
+					<p><b>Why is the damage graph on Shotguns so weird?</b>
+					</p><p>I'm so glad you asked! Its because I made it up. Kinda. All of the shotguns in the game have a certain number of pellets. That is what makes shotguns great! The catch is that my calculations assumes that the user has 100% accuracy.
+					<br><br>
+					That becomes a problem because at long distances it isn't possible to shoot the enemy with ALL of the pellets (without hacks). Since there is no real way for me to predict the spread patterns I made up a formula:
+					<br>
+					Every 1 meter (roughly) the chance of hitting with all pellets reduces by 1%. Then I use that % of the guns pellets in the calculation.
+					<br><br>
+					Thats why the graph is all bumpy, at that distance 1 less pellet hit the enemy.
+					</p>
+
+					<p><b>Ok so then what good are the shotgun calculations?</b><br>
+					  I had this question myself, and I decided that the chart is only good for comparing shotguns against other shotguns. Comparing against any other weapon is just a guess.
+					</p>
+					
+					<p><b>Is [generic item] correct?</b><br>
+					  I will regularly be checking to see if weapons are up to date. If you have concerns feel free to contact me.
+					</p><p>
+						<b>I got an alert saying that it couldn't update repair data. Help?</b><br>
+						This can happen if the game dump file isn't located. Please make sure you have Warface installed. If you do, try launching the game and trying again. 
+						<br><br> That should work, but if it doesn't please contact me and try the following steps: <br>Locate the get_shop_offers.xml file on your computer and move it to \n'Users/<your-name>/Saved Games/WarfaceWest/QueryCache/'. It will be necessary to copy in a new shop_get_offers.xml whenever you want to update the data again. The game should update the file on each launch.
+
+					</p>
 				</div>
 				<div id="tabs-4">
 					<p>My name is Nathan and in Warface I am known as GreyPhoenix. I have played Warface since May 2014 and haven't played much since I got to Level 70.</p>
@@ -166,6 +189,7 @@
 					<p>Favourite flavor of ice cream: Yes.</p>
 					<p>Favourite color: Grey</p>
 					<p>Enemies: Anyone who says grey isn't a color.</p>
+					<p>Contact me at WarShadowDev@gmail.com</p>
 				</div>
 			</div>
 		</div>

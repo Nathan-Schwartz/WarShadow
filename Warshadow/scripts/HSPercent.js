@@ -16,5 +16,5 @@ require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $, counter
 		document.getElementById("HSperc").innerHTML = hsPercent() + "%";
 	});
 			
-	$("#content").mousedown(function(){wCore.dragMove();});
+	$("#content").mousedown(wCore.dragMove);
 });		

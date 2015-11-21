@@ -1,14 +1,21 @@
 require(['jquery', 'windowCoreFunctions'], function($, wCore){
 	
-	overwolf.games.getRunningGameInfo(function(result){
-		var left = result.width/2;
-		if(result.width < 1200)
-			left = left-100;
-		else
-			left = left-101;
-		
-		overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), left, (result.height/2)-133, function(result){console.log("move result", result);});
-	});
+	if(JSON.parse(localStorage.getItem("firstLaunch"))){
+		recenter();
+	}
+	
+	function recenter(){
+		overwolf.games.getRunningGameInfo(function(result){
+			var left = result.width/2;
+			if(result.width < 1200)
+				left = left-100;
+			else
+				left = left-101;
+			
+			overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), left, (result.height/2)-133, function(result){console.log("move result", result);});
+		});
+	}
+	
 	$("#content").fadeIn();
 	
 	var appPath = "";
@@ -65,8 +72,10 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 		for(var i=0; i<10;i++){
 			(function(j){
 				plugin().fileExists(appPath+"customX"+i+".png", function(status, i){
-					if(status)
+					if(status){
+						console.log("it found the file");
 						document.getElementById("drop").innerHTML += "<option value='customX"+String(i)+"'> Custom X"+ String(i) +"</option>";// add file to list
+					}
 				});
 			})(i);
 		}
@@ -91,7 +100,16 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 				break;
 			case "default3":
 				url = "<img src='../images/default3.png' id='reticle'>";
-				break;	
+				break;
+			case "default4":
+				url = "<img src='../images/default4.png' id='reticle'>";
+				break;
+			case "default5":
+				url = "<img src='../images/default5.png' id='reticle'>";
+				break;
+			case "default6":
+				url = "<img src='../images/default6.png' id='reticle'>";
+				break;
 			case "customX0":
 				url = "<img src='../images/customX0.png' id='reticle'>";
 				break;
@@ -144,6 +162,7 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 		document.getElementById("rightAdjust").style.display = "none";
 		document.getElementById("downAdjust").style.display = "none";
 		document.getElementById("upAdjust").style.display = "none";
+		document.getElementById("recenter").style.display = "none";
 	};
 
 	$("#leftAdjust").click(function(){
@@ -156,16 +175,18 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 		overwolf.windows.getCurrentWindow(function(results){
 			overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), results.window.left+1, results.window.top);
 		});
-	});	
+	});
 	$("#downAdjust").click(function(){
 		overwolf.windows.getCurrentWindow(function(results){
 			overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), results.window.left, results.window.top+1);
 		});
-	});	
+	});
 	$("#upAdjust").click(function(){
 		overwolf.windows.getCurrentWindow(function(results){
 			overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), results.window.left, results.window.top-1);
 		});
-	});	
+	});
+	
+	$("#recenter").click(recenter);
 });
 

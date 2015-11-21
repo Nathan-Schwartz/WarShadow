@@ -1,30 +1,41 @@
 require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording'], function(wCore, $, jqueryUI, rHUD, rec){
 
-	document.getElementById("menu").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
-	document.getElementById("menu").style.backgroundClip = "padding-box";
-	document.getElementById("menu").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+	//document.getElementById("menu").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
+	//document.getElementById("menu").style.backgroundClip = "padding-box";
+	//document.getElementById("menu").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
 
 	$("#menu").fadeIn();
-	
 	
 	$( document ).tooltip({
 		track: true,
 		show:{delay:1000},
 		hide:false,
-		open: function (event, ui) {
+		/*open: function (event, ui) {
 			ui.tooltip.css("max-width", "70px");
-		},
-		position:{ my: "left+3 bottom-3", of: event, collision: "fit"}
+		},*/
+		position:{ /*my: "left+3 bottom-3", of: event, */collision: "fit"}
 	});
 	
-	$(document).ready(function(){
-
-});
+	//$(document).ready(function(){});
+		window.addEventListener('storage', function( storageEvent ){
+			console.log("storageEvent: ", storageEvent);
+			console.log('localstorage listener triggered', JSON.parse(localStorage.getItem('recordingOn')), typeof JSON.parse(localStorage.getItem('recordingOn')));
+			if(!JSON.parse(localStorage.getItem('recordingOn'))){
+				document.getElementById("turnOn").style.backgroundImage = "url('../images/off.png')";
+				$("#onceEnabled").hide();
+			}else{
+				document.getElementById("turnOn").style.backgroundImage = "url('../images/on.png')";
+				$("#onceEnabled").fadeIn().css("display","inline-block");
+			}
+		});
 	
 //		Menu Listeners
 
 	//menu buttons
-	$("#settingsWin").click(function(){ localStorage.setItem('optionsCalledBy', true); rHUD.refreshHelper(true, 'Settings');});
+	$("#settingsWin").click(function(){
+		localStorage.setItem('optionsCalledBy', "recording");
+		rHUD.refreshHelper(true, 'Settings');
+	});
 	
 	var recording = false;
 	var enabled = false;
@@ -32,12 +43,14 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 	var res = {};
 	res.success = false;
 	
-	JSON.parse(localStorage.getItem('recordingOn')) ? (function(){document.getElementById("turnOn").style.backgroundImage = "url('../images/on.png')"; $("#onceEnabled").fadeIn();})() : document.getElementById("turnOn").style.backgroundImage = "url('../images/off.png')";;
+	JSON.parse(localStorage.getItem('recordingOn')) 
+		? (function(){document.getElementById("turnOn").style.backgroundImage = "url('../images/on.png')"; $("#onceEnabled").fadeIn().css("display","inline-block");})()
+		: document.getElementById("turnOn").style.backgroundImage = "url('../images/off.png')";
 		
 	var successHandler = {};
 	successHandler.postCheckCallback = function(){};
 	successHandler.successCheck = function(result){
-		if(result.status == "success"){
+		if(result.status == "success"){// || result.error == "Already turned on."){
 			res.success = true;
 			console.log("successcheck:status returned true");
 			if(typeof successHandler.postCheckCallback == "function")
@@ -48,37 +61,34 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 	};
 	
 	$("#turnOn").click(function(){
-		enabled = JSON.parse(localStorage.getItem('recordingOn'));
-		if(enabled===true){
+		if(JSON.parse(localStorage.getItem('recordingOn'))===true){
 			successHandler.postCheckCallback = function(){
-				//alert("successcheck Callback executed");
 				document.getElementById("turnOn").style.backgroundImage = "url('../images/off.png')";
 				$("#onceEnabled").hide();
 			};
 			rec.turnOff(successHandler.successCheck);
 			
-		}else{
+		}else if(JSON.parse(localStorage.getItem('recordingOn')) === false){
 			successHandler.postCheckCallback = function(){
-				//alert("successcheck Callback executed");
 				document.getElementById("turnOn").style.backgroundImage = "url('../images/on.png')";
-				$("#onceEnabled").fadeIn();
+				$("#onceEnabled").fadeIn().css("display","inline-block");
 			};
-			rec.turnOn(successHandler.successCheck);
+			//rec.turnOn(successHandler.successCheck);
+			localStorage.setItem("proxyEnableRecordingRequest", true);
 		}
 	});
-	
 	
 	$("#start").click(function(){
 		if(!recording){
 			successHandler.postCheckCallback = function(){
-				document.getElementById("start").style.backgroundImage = "url('../images/play.png')";
+				document.getElementById("start").style.backgroundImage = "url('../images/pause.png')";
 				recording = !recording;
 			}
 			rec.startCapture(successHandler.successCheck);
 			
-		} else {
+		}else{
 			successHandler.postCheckCallback = function(){
-				document.getElementById("start").style.backgroundImage = "url('../images/pause.png')";
+				document.getElementById("start").style.backgroundImage = "url('../images/play.png')";
 				recording = !recording;
 			};
 			rec.finishCapture(successHandler.successCheck);
@@ -86,9 +96,11 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 		
 	});
 	
-	$("#menu").mousedown(function(){wCore.dragMove();});
-	$("#replayWindow").click(function(){/*rHUD.refreshHelper(true,"Replay");*/ rec.memScreen(); window.location.assign(localStorage.getItem("url"));});
+	$("#menu").mousedown(wCore.dragMove);
+	$("#replayWindow").click(function(){rHUD.refreshHelper(true,"Replay");/* rec.memScreen(); window.location.assign(localStorage.getItem("url"));*/});
 	$("#capture").click(function(){
-		rec.capture(1,parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000);
+		rec.capture(parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000,1);
 	});
+	$("#close").click(wCore.closeWindow);
+	
 });

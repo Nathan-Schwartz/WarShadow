@@ -11,23 +11,29 @@ define(["refreshHUD"], function(rHUD){
 		
 		return false;
 	};
-	
+
 	function turnOn(callback){
 		overwolf.media.replays.turnOn(
 			{}, 
 			function(result) {
 				if(isFunction(callback))
 					callback(result);
-					
-				if(result.error == "Already turned on." && JSON.parse(localStorage.getItem('recordingOn')) === false)
-					alert("Another app hijacked the recording feature!! I can't believe you have another recording app, I thought what we had was special :( \n\n Learn more in the Info page");
 
-				
 				console.log(result);
 				if(result.status== "success"){
 					localStorage.setItem('recordingOn', true);
 					localStorage.setItem('message', "alertEnabled");
 					rHUD.refreshHelper(true,"popup");
+				}else{
+					if(result.error != "Already turned on."){
+						//var myArr = JSON.parse(localStorage.getItem("errorList"));
+						//var myError = "Enable Recording Error:" + result.error;
+						//myArr.push(myError);
+						//localStorage.setItem("errorList", JSON.stringify(myArr));
+						alert("I'm sorry, the recording feature wasn't able to start properly. Overwolf says the error is: " + result.error + "\n \nLook at the Info page to learn more.");
+					}else if(result.error == "Already turned on." && JSON.parse(localStorage.getItem('recordingOn')) === false){
+						alert("Another app hijacked the recording feature!! \n\n Either you have another Overwolf app that started recording before Warshadow did, or you have ShadowPlay.\n\n If you have ShadowPlay, you may need to turn off or disable it and then restart your computer. \n\n Learn more in the Info page");
+					}
 				}
 			}
 		);
@@ -39,6 +45,7 @@ define(["refreshHUD"], function(rHUD){
 				console.log(result);
 				if(isFunction(callback))
 					callback(result);
+				
 				if(result.status== "success"){
 					localStorage.setItem('message', "alertDisabled");
 					localStorage.setItem('recordingOn', false);
@@ -48,14 +55,15 @@ define(["refreshHUD"], function(rHUD){
 			}
 		);
 	};
-		
+
 	var url = "";	
-		
+
 	function startCapture(callback){
 		overwolf.media.replays.startCapture(1,
 			function(result){
 				if(isFunction(callback))
 					callback(result);
+				
 				console.log(result);
 				url = result.url;
 				localStorage.setItem("url", result.url);
@@ -67,29 +75,40 @@ define(["refreshHUD"], function(rHUD){
 		overwolf.media.replays.finishCapture(url, function(result){
 			if(isFunction(callback))
 				callback(result);
-			console.log(result);
+			
+			if(result.status== "success"){
+				localStorage.setItem("recordingCount", JSON.parse(localStorage.getItem("recordingCount")) + 1);
+				console.log("it should have updated recCounter in finishCapture");
+			}
 		});
 	};
 
 	function capture(before, after, callback){
 		overwolf.media.replays.capture(before, after,
-			function(result){if(result) console.log("first",result);},
 			function(result){
-				console.log("second",result);
+				console.log("finishEnded",result);
+				if(result.status== "success"){
+					localStorage.setItem("recordingCount", JSON.parse(localStorage.getItem("recordingCount")) + 1);
+					console.log("it should have updated recCounter in finishEnded");
+				}
+				if(isFunction(callback))
+					callback(result);
+				
+			},
+			function(result){
+				console.log("prefinish",result);
 				if(result.status== "success"){
 					localStorage.setItem("url", result.url);
 					overwolf.media.replays.finishCapture(result.url,
 						function(result){
-							console.log('result',result);
-							if(isFunction(callback))
-								callback(result);
+							console.log('finishCalled',result);
 						}
 					);
 				}
 			}
 		);
 	};
-	
+
 	function memScreen(){
 		overwolf.media.getScreenshotUrl(
 			{

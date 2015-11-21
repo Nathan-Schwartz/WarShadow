@@ -16,5 +16,5 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI'], function(wCore, $,counter
 		}, 2000);
 	}
 
-	//$("#content").mousedown(function(){wCore.dragMove();});
+	//$("#content").mousedown(wCore.dragMove);
 });

@@ -22,6 +22,14 @@ body{
 	position:relative;
 }
 
+#recenter{
+	position: absolute;
+	bottom:5px;
+	left:5px;
+	width: 100px;
+	overflow: hidden;
+}
+
 #reticle{
 	width: 100px;
 	height: 100px;
@@ -51,16 +59,16 @@ body{
 	height:10px;
 	width:10px;
 	position: absolute;
-	top:60px;
-	right:3px;
+	bottom: 10px;
+	right:25px;
 	z-index:40;
 }
 #rightAdjust{
 	height:10px;
 	width:10px;
 	position: absolute;
-	right: 3px;
-	top:75px;
+	right: 15px;
+	bottom: 10px;
 	-webkit-transform: rotate(180deg);
     transform: rotate(180deg);
 	z-index:40;
@@ -71,18 +79,18 @@ body{
 	position: absolute;
 	-webkit-transform: rotate(270deg);
     transform: rotate(270deg);
-	bottom: 3px;
+	bottom: 7px;
 	right:3px;
 	z-index:40;
-}
+}	
 #upAdjust{
 	height:10px;
 	width:10px;
 	position: absolute;
 	-webkit-transform: rotate(90deg);
     transform: rotate(90deg);
-	right:3px;
-	bottom:18px;
+	right:2px;
+	bottom:15px;
 	z-index:40;
 }
 
@@ -90,7 +98,7 @@ body{
 	background: rgba(150, 150, 150, .5);
 	position:relative;
 	width:150px;
-	height:150px;
+	height:185px;
 	border: 5px solid transparent;
 	margin: 0 auto;
 	display: none;

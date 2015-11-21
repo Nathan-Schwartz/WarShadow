@@ -48,7 +48,7 @@
 #colorbuttons{	
 	display: none;
 	position: relative;
-	top: 5px;
+	top: 0px;
 }
 
 #colorContainer{
@@ -254,6 +254,8 @@ label{
 	display: block;
 	opacity: .9;
 }
+
+
 
 #colorbuttons{
 	width: 140px;

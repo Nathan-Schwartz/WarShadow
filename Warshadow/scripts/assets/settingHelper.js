@@ -9,6 +9,10 @@ define(["jquery", "jqueryUI"], function ($) {
 		if(!document.getElementById('rightClickADS').checked)
 			$("#inputADSContainer").fadeIn();// altering the value doesn't trigger "changed" so we have to manually display it.
 
+		document.getElementById('noADS').checked = temp.noADS;
+		if(document.getElementById('noADS').checked)
+			document.getElementById('ifADShides').style.display = "none";
+		
 		document.getElementById('allowSync').checked = temp.allowSync;
 		document.getElementById('enableRecord').checked = temp.enableRecord;
 		document.getElementById('autoLaunch').checked = temp.autoLaunch;
@@ -89,6 +93,7 @@ define(["jquery", "jqueryUI"], function ($) {
 	function update(){//Update localStorage with newest settings
 		var temp = JSON.parse(localStorage.getItem("Settings"));
 	
+		temp.noADS = document.getElementById('noADS').checked;
 		temp.allowSync = document.getElementById('allowSync').checked;
 		temp.toggleADS = document.getElementById('toggleADS').checked;
 		temp.rightClickADS = document.getElementById('rightClickADS').checked;

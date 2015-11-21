@@ -32,7 +32,7 @@ define(function () {
 		//document.getElementById('KDRate').checked ? refreshHelper(true,"KDR") : refreshHelper(false,"KDR");
 		document.getElementById('crosshair').checked ? refreshHelper(true,"Crosshair") : refreshHelper(false,"Crosshair");
 		document.getElementById('KPM').checked ? refreshHelper(true,"KPminute") : refreshHelper(false,"KPminute");
-		
+		document.getElementById('recCount').checked ? refreshHelper(true,"recCount") : refreshHelper(false,"recCount");
 	};
 		
 	return {

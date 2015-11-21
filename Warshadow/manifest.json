@@ -4,7 +4,7 @@
 	"meta":{
 		"name":"WarShadow",
 		"version":"1.0.0",
-		"minimum-overwolf-version":"0.77.10",
+		"minimum-overwolf-version":"0.87.22",
 		"author":"Nathan Schwartz",
 		"icon":"images/IconMouseOver.png",
 		"icon_gray":"images/IconMouseNormal.png",
@@ -101,6 +101,18 @@
 				"ignore_keyboard_events":true,
 				"disable_restore_animation": true
 			},
+			"recCount":{
+				"file":"html/recCount.html",
+				"transparent":true,
+				"resizable":false,
+				"size":{"width":140, "height":50},
+				"min_size":{"width":25, "height":25},
+				"max_size":{"width":300, "height":500},
+				"show_in_taskbar": false,
+				"grab_keyboard_focus": false,
+				"ignore_keyboard_events":true,
+				"disable_restore_animation": true
+			},
 			"SmokeTimer":{
 				"file":"html/SmokeTimer.html",
 				"transparent":true,
@@ -116,10 +128,7 @@
 			"Crosshair":{
 				"file":"html/crosshair.html",
 				"transparent":true,
-				"resizable":true,
-				"size":{"width":200, "height":200},
-				"min_size":{"width":25, "height":25},
-				"max_size":{"width":300, "height":500},
+				"size":{"width":200, "height":300},
 				"show_in_taskbar": false,
 				"ignore_keyboard_events":true,
 				"grab_keyboard_focus": false,
@@ -143,7 +152,7 @@
 				"transparent":false,
 				"resizable":true,
 				"size": {"width": 1075, "height": 800},
-				"start_position": {"Top": 100,"Left": 100},
+				"start_position": {"Top": 20,"Left": 100},
 				"grab_keyboard_focus": true,
 				"show_minimize": true
 			},
@@ -153,7 +162,7 @@
 				"resizable":true,
 				"show_in_taskbar": true,
 				"size": {"width": 800, "height": 600},
-				"start_position": {"Top": 100,"Left": 300},
+				"start_position": {"Top": 20,"Left": 300},
 				"grab_keyboard_focus": true,
 				"show_minimize": true
 			},

@@ -11,5 +11,5 @@ require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters
 		document.getElementById("KD").innerHTML = calcKD() + " K/D";
 	});*/
 		
-	$("#content").mousedown(function(){wCore.dragMove();});
+	$("#content").mousedown(wCore.dragMove);
 });

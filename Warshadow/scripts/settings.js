@@ -1,37 +1,62 @@
 require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'], function($,wCore, settingH, counters, jqueryUI){
 
-	if(JSON.parse(localStorage.getItem('optionsCalledBy')) == true){
+	if(localStorage.getItem('optionsCalledBy') == "recording"){
 		window.location.hash = '#vidsetfield';
-		localStorage.setItem('optionsCalledBy', false);
+		localStorage.setItem('optionsCalledBy', "manual");
 	}
 
 	function plugin() {
         return document.querySelector('#plugin');
 	}
+	
+	
+	var dialogCounter = 1;
+	
+	$(function() {
+		$( "#Xdialog" ).dialog({
+			autoOpen: false,
+			resizable: false,
+			draggable: false,
+			height:320,
+			width: 175,
+			modal: true,
+			buttons: {
+				Cancel:{
+                    text: 'OK',
+                    click : function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			}
+		});
+	});
+	
 
 	(plugin() == null) ? console.log("Plugin couldn't be loaded??") : console.log('Plugin was loaded.');
 
 	//OK so the plan here is to grab a button when the user wants one. After 1 button is pushed, make an indicator for when it is toggled again.
 	function checkADS(){
 		console.log("checkADS");
-		var checked = false;
+		var checked = 0;
 		plugin().onKeyDown = function (e) {
+			checked++;
 			var saved = parseInt(localStorage.getItem("ADSkey"));
-			if(checked){
-				plugin().onKeyDown = null;
-				localStorage.setItem("pingADS", localStorage.getItem("pingADS")+1); //!!!!!!!!!!!
-			}
-			if(saved == e){
-				document.getElementById('displayWhenADS').style.backgroundColor = "gray";
-				setTimeout( function(){document.getElementById('displayWhenADS').style.backgroundColor = "white";}, 500);
-				checked = true;
+			if(checked > 3){
+				//do nothing
+			}else if(checked == 1){
+				$( "#Xdialog" ).dialog( "open" );
+			}else{
+				if(saved == e){
+					document.getElementById('displayWhenADS').style.backgroundColor = "gray";
+					setTimeout( function(){document.getElementById('displayWhenADS').style.backgroundColor = "white";}, 500);
+				}
 			}
 		};
 	};
 
 	function grabADS(){
 		console.log("ads called and the starting value was:", localStorage.getItem("ADSkey"));
-		plugin().onKeyDown = null;//end checkADS's listener in case it got called before.
+		//plugin().onKeyDown = null;//end checkADS's listener in case it got called before.
 
 		var set = false;
 		plugin().onKeyDown = function(e){
@@ -105,7 +130,7 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
 	$("#showfeatures").click(function(){
 		$("#triggers").slideToggle(200);
 		if(document.getElementById("showfeatures").innerHTML == "Hide Triggers")
-			document.getElementById("showfeatures").innerHTML = "Show Triggers";
+			document.getElementById("showfeatures").innerHTML = "Choose Triggers";
 		else
 			document.getElementById("showfeatures").innerHTML = "Hide Triggers";
 	});
@@ -120,9 +145,16 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
 	//menu checkboxes //
 	$("#enableRecord, #autoLaunch, #minimizeOnTab, #restoreOnTab, #closeOnEnd, #kill, #doublekill, #triplekill, #perfkill, #flagkill, #screenshot, #achievevid, #severekill, #minekill, #defibkill, #allowSync").change(function(){settingH.update();});
 	$("#rightClickADS").change(function(){
-		document.getElementById("rightClickADS").checked 
+		document.getElementById("rightClickADS").checked
 		? $("#inputADSContainer").fadeOut()
 		: $("#inputADSContainer").fadeIn();
+		settingH.update();
+	});
+	
+	$("#noADS").change(function(){
+		document.getElementById("noADS").checked
+		? $("#ifADShides").fadeOut()
+		: $("#ifADShides").fadeIn();
 		settingH.update();
 	});
 	

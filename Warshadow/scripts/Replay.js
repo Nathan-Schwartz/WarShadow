@@ -14,5 +14,5 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI'], function(wCore, $,counter
 		console.log("playStatus", status);
 	});
 		
-	$("#Replay").mousedown(function(){wCore.dragMove();});
+	$("#Replay").mousedown(wCore.dragMove);
 });

@@ -164,7 +164,7 @@ define(['gearData'], function(gData) {
 		addCOMP("Rewards","<tr><td> Insane </td><td align='center'> "+parseInt(560*booster) + "   </td><td align='center'> "+parseInt(960*booster) + "  </td></tr>");
 		addCOMP("Rewards","<tr><td> Insane Africa </td><td align='center'> "+ parseInt(647*booster)+ "    </td><td align='center'> "+parseInt(1047*booster) + "  </td></tr>");
 		addCOMP("Rewards","<tr><td> Tower HQ </td><td align='center'> "+parseInt(1760*booster) + "   </td></tr>");
-		addCOMP("Rewards","<tr><td> Marathon </td><td align='center'> "+parseInt(4480*booster) + "  </td></tr>");
+		addCOMP("Rewards","<tr><td> Marathon </td><td align='center'> "+parseInt(4880*booster) + "  </td></tr>");
 		
 		var rowCount=0;
 		$('#sideRewards tr').each(function(){rowCount++; alternateBackground(this, rowCount);});  

@@ -81,7 +81,7 @@ define(['jquery','gearData'], function($,gData){
 						}
 					);
 				} else{
-					alert("I'm sorry, my app failed to update current repair costs. If you would like to sync repair costs, please make sure you have Warface installed. \n\nIf you do, please try launching the game again and then locate the get_shop_offers.xml file on your computer and move it to \n'Users/<your-name>/Saved Games/WarfaceWest/QueryCache/'. \n\nIt will be necessary to copy in a new shop_get_offers.xml whenever you want to update the data again. The game will update the file on each launch.");// !!!!its an alert
+					setTimeout( function(){$("#errorDialog" ).dialog( "open" );},500);
 				}
 			}
 		);

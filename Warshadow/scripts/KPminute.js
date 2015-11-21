@@ -13,5 +13,5 @@ require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $, counter
 		document.getElementById("KPMcount").innerHTML = Math.round((counters.getKill()*60*100)/counters.getTime())/100 + " K/m";
 	});
 
-	$("#content").mousedown(function(){wCore.dragMove();});
+	$("#content").mousedown(wCore.dragMove);
 });

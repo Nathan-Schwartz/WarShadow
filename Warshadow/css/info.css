@@ -5,6 +5,7 @@ html {
 	background: rgba(255, 255, 255, 0.05);
 }
 
+
 h1 {
 	color: rgb(43,39,39);
 }
@@ -125,7 +126,6 @@ body {
 	margin-left:2px;
 	margin-right:2px;
 	margin-bottom:2px;
-
 }
 #autocapfield{
 		padding: 5px;
@@ -318,7 +318,7 @@ select{
 	width:250px;
 }
 
-#secondweapon, #thirdweapon, #fourthweapon, #fifthweapon, #sideHelm, #sideVest, #sideGlove, #sideBoot, #sidePrimary, #sideSecondary, #sideKnife, #triggers, #sideShotgun,#sideRifle, #sideSMG, #sideSniper, #sideRewards{
+#secondweapon, #thirdweapon, #fourthweapon, #fifthweapon, #sideHelm, #sideVest, #sideGlove, #sideBoot, #sidePrimary, #sideSecondary, #sideKnife, #sideShotgun,#sideRifle, #sideSMG, #sideSniper, #sideRewards{
 	display : none;
 }
 
@@ -344,6 +344,11 @@ position: relative;
 
 #infoContent{
 	display:none;
+}
+
+#infoContent b{
+	color: black;
+	text-decoration: underline;
 }
 
 #content {

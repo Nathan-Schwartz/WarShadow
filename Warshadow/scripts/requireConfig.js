@@ -39,5 +39,6 @@ require.config({
 		recordingMenu: 'recordingMenu',
 		KPminute: 'KPminute',
 		info: 'Info',
+		recCount: 'recCount',
 	}
 });

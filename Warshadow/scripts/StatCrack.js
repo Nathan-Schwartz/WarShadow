@@ -15,6 +15,8 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 				$('#progressbar').hide();
 				$("#progressbar").progressbar( "destroy" );
 				$(".StatContent").fadeIn();
+				if(JSON.parse(localStorage.getItem("firstLaunch")))
+					$("#directionsDialog" ).dialog( "open" );				
 			}
 		});
 	 
@@ -29,6 +31,27 @@ require(['jquery','gearData','windowCoreFunctions', 'updateData', 'arrayData', '
 		
 		progress();
 	});
+	
+
+	$(function() {
+		$( "#directionsDialog, #errorDialog" ).dialog({
+			autoOpen: false,
+			resizable: false,
+			draggable: false,
+			height:250,
+			width: 200,
+			modal: true,
+			buttons: {
+				Cancel:{
+                    text: 'OK',
+                    click : function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			}
+		});
+	});
+
 
 //Sliders
 	//Distance slider

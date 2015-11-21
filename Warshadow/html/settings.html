@@ -34,30 +34,45 @@
 		<fieldset class="settings"><legend><b>Displays </b></legend>
 			
 			<b>Crosshair Settings:</b><br>
-			<span class="normalCheckbox"><input type="checkbox" id="rightClickADS"><label for="rightClickADS"></label></span><label for="rightClickADS">  Use right click to aim down sights (ADS)</label><br><br>
-			<input type="radio" name="toggleORhold" id="toggleADS" checked> Use Toggle to aim<br>
-			<input type="radio" name="toggleORhold" id="holdADS"> Use Hold to aim<br><br>
+			<span class="normalCheckbox"><input type="checkbox" id="noADS"><label for="noADS"></label></span><label for="noADS">  Don't ever turn off the crosshair</label><br>
+			<span id="ifADShides">
+				<span class="normalCheckbox"><input type="checkbox" id="rightClickADS"><label for="rightClickADS"></label></span><label for="rightClickADS">  Use right click to aim down sights (ADS)</label><br><br>
+				<input type="radio" name="toggleORhold" id="toggleADS" checked> Use Toggle to aim<br>
+				<input type="radio" name="toggleORhold" id="holdADS"> Use Hold to aim<br><br>
 
-			<div id="inputADSContainer">
-				Click "Grab ADS" and then press the key you use for aiming.<br>
-				<button id="grabADS" class="button"> Grab ADS </button><br>
-				<div id="displayWhenADS">This area will flash when the bound ADS key is pressed</div>
-				
-			</div>
+				<div id="inputADSContainer">
+					Click "Grab ADS" and then press the key you use for aiming.<br>
+					<button id="grabADS" class="button"> Grab ADS </button><br>
+					<div id="displayWhenADS">This area will flash the first few times your new ADS key is pressed</div>
+				</div>
+				<div id="Xdialog" title="Notice">
+					<p>For changes to go into effect, you will need to close and reopen Warshadow. <br><br>You can change the ADS button multiple times before restarting.</p>
+				</div>
+			</span>
 			<br>
-		
 			<b>Counter Settings:</b><br>
-			
+			<p>This button will reset the counters in the little pop up windows. An easier way is to use the Hotkey!</p>
 			<button id="resetLS" class="button"> Reset HUD Counters </button><br>
 		</fieldset>
 		
 
 		<fieldset  id="vidsetfield" class="settings"> <legend> <b>Video Recording Settings</b></legend> 
-			<p>To change encoder, resolution, fps, or any other video options click the button below. </p>
-			<button id='openSettings' class="button"> Video Recording Settings </button><br>
+			<p>Make changes to video specifications for recordings.</p>
+			<button id='openSettings' class="button"> General Recording Settings </button><br>
+		
+			<fieldset class="settings">
+				<legend><b>Manual Capture Options:</b></legend>
+				<p>Warshadow has a Hotkey to save the last X amount of gameplay, and you can change the video duration with this slider. If you don't want to use a hotkey you can use the "Save video cache" button in the Recording window</p>
+				<br>
+				<label for="grabSliderValue">Capture Length:</label>
+				<input type="text" id="grabSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
+				<div id='grabSlider' class="sliders"> </div><br>
+			</fieldset>
+			<br>
 		
 			<fieldset id="autocapfield" class="embeddedSettings">
 			<legend><b> AutoCapture Options</b></legend>
+				<p>Automatically records your best moments! Just choose how long you want the recordings to be and what events you want to record.</p>
 				<br>
 				<label for="beforeSliderValue">Time before event:</label>
 				<input type="text" id="beforeSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
@@ -117,17 +132,10 @@
 					</fieldset>
 				</div>
 			
-				<button id="showfeatures" class="button"> Show Triggers </button>	
+				<button id="showfeatures" class="button">Hide Triggers</button>	
 			
 			</fieldset>
 			<br>
-			<fieldset class="settings">
-				<legend><b>Manual Capture Options:</b></legend>
-				<br>
-				<label for="grabSliderValue">Capture Length:</label>
-				<input type="text" id="grabSliderValue" readonly style="border:0; color:#f6931f; font-weight:bold;">
-				<div id='grabSlider' class="sliders"> </div><br>
-			</fieldset>
 		</fieldset>
 		<br><br>
 	</div>

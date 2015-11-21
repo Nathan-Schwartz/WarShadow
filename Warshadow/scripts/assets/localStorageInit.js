@@ -13,15 +13,6 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 			}
 		);
 	};
-
-	//for counters.js
-	localStorage.setItem("kill", 0);
-	localStorage.setItem("headshot1" ,0);
-	localStorage.setItem("headshot2" ,0);
-	localStorage.setItem("headshot3" ,0);
-	localStorage.setItem("headshot4" ,0);
-	localStorage.setItem("headshot5" ,0);
-	localStorage.setItem("minutes" ,0);
 	
 	if(!localStorage.getItem("url"))
 		localStorage.setItem("url","sampleurl");
@@ -48,10 +39,13 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 		localStorage.setItem('color2', 'rgba(36, 220, 143, 0.3)');
 	}
 
+	localStorage.setItem("firstLaunch", false);
+
 	//localStorage.removeItem('Settings');
 	if(!localStorage.getItem('Settings')){
 		var Settings = {
 			allowSync: true,
+			noADS: false,
 			toggleADS : true,
 			rightClickADS : true,
 			enableRecord: false,
@@ -81,11 +75,32 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 		localStorage.setItem('Settings', JSON.stringify(Settings));
 		console.log("Settings: " + localStorage.getItem('Settings'));
 		setTimeout( function(){$( "#dialog" ).dialog( "open" );}, 100);// !!!I would use a callback but none was provided.
+		localStorage.setItem("firstLaunch", true);
 	}
-	localStorage.setItem('recordingOn', false); //This is a side effect of my turnOn() recording function. I use this to determine if recording is being used by another app or by me.
-	localStorage.setItem('optionsCalledBy', false);
+
+	//for counting recordings
+	localStorage.setItem("recordingCount",0);
 	
-	localStorage.setItem("pingADS",0);
+	//for detecting if another app stole recording feature
+	localStorage.setItem('recordingOn', false); //This is a side effect of my turnOn() recording function. I use this to determine if recording is being used by another app or by me.
+
+	//for determining where to focus in settings page
+	localStorage.setItem('optionsCalledBy', "manual");
+	
+	//localStorage.removeItem("errorList");
+	//for tracking errors
+	//if(!localStorage.getItem("errorList"))
+	//	localStorage.setItem("errorList", JSON.stringify([]));
+	
+	
+	//for counters.js
+	localStorage.setItem("kill", 0);
+	localStorage.setItem("headshot1" ,0);
+	localStorage.setItem("headshot2" ,0);
+	localStorage.setItem("headshot3" ,0);
+	localStorage.setItem("headshot4" ,0);
+	localStorage.setItem("headshot5" ,0);
+	localStorage.setItem("minutes" ,0);
 	
 	//Get ID's of each window. No longer used cuz the window name works on most windows
 		getWinID("MainWindow",'MainID');	

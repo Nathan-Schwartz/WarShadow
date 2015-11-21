@@ -29,6 +29,6 @@ require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters
 		document.getElementById("HSchains").innerHTML = avgChain() + " Avg";
 	});
 	
-	$("#content").mousedown(function(){wCore.dragMove();});
+	$("#content").mousedown(wCore.dragMove);
 
 });

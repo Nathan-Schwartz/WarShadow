@@ -1,6 +1,6 @@
 require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "launchManager", "spectrum", 'counters'], function($, jqueryUI, localStorageInit, gEvent, wCore, rHUD, rec, launcher, spectrum, counters){ 
 /*
-// !!! need failsafes for capture hotkey
+ !!! need failsafes for capture hotkey
 
 	info page
 	-explain design and shortcomings of features
@@ -21,8 +21,9 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
 	figure out how to correctly link the steam guides
 */	
 	document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
-	document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
   	document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
+	document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+	
 	$("#content").fadeIn();
 
 	$( document ).tooltip({
@@ -74,8 +75,11 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
 						}else if(dialogCounter == 9){
 							document.getElementById("page9").style.display = "block";
 							document.getElementById("page8").style.display = "none";
-						}else if(dialogCounter > 8){
+						}
+						
+						if(dialogCounter > 9){
 							$( this ).dialog( "close" );
+							rHUD.refreshHelper(true, 'Settings');
 						}
                     }
 				},
@@ -84,6 +88,7 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
                     text: 'Cancel',
                     click : function() {
 						$( this ).dialog( "close" );
+						rHUD.refreshHelper(true, 'Settings');
 					}
 				}
 			}
@@ -101,9 +106,12 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
 	var altkey = 221;
 	var toggle = true;
 	var gamefocus = true;
+	var noADS = false;
 	function updateADS(){
+		console.log("updateADS called");
 		altkey = parseInt(localStorage.getItem("ADSkey"));
 		temp = JSON.parse(localStorage.getItem("Settings"));
+		noADS = temp.noADS;
 		rightclick = temp.rightClickADS;
 		toggle = temp.toggleADS;
 		overwolf.games.getRunningGameInfo(function(info){
@@ -122,48 +130,47 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
 
 	var zoomed = false;
 	function pluginListeners(){
-		//console.log("plisten");
-		//if(gamefocus){
-			
-			var toggleCounter = 0;
-			if(rightclick && toggle){
-				plugin().onMouseRButtonDown = function (x,y) {
+		if(noADS)
+			return false;
+		
+		var toggleCounter = 0;
+		if(rightclick && toggle){
+			plugin().onMouseRButtonDown = function (x,y) {
+				toggleCounter++;
+				toggleCounter%2 == 0 ? overwolf.windows.minimize('Crosshair') : overwolf.windows.restore('Crosshair');
+			};
+
+		}else if(rightclick && !toggle){
+			plugin().onMouseRButtonDown = function (x,y) {
+				//console.log("onMouseRButtonDown: ", x,y);
+				overwolf.windows.minimize('Crosshair');
+			};
+			plugin().onMouseRButtonUP = function (x,y) {
+				//console.log("onMouseRButtonUP: ", x,y);
+				overwolf.windows.restore('Crosshair');
+			};
+		}else if(!rightclick && toggle){
+			plugin().onKeyDown = function (e) {
+				//console.log("onKeyDown", e);
+				if(parseInt(altkey) == parseInt(e)){
 					toggleCounter++;
 					toggleCounter%2 == 0 ? overwolf.windows.minimize('Crosshair') : overwolf.windows.restore('Crosshair');
-				};
-
-			}else if(rightclick && !toggle){
-				plugin().onMouseRButtonDown = function (x,y) {
-					//console.log("onMouseRButtonDown: ", x,y);
+				}
+			};
+		}else if(!rightclick && !toggle){
+			plugin().onKeyDown = function (e) {
+				//console.log("onKeyDown", e);
+				if(parseInt(altkey) == parseInt(e)){
 					overwolf.windows.minimize('Crosshair');
-				};
-				plugin().onMouseRButtonUP = function (x,y) {
-					//console.log("onMouseRButtonUP: ", x,y);
+				}
+			};
+			plugin().onKeyup = function (e) {
+				//console.log("onKeyUp", e);
+				if(parseInt(altkey) == parseInt(e)){
 					overwolf.windows.restore('Crosshair');
-				};
-			}else if(!rightclick && toggle){
-				plugin().onKeyDown = function (e) {
-					//console.log("onKeyDown", e);
-					if(parseInt(altkey) == parseInt(e)){
-						toggleCounter++;
-						toggleCounter%2 == 0 ? overwolf.windows.minimize('Crosshair') : overwolf.windows.restore('Crosshair');
-					}
-				};
-			}else if(!rightclick && !toggle){
-				plugin().onKeyDown = function (e) {
-					//console.log("onKeyDown", e);
-					if(parseInt(altkey) == parseInt(e)){
-						overwolf.windows.minimize('Crosshair');
-					}
-				};
-				plugin().onKeyup = function (e) {
-					//console.log("onKeyUp", e);
-					if(parseInt(altkey) == parseInt(e)){
-						overwolf.windows.restore('Crosshair');
-					}
-				};
-			}
-		//}
+				}
+			};
+		}
 	};
 
 /*		
@@ -173,8 +180,7 @@ overwolf.benchmarking.onHardwareInfoReady.addListener(
 		console.log("HWinfoready listener",value);
 		//overwolf.benchmarking.stopRequesting();
 	}
-);*/		
-/*
+);
 overwolf.benchmarking.requestFpsInfo(500, function(value){ console.log("fps info requested", value);}); //if status = "success" stop requesting
 overwolf.benchmarking.onFpsInfoReady.addListener(
 	function(value){
@@ -230,7 +236,9 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			document.getElementById("content").style.padding = "5px";
 			overwolf.windows.changeSize(localStorage.getItem("MainID"), 200, 400);
 			//overwolf.windows.changeSize('MainWindow', 200, 460);//This would idealy work, but its not working
-			smallwindow=false;		
+			smallwindow=false;
+			document.getElementById("WarLogo").style.display = "block";
+			
 		}else if(smallwindow === false){
 			document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,rgba(256,256,256,0),rgba(256,256,256,0))";
 			document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
@@ -238,6 +246,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			document.getElementById("content").style.padding = "1px";
 			overwolf.windows.changeSize(localStorage.getItem("MainID"), 80, 80);
 			smallwindow=true;
+			document.getElementById("WarLogo").style.display = "none";
 		}
 	};
 	
@@ -254,7 +263,18 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		
 //$(document).ready(function(){});
 
-	window.addEventListener("storage", updateADS);
+	window.addEventListener("storage", function(){
+		if(JSON.parse(localStorage.getItem("recordingOn")) === false)
+			document.getElementById("autoon").checked = false;
+		
+		updateADS();
+		
+		if(JSON.parse(localStorage.getItem("proxyEnableRecordingRequest")) === true){
+			console.log("request recieved");
+			localStorage.setItem("proxyEnableRecordingRequest", false)
+			rec.turnOn();
+		}
+	});
 	
 	overwolf.settings.registerHotKey("resetCounters", function(arg) {
 		if (arg.status == "success") {
@@ -291,13 +311,11 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			}
 		}
 	});*/
-	
-	
+
 	overwolf.settings.registerHotKey("capture", function(arg){
-		rec.capture(1,parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000);
+		rec.capture(parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000, 1);
 	});
-	
-	
+
 	overwolf.settings.registerHotKey("showHideWindows", function(arg) {
 		if (arg.status == "success") {
 			overwolf.windows.getCurrentWindow(function(window){
@@ -325,10 +343,10 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 	});		
 
 	//menu buttons
-	$("#resize").dblclick(function(){ResizeMain();});
-	$("#minimize").click(function(){wCore.minimizeWindow();});
+	$("#resize").dblclick(ResizeMain);
+	$("#minimize").click(wCore.minimizeWindow);
 	//$("#popup").click(function(){rHUD.refreshHelper(true, 'popup');});
-	$("#close").click(function(){wCore.closeWindow();});
+	$("#close").click(wCore.closeWindow);
 	$("#cold").click(function(){window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=352301863");});
 	$("#tower").click(function(){window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=299691346");});
 	$("#info").click(function(){rHUD.refreshHelper(true, 'Info');});
@@ -337,17 +355,13 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 	$("#record").click(function(){rHUD.refreshHelper(true,"Recording");});
 	
 	//menu checkboxes
-	$("#KPM").change(function(){rHUD.refreshHUD();});
-	$("#HSNum").change(function(){rHUD.refreshHUD();});
-	$("#crosshair").change(function(){rHUD.refreshHUD();});
-	$("#HSPerc").change(function(){rHUD.refreshHUD();});
-	$("#HSChain").change(function(){rHUD.refreshHUD();});
+	$("#KPM, #HSChain, #HSPerc, #crosshair, #HSNum, #recCount").change(rHUD.refreshHUD);
+
 	//$("#KDRate").change(function(){rHUD.refreshHUD();});
 	$("#autoon").change(function(){
 		rec.turnOn(function(result){
 			if(result.status != "success" && result.error != "Already turned on."){
 				document.getElementById("autoon").checked = false;
-				alert("I'm sorry, the recording feature wasn't able to start properly. Overwolf says the error is: " + result.error);
 			}
 		});
 	});
@@ -371,35 +385,41 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			document.getElementById("colorContainer").style.left = '0px';
 		}
 	});
-	
+
 	//Restore all windows together
 	overwolf.windows.onMainWindowRestored.addListener(
 		function (value) {
 			rHUD.refreshHUD();
 		}
 	);
-	
-	
+
 	function restoreAllWindows(){
 		overwolf.windows.restore(localStorage.getItem("MainID"));//"MainWindow");
 		overwolf.windows.restore("Info");
 		overwolf.windows.restore("Settings");
 		overwolf.windows.restore("StatCrack");
+		overwolf.windows.restore("Replay");
+		overwolf.windows.restore("Recording");
 		rHUD.refreshHUD();
 	};
-	
+
 	function minimizeAllWindows(){
 		overwolf.windows.minimize('SmokeTimer');
 		overwolf.windows.minimize('HSCounter');
 		overwolf.windows.minimize('HSChains');
 		overwolf.windows.minimize('HSPercent');
+		overwolf.windows.minimize('recCount');
+		overwolf.windows.minimize('KPminute');
 		overwolf.windows.minimize('KDR');
+		
 		overwolf.windows.minimize('Info');
 		overwolf.windows.minimize(localStorage.getItem("MainID"));//'MainWindow');
 		overwolf.windows.minimize('Settings');
 		overwolf.windows.minimize('StatCrack');
+		overwolf.windows.minimize('Replay');
+		overwolf.windows.minimize('Recording');
 	};
-	
+
 	//If game ends close the program, focus change manager
 	overwolf.games.onGameInfoUpdated.addListener(
 		function(resultA){
