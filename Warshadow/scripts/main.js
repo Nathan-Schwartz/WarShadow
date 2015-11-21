@@ -1,6 +1,29 @@
 require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "launchManager", "spectrum", 'counters'], function($, jqueryUI, localStorageInit, gEvent, wCore, rHUD, rec, launcher, spectrum, counters){ 
 /*
  !!! need failsafes for capture hotkey
+ 
+	Kix has random ADS toggle problems
+	
+	Zombies not triggering events problems
+		-kamikaze?
+		-minimech?
+		-shields?
+
+	-flashing buttons
+	-mouse coming unhinged
+
+	
+	Crosshair isn't loading cuz its not in extension folder yet
+	
+	Discovered localStorage event info
+	
+	mouse issues
+	
+	Shadowplay compat issues
+	
+	Window looks like hax so i'm making a second custom theme
+	
+	
 
 	info page
 	-explain design and shortcomings of features
@@ -20,9 +43,20 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
 	get overwolf language and make the app that language as well
 	figure out how to correctly link the steam guides
 */	
+
+if(!JSON.parse(localStorage.getItem("Settings")).useLP){
 	document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
   	document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
 	document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+}else{
+	document.getElementById("content").style.backgroundColor = "rgba(5, 5, 5, 0.5)";
+	$('#KPMP, #HSNumP, #HSPercP, #HSChainP, #recCountP, #crosshairP, #autoonP').toggleClass("orangeCheckbox normalCheckbox");
+	$('#Stats, #record, #showcontent').toggleClass("orangeButton button");
+	$('#tower, #cold').toggleClass("subOrangeButton subbutton");
+	$('#minimize, #info, #close, #settingsWin').toggleClass("orangeSmallButton smallbutton");
+	document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsTrans.png)";
+	$("#colorContainer").hide();
+}
 	
 	$("#content").fadeIn();
 
@@ -226,27 +260,41 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 	
 	var smallwindow = false;
 	function ResizeMain(){
-		/*This function will trigger upon clicking the icon in the main windows top-left corner
-		It resizes the window to be small enough to hide all buttons and text. 
-		Toggling it again will make the window larger so that all features can be seen.*/
-		if(smallwindow === true){
-			document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  $("#cpicker1").spectrum("get") + "," + $("#cpicker2").spectrum("get") + ")";
-			document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-			document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
-			document.getElementById("content").style.padding = "5px";
-			overwolf.windows.changeSize(localStorage.getItem("MainID"), 200, 400);
-			//overwolf.windows.changeSize('MainWindow', 200, 460);//This would idealy work, but its not working
-			smallwindow=false;
-			document.getElementById("WarLogo").style.display = "block";
-			
-		}else if(smallwindow === false){
-			document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,rgba(256,256,256,0),rgba(256,256,256,0))";
-			document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-			document.getElementById("contentWrapper").style.borderImage = "url('../images/closed.png') 20% fill stretch";
-			document.getElementById("content").style.padding = "1px";
-			overwolf.windows.changeSize(localStorage.getItem("MainID"), 80, 80);
-			smallwindow=true;
-			document.getElementById("WarLogo").style.display = "none";
+		if(!JSON.parse(localStorage.getItem("Settings")).useLP){
+			/*This function will trigger upon clicking the icon in the main windows top-left corner
+			It resizes the window to be small enough to hide all buttons and text. 
+			Toggling it again will make the window larger so that all features can be seen.*/
+			if(smallwindow === true){
+				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  $("#cpicker1").spectrum("get") + "," + $("#cpicker2").spectrum("get") + ")";
+				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+				document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+				document.getElementById("content").style.padding = "5px";
+				overwolf.windows.changeSize(localStorage.getItem("MainID"), 200, 400);
+				//overwolf.windows.changeSize('MainWindow', 200, 460);//This would idealy work, but its not working
+				smallwindow=false;
+				document.getElementById("WarLogo").style.display = "block";
+				
+			}else if(smallwindow === false){
+				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,rgba(256,256,256,0),rgba(256,256,256,0))";
+				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+				document.getElementById("contentWrapper").style.borderImage = "url('../images/closed.png') 20% fill stretch";
+				document.getElementById("content").style.padding = "1px";
+				overwolf.windows.changeSize(localStorage.getItem("MainID"), 80, 80);
+				smallwindow=true;
+				document.getElementById("WarLogo").style.display = "none";
+			}
+		}else{
+			if(smallwindow === true){
+				overwolf.windows.changeSize(localStorage.getItem("MainID"), 200, 400);
+				smallwindow=false;
+				document.getElementById("WarLogo").style.display = "block";
+				document.getElementById("content").style.backgroundColor = "rgba(5, 5, 5, 0.5)";
+			}else if(smallwindow === false){
+				overwolf.windows.changeSize(localStorage.getItem("MainID"), 80, 80);
+				smallwindow=true;
+				document.getElementById("WarLogo").style.display = "none";
+				document.getElementById("content").style.backgroundColor = "rgba(5, 5, 5, 0)";
+			}
 		}
 	};
 	

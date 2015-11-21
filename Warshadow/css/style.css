@@ -4,6 +4,120 @@
 	width: 100%;
 }
 
+
+
+.orangeSmallButton:hover{
+	background: rgb(56, 22, 10);
+}
+
+.orangeSmallButton{
+	width: 20px;
+	height: 20px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	font-family: Helvetica;
+	color: #ffffff;
+	background: transparent;
+	font-weight: bold;
+	border: solid 1px rgb(175, 96, 66);
+	outline: none;
+	text-align: center;
+    box-shadow: inset 1px 1px rgb(100,24,0), 1px 1px rgb(100,24,0);
+	display: block;
+	opacity: .9;
+	position: absolute;
+}
+
+
+
+
+
+.orangeCheckbox {
+  width: 20px;
+  position: relative;
+  left:5px;
+}
+.orangeCheckbox label {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  box-shadow: inset 1px 1px rgb(100,24,0), 1px 1px rgb(100,24,0);
+  border: solid 1px rgb(175, 96, 66);
+}
+.orangeCheckbox label:after {
+  content: '';
+  width: 7px;
+  height: 4px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border: 3px solid rgb(175, 96, 66);
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  opacity: 0;
+  transform: rotate(-45deg);
+}
+.orangeCheckbox label:hover:after {
+  border-color: white;
+  background: transparent;
+  opacity: 1;
+  transform: rotate(-45deg);
+}
+
+.orangeCheckbox label:hover{
+	border-color: white;
+	box-shadow: inset 1px 1px white, 1px 1px white;
+}
+.orangeCheckbox input[type=checkbox] {
+  visibility: hidden;
+}
+.orangeCheckbox input[type=checkbox]:checked + label:after {
+  border-color: rgb(175, 96, 66);
+  opacity: 1;
+}
+
+.orangeCheckbox input[type=checkbox]:checked + label:hover {
+  border-color: rgb(175, 96, 66);
+  box-shadow: inset 1px 1px rgb(100,24,0), 1px 1px rgb(100,24,0);
+}
+
+
+
+
+.orangeButton, .subOrangeButton{
+	background: transparent;
+	color: rgb(175, 96, 66);
+	outline: none;
+	display: block;
+	margin: 2px auto;
+	/*box-shadow: 0px 1px 3px #666666;*/
+	border: solid 1px rgb(175, 96, 66);
+	text-align: center;
+    padding: 3px; 
+    width:140px;
+	-webkit-box-shadow: inset 1px 1px rgb(100,24,0), 1px 1px rgb(100,24,0);
+	font-weight: bold;
+}
+.orangeButton:hover, .subOrangeButton:active{
+	background: rgb(56, 22, 10);
+	outline: none;
+}
+.orangeButton:active{
+	background: rgb(92, 32, 8);
+	color: white;
+	outline: none;
+}
+.subOrangeButton:hover{
+	background: rgba(56, 22, 10,.8);
+	outline: none;
+}
+
+
+
 .normalCheckbox {
   width: 20px;
   position: relative;
@@ -177,12 +291,6 @@ body
 	background-clip: padding-box1;
 	-webkit-user-select: none;
 	border: 10px solid transparent;
-	/*
-	border-image-source: url(../images/boxBorderNoDots.png);
-	border-image-outset: 0;
-	border-image-repeat: stretch round;
-	border-image-slice: 40% 15% 45% 15%;
-	*/
 }
 
 #progress{

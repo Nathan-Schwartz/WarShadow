@@ -44,6 +44,7 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 	//localStorage.removeItem('Settings');
 	if(!localStorage.getItem('Settings')){
 		var Settings = {
+			useLP: false,
 			allowSync: true,
 			noADS: false,
 			toggleADS : true,
@@ -80,6 +81,9 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 
 	//for counting recordings
 	localStorage.setItem("recordingCount",0);
+	
+	//for proxy starting recording so that closing recording window won't end process
+	localStorage.setItem("proxyEnableRecordingRequest", false);
 	
 	//for detecting if another app stole recording feature
 	localStorage.setItem('recordingOn', false); //This is a side effect of my turnOn() recording function. I use this to determine if recording is being used by another app or by me.

@@ -12,7 +12,7 @@ define(["jquery", "jqueryUI"], function ($) {
 		document.getElementById('noADS').checked = temp.noADS;
 		if(document.getElementById('noADS').checked)
 			document.getElementById('ifADShides').style.display = "none";
-		
+		document.getElementById('useLP').checked = temp.useLP;
 		document.getElementById('allowSync').checked = temp.allowSync;
 		document.getElementById('enableRecord').checked = temp.enableRecord;
 		document.getElementById('autoLaunch').checked = temp.autoLaunch;
@@ -93,6 +93,7 @@ define(["jquery", "jqueryUI"], function ($) {
 	function update(){//Update localStorage with newest settings
 		var temp = JSON.parse(localStorage.getItem("Settings"));
 	
+		temp.useLP = document.getElementById('useLP').checked;
 		temp.noADS = document.getElementById('noADS').checked;
 		temp.allowSync = document.getElementById('allowSync').checked;
 		temp.toggleADS = document.getElementById('toggleADS').checked;
