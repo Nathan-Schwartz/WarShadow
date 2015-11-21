@@ -8,6 +8,9 @@
 
 .orangeSmallButton:hover{
 	background: rgb(56, 22, 10);
+	box-shadow: inset 1px 1px rgb(100,24,0), 1px 1px rgb(100,24,0);
+	border: solid 1px rgb(175, 96, 66);
+	
 }
 
 .orangeSmallButton{
@@ -19,10 +22,10 @@
 	color: #ffffff;
 	background: transparent;
 	font-weight: bold;
-	border: solid 1px rgb(175, 96, 66);
+	border: solid 1px rgb(100,101,103);
 	outline: none;
 	text-align: center;
-    box-shadow: inset 1px 1px rgb(100,24,0), 1px 1px rgb(100,24,0);
+    box-shadow: inset 1px 1px rgb(33,34,36), 1px 1px rgb(33,34,36);
 	display: block;
 	opacity: .9;
 	position: absolute;
@@ -44,8 +47,10 @@
   top: 0;
   left: 0;
   background: transparent;
-  box-shadow: inset 1px 1px rgb(100,24,0), 1px 1px rgb(100,24,0);
-  border: solid 1px rgb(175, 96, 66);
+/*  box-shadow: inset 1px 1px rgb(100,24,0), 1px 1px rgb(100,24,0);*/
+  box-shadow: inset 1px 1px rgb(33,34,36), 1px 1px rgb(33,34,36);
+  /*border: solid 1px rgb(175, 96, 66);*/
+  border: solid 1px rgb(100,101,103);
 }
 .orangeCheckbox label:after {
   content: '';
@@ -70,7 +75,7 @@
 
 .orangeCheckbox label:hover{
 	border-color: white;
-	box-shadow: inset 1px 1px white, 1px 1px white;
+	box-shadow: inset 1px 1px rgba(250,250,250,.1), 1px 1px rgba(250,250,250,.1);
 }
 .orangeCheckbox input[type=checkbox] {
   visibility: hidden;
@@ -80,7 +85,7 @@
   opacity: 1;
 }
 
-.orangeCheckbox input[type=checkbox]:checked + label:hover {
+.orangeCheckbox input[type=checkbox]:checked, .orangeCheckbox input[type=checkbox]:checked + label {
   border-color: rgb(175, 96, 66);
   box-shadow: inset 1px 1px rgb(100,24,0), 1px 1px rgb(100,24,0);
 }

@@ -142,7 +142,6 @@ if(!JSON.parse(localStorage.getItem("Settings")).useLP){
 	var gamefocus = true;
 	var noADS = false;
 	function updateADS(){
-		console.log("updateADS called");
 		altkey = parseInt(localStorage.getItem("ADSkey"));
 		temp = JSON.parse(localStorage.getItem("Settings"));
 		noADS = temp.noADS;
@@ -399,6 +398,8 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 	$("#tower").click(function(){window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=299691346");});
 	$("#info").click(function(){rHUD.refreshHelper(true, 'Info');});
 	$("#settingsWin").click(function(){rHUD.refreshHelper(true, 'Settings');});
+	$("#settingsWin").mouseenter(function(){if(JSON.parse(localStorage.getItem("Settings")).useLP)document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsOrange.png)";});
+	$("#settingsWin").mouseleave(function(){if(JSON.parse(localStorage.getItem("Settings")).useLP)document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsTrans.png)";});
 	$("#Stats").click(function(){rHUD.refreshHelper(true,"StatCrack");});
 	$("#record").click(function(){rHUD.refreshHelper(true,"Recording");});
 	
@@ -409,6 +410,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 	$("#autoon").change(function(){
 		rec.turnOn(function(result){
 			if(result.status != "success" && result.error != "Already turned on."){
+				console.log("ERROR ENABLING RECORDING: ", result.error);
 				document.getElementById("autoon").checked = false;
 			}
 		});
