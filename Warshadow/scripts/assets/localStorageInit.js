@@ -14,6 +14,9 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 		);
 	};
 	
+	//for requesting theme change from settings page
+	localStorage.setItem("updateTheme", false);
+	
 	if(!localStorage.getItem("url"))
 		localStorage.setItem("url","sampleurl");
 	
@@ -44,7 +47,7 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 	//localStorage.removeItem('Settings');
 	if(!localStorage.getItem('Settings')){
 		var Settings = {
-			useLP: false,
+			useLP: true,
 			allowSync: true,
 			noADS: false,
 			toggleADS : true,

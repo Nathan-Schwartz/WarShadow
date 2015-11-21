@@ -13,7 +13,8 @@ require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $, counter
 	};
 			
 	window.addEventListener('storage', function( storageEvent ){
-		document.getElementById("HSperc").innerHTML = hsPercent() + "%";
+		if(storageEvent.key == "headshot1" || storageEvent.key == "kill")
+			document.getElementById("HSperc").innerHTML = hsPercent() + "%";
 	});
 			
 	$("#content").mousedown(wCore.dragMove);

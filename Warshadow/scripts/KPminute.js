@@ -9,8 +9,9 @@ require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $, counter
 	})();
 
 	window.addEventListener('storage', function( storageEvent ){
-		
-		document.getElementById("KPMcount").innerHTML = Math.round((counters.getKill()*60*100)/counters.getTime())/100 + " K/m";
+		if(storageEvent.key == "minutes" || storageEvent.key == "kill"){
+			document.getElementById("KPMcount").innerHTML = Math.round((counters.getKill()*60*100)/counters.getTime())/100 + " K/m";
+		}
 	});
 
 	$("#content").mousedown(wCore.dragMove);

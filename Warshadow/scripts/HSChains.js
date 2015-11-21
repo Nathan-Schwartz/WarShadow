@@ -26,7 +26,8 @@ require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters
 	}
 		
 	window.addEventListener('storage', function( storageEvent ){
-		document.getElementById("HSchains").innerHTML = avgChain() + " Avg";
+		if(storageEvent.key == "headshot1" || storageEvent.key == "headshot2" || storageEvent.key == "headshot3" || storageEvent.key == "4" || storageEvent.key == "5")
+			document.getElementById("HSchains").innerHTML = avgChain() + " Avg";
 	});
 	
 	$("#content").mousedown(wCore.dragMove);

@@ -90,7 +90,7 @@ define(["jquery", "jqueryUI"], function ($) {
 		$("#Grenlength").selectmenu("refresh");
 	};
 	
-	function update(){//Update localStorage with newest settings
+	function update(callback){//Update localStorage with newest settings
 		var temp = JSON.parse(localStorage.getItem("Settings"));
 	
 		temp.useLP = document.getElementById('useLP').checked;
@@ -121,6 +121,9 @@ define(["jquery", "jqueryUI"], function ($) {
 		temp.Rbefore = $( "#beforeSlider" ).slider( "value" );
 
 		localStorage.setItem("Settings", JSON.stringify(temp));
+		
+		if(typeof callback == "function")
+			callback();
 	};
 	
 	function updateHS(val){

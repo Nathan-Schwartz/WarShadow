@@ -3,7 +3,8 @@ require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters
 	document.getElementById("recCount").innerHTML = localStorage.getItem("recordingCount") + " vids";
 
 	window.addEventListener('storage', function( storageEvent ){
-		document.getElementById("recCount").innerHTML = localStorage.getItem("recordingCount") + " vids";
+		if(storageEvent.key == "recordingCount")
+		document.getElementById("recCount").innerHTML = storageEvent.newValue + " vids";
 	});
 	
 	$("#content").mousedown(wCore.dragMove);

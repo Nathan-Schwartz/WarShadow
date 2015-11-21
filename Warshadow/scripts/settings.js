@@ -143,7 +143,11 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
 	});
 
 	//menu checkboxes //
-	$("#enableRecord, #autoLaunch, #minimizeOnTab, #useLP, #restoreOnTab, #closeOnEnd, #kill, #doublekill, #triplekill, #perfkill, #flagkill, #screenshot, #achievevid, #severekill, #minekill, #defibkill, #allowSync").change(function(){settingH.update();});
+	$("#enableRecord, #autoLaunch, #minimizeOnTab, #restoreOnTab, #closeOnEnd, #kill, #doublekill, #triplekill, #perfkill, #flagkill, #screenshot, #achievevid, #severekill, #minekill, #defibkill, #allowSync").change(function(){settingH.update();});
+	$("#useLP").click(function(){
+		settingH.update(function(){localStorage.setItem("updateTheme", true);});
+	});
+
 	$("#rightClickADS").change(function(){
 		document.getElementById("rightClickADS").checked
 		? $("#inputADSContainer").fadeOut()

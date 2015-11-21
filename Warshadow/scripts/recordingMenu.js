@@ -19,13 +19,16 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 	//$(document).ready(function(){});
 		window.addEventListener('storage', function( storageEvent ){
 			console.log("storageEvent: ", storageEvent);
-			console.log('localstorage listener triggered', JSON.parse(localStorage.getItem('recordingOn')), typeof JSON.parse(localStorage.getItem('recordingOn')));
-			if(!JSON.parse(localStorage.getItem('recordingOn'))){
-				document.getElementById("turnOn").style.backgroundImage = "url('../images/off.png')";
-				$("#onceEnabled").hide();
-			}else{
-				document.getElementById("turnOn").style.backgroundImage = "url('../images/on.png')";
-				$("#onceEnabled").fadeIn().css("display","inline-block");
+			
+			if(storageEvent.key == "recordingOn"){
+				console.log('recordingOn newvalue testing', typeof storageEvent.newValue, storageEvent.newValue);
+				if(!JSON.parse(storageEvent.newValue)){
+					document.getElementById("turnOn").style.backgroundImage = "url('../images/off.png')";
+					$("#onceEnabled").hide();
+				}else{
+					document.getElementById("turnOn").style.backgroundImage = "url('../images/on.png')";
+					$("#onceEnabled").fadeIn().css("display","inline-block");
+				}
 			}
 		});
 	

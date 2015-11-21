@@ -16,8 +16,6 @@ define(["refreshHUD"], function(rHUD){
 		overwolf.media.replays.turnOn(
 			{}, 
 			function(result) {
-				if(isFunction(callback))
-					callback(result);
 
 				console.log(result);
 				if(result.status== "success"){
@@ -32,9 +30,11 @@ define(["refreshHUD"], function(rHUD){
 						//localStorage.setItem("errorList", JSON.stringify(myArr));
 						alert("I'm sorry, the recording feature wasn't able to start properly. Overwolf says the error is: " + result.error + "\n \nLook at the Info page to learn more.");
 					}else if(result.error == "Already turned on." && JSON.parse(localStorage.getItem('recordingOn')) === false){
-						alert("Another app hijacked the recording feature!! \n\n Either you have another Overwolf app that started recording before Warshadow did, or you have ShadowPlay.\n\n If you have ShadowPlay, you may need to turn off or disable it and then restart your computer. \n\n Learn more in the Info page");
+						alert("Another app hijacked the recording feature!! \n\n You probably have another Overwolf recording/streaming app. If thats not the case you may have ShadowPlay.\n\n If you have ShadowPlay, you may need to turn off or disable it and then restart your computer. \n\n Learn more in the Info page");
 					}
 				}
+				if(isFunction(callback))
+					callback(result);
 			}
 		);
 	};

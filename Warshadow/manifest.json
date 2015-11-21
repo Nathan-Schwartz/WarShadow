@@ -35,7 +35,7 @@
 				"file":"html/main.html",
 				"transparent":true,
 				"resizable":false,
-				"size":{"width":200, "height":400},
+				"size":{"width":200, "height":425},
 				"min_size":{"width":0,"height":0},
 				"show_in_taskbar": true,
 				"grab_keyboard_focus": false,

@@ -20,8 +20,7 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
 	mouse issues
 	
 	Shadowplay compat issues
-	
-	Window looks like hax so i'm making a second custom theme
+
 	
 	
 
@@ -44,19 +43,52 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
 	figure out how to correctly link the steam guides
 */	
 
-if(!JSON.parse(localStorage.getItem("Settings")).useLP){
-	document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
-  	document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
-	document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-}else{
-	document.getElementById("content").style.backgroundColor = "rgba(5, 5, 5, 0.5)";
-	$('#KPMP, #HSNumP, #HSPercP, #HSChainP, #recCountP, #crosshairP, #autoonP').toggleClass("orangeCheckbox normalCheckbox");
-	$('#Stats, #record, #showcontent').toggleClass("orangeButton button");
-	$('#tower, #cold').toggleClass("subOrangeButton subbutton");
-	$('#minimize, #info, #close, #settingsWin').toggleClass("orangeSmallButton smallbutton");
-	document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsTrans.png)";
-	$("#colorContainer").hide();
+
+function setTheme(){
+	if(JSON.parse(localStorage.getItem("updateTheme")) === false){
+		console.log("init theme");
+		if(!JSON.parse(localStorage.getItem("Settings")).useLP){
+			document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+			document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
+			document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+		}else{
+			document.getElementById("content").style.backgroundColor = "rgba(5, 5, 5, 0.5)";
+			$('#KPMP, #HSNumP, #HSPercP, #HSChainP, #recCountP, #crosshairP, #autoonP').toggleClass("orangeCheckbox normalCheckbox");
+			$('#Stats, #record, #showcontent').toggleClass("orangeButton button");
+			$('#tower, #cold').toggleClass("subOrangeButton subbutton");
+			$('#minimize, #info, #close, #settingsWin').toggleClass("orangeSmallButton smallbutton");
+			document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsTrans.png)";
+			$("#colorContainer").hide();
+		}
+	}else{
+		console.log("updating theme");
+		$('#KPMP, #HSNumP, #HSPercP, #HSChainP, #recCountP, #crosshairP, #autoonP').toggleClass("orangeCheckbox normalCheckbox");
+		$('#Stats, #record, #showcontent').toggleClass("orangeButton button");
+		$('#tower, #cold').toggleClass("subOrangeButton subbutton");
+		$('#minimize, #info, #close, #settingsWin').toggleClass("orangeSmallButton smallbutton");
+		
+		if(!JSON.parse(localStorage.getItem("Settings")).useLP){
+			console.log("should be decorative");
+			document.getElementById("content").style.backgroundColor = "transparent";
+			document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+			document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
+			document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+
+			document.getElementById("settingsWin").style.backgroundImage = "url(../images/options.png)";
+			$("#colorContainer").show();
+		}else{
+			console.log("low profile");
+			document.getElementById("content").style.background = "rgba(5, 5, 5, 0.5)";
+			document.getElementById("contentWrapper").style.background = "transparent";
+			document.getElementById("contentWrapper").style.border = "10px solid transparent";
+			
+			document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsTrans.png)";
+			$("#colorContainer").hide();
+		}
+		localStorage.setItem("updateTheme", false);
+	}
 }
+setTheme();
 	
 	$("#content").fadeIn();
 
@@ -268,7 +300,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
 				document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
 				document.getElementById("content").style.padding = "5px";
-				overwolf.windows.changeSize(localStorage.getItem("MainID"), 200, 400);
+				overwolf.windows.changeSize(localStorage.getItem("MainID"), 200, 425);
 				//overwolf.windows.changeSize('MainWindow', 200, 460);//This would idealy work, but its not working
 				smallwindow=false;
 				document.getElementById("WarLogo").style.display = "block";
@@ -284,7 +316,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			}
 		}else{
 			if(smallwindow === true){
-				overwolf.windows.changeSize(localStorage.getItem("MainID"), 200, 400);
+				overwolf.windows.changeSize(localStorage.getItem("MainID"), 200, 425);
 				smallwindow=false;
 				document.getElementById("WarLogo").style.display = "block";
 				document.getElementById("content").style.backgroundColor = "rgba(5, 5, 5, 0.5)";
@@ -307,16 +339,22 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			}
 		}
 	);
-		
+
 //$(document).ready(function(){});
 
-	window.addEventListener("storage", function(){
-		if(JSON.parse(localStorage.getItem("recordingOn")) === false)
+	window.addEventListener("storage", function(e){
+		console.log("data",e);
+		if(e.key == "recordingOn" && JSON.parse(e.newValue) === false){
 			document.getElementById("autoon").checked = false;
+			console.log("unchecked from event listner @315");
+		}
 		
+		if(e.key == "updateTheme" && JSON.parse(e.newValue) === true)
+			setTheme();
+
 		updateADS();
 		
-		if(JSON.parse(localStorage.getItem("proxyEnableRecordingRequest")) === true){
+		if(e.key == "proxyEnableRecordingRequest" && JSON.parse(e.newValue) === true){
 			console.log("request recieved");
 			localStorage.setItem("proxyEnableRecordingRequest", false)
 			rec.turnOn();
@@ -345,6 +383,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			}
 		}
 	});
+	
 	/*
 	var zoomed = true;
 	overwolf.settings.registerHotKey("crosshair", function(arg) {
