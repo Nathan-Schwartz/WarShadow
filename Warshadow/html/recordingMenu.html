@@ -12,15 +12,17 @@
 		<br>
 			<button class="smallbutton" id="settingsWin" title="Settings" tabindex="-1"></button>
 			<button class="smallbutton" id="turnOn" title="Enable recording" tabindex="-1"></button>
-			<!--button class="smallbutton" id="error" title="sample error" tabindex="-1"></button-->
 			<div id="onceEnabled">
-				<button class="smallbutton" id="start" title="Start/Stop recording" tabindex="-1"></button> 
-				<button class="smallbutton" id="capture" title="Save video cache" tabindex="-1"></button> 
-				<button class="smallbutton" id="replayWindow" title="Open Replay Window" tabindex="-1"></button>
-				
+				<button class="smallbutton" id="start" title="Start recording" tabindex="-1"></button>
+				<span id="unavailableButtons">
+					<button class="smallbutton" id="capture" title="Save video cache" tabindex="-1"></button> 
+					<button class="smallbutton" id="replayWindow" title="Open Replay Window" tabindex="-1"></button>
+				</span>
 			</div>
-			<button class="smallbutton" id="close" tabindex="-1">X</button>
-			<br>
+			<span id="moreButtons">
+				<button class="smallbutton" id="error" title="sample error" tabindex="-1"></button>
+				<button class="smallbutton" id="close" tabindex="-1">X</button>
+			</span>
 		</div>
 		<script>
 		require(["requireConfig"], function(){

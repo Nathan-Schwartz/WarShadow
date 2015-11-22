@@ -12,10 +12,6 @@
 	border: 15px solid transparent;
 }
 
-#triggers{
-	display: none;
-}
-
 #alert{
 	position:relative;
 	width:200px;
@@ -179,6 +175,7 @@ body{
 	background-size: 18px 18px;
 	background-repeat:no-repeat;
 	bottom: 5px;
+	display: none;
 }
 
 #start{

@@ -44,51 +44,51 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
 */	
 
 
-function setTheme(){
-	if(JSON.parse(localStorage.getItem("updateTheme")) === false){
-		console.log("init theme");
-		if(!JSON.parse(localStorage.getItem("Settings")).useLP){
-			document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
-			document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
-			document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+	function setTheme(){
+		if(JSON.parse(localStorage.getItem("updateTheme")) === false){
+			console.log("init theme");
+			if(!JSON.parse(localStorage.getItem("Settings")).useLP){
+				document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
+				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+			}else{
+				document.getElementById("content").style.backgroundColor = "rgba(5, 5, 5, 0.5)";
+				$('#KPMP, #HSNumP, #HSPercP, #HSChainP, #recCountP, #crosshairP, #autoonP').toggleClass("orangeCheckbox normalCheckbox");
+				$('#Stats, #record, #showcontent').toggleClass("orangeButton button");
+				$('#tower, #cold').toggleClass("subOrangeButton subbutton");
+				$('#minimize, #info, #close, #settingsWin').toggleClass("orangeSmallButton smallbutton");
+				document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsTrans.png)";
+				$("#colorContainer").hide();
+			}
 		}else{
-			document.getElementById("content").style.backgroundColor = "rgba(5, 5, 5, 0.5)";
+			console.log("updating theme");
 			$('#KPMP, #HSNumP, #HSPercP, #HSChainP, #recCountP, #crosshairP, #autoonP').toggleClass("orangeCheckbox normalCheckbox");
 			$('#Stats, #record, #showcontent').toggleClass("orangeButton button");
 			$('#tower, #cold').toggleClass("subOrangeButton subbutton");
 			$('#minimize, #info, #close, #settingsWin').toggleClass("orangeSmallButton smallbutton");
-			document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsTrans.png)";
-			$("#colorContainer").hide();
-		}
-	}else{
-		console.log("updating theme");
-		$('#KPMP, #HSNumP, #HSPercP, #HSChainP, #recCountP, #crosshairP, #autoonP').toggleClass("orangeCheckbox normalCheckbox");
-		$('#Stats, #record, #showcontent').toggleClass("orangeButton button");
-		$('#tower, #cold').toggleClass("subOrangeButton subbutton");
-		$('#minimize, #info, #close, #settingsWin').toggleClass("orangeSmallButton smallbutton");
-		
-		if(!JSON.parse(localStorage.getItem("Settings")).useLP){
-			console.log("should be decorative");
-			document.getElementById("content").style.backgroundColor = "transparent";
-			document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
-			document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
-			document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-
-			document.getElementById("settingsWin").style.backgroundImage = "url(../images/options.png)";
-			$("#colorContainer").show();
-		}else{
-			console.log("low profile");
-			document.getElementById("content").style.background = "rgba(5, 5, 5, 0.5)";
-			document.getElementById("contentWrapper").style.background = "transparent";
-			document.getElementById("contentWrapper").style.border = "10px solid transparent";
 			
-			document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsTrans.png)";
-			$("#colorContainer").hide();
+			if(!JSON.parse(localStorage.getItem("Settings")).useLP){
+				console.log("should be decorative");
+				document.getElementById("content").style.backgroundColor = "transparent";
+				document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+				document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom,"+  localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
+				document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+
+				document.getElementById("settingsWin").style.backgroundImage = "url(../images/options.png)";
+				$("#colorContainer").show();
+			}else{
+				console.log("low profile");
+				document.getElementById("content").style.background = "rgba(5, 5, 5, 0.5)";
+				document.getElementById("contentWrapper").style.background = "transparent";
+				document.getElementById("contentWrapper").style.border = "10px solid transparent";
+				
+				document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsTrans.png)";
+				$("#colorContainer").hide();
+			}
+			localStorage.setItem("updateTheme", false);
 		}
-		localStorage.setItem("updateTheme", false);
 	}
-}
-setTheme();
+	setTheme();
 	
 	$("#content").fadeIn();
 
@@ -102,63 +102,78 @@ setTheme();
 		position:{ my: "left+3 bottom-3", of: event, collision: "fit"}
 	});
 
+	$( "#autoCapConflict" ).dialog({
+		autoOpen: false,
+		resizable: false,
+		draggable: false,
+		height:320,
+		width: 175,
+		modal: true,
+		buttons: {
+			Cancel:{
+				text: 'OK',
+				click : function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		}
+	});
+
 	var dialogCounter = 1;
-	$(function() {
-		$( "#dialog" ).dialog({
-			autoOpen: false,
-			resizable: false,
-			draggable: false,
-			height:320,
-			width: 175,
-			modal: true,
-			buttons: {
-				Proceed:{
-                    text: 'Next',
-                    click : function (){
-						dialogCounter++;
+	$( "#dialog" ).dialog({
+		autoOpen: false,
+		resizable: false,
+		draggable: false,
+		height:320,
+		width: 175,
+		modal: true,
+		buttons: {
+			Proceed:{
+				text: 'Next',
+				click : function (){
+					dialogCounter++;
+				
+					if(dialogCounter == 2){
+						document.getElementById("page2").style.display = "block";
+						document.getElementById("page1").style.display = "none";
+					}else if(dialogCounter == 3){
+						document.getElementById("page3").style.display = "block";
+						document.getElementById("page2").style.display = "none";
+					}else if(dialogCounter == 4){
+						document.getElementById("page4").style.display = "block";
+						document.getElementById("page3").style.display = "none";	
+					}else if(dialogCounter == 5){
+						document.getElementById("page5").style.display = "block";
+						document.getElementById("page4").style.display = "none";
+					}else if(dialogCounter == 6){
+						document.getElementById("page6").style.display = "block";
+						document.getElementById("page5").style.display = "none";
+					}else if(dialogCounter == 7){
+						document.getElementById("page7").style.display = "block";
+						document.getElementById("page6").style.display = "none";
+					}else if(dialogCounter == 8){
+						document.getElementById("page8").style.display = "block";
+						document.getElementById("page7").style.display = "none";
+					}else if(dialogCounter == 9){
+						document.getElementById("page9").style.display = "block";
+						document.getElementById("page8").style.display = "none";
+					}
 					
-						if(dialogCounter == 2){
-							document.getElementById("page2").style.display = "block";
-							document.getElementById("page1").style.display = "none";
-						}else if(dialogCounter == 3){
-							document.getElementById("page3").style.display = "block";
-							document.getElementById("page2").style.display = "none";
-						}else if(dialogCounter == 4){
-							document.getElementById("page4").style.display = "block";
-							document.getElementById("page3").style.display = "none";	
-						}else if(dialogCounter == 5){
-							document.getElementById("page5").style.display = "block";
-							document.getElementById("page4").style.display = "none";
-						}else if(dialogCounter == 6){
-							document.getElementById("page6").style.display = "block";
-							document.getElementById("page5").style.display = "none";
-						}else if(dialogCounter == 7){
-							document.getElementById("page7").style.display = "block";
-							document.getElementById("page6").style.display = "none";
-						}else if(dialogCounter == 8){
-							document.getElementById("page8").style.display = "block";
-							document.getElementById("page7").style.display = "none";
-						}else if(dialogCounter == 9){
-							document.getElementById("page9").style.display = "block";
-							document.getElementById("page8").style.display = "none";
-						}
-						
-						if(dialogCounter > 9){
-							$( this ).dialog( "close" );
-							rHUD.refreshHelper(true, 'Settings');
-						}
-                    }
-				},
-				Cancel:{
-					class: 'rightButton',
-                    text: 'Cancel',
-                    click : function() {
+					if(dialogCounter > 9){
 						$( this ).dialog( "close" );
 						rHUD.refreshHelper(true, 'Settings');
 					}
 				}
+			},
+			Cancel:{
+				class: 'rightButton',
+				text: 'Cancel',
+				click : function() {
+					$( this ).dialog( "close" );
+					rHUD.refreshHelper(true, 'Settings');
+				}
 			}
-		});
+		}
 	});
 
 	function plugin() {
@@ -353,12 +368,6 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			setTheme();
 
 		updateADS();
-		
-		if(e.key == "proxyEnableRecordingRequest" && JSON.parse(e.newValue) === true){
-			console.log("request recieved");
-			localStorage.setItem("proxyEnableRecordingRequest", false)
-			rec.turnOn();
-		}
 	});
 	
 	overwolf.settings.registerHotKey("resetCounters", function(arg) {
@@ -440,19 +449,30 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 	$("#settingsWin").mouseenter(function(){if(JSON.parse(localStorage.getItem("Settings")).useLP)document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsOrange.png)";});
 	$("#settingsWin").mouseleave(function(){if(JSON.parse(localStorage.getItem("Settings")).useLP)document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsTrans.png)";});
 	$("#Stats").click(function(){rHUD.refreshHelper(true,"StatCrack");});
-	$("#record").click(function(){rHUD.refreshHelper(true,"Recording");});
+	$("#record").click(function(){
+		localStorage.setItem("dontRestoreRecMenu", false); 
+		rHUD.refreshHelper(true,"Recording");
+	});
 	
 	//menu checkboxes
 	$("#KPM, #HSChain, #HSPerc, #crosshair, #HSNum, #recCount").change(rHUD.refreshHUD);
 
 	//$("#KDRate").change(function(){rHUD.refreshHUD();});
 	$("#autoon").change(function(){
-		rec.turnOn(function(result){
-			if(result.status != "success" && result.error != "Already turned on."){
-				console.log("ERROR ENABLING RECORDING: ", result.error);
-				document.getElementById("autoon").checked = false;
-			}
-		});
+		if(!JSON.parse(localStorage.getItem("manualRecordingOn"))){
+			rec.turnOn(function(result){
+				if(result.status != "success" && result.error != "Already turned on."){
+					console.log("ERROR ENABLING RECORDING: ", result.error);
+					document.getElementById("autoon").checked = false;
+				}
+			});
+		}else{
+			$( "#autoCapConflict" ).dialog( "open" );
+			document.getElementById("autoon").checked = false;
+		}
+		document.getElementById("autoon").checked
+			?localStorage.setItem("AutoRecActive", true)
+			:localStorage.setItem("AutoRecActive", false);
 	});
 	$("#colorContainer input:checkbox[id=colorVis]").click(function() {
 		var $this = $(this);
@@ -488,8 +508,9 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		overwolf.windows.restore("Settings");
 		overwolf.windows.restore("StatCrack");
 		overwolf.windows.restore("Replay");
-		overwolf.windows.restore("Recording");
 		rHUD.refreshHUD();
+		if(JSON.parse(localStorage.getItem("dontRestoreRecMenu"))===false)
+			overwolf.windows.restore("Recording");
 	};
 
 	function minimizeAllWindows(){

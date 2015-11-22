@@ -8,7 +8,7 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 	
 	$( document ).tooltip({
 		track: true,
-		show:{delay:1000},
+		show:{delay:200},
 		hide:false,
 		/*open: function (event, ui) {
 			ui.tooltip.css("max-width", "70px");
@@ -40,7 +40,6 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 		rHUD.refreshHelper(true, 'Settings');
 	});
 	
-	var recording = false;
 	var enabled = false;
 	var url = "";
 	var res = {};
@@ -67,6 +66,7 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 		if(JSON.parse(localStorage.getItem('recordingOn'))===true){
 			successHandler.postCheckCallback = function(){
 				document.getElementById("turnOn").style.backgroundImage = "url('../images/off.png')";
+				document.getElementById("turnOn").title = "Enable Recording"
 				$("#onceEnabled").hide();
 			};
 			rec.turnOff(successHandler.successCheck);
@@ -74,29 +74,47 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 		}else if(JSON.parse(localStorage.getItem('recordingOn')) === false){
 			successHandler.postCheckCallback = function(){
 				document.getElementById("turnOn").style.backgroundImage = "url('../images/on.png')";
+				document.getElementById("turnOn").title = "Disable Recording";
 				$("#onceEnabled").fadeIn().css("display","inline-block");
 			};
-			//rec.turnOn(successHandler.successCheck);
-			localStorage.setItem("proxyEnableRecordingRequest", true);
+			rec.turnOn(successHandler.successCheck);
+			
 		}
 	});
 	
 	$("#start").click(function(){
+		var recording = JSON.parse(localStorage.getItem("manualRecordingOn"));
 		if(!recording){
 			successHandler.postCheckCallback = function(){
 				document.getElementById("start").style.backgroundImage = "url('../images/pause.png')";
-				recording = !recording;
+				document.getElementById("start").title = "Finish Recording";
+				
+				document.getElementById("unavailableButtons").style.display = "none";
+				document.getElementById("moreButtons").style.display = "none";
+						
+				localStorage.setItem("manualRecordingOn", !recording);
 			}
-			rec.startCapture(successHandler.successCheck);
+			
+			if(!JSON.parse(localStorage.getItem("AutoRecActive"))){
+				rec.startCapture(successHandler.successCheck);
+				$("#error").hide();
+			}else{
+				document.getElementById("error").title = "Please turn off AutoRecord first.";
+				flashError();
+			}
 			
 		}else{
 			successHandler.postCheckCallback = function(){
 				document.getElementById("start").style.backgroundImage = "url('../images/play.png')";
-				recording = !recording;
+				document.getElementById("start").title = "Start Recording";
+				
+				document.getElementById("unavailableButtons").style.display = "inline-block";
+				document.getElementById("moreButtons").style.display = "inline-block";
+				
+				localStorage.setItem("manualRecordingOn", !recording);
 			};
 			rec.finishCapture(successHandler.successCheck);
 		}
-		
 	});
 	
 	$("#menu").mousedown(wCore.dragMove);
@@ -104,6 +122,28 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 	$("#capture").click(function(){
 		rec.capture(parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000,1);
 	});
-	$("#close").click(wCore.closeWindow);
-	
+	$("#close").click(function(){
+		wCore.minimizeWindow();//closeWindow();
+		localStorage.setItem("dontRestoreRecMenu", true); //don't restore recording window = true, set = false when the button is clicked
+	});
+
+	function flashError(){
+		$("#error").show();
+		var showing = false;
+		var original = document.getElementById("error").style.background;
+		$("#error").mouseenter(function(){
+			clearInterval(loop);
+			document.getElementById("error").style.background = original;
+		});
+		var loop = setInterval(function(){
+			showing = !showing;
+			if(showing){
+				document.getElementById("error").style.background = "#323232";
+				console.log("was showing");
+			}else{
+				document.getElementById("error").style.background = original;
+				console.log("wasn't showing");
+			}
+		},200);
+	}
 });

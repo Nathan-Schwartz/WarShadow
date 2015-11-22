@@ -67,7 +67,7 @@
   transform: rotate(-45deg);
 }
 .orangeCheckbox label:hover:after {
-  border-color: white;
+  border-color: transparent;
   background: transparent;
   opacity: 1;
   transform: rotate(-45deg);
@@ -237,7 +237,7 @@
 	display: none;
 }
 
-#dialog{
+#dialog, #autoCapConflict{
 	color: black;
 	font-family: Helvetica;	
 	text-shadow:none;

@@ -104,6 +104,8 @@ define(["refreshHUD"], function(rHUD){
 							console.log('finishCalled',result);
 						}
 					);
+				}else if(result.error == "Replay is already capturing."){
+					
 				}
 			}
 		);

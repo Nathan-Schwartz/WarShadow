@@ -148,11 +148,12 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 		document.getElementById("form").innerHTML = url;
 		$( "#preview" ).remove();
 	};
+	
+	$(document).ready(function(){setXPreview(document.getElementById("drop").value);});
 
 	document.getElementById("content").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
-	document.getElementById("drop").onchange = function(){setXPreview(document.getElementById("drop").value);};
-	//document.getElementById("content").onmousedown = function(){wCore.dragMove();};
-	document.getElementById("hide").onmousedown = function(){
+	$("#drop").change(function(){setXPreview(document.getElementById("drop").value);});
+	$("#hide").mousedown (function(){
 		setX(); 
 		document.getElementById("content").style.backgroundColor = 'transparent'; 
 		document.getElementById("content").style.borderImageWidth = "0px";
@@ -163,7 +164,7 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 		document.getElementById("downAdjust").style.display = "none";
 		document.getElementById("upAdjust").style.display = "none";
 		document.getElementById("recenter").style.display = "none";
-	};
+	});
 
 	$("#leftAdjust").click(function(){
 		overwolf.windows.getCurrentWindow(function(results){

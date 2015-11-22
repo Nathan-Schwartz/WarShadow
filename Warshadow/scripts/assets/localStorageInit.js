@@ -14,6 +14,8 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 		);
 	};
 	
+	localStorage.setItem("manualRecordingOn", false);
+	
 	//for requesting theme change from settings page
 	localStorage.setItem("updateTheme", false);
 	
@@ -42,12 +44,15 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 		localStorage.setItem('color2', 'rgba(36, 220, 143, 0.3)');
 	}
 
+	//instead of closing to prevent errors
+	localStorage.setItem("dontRestoreRecMenu",false);
+	
 	localStorage.setItem("firstLaunch", false);
 
-	//localStorage.removeItem('Settings');
+	localStorage.removeItem('Settings');
 	if(!localStorage.getItem('Settings')){
 		var Settings = {
-			useLP: true,
+			useLP: false,
 			allowSync: true,
 			noADS: false,
 			toggleADS : true,
@@ -85,12 +90,12 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 	//for counting recordings
 	localStorage.setItem("recordingCount",0);
 	
-	//for proxy starting recording so that closing recording window won't end process
-	localStorage.setItem("proxyEnableRecordingRequest", false);
-	
 	//for detecting if another app stole recording feature
 	localStorage.setItem('recordingOn', false); //This is a side effect of my turnOn() recording function. I use this to determine if recording is being used by another app or by me.
 
+	//duh
+	localStorage.setItem("AutoRecActive", false);
+	
 	//for determining where to focus in settings page
 	localStorage.setItem('optionsCalledBy', "manual");
 	

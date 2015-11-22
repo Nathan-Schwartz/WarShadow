@@ -7,6 +7,10 @@ define(['recording', 'counters'], function(rec, counters){
 		var temp = JSON.parse(localStorage.getItem("Settings"));
 		var after = temp.Rafter*1000;
 		var before = temp.Rbefore*1000;
+		
+		function callback(){
+			
+		}
 
 		switch(name){
 			case "kill":
