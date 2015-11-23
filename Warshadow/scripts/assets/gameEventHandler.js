@@ -7,224 +7,266 @@ define(['recording', 'counters'], function(rec, counters){
 		var temp = JSON.parse(localStorage.getItem("Settings"));
 		var after = temp.Rafter*1000;
 		var before = temp.Rbefore*1000;
-		
-		function callback(){
-			
-		}
+		var checkCached = document.getElementById("autoon").checked;
+		var layersCached = JSON.parse(localStorage.getItem("recordingLayers"));
 
 		switch(name){
 			case "kill":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rkill == true)){
+				if((checkCached == true)&&(temp.Rkill == true)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<6000?6000:before;
 						after = after<3000?3000:after;
-						rec.capture(before + after, 1);
+						rec.capture(before + after, 1);//
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);					
 				}
 				counters.incrementKill();
 				break;
 			case "kill_in_slide":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rslidekill == true)){
+				if((checkCached == true)&&(temp.Rslidekill == true))&&(temp.Rkill == false)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<6000?6000:before;
 						after = after<3000?3000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;
 			case "defibrillator_kill":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rdefib == true)){
+				if((checkCached == true)&&(temp.Rdefib == true))&&(temp.Rkill == false)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<6000?6000:before;
 						after = after<3000?3000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;
 			case "kill_headshot":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rheadshot == 1)){
+				if((checkCached == true)&&(temp.Rheadshot == 1))&&(temp.Rkill == false)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<6000?6000:before;
 						after = after<3000?3000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				counters.incrementHeadshot(1);
 				break;
 			case "kill_melee":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rmelee == 1)){
+				if((checkCached == true)&&(temp.Rmelee == 1))&&(temp.Rkill == false)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<6000?6000:before;
 						after = after<3000?3000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;
 			case "pvp_flag_kill":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rflagkill == true)){
+				if((checkCached == true)&&(temp.Rflagkill == true))&&(temp.Rkill == false)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<6000?6000:before;
 						after = after<3000?3000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;
 			case "claymore_kill":
-	/*special*/			if((document.getElementById("autoon").checked == true)&&(temp.Rminekill == true)){
+	/*special*/	if((checkCached == true)&&(temp.Rminekill == true)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<10000?10000:before;
 						after = after<3000?3000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;
 			case "two_at_once_kill":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rperfkill == true)){
+				if((checkCached == true)&&(temp.Rperfkill == true))&&(temp.Rkill == false)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<6000?6000:before;
 						after = after<3000?3000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;
 			case "kill_grenade":
-	/*special*/				if((document.getElementById("autoon").checked == true)&&(temp.Rnade == 1)){
+	/*special*/	if((checkCached == true)&&(temp.Rnade == 1))&&(temp.Rkill == false)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<8000?8000:before;
 						after = after<3000?3000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;
 			case "grenade_kills_in_a_row_1":
-	/*special*/				if((document.getElementById("autoon").checked == true)&&(temp.Rnade == 2)){
+	/*special*/	if((checkCached == true)&&(temp.Rnade == 2)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<8000?8000:before;
 						after = after<3000?3000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;
 			case "grenade_kills_in_a_row_2":
-	/*special*/			if((document.getElementById("autoon").checked == true)&&(temp.Rnade == 3)){
+	/*special*/ if((checkCached == true)&&(temp.Rnade == 3)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<8000?8000:before;
 						after = after<3000?3000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;
 			case "grenade_kills_in_a_row_3":
-	/*special*/				if((document.getElementById("autoon").checked == true)&&(temp.Rnade == 5)){
+	/*special*/	if((checkCached == true)&&(temp.Rnade == 5)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<8000?8000:before;
 						after = after<3000?3000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;
 			case "in_knock_back_kill":
-					if((document.getElementById("autoon").checked == true)&&(temp.Rseverekill)){	
+					if((checkCached == true)&&(temp.Rseverekill))&&(temp.Rkill == false)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<12000?12000:before;
 						after = after<3000?3000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;	
 				
 	//TWO
 			case "headshots_in_a_row_2":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rheadshot == 2)){
+				if((checkCached == true)&&(temp.Rheadshot == 2)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<9000?9000:before;
 						after = after<3000?3000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				counters.incrementHeadshot(2);
 				break;
 			case "double_kill":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rdoublekill == true)) {
+				if((checkCached == true)&&(temp.Rdoublekill == true)) {
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<9000?9000:before;
 						after = after<3000?3000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;
 			case "melee_kills_in_a_row_1":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rmelee == 2)){					
+				if((checkCached == true)&&(temp.Rmelee == 2)){
+					localStorage.setItem("recordingLayers", layersCached+1);					
 					setTimeout(function(){
 						before = before<9000?9000:before;
 						after = after<3000?3000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;
 	//THREE
 			case "headshots_in_a_row_3":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rheadshot == 3)) {
+				if((checkCached == true)&&(temp.Rheadshot == 3)) {
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<12000?12000:before;
 						after = after<5000?5000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				counters.incrementHeadshot(3);
 				break;
 			case "pvp_triple_kill":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rtriplekill == true)&&(temp.Rdoublekill == false)) {	
+				if((checkCached == true)&&(temp.Rtriplekill == true)) {
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<12000?12000:before;
 						after = after<5000?5000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;
 			case "melee_kills_in_a_row_2":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rmelee == 3)){
+				if((checkCached == true)&&(temp.Rmelee == 3)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<12000?12000:before;
 						after = after<5000?5000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;
 	//FOUR
 			case "headshots_in_a_row_4":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rheadshot == 4)){
+				if((checkCached == true)&&(temp.Rheadshot == 4)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<15000?15000:before;
 						after = after<5000?5000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				counters.incrementHeadshot(4);
 				break;
 	//FIVE
 			case "headshots_in_a_row_5":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rheadshot == 5)) { 
+				if((checkCached == true)&&(temp.Rheadshot == 5)) {
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<18000?18000:before;
 						after = after<5000?5000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}				
 				counters.incrementHeadshot(5);
 				break;
 			case "melee_kills_in_a_row_3":
-				if((document.getElementById("autoon").checked == true)&&(temp.Rmelee == 5)){
+				if((checkCached == true)&&(temp.Rmelee == 5)){
+					localStorage.setItem("recordingLayers", layersCached+1);
 					setTimeout(function(){
 						before = before<18000?18000:before;
 						after = after<5000?5000:after;
 						rec.capture(before + after, 1);
+						localStorage.setItem("recordingLayers", layersCached-1);
 					}, after);
 				}
 				break;
 	//MISC
 			case "achievement_gained":																
-				if((document.getElementById("autoon").checked == true)&&(temp.Rachievepic == true)){
+				if((checkCached == true)&&(temp.Rachievepic == true)){
 					var count = 0;
 					var interval = setInterval( //The event is triggered before the achievement appears on the screen so we wait one second, then take a couple.
 						function () {
@@ -244,8 +286,12 @@ define(['recording', 'counters'], function(rec, counters){
 						}, 
 					1000);
 				}
-				if((document.getElementById("autoon").checked == true)&&(temp.Rachievevid == true)){
-					rec.capture(30000,30000);
+				if((checkCached == true)&&(temp.Rachievevid == true)){
+					localStorage.setItem("recordingLayers", layersCached+1);
+					setTimeout(function(){
+						rec.capture(60000,1);
+						localStorage.setItem("recordingLayers", layersCached-1);
+					}, 30000);
 				}
 				break;
 			default:

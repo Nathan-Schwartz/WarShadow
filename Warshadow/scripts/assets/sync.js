@@ -20,8 +20,6 @@ define(['jquery','gearData'], function($,gData){
 					newData.push([$(this).attr("name"), JSON.parse($(this).attr("repair_cost"))]);
 				}
 			});
-		
-			//localStorage.setItem("xml", JSON.stringify(newData));
 
 			var arrData = {};
 			arrData.arrWeap = gData.getWeapons();

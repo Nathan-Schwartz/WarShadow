@@ -46,7 +46,11 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 	res.success = false;
 	
 	JSON.parse(localStorage.getItem('recordingOn')) 
-		? (function(){document.getElementById("turnOn").style.backgroundImage = "url('../images/on.png')"; $("#onceEnabled").fadeIn().css("display","inline-block");})()
+		? (function(){
+			document.getElementById("turnOn").style.backgroundImage = "url('../images/on.png')"; 
+			$("#onceEnabled").fadeIn().css("display","inline-block");
+			document.getElementById("turnOn").title = "Disable Recording";
+		  })()
 		: document.getElementById("turnOn").style.backgroundImage = "url('../images/off.png')";
 		
 	var successHandler = {};
@@ -96,13 +100,17 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 			}
 			
 			if(!JSON.parse(localStorage.getItem("AutoRecActive"))){
-				rec.startCapture(successHandler.successCheck);
-				$("#error").hide();
+				if(JSON.parse(localStorage.getItem("recordingLayers")) == 0){
+					rec.startCapture(successHandler.successCheck);
+					$("#error").hide();
+				}else{
+					document.getElementById("error").title = "You have pending recordings from Autocapture, please wait until they finish.";
+					flashError();
+				}
 			}else{
 				document.getElementById("error").title = "Please turn off AutoRecord first.";
 				flashError();
 			}
-			
 		}else{
 			successHandler.postCheckCallback = function(){
 				document.getElementById("start").style.backgroundImage = "url('../images/play.png')";
@@ -118,7 +126,7 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 	});
 	
 	$("#menu").mousedown(wCore.dragMove);
-	$("#replayWindow").click(function(){rHUD.refreshHelper(true,"Replay");/* rec.memScreen(); window.location.assign(localStorage.getItem("url"));*/});
+	//$("#replayWindow").click(function(){rHUD.refreshHelper(true,"Replay");/* rec.memScreen(); window.location.assign(localStorage.getItem("url"));*/});
 	$("#capture").click(function(){
 		rec.capture(parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000,1);
 	});

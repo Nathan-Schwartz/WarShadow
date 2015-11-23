@@ -6,8 +6,8 @@
 		"version":"1.0.0",
 		"minimum-overwolf-version":"0.87.22",
 		"author":"Nathan Schwartz",
-		"icon":"images/IconMouseOver.png",
-		"icon_gray":"images/IconMouseNormal.png",
+		"icon":"IconMouseOver.png",
+		"icon_gray":"IconMouseNormal.png",
 		"description":"All the Warface features you never knew you needed."
 	},
 	"permissions": ["Hotkeys","GameInfo", "Logging", "Media", "Microphone", "Extensions", "DesktopStreaming" ],

@@ -3,21 +3,8 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
  !!! need failsafes for capture hotkey
  
 	Kix has random ADS toggle problems
-	
-	Zombies not triggering events problems
-		-kamikaze?
-		-minimech?
-		-shields?
 
-	-flashing buttons
-	-mouse coming unhinged
-
-	
 	Crosshair isn't loading cuz its not in extension folder yet
-	
-	Discovered localStorage event info
-	
-	mouse issues
 	
 	Shadowplay compat issues
 
@@ -25,13 +12,11 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
 	
 
 	info page
-	-explain design and shortcomings of features
-	-explain how to fix sync issues
-	-explain how to fix recording conflict issues
-
-	store_icon in manifest
-
-	don't allow multiple forms of recording simultaneously
+	-recording counter
+	-recording window behavior
+	-theme
+	-crosshair
+	-known issues: shadowplay, mouse for kix, alt-tab probs, overwolf is in beta, overwolf not reaching game, mouse unhinged, flashing buttons
 	
 	make mediaplayer buttons
 	crashing when exiting settings page due to ADS key grab
@@ -40,7 +25,6 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
 	hotkey ideas??
 	disable_restore_animation on what windows
 	get overwolf language and make the app that language as well
-	figure out how to correctly link the steam guides
 */	
 
 
@@ -112,6 +96,28 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
 		buttons: {
 			Cancel:{
 				text: 'OK',
+				click : function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		}
+	});
+	$( "#closeDialog" ).dialog({
+		autoOpen: false,
+		resizable: false,
+		draggable: false,
+		height:320,
+		width: 175,
+		modal: true,
+		buttons: {
+			Proceed:{
+				text: 'Yes',
+				click : function (){
+					wCore.closeWindow();
+				}
+			},
+			Cancel:{
+				text: 'Cancel',
 				click : function() {
 					$( this ).dialog( "close" );
 				}
@@ -355,7 +361,6 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		}
 	);
 
-//$(document).ready(function(){});
 
 	window.addEventListener("storage", function(e){
 		console.log("data",e);
@@ -363,11 +368,24 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			document.getElementById("autoon").checked = false;
 			console.log("unchecked from event listner @315");
 		}
-		
+
 		if(e.key == "updateTheme" && JSON.parse(e.newValue) === true)
 			setTheme();
 
-		updateADS();
+		if(e.key == "Settings")
+			updateADS();
+		
+		if(e.key=="recordingLayers"){
+			console.log(currentValue);
+			var currentValue = JSON.parse(localStorage.getItem("recordingLayers"));
+			if(currentValue < 0)
+				alert("We broke science");
+			
+			else{
+				
+			}
+		}
+			
 	});
 	
 	overwolf.settings.registerHotKey("resetCounters", function(arg) {
@@ -441,7 +459,14 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 	$("#resize").dblclick(ResizeMain);
 	$("#minimize").click(wCore.minimizeWindow);
 	//$("#popup").click(function(){rHUD.refreshHelper(true, 'popup');});
-	$("#close").click(wCore.closeWindow);
+	$("#close").click(function(){
+		if(JSON.parse(localStorage.getItem("recordingLayers")) == 0 && JSON.parse(localStorage.getItem("manualRecordingOn")) === false){
+			rec.turnOff();
+			wCore.closeWindow();
+		}else{
+			$( "#closeDialog" ).dialog( "open" );
+		}
+	});
 	$("#cold").click(function(){window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=352301863");});
 	$("#tower").click(function(){window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=299691346");});
 	$("#info").click(function(){rHUD.refreshHelper(true, 'Info');});

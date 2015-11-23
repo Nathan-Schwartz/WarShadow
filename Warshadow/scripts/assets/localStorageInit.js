@@ -14,6 +14,9 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 		);
 	};
 	
+	//tracks the number of recordings that have not yet been finished
+	localStorage.setItem("recordingLayers", 0);
+	
 	localStorage.setItem("manualRecordingOn", false);
 	
 	//for requesting theme change from settings page
@@ -49,7 +52,7 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 	
 	localStorage.setItem("firstLaunch", false);
 
-	localStorage.removeItem('Settings');
+	//localStorage.removeItem('Settings');
 	if(!localStorage.getItem('Settings')){
 		var Settings = {
 			useLP: false,
@@ -77,8 +80,8 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 			Rseverekill: false,
 			Rperfkill: false,
 			Rslidekill: false,
-			Rachievevid: false,
-			Rachievepic: false,
+			Rachievevid: true,
+			Rachievepic: true,
 			Rcombokill: false,
 		};
 		localStorage.setItem('Settings', JSON.stringify(Settings));
