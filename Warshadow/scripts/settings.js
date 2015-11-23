@@ -144,7 +144,7 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
 
 	//menu checkboxes //
 	$("#enableRecord, #autoLaunch, #minimizeOnTab, #restoreOnTab, #closeOnEnd, #kill, #doublekill, #triplekill, #perfkill, #flagkill, #screenshot, #achievevid, #severekill, #minekill, #defibkill, #allowSync").change(function(){settingH.update();});
-	$("#useLP").click(function(){
+	$("#useSecondary").click(function(){
 		settingH.update(function(){localStorage.setItem("updateTheme", true);});
 	});
 

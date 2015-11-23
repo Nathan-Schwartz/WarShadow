@@ -8,7 +8,10 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
 	
 	Shadowplay compat issues
 
-	
+	After layers expire the manual recording feature breaks, but only after.
+SoLUTION:
+disable and reenable recording onclick of start recording button
+
 	
 
 	info page
@@ -25,6 +28,63 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
 	hotkey ideas??
 	disable_restore_animation on what windows
 	get overwolf language and make the app that language as well
+	
+	Goals:
+JSON sync gear data
+image recognition?
+Multi-lingual
+working media player
+working hotkeys
+Fancy Info page
+
+
+TESTING
+Have kix try:
+shadowplay (what has right of way?)
+autorecord button working for him?
+
+flash error
+-pending recordings
+-autocapture
+
+close error
+-manual still going
+-pending recordings
+
+new gameEventHandler should be tested
+launch enabled recording
+
+After layers expire the manual recording feature breaks, but only after.
+SoLUTION:
+disable and reenable recording onclick of start recording button
+
+-------------------------------------
+new input tracker thingy
+
+apply theme to recording menu and crosshair menu
+
+track recordings in wait
+
+zombie issues
+-kamikaze doesn't count, even on headshots
+-shields?
+
+
+Info known Issues tab?
+-flashing buttons
+-mouse coming "unhinged"
+
+
+should the replay window exist
+pop up window style
+crosshair bullshit
+test recording game events
+
+add color customization to info and tutorial?
+
+	
+	
+	
 */	
 
 
@@ -363,7 +423,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 
 
 	window.addEventListener("storage", function(e){
-		console.log("data",e);
+		console.log("storageEvent: ", e);
 		if(e.key == "recordingOn" && JSON.parse(e.newValue) === false){
 			document.getElementById("autoon").checked = false;
 			console.log("unchecked from event listner @315");
@@ -376,14 +436,8 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			updateADS();
 		
 		if(e.key=="recordingLayers"){
-			console.log(currentValue);
-			var currentValue = JSON.parse(localStorage.getItem("recordingLayers"));
-			if(currentValue < 0)
+			if(JSON.parse(localStorage.getItem("recordingLayers")) < 0)
 				alert("We broke science");
-			
-			else{
-				
-			}
 		}
 			
 	});
@@ -461,8 +515,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 	//$("#popup").click(function(){rHUD.refreshHelper(true, 'popup');});
 	$("#close").click(function(){
 		if(JSON.parse(localStorage.getItem("recordingLayers")) == 0 && JSON.parse(localStorage.getItem("manualRecordingOn")) === false){
-			rec.turnOff();
-			wCore.closeWindow();
+			rec.turnOff(function(){wCore.closeWindow();});
 		}else{
 			$( "#closeDialog" ).dialog( "open" );
 		}
@@ -484,20 +537,26 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 
 	//$("#KDRate").change(function(){rHUD.refreshHUD();});
 	$("#autoon").change(function(){
-		if(!JSON.parse(localStorage.getItem("manualRecordingOn"))){
-			rec.turnOn(function(result){
-				if(result.status != "success" && result.error != "Already turned on."){
-					console.log("ERROR ENABLING RECORDING: ", result.error);
-					document.getElementById("autoon").checked = false;
-				}
-			});
+		if(document.getElementById("autoon").checked == false){
+			localStorage.setItem("AutoRecActive", false);
+			
 		}else{
-			$( "#autoCapConflict" ).dialog( "open" );
-			document.getElementById("autoon").checked = false;
+			if(!JSON.parse(localStorage.getItem("manualRecordingOn"))){
+				rec.turnOn(function(result){
+					if(result.status != "success" && result.error != "Already turned on."){
+						console.log("ERROR ENABLING RECORDING: ", result.error);
+						document.getElementById("autoon").checked = false;
+						localStorage.setItem("AutoRecActive", false);
+					}else{
+						localStorage.setItem("AutoRecActive", true);
+					}
+				});
+			}else{
+				$( "#autoCapConflict" ).dialog( "open" );
+				document.getElementById("autoon").checked = false;
+				localStorage.setItem("AutoRecActive", false);
+			}
 		}
-		document.getElementById("autoon").checked
-			?localStorage.setItem("AutoRecActive", true)
-			:localStorage.setItem("AutoRecActive", false);
 	});
 	$("#colorContainer input:checkbox[id=colorVis]").click(function() {
 		var $this = $(this);

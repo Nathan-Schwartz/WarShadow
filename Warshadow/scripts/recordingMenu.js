@@ -18,10 +18,9 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 	
 	//$(document).ready(function(){});
 		window.addEventListener('storage', function( storageEvent ){
-			console.log("storageEvent: ", storageEvent);
+			//console.log("storageEvent: ", storageEvent);
 			
 			if(storageEvent.key == "recordingOn"){
-				console.log('recordingOn newvalue testing', typeof storageEvent.newValue, storageEvent.newValue);
 				if(!JSON.parse(storageEvent.newValue)){
 					document.getElementById("turnOn").style.backgroundImage = "url('../images/off.png')";
 					$("#onceEnabled").hide();
@@ -29,6 +28,12 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 					document.getElementById("turnOn").style.backgroundImage = "url('../images/on.png')";
 					$("#onceEnabled").fadeIn().css("display","inline-block");
 				}
+			}
+			if(storageEvent.key=="recordingLayers")
+				console.log("layers: ", storageEvent);
+			
+			if(storageEvent.key == "AutoRecActive"){
+				$("#error").hide();
 			}
 		});
 	
@@ -42,8 +47,6 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 	
 	var enabled = false;
 	var url = "";
-	var res = {};
-	res.success = false;
 	
 	JSON.parse(localStorage.getItem('recordingOn')) 
 		? (function(){
@@ -57,12 +60,12 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 	successHandler.postCheckCallback = function(){};
 	successHandler.successCheck = function(result){
 		if(result.status == "success"){// || result.error == "Already turned on."){
-			res.success = true;
-			console.log("successcheck:status returned true");
 			if(typeof successHandler.postCheckCallback == "function")
 				successHandler.postCheckCallback();
 			else
 				console.log("successHandler.postCheckCallback is not a function")
+		}else{
+			console.log("failed:", result);
 		}
 	};
 	
@@ -87,8 +90,7 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 	});
 	
 	$("#start").click(function(){
-		var recording = JSON.parse(localStorage.getItem("manualRecordingOn"));
-		if(!recording){
+		if(!JSON.parse(localStorage.getItem("manualRecordingOn"))){
 			successHandler.postCheckCallback = function(){
 				document.getElementById("start").style.backgroundImage = "url('../images/pause.png')";
 				document.getElementById("start").title = "Finish Recording";
@@ -96,7 +98,7 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 				document.getElementById("unavailableButtons").style.display = "none";
 				document.getElementById("moreButtons").style.display = "none";
 						
-				localStorage.setItem("manualRecordingOn", !recording);
+				localStorage.setItem("manualRecordingOn", !JSON.parse(localStorage.getItem("manualRecordingOn")));
 			}
 			
 			if(!JSON.parse(localStorage.getItem("AutoRecActive"))){
@@ -119,7 +121,7 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 				document.getElementById("unavailableButtons").style.display = "inline-block";
 				document.getElementById("moreButtons").style.display = "inline-block";
 				
-				localStorage.setItem("manualRecordingOn", !recording);
+				localStorage.setItem("manualRecordingOn", !JSON.parse(localStorage.getItem("manualRecordingOn")));
 			};
 			rec.finishCapture(successHandler.successCheck);
 		}
@@ -147,10 +149,10 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 			showing = !showing;
 			if(showing){
 				document.getElementById("error").style.background = "#323232";
-				console.log("was showing");
+				//console.log("was showing");
 			}else{
 				document.getElementById("error").style.background = original;
-				console.log("wasn't showing");
+				//console.log("wasn't showing");
 			}
 		},200);
 	}

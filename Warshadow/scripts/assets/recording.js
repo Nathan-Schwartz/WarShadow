@@ -73,12 +73,14 @@ define(["refreshHUD"], function(rHUD){
 
 	function finishCapture(callback){
 		overwolf.media.replays.finishCapture(url, function(result){
+			//console.log("finish Capture", result);
+			
 			if(isFunction(callback))
 				callback(result);
 			
 			if(result.status== "success"){
 				localStorage.setItem("recordingCount", JSON.parse(localStorage.getItem("recordingCount")) + 1);
-				console.log("it should have updated recCounter in finishCapture");
+				//console.log("it should have updated recCounter in finishCapture");
 			}
 		});
 	};
@@ -91,7 +93,7 @@ define(["refreshHUD"], function(rHUD){
 				console.log("finishEnded",result);
 				if(result.status== "success"){
 					localStorage.setItem("recordingCount", JSON.parse(localStorage.getItem("recordingCount")) + 1);
-					console.log("it should have updated recCounter in finishEnded");
+					//console.log("it should have updated recCounter in finishEnded");
 				}
 				if(isFunction(callback))
 					callback(result);

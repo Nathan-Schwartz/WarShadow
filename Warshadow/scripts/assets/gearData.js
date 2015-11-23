@@ -15,13 +15,13 @@ Gloves
 
 
 	function initStats(){
-		var helmets = [{"key":"Warlord","HP_regen":8,"Damage_reduc":0.4,"Mine":"FALSE","Flash":"FALSE","Repair_num":500,"Shop_name":"medic_helmet_07","File_name":"@medic_helmet_07_shop_name"},
-	{"key":"Elite Crown","HP_regen":8,"Damage_reduc":0.7,"Mine":"FALSE","Flash":"TRUE","Repair_num":1170,"Shop_name":"medic_helmet_crown_02","File_name":"@medic_helmet_crown_02_shop_name"},
-	{"key":"Dread mask","HP_regen":0,"Damage_reduc":0.45,"Mine":"FALSE","Flash":"TRUE","Repair_num":1430,"Shop_name":"shared_helmet_hlw_03","File_name":"@shared_helmet_hlw_03_shop_name"},
-	{"key":"Tactical","HP_regen":0,"Damage_reduc":0.2,"Mine":"FALSE","Flash":"TRUE","Repair_num":819,"Shop_name":"medic_helmet_02","File_name":"@medic_helmet_02_shop_name"},
-	{"key":"Sapper","HP_regen":0,"Damage_reduc":0.2,"Mine":"TRUE","Flash":"FALSE","Repair_num":1430,"Shop_name":"medic_helmet_05","File_name":"@medic_helmet_05_shop_name"},
-	{"key":"Advanced","HP_regen":0,"Damage_reduc":0.2,"Mine":"FALSE","Flash":"FALSE","Repair_num":624,"Shop_name":"medic_helmet_03","File_name":"@medic_helmet_03_shop_name"},
-	{"key":"Default","HP_regen":0,"Damage_reduc":0.1,"Mine":"FALSE","Flash":"FALSE","Repair_num":0,"Shop_name":"medic_helmet_01","File_name":"@medic_helmet_01_shop_name"},
+		var helmets = [{"key":"Warlord","HP_regen":8,"Damage_reduc":0.6,"Mine":"FALSE","Flash":"FALSE","Repair_num":500,"Shop_name":"medic_helmet_07","File_name":"@medic_helmet_07_shop_name"},
+	{"key":"Elite Crown","HP_regen":8,"Damage_reduc":0.3,"Mine":"FALSE","Flash":"TRUE","Repair_num":1170,"Shop_name":"medic_helmet_crown_02","File_name":"@medic_helmet_crown_02_shop_name"},
+	{"key":"Dread mask","HP_regen":0,"Damage_reduc":0.55,"Mine":"FALSE","Flash":"TRUE","Repair_num":1430,"Shop_name":"shared_helmet_hlw_03","File_name":"@shared_helmet_hlw_03_shop_name"},
+	{"key":"Tactical","HP_regen":0,"Damage_reduc":0.8,"Mine":"FALSE","Flash":"TRUE","Repair_num":819,"Shop_name":"medic_helmet_02","File_name":"@medic_helmet_02_shop_name"},
+	{"key":"Sapper","HP_regen":0,"Damage_reduc":0.8,"Mine":"TRUE","Flash":"FALSE","Repair_num":1430,"Shop_name":"medic_helmet_05","File_name":"@medic_helmet_05_shop_name"},
+	{"key":"Advanced","HP_regen":0,"Damage_reduc":0.8,"Mine":"FALSE","Flash":"FALSE","Repair_num":624,"Shop_name":"medic_helmet_03","File_name":"@medic_helmet_03_shop_name"},
+	{"key":"Default","HP_regen":0,"Damage_reduc":0.9,"Mine":"FALSE","Flash":"FALSE","Repair_num":0,"Shop_name":"medic_helmet_01","File_name":"@medic_helmet_01_shop_name"},
 	{"key":"npc","HP_regen":0,"Damage_reduc":1,"Mine":"FALSE","Flash":"FALSE","Repair_num":0,"Shop_name":"none","File_name":"none"}];
 		localStorage.setItem('helmets', JSON.stringify(helmets));
 

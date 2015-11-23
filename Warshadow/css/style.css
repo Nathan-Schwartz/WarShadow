@@ -237,7 +237,7 @@
 	display: none;
 }
 
-#dialog, #autoCapConflict{
+#dialog, #autoCapConflict, #closeDialog{
 	color: black;
 	font-family: Helvetica;	
 	text-shadow:none;

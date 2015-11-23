@@ -1,5 +1,17 @@
 define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 
+		//clearAll();
+
+	function clearAll(){
+		gData.clearStats();
+		localStorage.removeItem("url");
+		localStorage.removeItem("message");
+		localStorage.removeItem('ADSkey');
+		localStorage.removeItem('color1');
+		localStorage.removeItem('color2');
+		localStorage.removeItem('Settings');
+	}	
+
 	function getWinID(name, ID){
 	//Start the process of the window named, retrieve and save its ID, and then end the process if it is not the main window.
 		overwolf.windows.obtainDeclaredWindow(name,
@@ -26,7 +38,7 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 		localStorage.setItem("url","sampleurl");
 	
 	if(!localStorage.getItem("message"))
-		localStorage.setItem("url","alertEnabled");
+		localStorage.setItem("message","alertEnabled");
 	
 	//gData.clearStats();
 	if(!localStorage.getItem('vests'))
@@ -55,7 +67,7 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 	//localStorage.removeItem('Settings');
 	if(!localStorage.getItem('Settings')){
 		var Settings = {
-			useLP: false,
+			useLP: true,
 			allowSync: true,
 			noADS: false,
 			toggleADS : true,
@@ -73,7 +85,7 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 			Rnade: 0,
 			Rmelee: 0,
 			Rdoublekill: false,
-			Rtriplekill: false,
+			Rtriplekill: true,
 			Rminekill: false,
 			Rdefib: false,
 			Rflagkill: false,
@@ -101,12 +113,6 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 	
 	//for determining where to focus in settings page
 	localStorage.setItem('optionsCalledBy', "manual");
-	
-	//localStorage.removeItem("errorList");
-	//for tracking errors
-	//if(!localStorage.getItem("errorList"))
-	//	localStorage.setItem("errorList", JSON.stringify([]));
-	
 	
 	//for counters.js
 	localStorage.setItem("kill", 0);
