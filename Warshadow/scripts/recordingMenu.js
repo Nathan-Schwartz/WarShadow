@@ -29,11 +29,16 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 					$("#onceEnabled").fadeIn().css("display","inline-block");
 				}
 			}
-			if(storageEvent.key=="recordingLayers")
+			if(storageEvent.key=="recordingLayers"){
 				console.log("layers: ", storageEvent);
+				localStorage.setItem("layersUsed", true);
+				if(JSON.parse(localStorage.getItem("recordingLayers")) == 0 && document.getElementById("error").title == "You have pending recordings from Autocapture, please wait until they finish.")
+					$("#error").hide();
+			}
 			
 			if(storageEvent.key == "AutoRecActive"){
-				$("#error").hide();
+				if(document.getElementById("error").title == "Please turn off AutoRecord first.")
+					$("#error").hide();
 			}
 		});
 	
@@ -103,11 +108,20 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 			
 			if(!JSON.parse(localStorage.getItem("AutoRecActive"))){
 				if(JSON.parse(localStorage.getItem("recordingLayers")) == 0){
-					rec.startCapture(successHandler.successCheck);
-					$("#error").hide();
+					if(JSON.parse(localStorage.getItem("layersUsed")) === true){
+						rec.turnOff(function(){
+							rec.turnOn(function(){
+								rec.startCapture(successHandler.successCheck);
+								$("#error").hide();
+							});
+						});
+					}else{
+						rec.startCapture(successHandler.successCheck);
+						$("#error").hide();
+					}
 				}else{
-					document.getElementById("error").title = "You have pending recordings from Autocapture, please wait until they finish.";
-					flashError();
+				document.getElementById("error").title = "You have pending recordings from Autocapture, please wait until they finish.";
+				flashError();
 				}
 			}else{
 				document.getElementById("error").title = "Please turn off AutoRecord first.";

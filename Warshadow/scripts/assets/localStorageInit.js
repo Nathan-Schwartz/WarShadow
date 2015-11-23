@@ -26,6 +26,8 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 		);
 	};
 	
+	localStorage.setItem("layersUsed", false);
+	
 	//tracks the number of recordings that have not yet been finished
 	localStorage.setItem("recordingLayers", 0);
 	

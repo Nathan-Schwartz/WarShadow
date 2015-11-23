@@ -162,7 +162,7 @@ add color customization to info and tutorial?
 			}
 		}
 	});
-	$( "#closeDialog" ).dialog({
+	$( "#closeDialog, #closeDialog2" ).dialog({
 		autoOpen: false,
 		resizable: false,
 		draggable: false,
@@ -514,10 +514,13 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 	$("#minimize").click(wCore.minimizeWindow);
 	//$("#popup").click(function(){rHUD.refreshHelper(true, 'popup');});
 	$("#close").click(function(){
-		if(JSON.parse(localStorage.getItem("recordingLayers")) == 0 && JSON.parse(localStorage.getItem("manualRecordingOn")) === false){
-			rec.turnOff(function(){wCore.closeWindow();});
+		if(JSON.parse(localStorage.getItem("manualRecordingOn")) === false){
+			if(JSON.parse(localStorage.getItem("recordingLayers")) == 0)
+				rec.turnOff(function(){wCore.closeWindow();});
+			else
+				$( "#closeDialog" ).dialog( "open" );
 		}else{
-			$( "#closeDialog" ).dialog( "open" );
+			$( "#closeDialog2" ).dialog( "open" );
 		}
 	});
 	$("#cold").click(function(){window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=352301863");});

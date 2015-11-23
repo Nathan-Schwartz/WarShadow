@@ -46,6 +46,8 @@ define(["refreshHUD"], function(rHUD){
 				if(isFunction(callback))
 					callback(result);
 				
+				localStorage.setItem("layersUsed", false);
+				
 				if(result.status== "success"){
 					localStorage.setItem('message', "alertDisabled");
 					localStorage.setItem('recordingOn', false);
@@ -108,22 +110,40 @@ define(["refreshHUD"], function(rHUD){
 							//console.log('finishCalled',result);
 						}
 					);
-				}
-				if(result.error == "Replay is already capturing."){ // !!!! add "Replay not capturing."?
+				}else if(result.error == "Replay is already capturing."){
 					console.log("Replay is already capturing.");
 					if(!recursed){
-						console.log("wasn't recursed");
+						console.log("wasn't recursed-already capturing");
 						setTimeout(function(){
 							capture(before, after, callback, true, 0);
 						},300);
 					}else{
-						console.log("recursed", recurseCount);
+						console.log("recursed-already capturing", recurseCount);
 						if(recurseCount < 5){
 							setTimeout(function(){
 								capture(before, after, callback, true, recurseCount+1);
 							},300);
 						}else{
-							console.log("failed, executing callback");
+							alert("failed-already capturing, executing callback");
+							if(isFunction(callback))
+								callback(result);
+						}
+					}
+				}else if(result.error == "Replay not capturing."){
+					console.log("Replay not capturing.");
+					if(!recursed){
+						console.log("wasn't recursed - not capturing");
+						setTimeout(function(){
+							capture(before, after, callback, true, 0);
+						},300);
+					}else{
+						console.log("recursed - not capturing", recurseCount);
+						if(recurseCount < 5){
+							setTimeout(function(){
+								capture(before, after, callback, true, recurseCount+1);
+							},300);
+						}else{
+							alert("failed-not capturing, executing callback");
 							if(isFunction(callback))
 								callback(result);
 						}

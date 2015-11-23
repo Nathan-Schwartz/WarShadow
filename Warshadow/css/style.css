@@ -27,7 +27,6 @@
 	text-align: center;
     box-shadow: inset 1px 1px rgb(33,34,36), 1px 1px rgb(33,34,36);
 	display: block;
-	opacity: .9;
 	position: absolute;
 }
 
@@ -237,7 +236,7 @@
 	display: none;
 }
 
-#dialog, #autoCapConflict, #closeDialog{
+#dialog, #autoCapConflict, #closeDialog, #closeDialog2{
 	color: black;
 	font-family: Helvetica;	
 	text-shadow:none;
