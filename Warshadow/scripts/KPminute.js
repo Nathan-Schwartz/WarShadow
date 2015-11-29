@@ -5,11 +5,12 @@ require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $, counter
 	(function killPerMinute(){
 		var intervals = setInterval(function(){
 			counters.incrementTime();
+			document.getElementById("KPMcount").innerHTML = Math.round((counters.getKill()*60*100)/counters.getTime())/100 + " K/m";
 		}, 1000);
 	})();
 
 	window.addEventListener('storage', function( storageEvent ){
-		if(storageEvent.key == "minutes" || storageEvent.key == "kill"){
+		if(storageEvent.key == "kill"){
 			document.getElementById("KPMcount").innerHTML = Math.round((counters.getKill()*60*100)/counters.getTime())/100 + " K/m";
 		}
 	});

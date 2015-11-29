@@ -20,6 +20,29 @@
 	left: 10%;
 }
 
+.orangeSmallButton:hover{
+	background: rgb(56, 22, 10);
+	box-shadow: inset 1px 1px rgb(100,24,0), 1px 1px rgb(100,24,0);
+	border: solid 1px rgb(175, 96, 66);
+}
+.orangeSmallButton{
+	width: 20px;
+	height: 20px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	font-family: Helvetica;
+	color: #ffffff;
+	background: transparent;
+	font-weight: bold;
+	border: solid 1px rgb(100,101,103);
+	outline: none;
+	text-align: center;
+    box-shadow: inset 1px 1px rgb(33,34,36), 1px 1px rgb(33,34,36);
+	display: block;
+	position: absolute;
+}
+
+
 #message{
 	position:relative;
 }

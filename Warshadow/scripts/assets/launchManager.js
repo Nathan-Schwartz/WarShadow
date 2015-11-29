@@ -45,7 +45,23 @@ define(["recording"], function(rec){
 			console.log("manual-launch")
 			scenario = "manual";
 		}
-				
+		
+		switch(scenario){
+			case "auto":
+				fpsLaunch();
+				break;
+			case "pre":
+			case "manual":
+				tryLaunch();
+				break;
+			default:
+				tryLaunch();
+				break;
+		}
+		
+		overwolf.windows.restore(localStorage.getItem('MainID'));
+		
+		/* Enable launch on recording stuff
 		switch(scenario){
 			case "auto":
 			case "pre":
@@ -60,19 +76,20 @@ define(["recording"], function(rec){
 			default:
 				tryLaunch();
 				break;
-		}
+		}*/
 		
 		function fpsLaunch(){
 			overwolf.games.onMajorFrameRateChange.addListener(function(data){
 				if(data.fps > 15 && data.fps_status == "Stable" && !alerted){
-					//console.log("stable and over 15");
 					tryLaunch();
 				}
 			});
 		};
 		
 		function tryLaunch(){
-			overwolf.games.getRunningGameInfo(function(value){
+			overwolf.windows.restore(localStorage.getItem('MainID'));
+			alerted = true;
+		/*	overwolf.games.getRunningGameInfo(function(value){
 			//	console.log("focus callback", value.isInFocus);
 				if(value.isInFocus === true && !alerted){
 					if(JSON.parse(localStorage.getItem("Settings")).enableRecord){
@@ -82,15 +99,19 @@ define(["recording"], function(rec){
 								overwolf.windows.restore(localStorage.getItem('MainID'));
 								return true;
 							}else{
-								console.log("error was", result.error);
+								console.log("RECORDING COULD NOT START. REASON:", result);
+								alerted = true;
+								overwolf.windows.restore(localStorage.getItem('MainID'));
 								//return false;
 							}
 						});
+					}else{
+						overwolf.windows.restore(localStorage.getItem('MainID'));
 					}
 				}else{
 					return false;
 				}
-			});
+			});*/
 		};
 	};
 });

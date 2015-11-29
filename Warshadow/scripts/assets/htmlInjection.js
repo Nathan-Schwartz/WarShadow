@@ -3,8 +3,8 @@ define( function(){
 		function injectHTML(){
 	var primaries = 
 	"<optgroup label='---Submachine Guns---'>" +
-		"<option value='Exar-L PDW'>Exar-L PDW </option>" +
-		"<option value='Exar-L PDW Gold'>Exar-L PDW Gold </option>" +
+		"<option value='Exar-L PDW'>Exar-L PDW</option>" +
+		"<option value='Gold Exar-L PDW'>Gold Exar-L PDW</option>" +
 		"<option value='Karkom SMG'>Karkom SMG </option>" +
 		"<option value='Karkom SMG Crown'>Karkom SMG Crown </option>" +
 		"<option value='Micro Oren'>Micro Oren </option>" +
@@ -70,6 +70,7 @@ define( function(){
 		"<option value='CCR Crown'>CCR Crown </option>" +
 		"<option value='CCR Christmas'>CCR Christmas </option>" +
 		"<option value='CCR NY'>CCR NY </option>" +
+		"<option value='Gold R249 Para'>Gold R249 Para</option>" +
 		"<option value='R249 Para'>R249 Para </option>" +
 		"<option value='LMG3'>LMG3 </option>" +
 		"<option value='LMG3 Specops MK01'>LMG3 Specops MK01 </option>" +
@@ -79,6 +80,7 @@ define( function(){
 		"<option value='AR-GAR'>AR-GAR </option>" +
 		"<option value='ST-AR'>ST-AR </option>" +
 		"<option value='FY 47'>FY-47 </option>" +
+		"<option value='Gold FY 47'>Gold FY-47 </option>" +
 		"<option value='M95AR'>M95AR </option>" +
 		"<option value='M9551 Winter'>M9551 Winter </option>" +
 		"<option value='AC7'>AC7 </option>" +
@@ -126,7 +128,7 @@ define( function(){
 
 	"<optgroup label='---Snipers---'>" +
 		"<option value='TWM X308'>TWM X308</option>" +
-		"<option value='TWM X308 Gold'>TWM X308 Gold</option>" +
+		"<option value='Gold TWM X308'>Gold TWM X308</option>" +
 		"<option value='Garota'>Garota </option>" +
 		"<option value='Garota Basic'>Garota Basic </option>" +
 		"<option value='Garota Special'>Garota Special </option>" +
@@ -262,7 +264,7 @@ define( function(){
 		"<option value='Shark-443'>Shark-443 </option>" +
 		"<option value='R1911'>R1911 </option>" +
 		"<option value='Eagle Eye'>Eagle Eye </option>" +
-		"<option value='Eagle Eye Gold'>Eagle Eye Gold </option>" +
+		"<option value='Gold Eagle Eye'>Gold Eagle Eye </option>" +
 		"<option value='Eagle Eye Brazil'>Eagle Eye Brazil </option>" +
 		"<option value='Eagle Eye Elite Crown'>Eagle Eye Crown </option>" +
 		"<option value='Eagle Eye NY'>Eagle Eye NY </option>" +
@@ -293,6 +295,7 @@ define( function(){
 		"<option value='M93R'>M93R </option>" +
 		"<option value='M1895 Sneakpeak'>M1895 Sneakpeak </option>" +
 		"<option value='Bellum Sneakpeak'>Bellum Sneakpeak </option>" + 
+		"<option value='Pinkie-Micro Eagle Eye'>Pinkie-Micro Eagle Eye Sneakpeak</option>" +
 	"</optgroup>";
 
 	document.getElementById("RCprimary").innerHTML += primaries;

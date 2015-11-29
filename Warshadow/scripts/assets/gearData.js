@@ -55,7 +55,7 @@ Gloves
 	{"key":"Sliding Boots","Damage_reduc_perc":0,"Mine_delay":"FALSE","Crouch_speed":0,"Sprint_speed":1.15,"Sprint_dur":1.1,"Slide_dist":1.3,"Silent":"FALSE","Repair_num":1622,"Shop_name":"shared_shoes_08","File_name":"@shared_shoes_08_shop_name"},
 	{"key":"Crown Boots","Damage_reduc_perc":0,"Mine_delay":"TRUE","Crouch_speed":0,"Sprint_speed":1.25,"Sprint_dur":1.1,"Slide_dist":0,"Silent":"FALSE","Repair_num":1622,"Shop_name":"shared_shoes_crown_02","File_name":"@shared_shoes_crown_02_shop_name"},
 	{"key":"Christmas Boots","Damage_reduc_perc":0,"Mine_delay":"FALSE","Crouch_speed":0,"Sprint_speed":1.2,"Sprint_dur":0,"Slide_dist":0,"Silent":"FALSE","Repair_num":1622,"Shop_name":"shared_shoes_xmas_01","File_name":"@shared_shoes_xmas_01_shop_name"},
-	{"key":"Anti-directional Mine Boots","Damage_reduc_perc":0.8,"Mine_delay":"TRUE","Crouch_speed":0,"Sprint_speed":0,"Sprint_dur":0,"Slide_dist":0,"Silent":"FALSE","Repair_num":1622,"Shop_name":"soldier_shoes_02","File_name":"@soldier_shoes_02_shop_name"},
+	{"key":"Anti-directional Mine Boots","Damage_reduc_perc":0.8,"Mine_delay":"TRUE","Crouch_speed":0,"Sprint_speed":1.1,"Sprint_dur":0,"Slide_dist":0,"Silent":"FALSE","Repair_num":1622,"Shop_name":"soldier_shoes_02","File_name":"@soldier_shoes_02_shop_name"},
 	{"key":"Warlord Boots","Damage_reduc_perc":0.5,"Mine_delay":"FALSE","Crouch_speed":0,"Sprint_speed":1.2,"Sprint_dur":1.35,"Slide_dist":0,"Silent":"FALSE","Repair_num":1248,"Shop_name":"shared_shoes_09","File_name":"@shared_shoes_09_shop_name"}];
 		localStorage.setItem('boots', JSON.stringify(boots));
 
@@ -81,11 +81,12 @@ Gloves
 	{"key":"Sickle","Repair_num":442,"Shop_name":"kn41_ww2_default"},
 	{"key":"Wooden Hammer","Repair_num":442,"Shop_name":"kn42_viet_shop"},
 	{"key":"Hammer","Repair_num":442,"Shop_name":"kn42_ww2_shop"},
+	{"key":"Gold Tactical Axe","Repair_num": 0,"Shop_name":"kn16_gold01_shop"},
 	{"key":"Classic Soviet Knife","Repair_num":600,"Shop_name":"kn43_vdv_shop"},
 	{"key":"Digger of Doom","Repair_num":2184,"Shop_name":"kn44_fld01_shop"}];
 		localStorage.setItem('knives', JSON.stringify(knives));
 
-		var weapons = [{"key":"Exar-L PDW Gold","Damage":80,"RPM":730,"Damage_reduc":3,"Repair_num":5100,"Min_damage":35,"Min_range":10.5,"Class":"E","Archetype":"R","Shop_name":"smg31_gold01_shop","File_name":"@smg31_gold01_shop_name"},
+		var weapons = [{"key":"Gold Exar-L PDW","Damage":80,"RPM":730,"Damage_reduc":3,"Repair_num":0,"Min_damage":35,"Min_range":10.5,"Class":"E","Archetype":"R","Shop_name":"smg31_gold01_shop","File_name":"@smg31_gold01_shop_name"},
 	{"key":"Exar-L PDW","Damage":80,"RPM":730,"Damage_reduc":3,"Repair_num":5100,"Min_damage":35,"Min_range":9.5,"Class":"E","Archetype":"R","Shop_name":"smg31_shop","File_name":"@smg31_shop_name"},
 	{"key":"Karkom SMG","Damage":75,"RPM":840,"Damage_reduc":3,"Repair_num":6990,"Min_damage":38,"Min_range":11,"Class":"E","Archetype":"E","Shop_name":"smg10_shop","File_name":"@smg10_shop_name"},
 	{"key":"Micro Oren","Damage":61,"RPM":1000,"Damage_reduc":3.6,"Repair_num":6240,"Min_damage":31,"Min_range":6.5,"Class":"E","Archetype":"E","Shop_name":"smg02_shop","File_name":"@smg02_shop_name"},
@@ -114,11 +115,13 @@ Gloves
 	{"key":"Exar-h","Damage":90,"RPM":620,"Damage_reduc":1,"Repair_num":6990,"Min_damage":50,"Min_range":16,"Class":"R","Archetype":"R","Shop_name":"ar11_shop","File_name":"@ar11_shop_name"},
 	{"key":"CCR","Damage":77,"RPM":700,"Damage_reduc":1,"Repair_num":24960,"Min_damage":50,"Min_range":16,"Class":"R","Archetype":"R","Shop_name":"ar19_shop","File_name":"@ar19_shop_name"},
 	{"key":"R249 Para","Damage":75,"RPM":700,"Damage_reduc":2,"Repair_num":6990,"Min_damage":40,"Min_range":13,"Class":"R","Archetype":"R","Shop_name":"mg07_shop","File_name":"@mg07_shop_name"},
+	{"key":"Gold R249 Para","Damage":75,"RPM":700,"Damage_reduc":2,"Repair_num":0,"Min_damage":40,"Min_range":13.5,"Class":"R","Archetype":"R","Shop_name":"mg07_gold01_shop","File_name":"@mg07_gold01_shop_name"},
 	{"key":"LMG3","Damage":65,"RPM":800,"Damage_reduc":2.2,"Repair_num":5400,"Min_damage":40,"Min_range":13,"Class":"R","Archetype":"R","Shop_name":"mg09_shop","File_name":"@mg09_shop_name"},
 	{"key":"T27","Damage":80,"RPM":640,"Damage_reduc":1,"Repair_num":6990,"Min_damage":50,"Min_range":16,"Class":"R","Archetype":"R","Shop_name":"ar16_shop","File_name":"@ar16_shop_name"},
 	{"key":"AR-GAR","Damage":81,"RPM":630,"Damage_reduc":1.3,"Repair_num":30625,"Min_damage":45,"Min_range":15,"Class":"R","Archetype":"R","Shop_name":"ar23_shop","File_name":"@ar23_shop_name"},
 	{"key":"ST-AR","Damage":78,"RPM":650,"Damage_reduc":2,"Repair_num":3510,"Min_damage":45,"Min_range":12,"Class":"R","Archetype":"R","Shop_name":"ar17_shop","File_name":"@ar17_shop_name"},
 	{"key":"FY 47","Damage":84,"RPM":600,"Damage_reduc":1,"Repair_num":5400,"Min_damage":45,"Min_range":12.5,"Class":"R","Archetype":"R","Shop_name":"ar22_shop","File_name":"@ar22_shop_name"},
+	{"key":"Gold FY 47","Damage":84,"RPM":610,"Damage_reduc":1,"Repair_num":0,"Min_damage":45,"Min_range":13,"Class":"R","Archetype":"R","Shop_name":"ar22_gold01_shop","File_name":"@ar22_shop_name"},
 	{"key":"M95AR","Damage":62,"RPM":810,"Damage_reduc":2,"Repair_num":3900,"Min_damage":41,"Min_range":12,"Class":"R","Archetype":"R","Shop_name":"ar07_shop","File_name":"@ar07_shop_name"},
 	{"key":"AC7","Damage":72,"RPM":690,"Damage_reduc":2,"Repair_num":2340,"Min_damage":41,"Min_range":14,"Class":"R","Archetype":"R","Shop_name":"ar05_shop","File_name":"@ar05_shop_name"},
 	{"key":"AY 551","Damage":73,"RPM":670,"Damage_reduc":1.5,"Repair_num":6240,"Min_damage":51,"Min_range":13.5,"Class":"R","Archetype":"R","Shop_name":"ar08_shop","File_name":"@ar08_shop_name"},
@@ -138,7 +141,7 @@ Gloves
 	{"key":"R16A2 LMG","Damage":60,"RPM":650,"Damage_reduc":2,"Repair_num":1872,"Min_damage":45,"Min_range":11.5,"Class":"R","Archetype":"R","Shop_name":"mg21_shop","File_name":"@mg21_shop_name"},
 	{"key":"R60E4","Damage":75,"RPM":500,"Damage_reduc":2.2,"Repair_num":5400,"Min_damage":40,"Min_range":13,"Class":"R","Archetype":"R","Shop_name":"mg12_shop","File_name":"@mg12_shop_name"},
 	{"key":"R4A1","Damage":55,"RPM":680,"Damage_reduc":2,"Repair_num":0,"Min_damage":45,"Min_range":11,"Class":"R","Archetype":"R","Shop_name":"ar02_shop","File_name":"@ar02_shop_name"},
-	{"key":"R16A4","Damage":75,"RPM":335,"Damage_reduc":2,"Repair_num":6240,"Min_damage":45,"Min_range":14,"Class":"R","Archetype":"R","Shop_name":"ar12_shop","File_name":"@ar12_shop_name"},
+	{"key":"R16A4","Damage":82,"RPM":655,"Damage_reduc":2,"Repair_num":6240,"Min_damage":45,"Min_range":14.5,"Class":"R","Archetype":"R","Shop_name":"ar12_shop","File_name":"@ar12_shop_name"},
 	{"key":"Garota","Damage":200,"RPM":400,"Damage_reduc":2,"Repair_num":3510,"Min_damage":75,"Min_range":70,"Class":"S","Archetype":"S","Shop_name":"sr01_shop","File_name":"@sr01_shop_name"},
 	{"key":"BT-50","Damage":350,"RPM":215,"Damage_reduc":2,"Repair_num":6990,"Min_damage":40,"Min_range":70,"Class":"S","Archetype":"S","Shop_name":"sr04_shop","File_name":"@sr04_shop_name"},
 	{"key":"Calico SNR (M917)","Damage":155,"RPM":450,"Damage_reduc":2,"Repair_num":24960,"Min_damage":75,"Min_range":70,"Class":"S","Archetype":"S","Shop_name":"sr07_shop","File_name":"@sr07_shop_name"},
@@ -167,7 +170,8 @@ Gloves
 	{"key":"Shark-443","Damage":105,"RPM":290,"Damage_reduc":1.2,"Repair_num":3900,"Min_damage":32,"Min_range":11,"Class":"A","Archetype":"A","Shop_name":"pt27_shop","File_name":"@pt27_shop_name"},
 	{"key":"R1911","Damage":120,"RPM":290,"Damage_reduc":3,"Repair_num":20000,"Min_damage":50,"Min_range":8,"Class":"A","Archetype":"A","Shop_name":"pt16_shop","File_name":"@pt16_shop_name"},
 	{"key":"Eagle Eye","Damage":125,"RPM":270,"Damage_reduc":3,"Repair_num":4000,"Min_damage":50,"Min_range":10,"Class":"A","Archetype":"A","Shop_name":"pt01_default","File_name":"@pt01_default_name"},
-	{"key":"Eagle Eye Gold","Damage":125,"RPM":270,"Damage_reduc":3,"Repair_num":4000,"Min_damage":50,"Min_range":11,"Class":"A","Archetype":"A","Shop_name":"pt01_gold01_shop","File_name":"@pt01_gold01_shop_name"},
+	{"key":"Pinkie-Micro Eagle Eye","Damage":125,"RPM":350,"Damage_reduc":1,"Repair_num":4000,"Min_damage":50,"Min_range":7,"Class":"A","Archetype":"A","Shop_name":"pt30_pink01_shop","File_name":"@pt30_pink01_shop_name"},
+	{"key":"Gold Eagle Eye","Damage":125,"RPM":270,"Damage_reduc":3,"Repair_num":0,"Min_damage":50,"Min_range":11,"Class":"A","Archetype":"A","Shop_name":"pt01_gold01_shop","File_name":"@pt01_gold01_shop_name"},
 	{"key":"Hex Autorevolver","Damage":140,"RPM":215,"Damage_reduc":1.2,"Repair_num":2184,"Min_damage":32,"Min_range":12,"Class":"A","Archetype":"A","Shop_name":"pt26_shop","File_name":"@pt26_shop_name"},
 	{"key":"P-57","Damage":100,"RPM":300,"Damage_reduc":1.2,"Repair_num":4680,"Min_damage":32,"Min_range":12,"Class":"A","Archetype":"A","Shop_name":"pt22_shop","File_name":"@pt22_shop_name"},
 	{"key":"Python","Damage":130,"RPM":230,"Damage_reduc":2,"Repair_num":4680,"Min_damage":32,"Min_range":10,"Class":"A","Archetype":"A","Shop_name":"pt02_shop","File_name":"@pt02_shop_name"},
@@ -287,7 +291,8 @@ Gloves
 	{"key":"F2000 Jade Dragon","Damage":60,"RPM":800,"Damage_reduc":2,"Repair_num":3510,"Min_damage":41,"Min_range":10,"Class":"R","Archetype":"R","Shop_name":"ar10_set03_shop","File_name":"@ar10_set03_shop_name"},
 	{"key":"M217 Jade Dragon","Damage":300,"RPM":43,"Damage_reduc":2,"Repair_num":6240,"Min_damage":40,"Min_range":70,"Class":"S","Archetype":"S","Shop_name":"sr08_set03_shop","File_name":"@sr08_set03_shop_name"},
 	{"key":"MP717 Sneakpeak","Damage":58,"RPM":900,"Damage_reduc":2.5,"Repair_num":24960,"Min_damage":45,"Min_range":7.5,"Class":"E","Archetype":"E","Shop_name":"smg41_ww2_shop","File_name":"@smg41_ww2_shop_name"},
-	{"key":"TWM X308","Damage":350,"RPM":47,"Damage_reduc":2,"Repair_num":6240,"Min_damage":75,"Min_range":80,"Class":"S","Archetype":"S","Shop_name":"sr31_shop","File_name":"@sr31_shop_name"},
+	{"key":"TWM X308","Damage":350,"RPM":49,"Damage_reduc":2,"Repair_num":0,"Min_damage":75,"Min_range":80,"Class":"S","Archetype":"S","Shop_name":"sr31_shop","File_name":"@sr31_shop_name"},
+	{"key":"Gold TWM X308","Damage":350,"RPM":50,"Damage_reduc":2,"Repair_num":0,"Min_damage":75,"Min_range":80,"Class":"S","Archetype":"S","Shop_name":"sr31_shop","File_name":"@sr31_shop_name"},
 	{"key":"MM1981/30 Sneakpeak","Damage":285,"RPM":50,"Damage_reduc":2,"Repair_num":12950,"Min_damage":75,"Min_range":70,"Class":"S","Archetype":"S","Shop_name":"sr41_shop","File_name":"@sr41_shop_name"},
 	{"key":"HMGL32A7 Oblivion Sneakpeak","Damage":100,"RPM":60,"Damage_reduc":2,"Repair_num":0,"Min_damage":11,"Min_range":70,"Class":"special","Archetype":"special","Shop_name":"gl01_zsd01_shop","File_name":"@gl01_zsd01_shop_name"},
 	{"key":"Bumblebee Sneakpeak","Damage":72,"RPM":560,"Damage_reduc":2.2,"Repair_num":3900,"Min_damage":40,"Min_range":13,"Class":"R","Archetype":"R","Shop_name":"mg10_shop","File_name":"@mg10_shop_name"},
@@ -355,7 +360,7 @@ Gloves
 	{"key":"Accuracy SEVEN","Damage":550,"Min_damage":300,"Damage_reduc":100,"Min_range":5.8,"RPM":185,"Repair_num":6990,"Pellets":10,"Class":"M","Shop_name":"shg32_shop","File_name":"@shg32_shop_name"},
 	{"key":"Richmond 870 RIS","Damage":648,"Min_damage":216,"Damage_reduc":72,"Min_range":5.5,"RPM":82,"Repair_num":5400,"Pellets":9,"Class":"M","Shop_name":"shg33_shop","File_name":"@shg33_shop_name"},
 	{"key":"Fararm S.A.T. 8 Pro","Damage":660,"Min_damage":240,"Damage_reduc":60,"Min_range":5.7,"RPM":180,"Repair_num":5760,"Pellets":10,"Class":"M","Shop_name":"shg35_shop","File_name":"@shg35_shop_name"},
-	{"key":"Gold Fararm S.A.T. 8 Pro","Damage":660,"Min_damage":240,"Damage_reduc":60,"Min_range":6.7,"RPM":180,"Repair_num":5760,"Pellets":10,"Class":"M","Shop_name":"shg35_gold01_shop","File_name":"@shg35_gold01_shop_name"}];
+	{"key":"Gold Fararm S.A.T. 8 Pro","Damage":660,"Min_damage":240,"Damage_reduc":60,"Min_range":6.7,"RPM":180,"Repair_num":0,"Pellets":10,"Class":"M","Shop_name":"shg35_gold01_shop","File_name":"@shg35_gold01_shop_name"}];
 		localStorage.setItem('weapons', JSON.stringify(weapons));
 
 		var vests = [{"key":"Default","HP":225,"RFProtection":"FALSE","Repel_shot":"FALSE","Armor_per_sec":0,"Explo_res":0,"Melee_res":0,"Special":"none","Repair_num":0,"Shop_name":"shared_vest_01","File_name":"@shared_vest_01_shop_name"},

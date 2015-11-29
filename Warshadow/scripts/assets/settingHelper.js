@@ -14,7 +14,7 @@ define(["jquery", "jqueryUI"], function ($) {
 			document.getElementById('ifADShides').style.display = "none";
 		document.getElementById('useSecondary').checked = !temp.useLP;
 		document.getElementById('allowSync').checked = temp.allowSync;
-		document.getElementById('enableRecord').checked = temp.enableRecord;
+		//document.getElementById('enableRecord').checked = temp.enableRecord;
 		document.getElementById('autoLaunch').checked = temp.autoLaunch;
 		document.getElementById('restoreOnTab').checked = temp.restoreOnTab;
 		document.getElementById('minimizeOnTab').checked = temp.minimizeOnTab;
@@ -98,7 +98,7 @@ define(["jquery", "jqueryUI"], function ($) {
 		temp.allowSync = document.getElementById('allowSync').checked;
 		temp.toggleADS = document.getElementById('toggleADS').checked;
 		temp.rightClickADS = document.getElementById('rightClickADS').checked;
-		temp.enableRecord = document.getElementById("enableRecord").checked;
+		//temp.enableRecord = document.getElementById("enableRecord").checked;
 		temp.autoLaunch = document.getElementById("autoLaunch").checked;
 		temp.closeOnEnd = document.getElementById("closeOnEnd").checked;
 		temp.restoreOnTab = document.getElementById('restoreOnTab').checked;

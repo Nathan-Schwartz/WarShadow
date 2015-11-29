@@ -15,8 +15,7 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 		},*/
 		position:{ /*my: "left+3 bottom-3", of: event, */collision: "fit"}
 	});
-	
-	//$(document).ready(function(){});
+
 		window.addEventListener('storage', function( storageEvent ){
 			//console.log("storageEvent: ", storageEvent);
 			
@@ -31,7 +30,6 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 			}
 			if(storageEvent.key=="recordingLayers"){
 				console.log("layers: ", storageEvent);
-				localStorage.setItem("layersUsed", true);
 				if(JSON.parse(localStorage.getItem("recordingLayers")) == 0 && document.getElementById("error").title == "You have pending recordings from Autocapture, please wait until they finish.")
 					$("#error").hide();
 			}
@@ -113,15 +111,15 @@ require(['windowCoreFunctions', 'jquery', 'jqueryUI', 'refreshHUD', 'recording']
 							rec.turnOn(function(){
 								rec.startCapture(successHandler.successCheck);
 								$("#error").hide();
-							});
+							}, false);
 						});
 					}else{
 						rec.startCapture(successHandler.successCheck);
 						$("#error").hide();
 					}
 				}else{
-				document.getElementById("error").title = "You have pending recordings from Autocapture, please wait until they finish.";
-				flashError();
+					document.getElementById("error").title = "You have pending recordings from Autocapture, please wait until they finish.";
+					flashError();
 				}
 			}else{
 				document.getElementById("error").title = "Please turn off AutoRecord first.";

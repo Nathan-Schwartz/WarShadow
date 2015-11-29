@@ -7,6 +7,7 @@ define(['recording', 'counters'], function(rec, counters){
 		var temp = JSON.parse(localStorage.getItem("Settings"));
 		var after = temp.Rafter*1000;
 		var before = temp.Rbefore*1000;
+		var defaultHappened = false;
 		var checkCached = document.getElementById("autoon").checked;
 		//I wanted to cache the recording layers value, but it actually messed up the calculations because it was using old values
 
@@ -266,11 +267,11 @@ define(['recording', 'counters'], function(rec, counters){
 				break;
 	//MISC
 			case "achievement_gained":																
-				if((checkCached == true)&&(temp.Rachievepic == true)){
+				if(temp.Rachievepic == true){
 					var count = 0;
 					var interval = setInterval( //The event is triggered before the achievement appears on the screen so we wait one second, then take a couple.
 						function () {
-							if(count=1)
+							if(count==1)
 								overwolf.media.takeScreenshot(
 									function(result){
 										if(result.status != "success"){
@@ -279,12 +280,11 @@ define(['recording', 'counters'], function(rec, counters){
 									}
 								);
 							count++;
-							console.log(count);
-							if(count >= 2){
+							if(count >= 4){
 								clearInterval(interval);
 							}
 						}, 
-					1000);
+					750);
 				}
 				if((checkCached == true)&&(temp.Rachievevid == true)){
 					localStorage.setItem("recordingLayers", JSON.parse(localStorage.getItem("recordingLayers"))+1);
@@ -295,9 +295,13 @@ define(['recording', 'counters'], function(rec, counters){
 				}
 				break;
 			default:
-			 console.log("default");
+				console.log("default");
+				defaultHappened = true;
 				break;
 		}
+		if(checkCached === true && defaultHappened === false)
+			localStorage.setItem("layersUsed", true);
+
 		//combo kill Rcombokill: false
 	};
 	return{nameHandler:nameHandler};

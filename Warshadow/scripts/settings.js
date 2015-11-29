@@ -142,8 +142,9 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
 		grabADS();
 	});
 
-	//menu checkboxes //
-	$("#enableRecord, #autoLaunch, #minimizeOnTab, #restoreOnTab, #closeOnEnd, #kill, #doublekill, #triplekill, #perfkill, #flagkill, #screenshot, #achievevid, #severekill, #minekill, #defibkill, #allowSync").change(function(){settingH.update();});
+	//menu checkboxes //#enableRecord, 
+	
+	$("#autoLaunch, #minimizeOnTab, #restoreOnTab, #closeOnEnd, #kill, #doublekill, #triplekill, #perfkill, #flagkill, #screenshot, #achievevid, #severekill, #minekill, #defibkill, #allowSync").change(function(){settingH.update();});
 	$("#useSecondary").click(function(){
 		settingH.update(function(){localStorage.setItem("updateTheme", true);});
 	});

@@ -15,7 +15,8 @@
 					<li><a href="#tabs-1">HUD features</a></li>
 					<li><a href="#tabs-2">Recording</a></li>
 					<li><a href="#tabs-3">StatCrack</a></li>
-					<li><a href="#tabs-4">About Me</a></li>
+					<li><a href="#tabs-4">Known Issues</a></li>
+					<li><a href="#tabs-5">About Me</a></li>
 				</ul>
 				<div id="tabs-1">					
 					<div id="HUDaccordion">
@@ -52,10 +53,15 @@
 						The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
 						</p>
 					  </div>
+					  <h3>Recording Counter</h3>
+					  <div>
+						It isn't always easy to keep track of how many videos you have recorded when you are using Auto-Record so I made a counter that tells you exactly that. 
+						It does not reset when you reset the other counters. It starts at zero every time WarShadow launches.
+					  </div>
 					  <h3>Crosshair</h3>
 					  <div>
 						<p>
-						This feature allows the user to use a custom crosshair in Warface. The user can use preloaded crosshairs or upload their own. <b>Only shows up while in-game.</b>
+							This feature allows the user to use a custom crosshair in Warface. The user can use preloaded crosshairs or upload their own. <b>Only shows up while in-game.</b>
 						</p>
 						
 						<p>
@@ -65,23 +71,28 @@
 						If you use a custom key to aim, click "Grab ADS" and push your ADS key. To make sure that the app recieved the correct key, push it again. If the text below the button flashes grey you are all finished!
 						</p>
 						<p>
-						<h4>"Uploading" your own crosshair</h4>
+						<!--h4>"Uploading" your own crosshair</h4>
 						To use a custom crosshair all you need to do is create a folder called "Crosshair" and put it on your desktop. Then get a .png file of your crosshair and put it in the folder. See below for naming the file.						
 						</p>
 						<p>
 						I have provided 10 "slots" for custom user crosshairs. The available file names are:
 						<br>
 						customX0.png, customX1.png, customX2.png, customX3.png, customX4.png, customX5.png, customX6.png, customX7.png, customX8.png, and customX9.png.
-						</p>
-						<p><b>Disclaimer:</b> Sometimes the settings page doesn't detect your ADS key and still displays "Waiting for ADS key". If this happens simply close and reopen Settings. I'm looking into the issue</p>
+						</p-->
 						</div>
 					  <h3>Problems and Troubleshooting</h3>
 					  <div>
 					  <p>
-						I do not anticipate any issues with these features, but if there are any problems please message me at WarShadowDev@gmail.com.
+					  <p><b>Crosshair:</b><br> 
+					  Sometimes the settings page doesn't detect your ADS key and still displays "Waiting for ADS key". If this happens simply close and reopen Settings. 
+					  <br>
+					  Another issue that has happened for one of the beta testers is that the crosshair was appearing and disappearing erratically. I'm looking into the issues.
+					  </p><p><b>Counters:</b><br> 
+						The only issue with the counters that I am currently aware of is an incapatibility with Cyber Horde. Kamikazes don't trigger the Overwolf "kill" event and Headshot Combos don't trigger either. For this reason Headshot Streak Avg will be 1 on cyberhorde and headshot% or kills/minute can be off by a small amount. This would have to be fixed by Warface.
+					  </p>
+						I do not anticipate any other issues with these features but if there are any please email me at WarShadowDev@gmail.com.
 					  </p>
 					  </div>
-					  
 					</div>
 				</div>
 				<div id="tabs-2">
@@ -91,20 +102,20 @@
 							<p>
 							<b>Q: Does the recording capability save past gameplay like ShadowPlay or does it do start-stop recording like more traditional programs?</b>
 							<br>
-							A: Both. Auto-Recording works like ShadowPlay, but the recording window has the option to do start-stop recordings as well.
+							A: Both. Auto-Recording and Manual Capture both save your past game-play, but you can do manual start-stop recordings as well.
 							</p><p>
 							<b>Q: Why won't the Auto-Recording box stay checked?</b>
 							<br>
-							A: It is designed to uncheck itself if the recording process didn't start correctly. This is usually because it wasn't clicked when the user had a game running and in focus. If this wasn't the issue, read more in the Problems section below.
+							A: It is designed to uncheck itself if the recording process didn't start correctly. If it ever stays clicked, it is working. This error often happens because it was clicked when the user wasn't in-game. If this wasn't the issue, try clicking the close button and restarting the app. Read more in the Problems section below.
 							</p><p>
-							<b>Q: Why does the program lag when I click Auto-Record or I click the power button in the recording window?</b>
+							<b>Q: Why does the program lag when I click some of the recording buttons?</b>
 							<br>
-							A: These buttons are both enabling the ShadowPlay feature and it takes a few seconds for Overwolf to get everything ready.
+							A: These buttons are starting the recording background process and it takes a few seconds for Overwolf to get everything ready.
 							</p><p>
-							<b>Q: Why didn't my recording save?</b>
+							<b>Q: What is a pending recording, and why do I have one?</b>
 							<br>
-							A: Do you remember the slider in Settings that lets you choose how much video you wanted to save after the auto-Recording event happened? When an Auto-Record event is triggered, my app waits that long before saving the video.
-							The reason for this, is because Overwolf only allows one recording at a time. If I didn't wait till after the time was finished, other Auto-Recording events are unsuccessful because the first call is hogging the recording.
+							A: Do you remember the slider in Settings that lets you choose how much video you wanted to save after the auto-Recording event happened? When an Auto-Record event is triggered, my app waits that long before saving the video. It is considered "pending" until it actually saves the video.
+							The reason for this is that only one recording can happen at a time. If I didn't wait till after the time was finished, the other Auto-Recording events would be unsuccessful because the first recording is hogging the feature.
 							</p><p>
 							<b>Q: Why should I use Warshadow for recording instead of ReplayHUD?</b>
 							<br>
@@ -118,11 +129,10 @@
 					  <h3>Auto-Recording</h3>
 					  <div>
 						<p>
-						  This is probably the most useful feature in my app. AutoRec records your best moments for you, so you can focus on the game. No more massive recordings that you comb through later, no more fumbling for the "Save video" Hotkey. 
-						 </p><p> Simply select which moments you want to save (this is done in settings) and click on Auto-Record in the main menu. Whenever an event happens, the app will save the video recording for you and you never have to worry about it.
+						  This is probably the most useful feature in my app. AutoRec records your best moments for you, so you can focus on playing the game. No more massive recordings that you comb through later and no more fumbling for the "Save video" Hotkey. 
+						 </p><p> Simply select which moments you want to save (this is done in settings) and click on Auto-Record in the main menu. Whenever your chosen events happen, the app will save the video recording for you and you never have to worry about it.
 						</p><p> You can choose to change the length of the recording. Don't worry about making the times too short, the app has a built in time for each event so that even if you say you want a 2 second recording, you will still get video of your whole brain annihilator.
 						</p><p> It is recommended to have a longer "after" duration if you choose a short combo. Example: If you choose to record all of the 2x headshot chains but you get 5 in a row, the video might not save the last kills.
-						All you have 
 						</p>
 					  </div>
 					  <h3>Recording Menu</h3>
@@ -131,25 +141,37 @@
 						  A low profile, simple menu that has all the controls you need to record and view your gameplay. Note that disabling the recording will uncheck the Auto-Record checkbox.
 						</p>
 					  </div>
-					  <h3>Replay Video Player</h3>
+					  <!--h3>Replay Video Player</h3>
 					  <div>
 						<p>
 						  Did you want to view the latest recording RIGHT NOW because it is just too much work to tab out? Got you covered. It is accessible from the Recording Menu. This player doesn't come out of the package pretty, and I didn't have time to add all of the bells and whistles, but it gets the job done.
 						  
 						</p>
-					  </div>
+					  </div-->
 					  <h3>Problems and Troubleshooting</h3>
 					  <div>
 					  <p>
 					  Some people are going to have errors with the recording feature. This can be due to hardware limitations, out of date graphics card, not enough memory, or other reasons.
 					  </p>
-					  <p>
-					  Unfortunately I haven't been provided with a full list of errors or their fixes. My recommendation would be to try the other encodering settings. You can try tweaking other settings as well, but I have no way of knowing what will work, nor a way to fix this error should you have it :(
-					  </p>
-					  <p>
-					   Another possible source of error is a change to the Overwolf API that does the real work making the recordings. I have implemented it to the best of my abilities, but from time to time a bug is uncovered in the API and changes are made. Obviously my app is not infallible either and from time to time there may be bugs.
-					   <br>
-					   I will strive to keep the application up to date so everyone has a positive experience with it. If you encounter any problems, or would like to make suggestions I ask that you contact me at WarShadowDev@gmail.com.
+					  <p>					  
+					  Here are a few solutions that have solved Overwolf recording issues in the past.
+					  <br>
+					    - Only close the app with the Close button. This sounds silly, but the button will disable the recording process before exiting the app, so it can help prevent conflicts.
+					  <br>
+						- Double check your Video settings to make sure they aren't too demanding for your machine.
+					  <br>
+					   - Make sure you have enough space for a recording.
+					  <br>
+					   - Check for graphics card updates.
+					  <br>
+					    - Restart your computer.
+					  <br>
+					    If none of those options work, you may consider reinstalling Overwolf but this not a guaranteed fix either.
+						
+					  <br><br>
+						The bottom line is that I'm sorry you are having an error, but I may not be able to help you. Unfortunately I haven't been provided with a full list of errors or their fixes so I have no way of knowing what will work for your specific error, nor a way to fix this error should you have it :(
+					    
+					   I will strive to keep the application up to date so everyone has a positive experience with it. If you would like to make suggestions, or if you encounter any problems that you believe to be my apps fault, I ask that you contact me at WarShadowDev@gmail.com.
 					  </p>
 					  </div>
 					</div>
@@ -182,6 +204,28 @@
 					</p>
 				</div>
 				<div id="tabs-4">
+					<p>This section is to go over some common general issues and questions regarding both my App and the Overwolf Overlay.</p>
+				
+					<p><b>Help! The buttons on the App won't click and they keep flickering when I mouse over them</b><br>
+						To fix this, click on the game, and then back on the App menu. A more permanent solution is to got to the Overwolf Settings Page on the General tab and change "Overwolf In-Game Control" to "Hitting Ctrl+Tab".
+					</p>
+					<p><b>The mouse is on the screen when I'm playing and it won't go away.</b><br>
+						This can happen when you alt-tab sometimes. Usually this means that you need to relaunch either your game or Overwolf.
+					</p>
+					<p><b>The Overwolf overlay (and Warshadow) are not popping up in my game!!</b><br>
+						This is probably because your game was running before Overwolf was. You need to restart your game and perhaps Overwolf.
+					</p>
+					
+					<p><b>Can I choose to make Warshadow not show up in my videos?</b><br>
+						Yes. Navigate to Overwolf Settings > Capture and then change the setting Recording Mode from monitor to active game. Unselect "Capture Overwolf windows". You are all set!
+					</p>
+					<p><b>Overwolf says I can't edit the Video Settings while I am recording</b><br>
+						Thats a quick one. Go to the WarShadow Main menu and then launch the Recording menu. Click the power button to turn off the recording background process and you will be able to edit the settings again!
+					</p>
+
+					
+				</div>
+				<div id="tabs-5">
 					<p>My name is Nathan and in Warface I am known as GreyPhoenix. I have played Warface since May 2014 and haven't played much since I got to Level 70.</p>
 					<p>I discovered my love of programming a few years ago when I took a C++ class but I didn't pursue programming again until I heard about the Nvidia Overwolf App Contest. This app is my first project in HTML, CSS, or Javascript. There are always things to add and fix, but I'm happy with the result and my progress.</p>
 					<p>Most played class: Medic</p>

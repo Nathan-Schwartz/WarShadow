@@ -3,6 +3,37 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 	if(JSON.parse(localStorage.getItem("firstLaunch"))){
 		recenter();
 	}
+		
+	function setTheme(){
+		if(JSON.parse(localStorage.getItem("updateTheme")) === false){
+			console.log("init theme");
+			if(!JSON.parse(localStorage.getItem("Settings")).useLP){
+				document.getElementById("content").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+			}else{
+				$('#recenter, #hide').toggleClass("orangeButton button");
+			}
+		}else{
+			console.log("updating theme");
+			$('#recenter, #hide').toggleClass("orangeButton button");
+				
+			if(!JSON.parse(localStorage.getItem("Settings")).useLP){
+				console.log("should be decorative");
+				document.getElementById("content").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+				//	document.getElementById("content").style.backgroundClip = "padding-box";
+			}else{
+				console.log("low profile");
+				document.getElementById("content").style.border = "5px solid transparent";
+			}
+		}
+	}
+	setTheme();
+	
+	
+	window.addEventListener("storage", function(e){
+		if(e.key == "updateTheme" && JSON.parse(e.newValue) === true)
+			setTheme();
+	});
+	
 	
 	function recenter(){
 		overwolf.games.getRunningGameInfo(function(result){
@@ -19,6 +50,7 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 	$("#content").fadeIn();
 	
 	var appPath = "";
+	var selected = false;
 
 	function plugin() {
         return document.querySelector('#plugin');
@@ -151,7 +183,6 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 	
 	$(document).ready(function(){setXPreview(document.getElementById("drop").value);});
 
-	document.getElementById("content").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
 	$("#drop").change(function(){setXPreview(document.getElementById("drop").value);});
 	$("#hide").mousedown (function(){
 		setX(); 
@@ -164,6 +195,8 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 		document.getElementById("downAdjust").style.display = "none";
 		document.getElementById("upAdjust").style.display = "none";
 		document.getElementById("recenter").style.display = "none";
+		document.getElementById("adjustLabel").style.display = "none";
+		selected = true;
 	});
 
 	$("#leftAdjust").click(function(){
@@ -186,6 +219,11 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 		overwolf.windows.getCurrentWindow(function(results){
 			overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), results.window.left, results.window.top-1);
 		});
+	});
+	
+	$("#content").mousedown(function(e){
+		if (!$(e.target).hasClass('noDrag') && !selected) 
+			wCore.dragMove();
 	});
 	
 	$("#recenter").click(recenter);

@@ -11,6 +11,63 @@ body{
 	text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;
 }
 
+
+
+
+
+
+.orangeButton, .subOrangeButton{
+	background: transparent;
+	color: rgb(175, 96, 66);
+	text-shadow: 1px 1px black;
+	outline: none;
+	display: block;
+	border: solid 1px rgb(175, 96, 66);
+	text-align: center;
+    padding: 3px; 
+    width:140px;
+	-webkit-box-shadow: inset 1px 1px rgb(100,24,0), 1px 1px rgb(100,24,0);
+	font-weight: bold;
+}
+.orangeButton:hover, .subOrangeButton:active{
+	background: rgb(56, 22, 10);
+	outline: none;
+}
+.orangeButton:active{
+	background: rgb(92, 32, 8);
+	color: white;
+	outline: none;
+}
+.subOrangeButton:hover{
+	background: rgba(56, 22, 10,.8);
+	outline: none;
+}
+
+
+
+.orangeSmallButton:hover{
+	background: rgb(56, 22, 10);
+	box-shadow: inset 1px 1px rgb(100,24,0), 1px 1px rgb(100,24,0);
+	border: solid 1px rgb(175, 96, 66);
+}
+.orangeSmallButton{
+	width: 20px;
+	height: 20px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	font-family: Helvetica;
+	color: #ffffff;
+	background: transparent;
+	font-weight: bold;
+	border: solid 1px rgb(100,101,103);
+	outline: none;
+	text-align: center;
+    box-shadow: inset 1px 1px rgb(33,34,36), 1px 1px rgb(33,34,36);
+	display: block;
+	position: absolute;
+}
+
+
 #preview{
 	position: relative;
 	top: 10px;
@@ -22,10 +79,18 @@ body{
 	position:relative;
 }
 
+#adjustLabel{
+	position: absolute;
+	bottom:30px;
+	left:5px;
+	width: 100px;
+	overflow: hidden;
+}
+
 #recenter{
 	position: absolute;
 	bottom:5px;
-	left:5px;
+	left:30px;
 	width: 100px;
 	overflow: hidden;
 }
@@ -59,7 +124,7 @@ body{
 	height:10px;
 	width:10px;
 	position: absolute;
-	bottom: 10px;
+	bottom: 35px;
 	right:25px;
 	z-index:40;
 }
@@ -68,7 +133,7 @@ body{
 	width:10px;
 	position: absolute;
 	right: 15px;
-	bottom: 10px;
+	bottom: 35px;
 	-webkit-transform: rotate(180deg);
     transform: rotate(180deg);
 	z-index:40;
@@ -79,7 +144,7 @@ body{
 	position: absolute;
 	-webkit-transform: rotate(270deg);
     transform: rotate(270deg);
-	bottom: 7px;
+	bottom: 32px;
 	right:3px;
 	z-index:40;
 }	
@@ -90,15 +155,15 @@ body{
 	-webkit-transform: rotate(90deg);
     transform: rotate(90deg);
 	right:2px;
-	bottom:15px;
+	bottom:40px;
 	z-index:40;
 }
 
 #content{
-	background: rgba(150, 150, 150, .5);
+	background: rgba(5, 5, 5, 0.5);
 	position:relative;
 	width:150px;
-	height:185px;
+	height:210px;
 	border: 5px solid transparent;
 	margin: 0 auto;
 	display: none;

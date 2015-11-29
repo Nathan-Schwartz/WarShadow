@@ -1,6 +1,6 @@
 define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 
-		//clearAll();
+	//	clearAll();
 
 	function clearAll(){
 		gData.clearStats();
@@ -63,7 +63,7 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 
 	//instead of closing to prevent errors
 	localStorage.setItem("dontRestoreRecMenu",false);
-	
+
 	localStorage.setItem("firstLaunch", false);
 
 	//localStorage.removeItem('Settings');
@@ -74,7 +74,7 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 			noADS: false,
 			toggleADS : true,
 			rightClickADS : true,
-			enableRecord: false,
+			//enableRecord: false,
 			autoLaunch: true,
 			restoreOnTab: true,
 			minimizeOnTab: true,

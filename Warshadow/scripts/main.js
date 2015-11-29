@@ -1,93 +1,36 @@
 require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "launchManager", "spectrum", 'counters'], function($, jqueryUI, localStorageInit, gEvent, wCore, rHUD, rec, launcher, spectrum, counters){ 
 /*
- !!! need failsafes for capture hotkey
  
 	Kix has random ADS toggle problems
 
 	Crosshair isn't loading cuz its not in extension folder yet
-	
-	Shadowplay compat issues
 
-	After layers expire the manual recording feature breaks, but only after.
-SoLUTION:
-disable and reenable recording onclick of start recording button
-
-	
-
-	info page
-	-recording counter
-	-recording window behavior
-	-theme
-	-crosshair
-	-known issues: shadowplay, mouse for kix, alt-tab probs, overwolf is in beta, overwolf not reaching game, mouse unhinged, flashing buttons
-	
-	make mediaplayer buttons
 	crashing when exiting settings page due to ADS key grab
 	image sprites
 	MainWindow resize window not working with name, only ID
 	hotkey ideas??
 	disable_restore_animation on what windows
 	get overwolf language and make the app that language as well
-	
-	Goals:
-JSON sync gear data
-image recognition?
-Multi-lingual
-working media player
-working hotkeys
-Fancy Info page
-
-
-TESTING
-Have kix try:
-shadowplay (what has right of way?)
-autorecord button working for him?
-
-flash error
--pending recordings
--autocapture
-
-close error
--manual still going
--pending recordings
-
-new gameEventHandler should be tested
-launch enabled recording
-
-After layers expire the manual recording feature breaks, but only after.
-SoLUTION:
-disable and reenable recording onclick of start recording button
 
 -------------------------------------
 new input tracker thingy
 
-apply theme to recording menu and crosshair menu
-
-track recordings in wait
 
 zombie issues
 -kamikaze doesn't count, even on headshots
 -shields?
 
-
-Info known Issues tab?
--flashing buttons
--mouse coming "unhinged"
-
-
-should the replay window exist
-pop up window style
 crosshair bullshit
 test recording game events
-
-add color customization to info and tutorial?
-
-	
-	
 	
 */	
 
+	
 
+/*
+overwolf.games.inputTracking.onKeyUp.addListener(function(data){console.log("keypress data", data);});
+overwolf.games.inputTracking.onMouseUp.addListener(function(data){console.log("mousepress data", data);});
+*/
 	function setTheme(){
 		if(JSON.parse(localStorage.getItem("updateTheme")) === false){
 			console.log("init theme");
@@ -136,7 +79,7 @@ add color customization to info and tutorial?
 	
 	$("#content").fadeIn();
 
-	$( document ).tooltip({
+	$(document).tooltip({
 		track: true,
 		show:{delay:1000},
 		hide:false,
@@ -146,7 +89,7 @@ add color customization to info and tutorial?
 		position:{ my: "left+3 bottom-3", of: event, collision: "fit"}
 	});
 
-	$( "#autoCapConflict" ).dialog({
+	$("#autoCapConflict").dialog({
 		autoOpen: false,
 		resizable: false,
 		draggable: false,
@@ -162,7 +105,7 @@ add color customization to info and tutorial?
 			}
 		}
 	});
-	$( "#closeDialog, #closeDialog2" ).dialog({
+	$("#closeDialog").dialog({
 		autoOpen: false,
 		resizable: false,
 		draggable: false,
@@ -186,7 +129,7 @@ add color customization to info and tutorial?
 	});
 
 	var dialogCounter = 1;
-	$( "#dialog" ).dialog({
+	$("#dialog").dialog({
 		autoOpen: false,
 		resizable: false,
 		draggable: false,
@@ -421,6 +364,12 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		}
 	);
 
+	
+	window.onbeforeunload = function(event) {
+		alert("unloading");
+		console.log("unloading");
+		rec.turnOff();
+	};
 
 	window.addEventListener("storage", function(e){
 		console.log("storageEvent: ", e);
@@ -438,8 +387,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		if(e.key=="recordingLayers"){
 			if(JSON.parse(localStorage.getItem("recordingLayers")) < 0)
 				alert("We broke science");
-		}
-			
+		}		
 	});
 	
 	overwolf.settings.registerHotKey("resetCounters", function(arg) {
@@ -516,11 +464,17 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 	$("#close").click(function(){
 		if(JSON.parse(localStorage.getItem("manualRecordingOn")) === false){
 			if(JSON.parse(localStorage.getItem("recordingLayers")) == 0)
-				rec.turnOff(function(){wCore.closeWindow();});
+				rec.turnOff(function(){
+					wCore.closeWindow();
+				});
 			else
 				$( "#closeDialog" ).dialog( "open" );
 		}else{
-			$( "#closeDialog2" ).dialog( "open" );
+			rec.finishCapture(function(result){
+				rec.turnOff(function(){
+					wCore.closeWindow();
+					});
+			});
 		}
 	});
 	$("#cold").click(function(){window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=352301863");});

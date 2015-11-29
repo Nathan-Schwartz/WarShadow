@@ -217,7 +217,7 @@
 				"passthrough": true
 			},
 			"capture": {
-				"title": "Capture",
+				"title": "Manual Capture",
 				"action-type": "custom",
 				"default": "Num 7",
 				"passthrough": true

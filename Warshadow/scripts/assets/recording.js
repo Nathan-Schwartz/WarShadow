@@ -12,7 +12,7 @@ define(["refreshHUD"], function(rHUD){
 		return false;
 	};
 
-	function turnOn(callback){
+	function turnOn(callback, notifyUser){
 		overwolf.media.replays.turnOn(
 			{}, 
 			function(result) {
@@ -24,13 +24,9 @@ define(["refreshHUD"], function(rHUD){
 					rHUD.refreshHelper(true,"popup");
 				}else{
 					if(result.error != "Already turned on."){
-						//var myArr = JSON.parse(localStorage.getItem("errorList"));
-						//var myError = "Enable Recording Error:" + result.error;
-						//myArr.push(myError);
-						//localStorage.setItem("errorList", JSON.stringify(myArr));
 						alert("I'm sorry, the recording feature wasn't able to start properly. Overwolf says the error is: " + result.error + "\n \nLook at the Info page to learn more.");
 					}else if(result.error == "Already turned on." && JSON.parse(localStorage.getItem('recordingOn')) === false){
-						alert("Another app hijacked the recording feature!! \n\n You probably have another Overwolf recording/streaming app. If thats not the case you may have ShadowPlay.\n\n If you have ShadowPlay, you may need to turn off or disable it and then restart your computer. \n\n Learn more in the Info page");
+						alert("There was an error. My app seems to think that another app stole the recording feature. If you you are using another app for recordings, please turn it off. Another possibility is that you aren't using the close button to close the app. \n\n Close and reopen the app, then try recording again. \n\nIf the problem persists, please check the Info page.");
 					}
 				}
 				if(isFunction(callback))
@@ -74,7 +70,7 @@ define(["refreshHUD"], function(rHUD){
 	};
 
 	function finishCapture(callback){
-		overwolf.media.replays.finishCapture(url, function(result){
+		overwolf.media.replays.finishCapture(localStorage.getItem("url"), function(result){
 			//console.log("finish Capture", result);
 			
 			if(isFunction(callback))
@@ -124,7 +120,7 @@ define(["refreshHUD"], function(rHUD){
 								capture(before, after, callback, true, recurseCount+1);
 							},300);
 						}else{
-							alert("failed-already capturing, executing callback");
+							//alert("failed-already capturing, executing callback");
 							if(isFunction(callback))
 								callback(result);
 						}
@@ -143,7 +139,7 @@ define(["refreshHUD"], function(rHUD){
 								capture(before, after, callback, true, recurseCount+1);
 							},300);
 						}else{
-							alert("failed-not capturing, executing callback");
+							//alert("failed-not capturing, executing callback");
 							if(isFunction(callback))
 								callback(result);
 						}

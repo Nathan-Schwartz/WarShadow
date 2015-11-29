@@ -16,14 +16,14 @@
 	</head>
 	<body>
 		<div id="content">
-			<img src="../images/adjust.png" id="leftAdjust" class="draggable" alt="left">
-			<img src="../images/adjust.png" id="rightAdjust" class="draggable" alt="right">
-			<img src="../images/adjust.png" id="downAdjust" class="draggable" alt="down">
-			<img src="../images/adjust.png" id="upAdjust" alt="up">
+			<img src="../images/adjust.png" id="leftAdjust" class="noDrag" alt="left">
+			<img src="../images/adjust.png" id="rightAdjust" class="noDrag" alt="right">
+			<img src="../images/adjust.png" id="downAdjust" class="noDrag" alt="down">
+			<img src="../images/adjust.png" id="upAdjust" class="noDrag" alt="up">
 			<div id="form">
-				<select id="drop">
+				<select id="drop" class="noDrag">
 					<option value="default1">Popty's</option>
-					<option value="default2">Imouto's</option>
+					<option value="default2">*Renegade*'s</option>
 					<option value="default3">--DAVE--'s</option>
 					<option value="default4">KiXSTAr's</option>
 					<option value="default5">Rigga's</option>
@@ -31,10 +31,11 @@
 					
 				</select>
 				<br>
-				<button id="hide" class="button">Select</button>
+				<button id="hide" class="button noDrag">Select</button>
 			</div> 
 			<div id="preview"> </div>
-			<button id="recenter" class="button">Recenter</button>
+			<button id="recenter" class="button noDrag">Recenter</button>
+			<div id="adjustLabel">Micro Adjust:</div>
 		</div>
 	<script>
 	require(["requireConfig"], function(){
