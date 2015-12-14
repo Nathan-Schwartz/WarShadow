@@ -47,6 +47,7 @@ define(function(){
 			var headshot5 = JSON.parse(localStorage.getItem("headshot5"));
 			headshot5++;
 			localStorage.setItem("headshot5", headshot5);
+			alert("brain annihilator was incremented");
 		}else
 			console.log('invalide number sent to increment HS');
 	};
@@ -67,9 +68,9 @@ define(function(){
 			val = JSON.parse(localStorage.getItem("headshot3"));
 		else if(num == 4)
 			val = JSON.parse(localStorage.getItem("headshot4"));
-		else if(val == 5)
+		else if(num == 5){
 			val = JSON.parse(localStorage.getItem("headshot5"));
-		else
+		}else
 			console.log('invalide number sent to get HS');
 		return val;
 	};

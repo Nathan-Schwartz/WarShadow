@@ -15,8 +15,8 @@ require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters
 		//old kill feed method var NumberofChainsPRESINGLE = headshot5 + (headshot4-headshot5) + (headshot3 - headshot4 - headshot5) + (headshot2 - headshot3 - headshot4 - headshot5); //since the triple headshots also triggers double headshot event, we need to weed out duplicates. Can't include singles cuz we don't know which ones were part of chains.
 		//old kill feed method var HSfromChains = (headshot5 * 5) + ((headshot4 - headshot5) * 4) + ((headshot3 - headshot4 - headshot5) * 3) + ((headshot2 - headshot3 - headshot4 - headshot5) * 2); //We need this to figure out how many headshots were singles
 
-		var NumberofChainsPRESINGLE = headshot1 + headshot2 + headshot3 + headshot4 + headshot5;
-		var HSfromChains = headshot1 + headshot2*2 + headshot3*3 + headshot4*4 + headshot5*5;
+		var NumberofChainsPRESINGLE = headshot2 + headshot3 + headshot4 + headshot5;
+		var HSfromChains = headshot2*2 + headshot3*3 + headshot4*4 + headshot5*5;
 		var NumberofSingleHS = headshot1 - HSfromChains; //number of singles
 		var NumberofChains = NumberofSingleHS + NumberofChainsPRESINGLE; //add the number of singles to the number of chains cuz we are counting them.
 		var AverageChainLength = headshot1 / NumberofChains;
@@ -26,7 +26,7 @@ require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters
 	}
 		
 	window.addEventListener('storage', function( storageEvent ){
-		if(storageEvent.key == "headshot1" || storageEvent.key == "headshot2" || storageEvent.key == "headshot3" || storageEvent.key == "4" || storageEvent.key == "5")
+		if(storageEvent.key == "headshot1" || storageEvent.key == "headshot2" || storageEvent.key == "headshot3" || storageEvent.key == "headshot4" || storageEvent.key == "headshot5")
 			document.getElementById("HSchains").innerHTML = avgChain() + " Avg";
 	});
 	

@@ -271,7 +271,7 @@ define(['recording', 'counters'], function(rec, counters){
 					var count = 0;
 					var interval = setInterval( //The event is triggered before the achievement appears on the screen so we wait one second, then take a couple.
 						function () {
-							if(count==1)
+							if(count>1)
 								overwolf.media.takeScreenshot(
 									function(result){
 										if(result.status != "success"){

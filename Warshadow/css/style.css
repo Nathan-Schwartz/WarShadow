@@ -106,17 +106,13 @@
 	-webkit-box-shadow: inset 1px 1px rgb(100,24,0), 1px 1px rgb(100,24,0);
 	font-weight: bold;
 }
-.orangeButton:hover, .subOrangeButton:active{
+.orangeButton:hover, .subOrangeButton:hover{
 	background: rgb(56, 22, 10);
 	outline: none;
 }
-.orangeButton:active{
+.orangeButton:active, .subOrangeButton:active{
 	background: rgb(92, 32, 8);
 	color: white;
-	outline: none;
-}
-.subOrangeButton:hover{
-	background: rgba(56, 22, 10,.8);
 	outline: none;
 }
 

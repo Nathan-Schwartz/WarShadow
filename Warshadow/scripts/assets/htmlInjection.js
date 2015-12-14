@@ -122,6 +122,7 @@ define( function(){
 		"<option value='R4A1 Winter'>R4A1 Winter </option>" +
 		"<option value='R4A1 Basic'>R4A1 Basic </option>" +
 		"<option value='R16A4'>R16A4 </option>" +
+		"<option value='Gold R16A4'> Gold R16A4 Sneakpeak</option>" +
 		"<option value='Bumblebee Sneakpeak'>Bumblebee Sneakpeak </option>" +
 		"<option value='AR88 Sneakpeak'>AR88 Sneakpeak </option>" +
 	"</optgroup>" +

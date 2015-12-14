@@ -163,12 +163,12 @@ overwolf.games.inputTracking.onMouseUp.addListener(function(data){console.log("m
 					}else if(dialogCounter == 8){
 						document.getElementById("page8").style.display = "block";
 						document.getElementById("page7").style.display = "none";
-					}else if(dialogCounter == 9){
+					}/*else if(dialogCounter == 9){
 						document.getElementById("page9").style.display = "block";
 						document.getElementById("page8").style.display = "none";
-					}
+					}*/
 					
-					if(dialogCounter > 9){
+					if(dialogCounter > 8){
 						$( this ).dialog( "close" );
 						rHUD.refreshHelper(true, 'Settings');
 					}
