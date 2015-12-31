@@ -19,12 +19,12 @@ Can be found on the Overwolf App store here: http://store.overwolf.com/app/Natha
 * The CSS is a mess. (My main focus was learning Javascript and I didn't have time to consolidate the CSS before submitting the app.)
 
 
-###settings.js
+######settings.js
 Changes to settings are sent to localStorage via update() from settingHelper.js
 When the settings window is opened it will load the users current settings via load() from settingHelper.js
 These settings are checked via localStorage by many different functions to ensure that the program behaves according to user preference.
 
-###main.js
+#####main.js
 Launching the app (both manually and automatically) is handled by launchManager.js
 Handles launching all windows via refreshHUD.js
 Listens for in-game events such as kills and headshots.  These are are handled by gameEventHandler.js
