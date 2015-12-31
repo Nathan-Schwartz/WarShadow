@@ -14,24 +14,25 @@ Can be found on the Overwolf App store [here](http://store.overwolf.com/app/Nath
 * The CSS is a mess. (My main focus was learning Javascript and I didn't have time to consolidate the CSS before submitting the app.)
 
 
-######settings.js
+**settings.js**<br>
 Changes to settings are sent to localStorage via update() from settingHelper.js
 When the settings window is opened it will load the users current settings via load() from settingHelper.js
-These settings are checked via localStorage by many different functions to ensure that the program behaves according to user preference. <br><br>
-#####main.js
+These settings are checked via localStorage by many different functions to ensure that the program behaves according to user preference.
+
+**main.js**<br>
 Launching the app (both manually and automatically) is handled by launchManager.js
 Handles launching all windows via refreshHUD.js
 Listens for in-game events such as kills and headshots.  These are are handled by gameEventHandler.js
 This file also reacts to changes in game state such as tab-in, tab-out, and closing the game. 
 
-###gameEventHandler.js 
+**gameEventHandler.js**<br>
 This file will figure out which event occured and increment the necessary counters in counters.js
 It will also read settings and if the user wants to record on certain events it will invoke a recording through recording.js
 
-**HSChains.js  HSCounter.js  HSPercent.js  SmokeTimer.js  recCount.js  KPminute.js** 
+**HSChains.js  HSCounter.js  HSPercent.js  SmokeTimer.js  recCount.js  KPminute.js**<br>
 These all correspond to HUD elements that mostly track in-game statistics and recieve their data from counters.js which is updated by gameEventHandler.js 
 
-**StatCrack.js** 
+**StatCrack.js**<br>
 This feature utilizes more files than any other in my project. 
 <nutshell> There are 3 tabs. tab1 calculates damages. tab2 calculates repair costs. tab3 displays armor values </nutshell>
 
@@ -52,13 +53,13 @@ recalculates and prints the tables that are displayed for comparisons in the sid
 * tab3:
 printArmorTab.js does exactly what you would expect of it.
 
-**htmlInjection.js** 
+**htmlInjection.js**<br>
 This stores lists of options for drop down menus. These are appended to the innerHTML of 6 different select boxes and save 1000+ lines of HTML code.
 
-**recordingMenu.js** 
+**recordingMenu.js**<br> 
 Offers 2 different recording types and a compact interface for using them. Implements several checks to ensure that no conflict with autorecording is made.
 
-**crosshair.js** 
+**crosshair.js**<br>
 Provides previews of various crosshairs and 3 different ways of adjusting the crosshair position.
 
 
