@@ -1,17 +1,12 @@
 # WarShadow
 
 This is my first HTML/CSS/JS project ever! It isn't perfect but I'm happy with the progress I've made while working on it.
-I have submitted it in the Nvidia Overwolf App Contest. Winners should be announced on the 4th of January on this page: http://www.overwolf.com/nvidia-app-challenge/.
+I have submitted it in the Nvidia Overwolf App Contest. Winners should be announced on the 4th of January [here](http://www.overwolf.com/nvidia-app-challenge/).
 
-Can be found on the Overwolf App store here: http://store.overwolf.com/app/Nathan-Schwartz
-
-
-
-
+Can be found on the Overwolf App store [here](http://store.overwolf.com/app/Nathan-Schwartz).
 
 
 *A brief explanation of the app is below.*
-
 * The program opens main.html first.
 * All .html files are in the /html folder.
 * All .js files that correspond to an html file are in the /scripts folder.
@@ -22,8 +17,7 @@ Can be found on the Overwolf App store here: http://store.overwolf.com/app/Natha
 ######settings.js
 Changes to settings are sent to localStorage via update() from settingHelper.js
 When the settings window is opened it will load the users current settings via load() from settingHelper.js
-These settings are checked via localStorage by many different functions to ensure that the program behaves according to user preference.
-
+These settings are checked via localStorage by many different functions to ensure that the program behaves according to user preference. <br><br>
 #####main.js
 Launching the app (both manually and automatically) is handled by launchManager.js
 Handles launching all windows via refreshHUD.js
