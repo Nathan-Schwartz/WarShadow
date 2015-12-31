@@ -4,14 +4,16 @@ This is my first HTML/CSS/JS project ever! It isn't perfect but I'm happy with t
 I have submitted it in the Nvidia Overwolf App Contest. Winners should be announced on the 4th of January [here](http://www.overwolf.com/nvidia-app-challenge/).
 
 Can be found on the Overwolf App store [here](http://store.overwolf.com/app/Nathan-Schwartz).
+<br><br><br>
 
-
-*A brief explanation of the app is below.*
+Organization
 * The program opens main.html first.
 * All .html files are in the /html folder.
 * All .js files that correspond to an html file are in the /scripts folder.
 * All of the other .js files I wrote are helpers and are found in /scripts/assets. The ones I didn't are in /scripts/lib
 * The CSS is a mess. (My main focus was learning Javascript and I didn't have time to consolidate the CSS before submitting the app.)
+
+Brief explanation of files
 
 
 **settings.js**<br>
