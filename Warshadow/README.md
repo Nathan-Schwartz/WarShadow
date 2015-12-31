@@ -6,15 +6,14 @@ I have submitted it in the Nvidia Overwolf App Contest. Winners should be announ
 Can be found on the Overwolf App store [here](http://store.overwolf.com/app/Nathan-Schwartz).
 <br><br><br>
 
-Organization
+####Organization 
 * The program opens main.html first.
 * All .html files are in the /html folder.
 * All .js files that correspond to an html file are in the /scripts folder.
 * All of the other .js files I wrote are helpers and are found in /scripts/assets. The ones I didn't are in /scripts/lib
 * The CSS is a mess. (My main focus was learning Javascript and I didn't have time to consolidate the CSS before submitting the app.)
-
-Brief explanation of files
-
+<br><br>
+####Brief explanation of files
 
 **settings.js**<br>
 Changes to settings are sent to localStorage via update() from settingHelper.js
