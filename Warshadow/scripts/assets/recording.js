@@ -84,14 +84,11 @@ define(["refreshHUD"], function(rHUD){
 	};
 
 	function capture(before, after, callback, recursed, recurseCount){
-//		var dealtWith = recursed || false;
-//		var recursionCounter = recurseCount || 0;
 		overwolf.media.replays.capture(before, after,
 			function(result){
 				console.log("finishEnded",result);
 				if(result.status== "success"){
 					localStorage.setItem("recordingCount", JSON.parse(localStorage.getItem("recordingCount")) + 1);
-					//console.log("it should have updated recCounter in finishEnded");
 				}
 				if(isFunction(callback))
 					callback(result);
@@ -101,11 +98,7 @@ define(["refreshHUD"], function(rHUD){
 				console.log("prefinish",result);
 				if(result.status== "success"){
 					localStorage.setItem("url", result.url);
-					overwolf.media.replays.finishCapture(result.url,
-						function(result){
-							//console.log('finishCalled',result);
-						}
-					);
+					overwolf.media.replays.finishCapture(result.url);
 				}else if(result.error == "Replay is already capturing."){
 					console.log("Replay is already capturing.");
 					if(!recursed){
@@ -120,7 +113,7 @@ define(["refreshHUD"], function(rHUD){
 								capture(before, after, callback, true, recurseCount+1);
 							},300);
 						}else{
-							//alert("failed-already capturing, executing callback");
+							//already capturing, executing callback
 							if(isFunction(callback))
 								callback(result);
 						}
@@ -139,7 +132,7 @@ define(["refreshHUD"], function(rHUD){
 								capture(before, after, callback, true, recurseCount+1);
 							},300);
 						}else{
-							//alert("failed-not capturing, executing callback");
+							//capture failed entirely, executing callback
 							if(isFunction(callback))
 								callback(result);
 						}

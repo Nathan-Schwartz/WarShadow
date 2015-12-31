@@ -133,7 +133,7 @@
 				"ignore_keyboard_events":true,
 				"grab_keyboard_focus": false,
 				"disable_restore_animation": true,
-				"in_game_only": true
+				"in_game_only": false
 			},
 			"popup":{
 				"file":"html/popup.html",
