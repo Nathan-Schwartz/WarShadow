@@ -99,7 +99,7 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 		});
 	};
 
-	(function(){ // !!! figure out where to grab files from before releasing
+	(function(){
 		appPath += "\\images\\";
 		for(var i=0; i<10;i++){
 			(function(j){

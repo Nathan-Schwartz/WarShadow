@@ -100,7 +100,7 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 		};
 		localStorage.setItem('Settings', JSON.stringify(Settings));
 		console.log("Settings: " + localStorage.getItem('Settings'));
-		setTimeout( function(){$( "#dialog" ).dialog( "open" );}, 100);// !!!I would use a callback but none was provided.
+		setTimeout( function(){$( "#dialog" ).dialog( "open" );}, 100);//I would use a callback but none was provided.
 		localStorage.setItem("firstLaunch", true);
 	}
 
