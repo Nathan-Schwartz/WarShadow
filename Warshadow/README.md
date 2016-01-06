@@ -1,9 +1,9 @@
 # WarShadow
 
 This is my first HTML/CSS/JS project ever! It isn't perfect but I'm happy with the progress I've made while working on it.
-I have submitted it in the Nvidia Overwolf App Contest. Winners should be announced on the 4th of January [here](http://www.overwolf.com/nvidia-app-challenge/).
+I submitted this project in the Nvidia Overwolf App Contest that started fall of 2015. I was pleased to learn that I placed first in the Media API division of the Warface category! Results were posted [here](http://www.overwolf.com/nvidia-app-challenge/).
 
-Can be found on the Overwolf App store [here](http://store.overwolf.com/app/Nathan-Schwartz).
+The app itself can be found on the Overwolf App store [here](http://store.overwolf.com/app/Nathan-Schwartz).
 <br><br>
 
 ####Organization 
