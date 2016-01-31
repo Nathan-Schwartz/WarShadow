@@ -77,18 +77,6 @@
 				"ignore_keyboard_events":true,
 				"disable_restore_animation": true
 			},
-			"KDR":{
-				"file":"html/KDR.html",
-				"transparent":true,
-				"resizable":false,
-				"size":{"width":140, "height":50},
-				"min_size":{"width":25, "height":25},
-				"max_size":{"width":300, "height":500},
-				"show_in_taskbar": false,
-				"grab_keyboard_focus": false,
-				"ignore_keyboard_events":true,
-				"disable_restore_animation": true
-			},
 			"KPminute":{
 				"file":"html/KPminute.html",
 				"transparent":true,
@@ -174,17 +162,6 @@
 				"size":{"width":450, "height":600},
 				"grab_keyboard_focus": true,
 				"show_minimize": true
-			},
-			"Replay":{
-				"file":"html/Replay.html",
-				"transparent":true,
-				"resizable":false,
-				"size":{"width":1000, "height":1000},
-				"min_size":{"width":25, "height":10},
-				"show_in_taskbar": false,
-				"grab_keyboard_focus": false,
-				"disable_restore_animation": true,
-				"ignore_keyboard_events":false
 			},
 			"Recording":{
 				"file":"html/recordingMenu.html",
