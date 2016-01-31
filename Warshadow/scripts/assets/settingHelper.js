@@ -3,15 +3,11 @@ define(["jquery", "jqueryUI"], function ($) {
 	function load(){//Load window with the most recent settings
 		var temp = JSON.parse(localStorage.getItem("Settings"));
 		
-		document.getElementById('toggleADS').checked = temp.toggleADS;
-		document.getElementById('holdADS').checked = !temp.toggleADS;
-		document.getElementById('rightClickADS').checked = temp.rightClickADS;
-		if(!document.getElementById('rightClickADS').checked)
-			$("#inputADSContainer").fadeIn();// altering the value doesn't trigger "changed" so we have to manually display it.
-
-		document.getElementById('noADS').checked = temp.noADS;
-		if(document.getElementById('noADS').checked)
-			document.getElementById('ifADShides').style.display = "none";
+		//document.getElementById('toggleADS').checked = temp.toggleADS;
+		//document.getElementById('holdADS').checked = !temp.toggleADS;
+		//document.getElementById('noADS').checked = temp.noADS;
+		//if(document.getElementById('noADS').checked)
+		//	document.getElementById('ifADShides').style.display = "none";
 		document.getElementById('useSecondary').checked = !temp.useLP;
 		document.getElementById('allowSync').checked = temp.allowSync;
 		//document.getElementById('enableRecord').checked = temp.enableRecord;
@@ -94,10 +90,10 @@ define(["jquery", "jqueryUI"], function ($) {
 		var temp = JSON.parse(localStorage.getItem("Settings"));
 	
 		temp.useLP = !document.getElementById('useSecondary').checked;
-		temp.noADS = document.getElementById('noADS').checked;
+		//temp.noADS = document.getElementById('noADS').checked;
 		temp.allowSync = document.getElementById('allowSync').checked;
-		temp.toggleADS = document.getElementById('toggleADS').checked;
-		temp.rightClickADS = document.getElementById('rightClickADS').checked;
+		//temp.toggleADS = document.getElementById('toggleADS').checked;
+		//temp.rightClickADS = document.getElementById('rightClickADS').checked;
 		//temp.enableRecord = document.getElementById("enableRecord").checked;
 		temp.autoLaunch = document.getElementById("autoLaunch").checked;
 		temp.closeOnEnd = document.getElementById("closeOnEnd").checked;

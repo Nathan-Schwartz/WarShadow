@@ -23,14 +23,8 @@ zombie issues
 crosshair bullshit
 test recording game events
 	
-*/	
-
-	
-
-/*
-overwolf.games.inputTracking.onKeyUp.addListener(function(data){console.log("keypress data", data);});
-overwolf.games.inputTracking.onMouseUp.addListener(function(data){console.log("mousepress data", data);});
 */
+
 	function setTheme(){
 		if(JSON.parse(localStorage.getItem("updateTheme")) === false){
 			console.log("init theme");
@@ -79,7 +73,7 @@ overwolf.games.inputTracking.onMouseUp.addListener(function(data){console.log("m
 	
 	$("#content").fadeIn();
 
-	$(document).tooltip({
+	/*$(document).tooltip({
 		track: true,
 		show:{delay:1000},
 		hide:false,
@@ -87,7 +81,7 @@ overwolf.games.inputTracking.onMouseUp.addListener(function(data){console.log("m
 			ui.tooltip.css("max-width", "70px");
 		},
 		position:{ my: "left+3 bottom-3", of: event, collision: "fit"}
-	});
+	});*/
 
 	$("#autoCapConflict").dialog({
 		autoOpen: false,
@@ -185,23 +179,11 @@ overwolf.games.inputTracking.onMouseUp.addListener(function(data){console.log("m
 		}
 	});
 
-	function plugin() {
-        return document.querySelector('#plugin');
-	}
-	
-	(plugin() == null) ? console.log("Plugin couldn't be loaded.") : pluginListeners();
-	
 	//these variables are used as temps so that i don't have to get the settings from localStorage each time the events are triggered
-	var rightclick = true;
-	var altkey = 221;
-	var toggle = true;
-	var gamefocus = true;
-	var noADS = false;
+	/*var toggle, gamefocus, noADS;
 	function updateADS(){
-		altkey = parseInt(localStorage.getItem("ADSkey"));
 		temp = JSON.parse(localStorage.getItem("Settings"));
 		noADS = temp.noADS;
-		rightclick = temp.rightClickADS;
 		toggle = temp.toggleADS;
 		overwolf.games.getRunningGameInfo(function(info){
 			if(info === null)
@@ -209,58 +191,33 @@ overwolf.games.inputTracking.onMouseUp.addListener(function(data){console.log("m
 			else
 				gamefocus = info.isInFocus;
 		});
-		plugin().onMouseRButtonDown = null;
-		plugin().onMouseRButtonUP = null;
-		plugin().onKeyDown = null;
-		plugin().onKeyup = null;
-		pluginListeners();
+		
+		if(!noADS)
+			pluginListeners();
 	};
 	updateADS();
 
-	var zoomed = false;
 	function pluginListeners(){
-		if(noADS)
-			return false;
-		
-		var toggleCounter = 0;
-		if(rightclick && toggle){
-			plugin().onMouseRButtonDown = function (x,y) {
-				toggleCounter++;
-				toggleCounter%2 == 0 ? overwolf.windows.minimize('Crosshair') : overwolf.windows.restore('Crosshair');
-			};
-
-		}else if(rightclick && !toggle){
-			plugin().onMouseRButtonDown = function (x,y) {
-				//console.log("onMouseRButtonDown: ", x,y);
-				overwolf.windows.minimize('Crosshair');
-			};
-			plugin().onMouseRButtonUP = function (x,y) {
-				//console.log("onMouseRButtonUP: ", x,y);
-				overwolf.windows.restore('Crosshair');
-			};
-		}else if(!rightclick && toggle){
-			plugin().onKeyDown = function (e) {
-				//console.log("onKeyDown", e);
-				if(parseInt(altkey) == parseInt(e)){
+		if(toggle){
+			var toggleCounter = 0;
+			overwolf.games.inputTracking.onMouseDown.addListener(function(dat){
+				if(dat.button === "right"){
 					toggleCounter++;
 					toggleCounter%2 == 0 ? overwolf.windows.minimize('Crosshair') : overwolf.windows.restore('Crosshair');
 				}
-			};
-		}else if(!rightclick && !toggle){
-			plugin().onKeyDown = function (e) {
-				//console.log("onKeyDown", e);
-				if(parseInt(altkey) == parseInt(e)){
+			});
+
+		}else if(!toggle){
+			overwolf.games.inputTracking.onMouseDown.addListener(function(dat){
+				if(dat.button === "right")
 					overwolf.windows.minimize('Crosshair');
-				}
-			};
-			plugin().onKeyup = function (e) {
-				//console.log("onKeyUp", e);
-				if(parseInt(altkey) == parseInt(e)){
+			});
+			overwolf.games.inputTracking.onMouseUp.addListener(function(dat){
+				if(dat.button === "right")
 					overwolf.windows.restore('Crosshair');
-				}
-			};
+			});
 		}
-	};
+	};*/
 
 /*		
 overwolf.benchmarking.requestHardwareInfo(500, function(value){ console.log("hardware info requested", value);}); //if status = "success" stop requesting
@@ -381,8 +338,8 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 		if(e.key == "updateTheme" && JSON.parse(e.newValue) === true)
 			setTheme();
 
-		if(e.key == "Settings")
-			updateADS();
+		//if(e.key == "Settings")
+		//	updateADS();
 		
 		if(e.key=="recordingLayers"){
 			if(JSON.parse(localStorage.getItem("recordingLayers")) < 0)
@@ -412,20 +369,6 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			}
 		}
 	});
-	
-	/*
-	var zoomed = true;
-	overwolf.settings.registerHotKey("crosshair", function(arg) {
-		if (arg.status == "success") {
-			if(zoomed === true){
-				overwolf.windows.minimize('Crosshair');
-				zoomed = false;
-			}else if(zoomed === false){
-				overwolf.windows.restore('Crosshair');
-				zoomed = true;
-			}
-		}
-	});*/
 
 	overwolf.settings.registerHotKey("capture", function(arg){
 		rec.capture(parseInt(JSON.parse(localStorage.getItem("Settings")).Rgrab)*1000, 1);
@@ -473,12 +416,13 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 			rec.finishCapture(function(result){
 				rec.turnOff(function(){
 					wCore.closeWindow();
-					});
+				});
 			});
 		}
 	});
-	$("#cold").click(function(){window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=352301863");});
-	$("#tower").click(function(){window.open("https://steamcommunity.com/sharedfiles/filedetails/?id=299691346");});
+	$("#cold").click(function(){overwolf.utils.openUrlInOverwolfBrowser("https://steamcommunity.com/sharedfiles/filedetails/?id=352301863");}); //openUrlInDefaultBrowser
+	$("#tower").click(function(){overwolf.utils.openUrlInOverwolfBrowser("https://steamcommunity.com/sharedfiles/filedetails/?id=299691346");});
+	
 	$("#info").click(function(){rHUD.refreshHelper(true, 'Info');});
 	$("#settingsWin").click(function(){rHUD.refreshHelper(true, 'Settings');});
 	$("#settingsWin").mouseenter(function(){if(JSON.parse(localStorage.getItem("Settings")).useLP)document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsOrange.png)";});
@@ -597,7 +541,7 @@ overwolf.benchmarking.onFpsInfoReady.addListener(
 						minimizeAllWindows();
 					}
 				}
-				updateADS();
+				//updateADS();
 			}
 		}
 	);

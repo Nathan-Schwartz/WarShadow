@@ -6,12 +6,6 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
 		<title>WarShadow Options</title>
-		
-		<embed  id="plugin" 
-				type="application/x-inputtracker-plugin" 
-				width=0px 
-				height=0px>
-		</embed>
 		<script>
 			  navigator.plugins.refresh(false);
 		</script>
@@ -28,33 +22,24 @@
 			<span class="normalCheckbox"><input type="checkbox" id="restoreOnTab"><label for="restoreOnTab"></label></span><label for="restoreOnTab"> Restore WarShadow when I tab to Warface</label><br><br>
 			<!--span class="normalCheckbox"><input type="checkbox" id="enableRecord"><label for="enableRecord"></label></span><label for="enableRecord"> Enable Recording when Warshadow starts</label><br><br-->
 			<span class="normalCheckbox"><input type="checkbox" id="allowSync"><label for="allowSync"></label></span><label for="allowSync"> Update repair costs from latest game dump</label><br><br>
-			<span class="normalCheckbox"><input type="checkbox" id="useSecondary"><label for="useSecondary"></label></span><label for="useSecondary"> Use alternate theme </label><br><br>
+			<span class="normalCheckbox"><input type="checkbox" id="useSecondary"><label for="useSecondary"></label></span><label for="useSecondary"> Use alternate theme (custom colors)</label><br><br>
 			<button id='openHotkeys' class="button"> Hotkeys </button><br>
 		</fieldset>
 
-		<fieldset class="settings"><legend><b>Displays </b></legend>
+		<!--fieldset class="settings"><legend><b>Counters</b></legend>
 			
 			<b>Crosshair Settings:</b><br>
-			<span class="normalCheckbox"><input type="checkbox" id="noADS"><label for="noADS"></label></span><label for="noADS">  Don't ever turn off the crosshair</label><br>
+			<span class="normalCheckbox"><input type="checkbox" id="noADS"><label for="noADS"></label></span><label for="noADS">  Don't ever turn off the crosshair</label><br><br>
 			<span id="ifADShides">
-				<span class="normalCheckbox"><input type="checkbox" id="rightClickADS"><label for="rightClickADS"></label></span><label for="rightClickADS">  Use right click to aim down sights (ADS)</label><br><br>
-				<input type="radio" name="toggleORhold" id="toggleADS" checked> Use Toggle to aim<br>
-				<input type="radio" name="toggleORhold" id="holdADS"> Use Hold to aim<br><br>
-
-				<div id="inputADSContainer">
-					Click "Grab ADS" and then press the key you use for aiming.<br>
-					<button id="grabADS" class="button"> Grab ADS </button><br>
-					<div id="displayWhenADS">This area will flash the first few times your new ADS key is pressed</div>
-				</div>
-				<div id="Xdialog" title="Notice">
-					<p>For changes to go into effect, you will need to close and reopen Warshadow. <br><br>You can change the ADS button multiple times before restarting.</p>
-				</div>
+				<span>Use right click to aim down sights (ADS) </span><br>
+				<input type="radio" name="toggleORhold" id="toggleADS" checked>Toggle to aim<br>
+				<input type="radio" name="toggleORhold" id="holdADS">Hold to aim<br><br>
 			</span>
 			<br>
-			<b>Counter Settings:</b><br>
+			
 			<p>This button will reset the counters in the little pop up windows. An easier way is to use the Hotkey!</p>
 			<button id="resetLS" class="button"> Reset HUD Counters </button><br>
-		</fieldset>
+		</fieldset-->
 		
 
 		<fieldset  id="vidsetfield" class="settings"> <legend> <b>Video Recording Settings</b></legend> 

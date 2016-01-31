@@ -1,5 +1,7 @@
 require(['jquery', 'windowCoreFunctions'], function($, wCore){
 	
+	//overwolf.utils.openFilePicker("*", function(val){console.log(val);});
+	
 	if(JSON.parse(localStorage.getItem("firstLaunch"))){
 		recenter();
 	}
@@ -33,19 +35,6 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 		if(e.key == "updateTheme" && JSON.parse(e.newValue) === true)
 			setTheme();
 	});
-	
-	
-	function recenter(){
-		overwolf.games.getRunningGameInfo(function(result){
-			var left = result.width/2;
-			if(result.width < 1200)
-				left = left-100;
-			else
-				left = left-101;
-			
-			overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), left, (result.height/2)-133, function(result){console.log("move result", result);});
-		});
-	}
 	
 	$("#content").fadeIn();
 	
@@ -226,6 +215,10 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 			wCore.dragMove();
 	});
 	
-	$("#recenter").click(recenter);
+	$("#recenter").click(function(){
+		overwolf.games.getRunningGameInfo(function(result){
+			overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), (result.logicalWidth/2)-101, (result.logicalHeight/2)-133, function(result){console.log("move result", result);});
+		});
+	});
 });
 

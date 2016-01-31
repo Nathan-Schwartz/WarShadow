@@ -71,7 +71,7 @@ define( ["jquery","jqueryUI","gearData"], function($, ui, gData){
 		var Settings = {
 			useLP: true,
 			allowSync: true,
-			noADS: false,
+			noADS: true,
 			toggleADS : true,
 			rightClickADS : true,
 			//enableRecord: false,

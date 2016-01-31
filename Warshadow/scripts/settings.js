@@ -4,11 +4,6 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
 		window.location.hash = '#vidsetfield';
 		localStorage.setItem('optionsCalledBy', "manual");
 	}
-
-	function plugin() {
-        return document.querySelector('#plugin');
-	}
-	
 	
 	var dialogCounter = 1;
 	
@@ -30,46 +25,6 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
 			}
 		});
 	});
-	
-
-	(plugin() == null) ? console.log("Plugin couldn't be loaded??") : console.log('Plugin was loaded.');
-
-	//OK so the plan here is to grab a button when the user wants one. After 1 button is pushed, make an indicator for when it is toggled again.
-	function checkADS(){
-		console.log("checkADS");
-		var checked = 0;
-		plugin().onKeyDown = function (e) {
-			checked++;
-			var saved = parseInt(localStorage.getItem("ADSkey"));
-			if(checked > 3){
-				//do nothing
-			}else if(checked == 1){
-				$( "#Xdialog" ).dialog( "open" );
-			}else{
-				if(saved == e){
-					document.getElementById('displayWhenADS').style.backgroundColor = "gray";
-					setTimeout( function(){document.getElementById('displayWhenADS').style.backgroundColor = "white";}, 500);
-				}
-			}
-		};
-	};
-
-	function grabADS(){
-		console.log("ads called and the starting value was:", localStorage.getItem("ADSkey"));
-		//plugin().onKeyDown = null;//end checkADS's listener in case it got called before.
-
-		var set = false;
-		plugin().onKeyDown = function(e){
-			console.log("key registered", e);
-			if(set === false){
-				localStorage.setItem("ADSkey", String(e));
-				settingH.update();
-				document.getElementById("grabADS").innerHTML = "Grab ADS";
-			}
-			set = true;
-			checkADS();
-		};
-	};
 
 //Sliders
 	//before slider
@@ -134,13 +89,9 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
 		else
 			document.getElementById("showfeatures").innerHTML = "Hide Triggers";
 	});
-	$("#resetLS").click(function(){counters.resetCounters();});
+	//$("#resetLS").click(function(){counters.resetCounters();});
 	$("#openSettings").click(function(){window.location.assign('overwolf://settings/capture');});
 	$("#openHotkeys").click(function(){window.location.assign('overwolf://settings/hotkeys');});
-	$("#grabADS").click(function(){
-		document.getElementById("grabADS").innerHTML = "Waiting for button";
-		grabADS();
-	});
 
 	//menu checkboxes //#enableRecord, 
 	
@@ -148,25 +99,18 @@ require(['jquery','windowCoreFunctions', 'settingHelper', 'counters', 'jqueryUI'
 	$("#useSecondary").click(function(){
 		settingH.update(function(){localStorage.setItem("updateTheme", true);});
 	});
-
-	$("#rightClickADS").change(function(){
-		document.getElementById("rightClickADS").checked
-		? $("#inputADSContainer").fadeOut()
-		: $("#inputADSContainer").fadeIn();
-		settingH.update();
-	});
 	
-	$("#noADS").change(function(){
+	/*$("#noADS").change(function(){
 		document.getElementById("noADS").checked
 		? $("#ifADShides").fadeOut()
 		: $("#ifADShides").fadeIn();
 		settingH.update();
-	});
+	});*/
 	
 	//$("#combokill").change(function(){settingH.update();});
 	$("#slidekill").change(function(){settingH.update();});
 
 	//Menu radio
-	$("#holdADS").change(function(){settingH.update();});
-	$("#toggleADS").change(function(){settingH.update();});
+	//$("#holdADS").change(function(){settingH.update();});
+	//$("#toggleADS").change(function(){settingH.update();});
 });

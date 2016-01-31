@@ -3,14 +3,14 @@
 	"type":"WebApp",
 	"meta":{
 		"name":"WarShadow",
-		"version":"1.0.0",
-		"minimum-overwolf-version":"0.87.22",
+		"version":"1.1.0",
+		"minimum-overwolf-version":"0.91.00",
 		"author":"Nathan Schwartz",
 		"icon":"IconMouseOver.png",
 		"icon_gray":"IconMouseNormal.png",
 		"description":"All the Warface features you never knew you needed."
 	},
-	"permissions": ["Hotkeys","GameInfo", "Logging", "Media", "Microphone", "Extensions", "DesktopStreaming" ],
+	"permissions": ["Hotkeys", "GameInfo", "Logging", "Media", "Microphone", "Extensions", "DesktopStreaming", "FileSystem" ],
 	"data": {
 		"launch_events": [{
 			"event": "GameLaunch",
@@ -231,7 +231,6 @@
 		},
 		"plugins": [
 			"npIOPlugin.dll",
-			"InputTrackerPlugin.dll"
 		]
 	}
 }
