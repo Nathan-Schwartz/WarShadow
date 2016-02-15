@@ -1,12 +1,12 @@
-require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $,counters){
+require(['windowCoreFunctions', 'jquery', 'counters'], function(wCore, $, counters) {
 
-	document.getElementById("HScount").innerHTML = 0 + " Hs";
+  document.getElementById("HScount").innerHTML = 0 + " Hs";
 
-	window.addEventListener('storage', function( storageEvent ){
-		if(storageEvent.key == "headshot1"){
-			document.getElementById("HScount").innerHTML = counters.getHeadshot(1) + " Hs";
-		}
-	});
+  window.addEventListener('storage', function(storageEvent) {
+    if (storageEvent.key == "headshot1") {
+      document.getElementById("HScount").innerHTML = counters.getHeadshot(1) + " Hs";
+    }
+  });
 
-	$("#content").mousedown(wCore.dragMove);
-});		
+  $("#HUDcontainer").mousedown(wCore.dragMove);
+});

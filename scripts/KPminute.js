@@ -1,19 +1,19 @@
-require(['windowCoreFunctions', 'jquery','counters'], function(wCore, $, counters){
-			
-	document.getElementById("KPMcount").innerHTML = 0 + " K/m";
+require(['windowCoreFunctions', 'jquery', 'counters'], function(wCore, $, counters) {
 
-	(function killPerMinute(){
-		var intervals = setInterval(function(){
-			counters.incrementTime();
-			document.getElementById("KPMcount").innerHTML = Math.round((counters.getKill()*60*100)/counters.getTime())/100 + " K/m";
-		}, 1000);
-	})();
+  document.getElementById("KPMcount").innerHTML = 0 + " K/m";
 
-	window.addEventListener('storage', function( storageEvent ){
-		if(storageEvent.key == "kill"){
-			document.getElementById("KPMcount").innerHTML = Math.round((counters.getKill()*60*100)/counters.getTime())/100 + " K/m";
-		}
-	});
+  (function killPerMinute() {
+    var intervals = setInterval(function() {
+      counters.incrementTime();
+      document.getElementById("KPMcount").innerHTML = Math.round((counters.getKill() * 60 * 100) / counters.getTime()) / 100 + " K/m";
+    }, 1000);
+  })();
 
-	$("#content").mousedown(wCore.dragMove);
+  window.addEventListener('storage', function(storageEvent) {
+    if (storageEvent.key == "kill") {
+      document.getElementById("KPMcount").innerHTML = Math.round((counters.getKill() * 60 * 100) / counters.getTime()) / 100 + " K/m";
+    }
+  });
+
+  $("#HUDcontainer").mousedown(wCore.dragMove);
 });

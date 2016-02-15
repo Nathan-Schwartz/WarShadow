@@ -1,6 +1,6 @@
 require(['jquery', 'windowCoreFunctions'], function($, wCore){
 	
-	//overwolf.utils.openFilePicker("*", function(val){console.log(val);});
+	//Consider utilizing the following method for picking custom crosshairs: overwolf.utils.openFilePicker("*", function(val){console.log(val);});
 	
 	if(JSON.parse(localStorage.getItem("firstLaunch"))){
 		recenter();
@@ -10,7 +10,7 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 		if(JSON.parse(localStorage.getItem("updateTheme")) === false){
 			console.log("init theme");
 			if(!JSON.parse(localStorage.getItem("Settings")).useLP){
-				document.getElementById("content").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+				document.getElementById("CrosshairContainer").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
 			}else{
 				$('#recenter, #hide').toggleClass("orangeButton button");
 			}
@@ -19,24 +19,21 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 			$('#recenter, #hide').toggleClass("orangeButton button");
 				
 			if(!JSON.parse(localStorage.getItem("Settings")).useLP){
-				console.log("should be decorative");
-				document.getElementById("content").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
-				//	document.getElementById("content").style.backgroundClip = "padding-box";
+				document.getElementById("CrosshairContainer").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+				//	document.getElementById("CrosshairContainer").style.backgroundClip = "padding-box";
 			}else{
-				console.log("low profile");
-				document.getElementById("content").style.border = "5px solid transparent";
+				document.getElementById("CrosshairContainer").style.border = "5px solid transparent";
 			}
 		}
 	}
 	setTheme();
-	
 	
 	window.addEventListener("storage", function(e){
 		if(e.key == "updateTheme" && JSON.parse(e.newValue) === true)
 			setTheme();
 	});
 	
-	$("#content").fadeIn();
+	$("#CrosshairContainer").fadeIn();
 	
 	var appPath = "";
 	var selected = false;
@@ -93,21 +90,11 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 		for(var i=0; i<10;i++){
 			(function(j){
 				plugin().fileExists(appPath+"customX"+i+".png", function(status, i){
-					if(status){
-						console.log("it found the file");
+					if(status)
 						document.getElementById("drop").innerHTML += "<option value='customX"+String(i)+"'> Custom X"+ String(i) +"</option>";// add file to list
-					}
 				});
 			})(i);
 		}
-		/*for(var i=0; i<10;i++){
-			(function(j){
-				plugin().fileExists(plugin().DESKTOP + "/Crosshair/customX"+j+".png", function(status){
-					if(status)
-						document.getElementById("drop").innerHTML += "<option value='customX"+j+"'> Custom X"+ j +"</option>";// add file to list
-				});
-			})(i);
-		}*/
 	})();
 
 	var url = "";
@@ -175,8 +162,8 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 	$("#drop").change(function(){setXPreview(document.getElementById("drop").value);});
 	$("#hide").mousedown (function(){
 		setX(); 
-		document.getElementById("content").style.backgroundColor = 'transparent'; 
-		document.getElementById("content").style.borderImageWidth = "0px";
+		document.getElementById("CrosshairContainer").style.backgroundColor = 'transparent'; 
+		document.getElementById("CrosshairContainer").style.borderImageWidth = "0px";
 		document.getElementById("form").style.left = "25px";
 		document.getElementById("form").style.top = "52px";
 		document.getElementById("leftAdjust").style.display = "none";
@@ -187,10 +174,8 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 		document.getElementById("adjustLabel").style.display = "none";
 		selected = true;
 	});
-
 	$("#leftAdjust").click(function(){
 		overwolf.windows.getCurrentWindow(function(results){
-			console.log(results);
 			overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), results.window.left-1, results.window.top);
 		});
 	});
@@ -210,15 +195,14 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 		});
 	});
 	
-	$("#content").mousedown(function(e){
+	$("#CrosshairContainer").mousedown(function(e){
 		if (!$(e.target).hasClass('noDrag') && !selected) 
 			wCore.dragMove();
 	});
 	
 	$("#recenter").click(function(){
 		overwolf.games.getRunningGameInfo(function(result){
-			overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), (result.logicalWidth/2)-101, (result.logicalHeight/2)-133, function(result){console.log("move result", result);});
+			overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), (result.logicalWidth/2)-101, (result.logicalHeight/2)-133);
 		});
 	});
 });
-
