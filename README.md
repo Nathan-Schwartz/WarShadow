@@ -1,7 +1,6 @@
 # WarShadow
 
-This is my first HTML/CSS/JS project ever! It isn't perfect but I'm happy with the progress I've made while working on it.
-I submitted this project in the Nvidia Overwolf App Contest that started fall of 2015. I was pleased to learn that I placed first in the Media API division of the Warface category! Results were posted [here](http://www.overwolf.com/nvidia-app-challenge/).
+This was my first project involving HTML, CSS, or Javascript! It isn't perfect but I'm happy with the progress I've made while working on it. I made this as a submission for the Nvidia Overwolf App Contest that started in the fall of 2015. I was pleased to learn that I placed first in the Media API division of the Warface category. Results were posted [here](http://www.overwolf.com/nvidia-app-challenge/).
 
 The app itself can be found on the Overwolf App store [here](http://store.overwolf.com/app/Nathan-Schwartz).
 <br><br>
@@ -11,7 +10,7 @@ The app itself can be found on the Overwolf App store [here](http://store.overwo
 * All .html files are in the /html folder.
 * All .js files that correspond to an html file are in the /scripts folder.
 * All of the other .js files I wrote are helpers and are found in /scripts/assets. The ones I didn't are in /scripts/lib
-* The CSS is a mess. (My main focus was learning Javascript and I didn't have time to consolidate the CSS before submitting the app.)
+* The CSS I wrote is all in style.css. Spectrum.css is for a color picker library and Aristo is a jQueryUI theme.
 <br>
 
 ####Brief explanation of files
