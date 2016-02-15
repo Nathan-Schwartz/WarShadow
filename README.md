@@ -1,6 +1,6 @@
 # WarShadow
 
-This was my first project involving HTML, CSS, or Javascript! It isn't perfect but I'm happy with the progress I've made while working on it. I made this as a submission for the Nvidia Overwolf App Contest that started in the fall of 2015. I was pleased to learn that I placed first in the Media API division of the Warface category. Results were posted [here](http://www.overwolf.com/nvidia-app-challenge/).
+This was my first project involving HTML, CSS, or Javascript. I made it as a submission for the Nvidia Overwolf App Contest that started in the fall of 2015. I was pleased to learn that I placed first in the Media API division of the Warface category. Results were posted [here](http://www.overwolf.com/nvidia-app-challenge/).
 
 The app itself can be found on the Overwolf App store [here](http://store.overwolf.com/app/Nathan-Schwartz).
 <br><br>
