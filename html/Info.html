@@ -1,243 +1,210 @@
-<DOCTYPE html> 
+<!DOCTYPE html>
 <html>
-	<head> 
-		<link rel="stylesheet" href="../css/info.css" />
-		<!--link rel="stylesheet" href="../css/jquery-ui/jquery-ui.structure.min.css"/-->
-		<link rel="stylesheet" href="../css/Aristo/theme.css" />
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<script data-main='../scripts/requireConfig' src='../scripts/lib/require.js'></script>
-		<title>Info</title>
-	</head>
-	<body>
-		<div id="infoContent">
-			<div id="infoTabs">
-				<ul>
-					<li><a href="#tabs-1">HUD features</a></li>
-					<li><a href="#tabs-2">Recording</a></li>
-					<li><a href="#tabs-3">StatCrack</a></li>
-					<li><a href="#tabs-4">Known Issues</a></li>
-					<li><a href="#tabs-5">About Me</a></li>
-				</ul>
-				<div id="tabs-1">					
-					<div id="HUDaccordion">
-					  <h3>Kills per Minute</h3>
-					  <div>
-						<p>
-						This feature outputs a ratio of Kills divided by Minutes rounded to nearest hundredths place.
-						The display is updated for each kill as well as every second. This allows higher accuracy than simply updating every minute.
-						</p>
-						<p>
-						The time starts as soon as the K/min window is opened and can be reset using the "Reset Counters" hotkey or via the button in Settings.
-						</p>
-					  </div>
-					  <h3># Headshot</h3>
-					  <div>
-						<p>
-						This feature simply displays the number of headshots achieved by the player. The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
-						</p>
-					  </div>
-					  <h3>% Headshot</h3>
-					  <div>
-						<p>
-						This feature displays the result of: <# of Headshots>/<# of Kills> X 100. It is updated after each kill. The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
-						</p>
-					  </div>
-					  <h3>HS Streak Average</h3>
-					  <div>
-						<p>
-						This feature shows how many headshots the player gets in quick succession on average.
-						<br>
-						Examples: If a player only got brain annhilators the window would always display "5 Avg". If a player never got a skull hunter, head crasher, brain smasher, or brain annhilator the window would always display "1 Avg".
-						</p>
-						<p>
-						The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
-						</p>
-					  </div>
-					  <h3>Recording Counter</h3>
-					  <div>
-						It isn't always easy to keep track of how many videos you have recorded when you are using Auto-Record so I made a counter that tells you exactly that. 
-						It does not reset when you reset the other counters. It starts at zero every time WarShadow launches.
-					  </div>
-					  <h3>Crosshair</h3>
-					  <div>
-						<p>
-							This feature allows the user to use a custom crosshair in Warface. The user can use preloaded crosshairs or upload their own. <b>Only shows up while in-game.</b>
-						</p>
-						
-						<p>
-						<h4>Setting it up</h4>
-						Open the Settings page and scroll down to the Crosshair section. If you use right click to aim down sights, make sure the box is checked. Select Hold-to-Aim or Toggle-Aim so that it is the same as your Warface settings. If you use Right Click to ADS you are done! 
-						<br>
-						If you use a custom key to aim, click "Grab ADS" and push your ADS key. To make sure that the app recieved the correct key, push it again. If the text below the button flashes grey you are all finished!
-						</p>
-						<p>
-						<!--h4>"Uploading" your own crosshair</h4>
-						To use a custom crosshair all you need to do is create a folder called "Crosshair" and put it on your desktop. Then get a .png file of your crosshair and put it in the folder. See below for naming the file.						
-						</p>
-						<p>
-						I have provided 10 "slots" for custom user crosshairs. The available file names are:
-						<br>
-						customX0.png, customX1.png, customX2.png, customX3.png, customX4.png, customX5.png, customX6.png, customX7.png, customX8.png, and customX9.png.
-						</p-->
-						</div>
-					  <h3>Problems and Troubleshooting</h3>
-					  <div>
-					  <p>
-					  <p><b>Crosshair:</b><br> 
-					  Sometimes the settings page doesn't detect your ADS key and still displays "Waiting for ADS key". If this happens simply close and reopen Settings. 
-					  <br>
-					  Another issue that has happened for one of the beta testers is that the crosshair was appearing and disappearing erratically. I'm looking into the issues.
-					  </p><p><b>Counters:</b><br> 
-						The only issue with the counters that I am currently aware of is an incapatibility with Cyber Horde. Kamikazes don't trigger the Overwolf "kill" event and Headshot Combos don't trigger either. For this reason Headshot Streak Avg will be 1 on cyberhorde and headshot% or kills/minute can be off by a small amount. This would have to be fixed by Warface.
-					  </p>
-						I do not anticipate any other issues with these features but if there are any please email me at WarShadowDev@gmail.com.
-					  </p>
-					  </div>
-					</div>
-				</div>
-				<div id="tabs-2">
-					<div id="RECaccordion">
-						<h3>General Recording Info</h3>
-						<div>
-							<p>
-							<b>Q: Does the recording capability save past gameplay like ShadowPlay or does it do start-stop recording like more traditional programs?</b>
-							<br>
-							A: Both. Auto-Recording and Manual Capture both save your past game-play, but you can do manual start-stop recordings as well.
-							</p><p>
-							<b>Q: Why won't the Auto-Recording box stay checked?</b>
-							<br>
-							A: It is designed to uncheck itself if the recording process didn't start correctly. If it ever stays clicked, it is working. This error often happens because it was clicked when the user wasn't in-game. If this wasn't the issue, try clicking the close button and restarting the app. Read more in the Problems section below.
-							</p><p>
-							<b>Q: Why does the program lag when I click some of the recording buttons?</b>
-							<br>
-							A: These buttons are starting the recording background process and it takes a few seconds for Overwolf to get everything ready.
-							</p><p>
-							<b>Q: What is a pending recording, and why do I have one?</b>
-							<br>
-							A: Do you remember the slider in Settings that lets you choose how much video you wanted to save after the auto-Recording event happened? When an Auto-Record event is triggered, my app waits that long before saving the video. It is considered "pending" until it actually saves the video.
-							The reason for this is that only one recording can happen at a time. If I didn't wait till after the time was finished, the other Auto-Recording events would be unsuccessful because the first recording is hogging the feature.
-							</p><p>
-							<b>Q: Why should I use Warshadow for recording instead of ReplayHUD?</b>
-							<br>
-							A: 3 reasons. 
-							<br>1) "Auto-Recording", it takes all the recording for you so you can focus on playing the game. 
-							<br>2) The option to do longer videos. ReplayHUD currently only allows 40 second videos. Mine does 3 minutes for Auto-Recording, but I haven't found a time limit for start-stop recording. 
-							<br>3) No recharge time. ReplayHUD currently makes you wait 40 seconds before taking another recording.
-							<br><br>
-							</p>
-						</div>
-					  <h3>Auto-Recording</h3>
-					  <div>
-						<p>
-						  This is probably the most useful feature in my app. AutoRec records your best moments for you, so you can focus on playing the game. No more massive recordings that you comb through later and no more fumbling for the "Save video" Hotkey. 
-						 </p><p> Simply select which moments you want to save (this is done in settings) and click on Auto-Record in the main menu. Whenever your chosen events happen, the app will save the video recording for you and you never have to worry about it.
-						</p><p> You can choose to change the length of the recording. Don't worry about making the times too short, the app has a built in time for each event so that even if you say you want a 2 second recording, you will still get video of your whole brain annihilator.
-						</p><p> It is recommended to have a longer "after" duration if you choose a short combo. Example: If you choose to record all of the 2x headshot chains but you get 5 in a row, the video might not save the last kills.
-						</p>
-					  </div>
-					  <h3>Recording Menu</h3>
-					  <div>
-						<p>
-						  A low profile, simple menu that has all the controls you need to record and view your gameplay. Note that disabling the recording will uncheck the Auto-Record checkbox.
-						</p>
-					  </div>
-					  <h3>Problems and Troubleshooting</h3>
-					  <div>
-					  <p>
-					  Some people are going to have errors with the recording feature. This can be due to hardware limitations, out of date graphics card, not enough memory, or other reasons.
-					  </p>
-					  <p>					  
-					  Here are a few solutions that have solved Overwolf recording issues in the past.
-					  <br>
-					    - Only close the app with the Close button. This sounds silly, but the button will disable the recording process before exiting the app, so it can help prevent conflicts.
-					  <br>
-						- Double check your Video settings to make sure they aren't too demanding for your machine.
-					  <br>
-					   - Make sure you have enough space for a recording.
-					  <br>
-					   - Check for graphics card updates.
-					  <br>
-					    - Restart your computer.
-					  <br>
-					    If none of those options work, you may consider reinstalling Overwolf but this not a guaranteed fix either.
-						
-					  <br><br>
-						The bottom line is that I'm sorry you are having an error, but I may not be able to help you. Unfortunately I haven't been provided with a full list of errors or their fixes so I have no way of knowing what will work for your specific error, nor a way to fix this error should you have it :(
-					    
-					   I will strive to keep the application up to date so everyone has a positive experience with it. If you would like to make suggestions, or if you encounter any problems that you believe to be my apps fault, I ask that you contact me at WarShadowDev@gmail.com.
-					  </p>
-					  </div>
-					</div>
-				</div>
-				<div id="tabs-3">
-					<p><b>Where do you get the data?</b><br>
-					  I maintain plausible deniability regarding the acquisition of any damage related data. That said, I have a friend who has been tremendously helpful with this aspect of the app and I have the utmost confidence in the data's accuracy.
-					</p>
-					<p><b>Why is the damage graph on Shotguns so weird?</b>
-					I'm so glad you asked! Its because I made it up. Kinda. All of the shotguns in the game have a certain number of pellets. That is what makes shotguns great! The catch is that my calculations assumes that the user has 100% accuracy.
-					<br><br>
-					That becomes a problem because at long distances it isn't possible to shoot the enemy with ALL of the pellets (without hacks). Since there is no real way for me to predict the spread patterns I made up a formula:
-					<br>
-					Every 1 meter (roughly) the chance of hitting with all pellets reduces by 1%. Then I use that % of the guns pellets in the calculation.
-					<br><br>
-					Thats why the graph is all bumpy, at that distance 1 less pellet hit the enemy.
-					</p>
 
-					<p><b>Ok so then what good are the shotgun calculations?</b><br>
-					  I had this question myself, and I decided that the chart is only good for comparing shotguns against other shotguns. Comparing against any other weapon is just a guess.
-					</p>
-					
-					<p><b>Is [generic item] correct?</b><br>
-					  I will regularly be checking to see if weapons are up to date. If you have concerns feel free to contact me.
-					</p><p>
-						<b>I got an alert saying that it couldn't update repair data. Help?</b><br>
-						This can happen if the game dump file isn't located. Please make sure you have Warface installed. If you do, try launching the game and trying again. 
-						<br><br> That should work, but if it doesn't please contact me and try the following steps: <br>Locate the get_shop_offers.xml file on your computer and move it to \n'Users/<your-name>/Saved Games/WarfaceWest/QueryCache/'. It will be necessary to copy in a new shop_get_offers.xml whenever you want to update the data again. The game should update the file on each launch.
+<head>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/Aristo/theme.css" />
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <script data-main='../scripts/requireConfig' src='../scripts/lib/require.js'></script>
+  <title>Info</title>
+</head>
 
-					</p>
-				</div>
-				<div id="tabs-4">
-					<p>This section is to go over some common general issues and questions regarding both my App and the Overwolf Overlay.</p>
-				
-					<p><b> Public Service Announcement:</b><br>
-						There are currently some incompatibilities with Cyber Horde. Kamikazes don't trigger the Overwolf "kill" event and Headshot Combos don't trigger either. There is nothing I can do about it since it would have to be fixed by Warface.
-				
-					<p><b>Help! The buttons on the App won't click and they keep flickering when I mouse over them</b><br>
-						To fix this, click on the game, and then back on the App menu. A more permanent solution is to got to the Overwolf Settings Page on the General tab and change "Overwolf In-Game Control" to "Hitting Ctrl+Tab".
-					</p>
-					<p><b>The mouse is on the screen when I'm playing and it won't go away.</b><br>
-						This can happen when you alt-tab sometimes. Usually this means that you need to relaunch either your game or Overwolf.
-					</p>
-					<p><b>The Overwolf overlay (and Warshadow) are not popping up in my game!!</b><br>
-						This is probably because your game was running before Overwolf was. You need to restart your game and perhaps Overwolf.
-					</p>
-					
-					<p><b>Can I choose to make Warshadow not show up in my videos?</b><br>
-						Yes. Navigate to Overwolf Settings > Capture and then change the setting Recording Mode from monitor to active game. Unselect "Capture Overwolf windows". You are all set!
-					</p>
-					<p><b>Overwolf says I can't edit the Video Settings while I am recording</b><br>
-						Thats a quick one. Go to the WarShadow Main menu and then launch the Recording menu. Click the power button to turn off the recording background process and you will be able to edit the settings again!
-					</p>
+<body>
+  <div id="infoContent">
+    <div id="infoTabs">
+      <ul>
+        <li><a href="#tabs-1">HUD features</a></li>
+        <li><a href="#tabs-2">Recording</a></li>
+        <li><a href="#tabs-3">StatCrack</a></li>
+        <li><a href="#tabs-4">Known Issues</a></li>
+        <li><a href="#tabs-5">About Me</a></li>
+      </ul>
+      <div id="tabs-1">
+        <div id="HUDaccordion">
+          <h3>Kills per Minute</h3>
+          <div>
+            <p>
+              This feature outputs a ratio of Kills divided by Minutes rounded to nearest hundredths place. The display is updated for each kill as well as every second. This allows higher accuracy than simply updating every minute.
+            </p>
+            <p>
+              The time starts as soon as the K/min window is opened and can be reset using the "Reset Counters" hotkey or via the button in Settings.
+            </p>
+          </div>
+          <h3># Headshot</h3>
+          <div>
+            <p>
+              This feature simply displays the number of headshots achieved by the player. The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
+            </p>
+          </div>
+          <h3>% Headshot</h3>
+          <div>
+            <p>
+              This feature displays the result of:
+              <# of Headshots>/
+                <# of Kills> X 100. It is updated after each kill. The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
+            </p>
+          </div>
+          <h3>HS Streak Average</h3>
+          <div>
+            <p>
+              This feature shows how many headshots the player gets in quick succession on average.
+              <br> Examples: If a player only got brain annhilators the window would always display "5 Avg". If a player never got a skull hunter, head crasher, brain smasher, or brain annhilator the window would always display "1 Avg".
+            </p>
+            <p>
+              The counter starts when WarShadow launches and can be reset using the "Reset Counters" hotkey or via the button in Settings.
+            </p>
+          </div>
+          <h3>Recording Counter</h3>
+          <div>
+            It isn't always easy to keep track of how many videos you have recorded when you are using Auto-Record so I made a counter that tells you exactly that. It does not reset when you reset the other counters. It starts at zero every time WarShadow launches.
+          </div>
+          <h3>Crosshair</h3>
+          <div>
+            <p>
+              This feature allows the user to use a custom crosshair in Warface. The user can use preloaded crosshairs or upload their own. <b>Only shows up while in-game.</b>
+            </p>
 
-					
-				</div>
-				<div id="tabs-5">
-					<p>My name is Nathan and in Warface I am known as GreyPhoenix. I have played Warface since May 2014 and haven't played much since I got to Level 70.</p>
-					<p>I discovered my love of programming a few years ago when I took a C++ class but I didn't pursue programming again until I heard about the Nvidia Overwolf App Contest. This app is my first project in HTML, CSS, or Javascript. There are always things to add and fix, but I'm happy with the result and my progress.</p>
-					<p>Most played class: Medic</p>
-					<p>Favourite weapon: ZX84 USP</p>
-					<p>Favourite flavor of ice cream: Yes.</p>
-					<p>Favourite color: Grey</p>
-					<p>Enemies: Anyone who says grey isn't a color.</p>
-					<p>Contact me at WarShadowDev@gmail.com</p>
-				</div>
-			</div>
-		</div>
-		</div>
-		<script>
-			require(['requireConfig'], function(){
-				require(['info']);
-			});
-		</script>
-	</body>
+            <p>
+              <h4>Setting it up</h4> Open the Settings page and scroll down to the Crosshair section. If you use right click to aim down sights, make sure the box is checked. Select Hold-to-Aim or Toggle-Aim so that it is the same as your Warface settings. If you use Right Click to ADS you are done!
+              <br> If you use a custom key to aim, click "Grab ADS" and push your ADS key. To make sure that the app recieved the correct key, push it again. If the text below the button flashes grey you are all finished!
+            </p>
+            <p>
+          </div>
+          <h3>Problems and Troubleshooting</h3>
+          <div>
+            <p>
+              <p><b>Crosshair:</b><br> Sometimes the settings page doesn't detect your ADS key and still displays "Waiting for ADS key". If this happens simply close and reopen Settings.
+                <br> Another issue that has happened for one of the beta testers is that the crosshair was appearing and disappearing erratically. I'm looking into the issues.
+              </p>
+              <p><b>Counters:</b><br> The only issue with the counters that I am currently aware of is an incapatibility with Cyber Horde. Kamikazes don't trigger the Overwolf "kill" event and Headshot Combos don't trigger either. For this reason Headshot Streak Avg will be 1 on cyberhorde and headshot% or kills/minute can be off by a small amount. This would have to be fixed by Warface.
+              </p>
+              I do not anticipate any other issues with these features but if there are any please email me at WarShadowDev@gmail.com.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div id="tabs-2">
+        <div id="RECaccordion">
+          <h3>General Recording Info</h3>
+          <div>
+            <p>
+              <b>Q: Does the recording capability save past gameplay like ShadowPlay or does it do start-stop recording like more traditional programs?</b>
+              <br> A: Both. Auto-Recording and Manual Capture both save your past game-play, but you can do manual start-stop recordings as well.
+            </p>
+            <p>
+              <b>Q: Why won't the Auto-Recording box stay checked?</b>
+              <br> A: It is designed to uncheck itself if the recording process didn't start correctly. If it ever stays clicked, it is working. This error often happens because it was clicked when the user wasn't in-game. If this wasn't the issue, try clicking the close button and restarting the app. Read more in the Problems section below.
+            </p>
+            <p>
+              <b>Q: Why does the program lag when I click some of the recording buttons?</b>
+              <br> A: These buttons are starting the recording background process and it takes a few seconds for Overwolf to get everything ready.
+            </p>
+            <p>
+              <b>Q: What is a pending recording, and why do I have one?</b>
+              <br> A: Do you remember the slider in Settings that lets you choose how much video you wanted to save after the auto-Recording event happened? When an Auto-Record event is triggered, my app waits that long before saving the video. It is considered "pending" until it actually saves the video. The reason for this is that only one recording can happen at a time. If I didn't wait till after the time was finished, the other Auto-Recording events would be unsuccessful because the first recording is hogging the feature.
+            </p>
+            <p>
+              <b>Q: Why should I use Warshadow for recording instead of ReplayHUD?</b>
+              <br> A: 3 reasons.
+              <br>1) "Auto-Recording", it takes all the recording for you so you can focus on playing the game.
+              <br>2) The option to do longer videos. ReplayHUD currently only allows 40 second videos. Mine does 3 minutes for Auto-Recording, but I haven't found a time limit for start-stop recording.
+              <br>3) No recharge time. ReplayHUD currently makes you wait 40 seconds before taking another recording.
+              <br><br>
+            </p>
+          </div>
+          <h3>Auto-Recording</h3>
+          <div>
+            <p>
+              This is probably the most useful feature in my app. AutoRec records your best moments for you, so you can focus on playing the game. No more massive recordings that you comb through later and no more fumbling for the "Save video" Hotkey.
+            </p>
+            <p> Simply select which moments you want to save (this is done in settings) and click on Auto-Record in the main menu. Whenever your chosen events happen, the app will save the video recording for you and you never have to worry about it.
+            </p>
+            <p> You can choose to change the length of the recording. Don't worry about making the times too short, the app has a built in time for each event so that even if you say you want a 2 second recording, you will still get video of your whole brain annihilator.
+            </p>
+            <p> It is recommended to have a longer "after" duration if you choose a short combo. Example: If you choose to record all of the 2x headshot chains but you get 5 in a row, the video might not save the last kills.
+            </p>
+          </div>
+          <h3>Recording Menu</h3>
+          <div>
+            <p>
+              A low profile, simple menu that has all the controls you need to record and view your gameplay. Note that disabling the recording will uncheck the Auto-Record checkbox.
+            </p>
+          </div>
+          <h3>Problems and Troubleshooting</h3>
+          <div>
+            <p>
+              Some people are going to have errors with the recording feature. This can be due to hardware limitations, out of date graphics card, not enough memory, or other reasons.
+            </p>
+            <p>
+              Here are a few solutions that have solved Overwolf recording issues in the past.
+              <br> - Only close the app with the Close button. This sounds silly, but the button will disable the recording process before exiting the app, so it can help prevent conflicts.
+              <br> - Double check your Video settings to make sure they aren't too demanding for your machine.
+              <br> - Make sure you have enough space for a recording.
+              <br> - Check for graphics card updates.
+              <br> - Restart your computer.
+              <br> If none of those options work, you may consider reinstalling Overwolf but this not a guaranteed fix either.
+
+              <br><br> The bottom line is that I'm sorry you are having an error, but I may not be able to help you. Unfortunately I haven't been provided with a full list of errors or their fixes so I have no way of knowing what will work for your specific error, nor a way to fix this error should you have it :( I will strive to keep the application up to date so everyone has a positive experience with it. If you would like to make suggestions, or if you encounter any problems that you believe to be my apps fault, I ask that you contact me at WarShadowDev@gmail.com.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div id="tabs-3">
+        <p><b>Where do you get the data?</b><br> I maintain plausible deniability regarding the acquisition of any damage related data. That said, I have a friend who has been tremendously helpful with this aspect of the app and I have the utmost confidence in the data's accuracy.
+        </p>
+        <p><b>Why is the damage graph on Shotguns so weird?</b> I'm so glad you asked! Its because I made it up. Kinda. All of the shotguns in the game have a certain number of pellets. That is what makes shotguns great! The catch is that my calculations assumes that the user has 100% accuracy.
+          <br><br> That becomes a problem because at long distances it isn't possible to shoot the enemy with ALL of the pellets (without hacks). Since there is no real way for me to predict the spread patterns I made up a formula:
+          <br> Every 1 meter (roughly) the chance of hitting with all pellets reduces by 1%. Then I use that % of the guns pellets in the calculation.
+          <br><br> Thats why the graph is all bumpy, at that distance 1 less pellet hit the enemy.
+        </p>
+
+        <p><b>Ok so then what good are the shotgun calculations?</b><br> I had this question myself, and I decided that the chart is only good for comparing shotguns against other shotguns. Comparing against any other weapon is just a guess.
+        </p>
+
+        <p><b>Is [generic item] correct?</b><br> I will regularly be checking to see if weapons are up to date. If you have concerns feel free to contact me.
+        </p>
+        <p>
+          <b>I got an alert saying that it couldn't update repair data. Help?</b><br> This can happen if the game dump file isn't located. Please make sure you have Warface installed. If you do, try launching the game and trying again.
+          <br><br> That should work, but if it doesn't please contact me and try the following steps: <br>Locate the get_shop_offers.xml file on your computer and move it to \n'Users/
+          <your-name>/Saved Games/WarfaceWest/QueryCache/'. It will be necessary to copy in a new shop_get_offers.xml whenever you want to update the data again. The game should update the file on each launch.
+
+        </p>
+      </div>
+      <div id="tabs-4">
+        <p>This section is to go over some common general issues and questions regarding both my App and the Overwolf Overlay.</p>
+
+        <p><b> Public Service Announcement:</b><br> There are currently some incompatibilities with Cyber Horde. Kamikazes don't trigger the Overwolf "kill" event and Headshot Combos don't trigger either. There is nothing I can do about it since it would have to be fixed by Warface.
+
+          <p><b>Help! The buttons on the App won't click and they keep flickering when I mouse over them</b><br> To fix this, click on the game, and then back on the App menu. A more permanent solution is to got to the Overwolf Settings Page on the General tab and change "Overwolf In-Game Control" to "Hitting Ctrl+Tab".
+          </p>
+          <p><b>The mouse is on the screen when I'm playing and it won't go away.</b><br> This can happen when you alt-tab sometimes. Usually this means that you need to relaunch either your game or Overwolf.
+          </p>
+          <p><b>The Overwolf overlay (and Warshadow) are not popping up in my game!!</b><br> This is probably because your game was running before Overwolf was. You need to restart your game and perhaps Overwolf.
+          </p>
+
+          <p><b>Can I choose to make Warshadow not show up in my videos?</b><br> Yes. Navigate to Overwolf Settings > Capture and then change the setting Recording Mode from monitor to active game. Unselect "Capture Overwolf windows". You are all set!
+          </p>
+          <p><b>Overwolf says I can't edit the Video Settings while I am recording</b><br> Thats a quick one. Go to the WarShadow Main menu and then launch the Recording menu. Click the power button to turn off the recording background process and you will be able to edit the settings again!
+          </p>
+
+      </div>
+      <div id="tabs-5">
+        <p>My name is Nathan and in Warface I am known as GreyPhoenix. I have played Warface since May 2014, but haven't played much since I got to Level 70.</p>
+        <p>I discovered my love of programming a few years ago when I took a C++ class but I didn't pursue programming again until I heard about the Nvidia Overwolf App Contest. This app is my first project in HTML, CSS, or Javascript. There are always things to add and fix, but I'm happy with the result and my progress.</p>
+        <p>Most played class: Medic</p>
+        <p>Favourite weapon: ZX84 USP</p>
+        <p>Favourite flavor of ice cream: Yes.</p>
+        <p>Favourite color: Grey</p>
+        <p>Enemies: Anyone who says grey isn't a color.</p>
+        <p>Contact me at WarShadowDev@gmail.com</p>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script>
+  require(['requireConfig'], function() {
+    require(['info']);
+  });
+  </script>
+</body>
 </html>

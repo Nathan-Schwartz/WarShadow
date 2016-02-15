@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html>
-	<head> 
-		<link rel="stylesheet" href="../css/popup.css" />
-		<link rel="stylesheet" href="../css/Aristo/theme.css" />
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
-		<title>Recording Menu</title>
-	</head>
-	<body>
-		<div id="menu">
-		<br>
-			<button class="smallbutton" id="settingsWin" title="Settings" tabindex="-1"></button>
-			<button class="smallbutton" id="turnOn" title="Enable recording" tabindex="-1"></button>
-			<div id="onceEnabled">
-				<button class="smallbutton" id="start" title="Start recording" tabindex="-1"></button>
-				<span id="unavailableButtons">
-					<button class="smallbutton" id="capture" title="Manual Capture" tabindex="-1"></button> 
-					<!--button class="smallbutton" id="replayWindow" title="Open Replay Window" tabindex="-1"></button-->
-				</span>
-			</div>
-			<span id="moreButtons">
-				<button class="smallbutton" id="error" title="sample error" tabindex="-1"></button>
-				<button class="smallbutton" id="close" tabindex="-1">X</button>
-			</span>
-		</div>
-		<script>
-		require(["requireConfig"], function(){
-			require(["recordingMenu"]);
-		});
-		</script>
-	</body>
+<head>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/Aristo/theme.css" />
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
+  <title>Recording Menu</title>
+</head>
+<body>
+  <div id="RecordingMenuContainer">
+    <br>
+    <button class="smallbutton" id="settingsRec" title="Settings" tabindex="-1"></button>
+    <button class="smallbutton" id="turnOn" title="Enable recording" tabindex="-1"></button>
+    <div id="onceEnabled">
+      <button class="smallbutton" id="start" title="Start recording" tabindex="-1"></button>
+      <span id="unavailableButtons">
+		<button class="smallbutton" id="capture" title="Manual Capture" tabindex="-1"></button> 
+	  </span>
+    </div>
+    <span id="moreButtons">
+	  <button class="smallbutton" id="error" title="sample error" tabindex="-1"></button>
+	  <button class="smallbutton" id="closeRec" tabindex="-1">X</button>
+	</span>
+  </div>
+  <script>
+  require(["requireConfig"], function() {
+    require(["recordingMenu"]);
+  });
+  </script>
+</body>
 </html>

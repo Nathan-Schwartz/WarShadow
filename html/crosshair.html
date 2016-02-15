@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html>
-	<head> 
-		<link rel="stylesheet" href="../css/crosshair.css" />
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
-		<title>Crosshair</title>
-		<script>
-			navigator.plugins.refresh(false);
-		</script>
-		<embed  id='plugin' 
-			type='application/x-io-plugin'
-			width=0px 
-			height=0px>
-		</embed>
-	</head>
-	<body>
-		<div id="content">
-			<img src="../images/adjust.png" id="leftAdjust" class="noDrag" alt="left">
-			<img src="../images/adjust.png" id="rightAdjust" class="noDrag" alt="right">
-			<img src="../images/adjust.png" id="downAdjust" class="noDrag" alt="down">
-			<img src="../images/adjust.png" id="upAdjust" class="noDrag" alt="up">
-			<div id="form">
-				<select id="drop" class="noDrag">
+<head>
+  <link rel="stylesheet" href="../css/style.css" />
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
+  <title>Crosshair</title>
+  <script>
+  navigator.plugins.refresh(false);
+
+  </script>
+  <embed id='plugin' type='application/x-io-plugin' width=0px height=0px>
+  </embed>
+</head>
+
+<body>
+  <div id="CrosshairContainer">
+    <img src="../images/adjust.png" id="leftAdjust" class="noDrag" alt="left">
+    <img src="../images/adjust.png" id="rightAdjust" class="noDrag" alt="right">
+    <img src="../images/adjust.png" id="downAdjust" class="noDrag" alt="down">
+    <img src="../images/adjust.png" id="upAdjust" class="noDrag" alt="up">
+    <div id="form">
+      <select id="drop" class="noDrag">
 					<option value="default1">Popty's</option>
 					<option value="default2">*Renegade*'s</option>
 					<option value="default3">--DAVE--'s</option>
@@ -29,19 +28,17 @@
 					<option value="default5">Rigga's</option>
 					<option value="default6">Domz's</option>
 				</select>
-				<br>
-				<button id="hide" class="button noDrag">Select</button>
-			</div> 
-			<div id="preview"> </div>
-			<button id="recenter" class="button noDrag">Recenter</button>
-			<div id="adjustLabel">Micro Adjust:</div>
-		</div>
-	<script>
-	require(["requireConfig"], function(){
-		require(["crosshair"]);
-	});
-	</script>
-	</body>
+      <br>
+      <button id="hide" class="button noDrag">Select</button>
+    </div>
+    <div id="preview"> </div>
+    <button id="recenter" class="button noDrag">Recenter</button>
+    <div id="adjustLabel">Micro Adjust:</div>
+  </div>
+  <script>
+  require(["requireConfig"], function() {
+    require(["crosshair"]);
+  });
+  </script>
+</body>
 </html>
-	
-		

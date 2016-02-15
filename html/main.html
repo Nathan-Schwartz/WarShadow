@@ -1,85 +1,85 @@
 ﻿<!DOCTYPE html>
 <html>
-	<head>
-		<link rel="stylesheet" href="../css/style.css"/>
-		<link rel="stylesheet" href="../css/Aristo/theme.css"/>
-		<link rel="stylesheet" href="../css/spectrum.css"/>
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
-		<title>WarShadow</title>
-		<script>
-			  navigator.plugins.refresh(false);
-		</script>
-	</head>
-	<body>
-		<div id="contentWrapper" class="draggable">
-			<div id="progress"><div class="progress-label"></div></div>
-			<div id="content" class="draggable">
-				<div id="dialog" title="Tutorial">
-					<br>
-					<div id="page1">Would you like to go over the basics?</div>
-					<div id="page2">To collapse the main menu, simply double click on the Warface Logo.</div>
-					<div id="page3">Auto-Record takes care of saving your gameplay, so you can just play the game.</div>
-					<div id="page4">There is a secondary UI theme in the Settings page.</div>
-					<div id="page5">Warshadow has some HUD features to track statistics. Open via checkboxes.</div>
-					<div id="page6">Don't forget to check out the Smoke Timer hotkey!</div>
-					<div id="page7">You can use custom crosshairs in the Crosshair feature!</div>
-					<div id="page8">If you have any problems or would like to learn more, please visit the info page.</div>
-				</div>
-				
-				<div id="autoCapConflict" title="Warning">
-					<br>
-					<div>You cannot use AutoCapture and manual recording at the same time.</div>
-				</div>
-				
-				<div id="closeDialog" title="Warning">
-					<br>
-					<div>
-					  You have one pending recording, are you sure you want to quit?
-					    <br><br>
-					  Learn about pending recordings on the info page.
-					</div>
-				</div>
+<head>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/Aristo/theme.css" />
+  <link rel="stylesheet" href="../css/spectrum.css" />
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
+  <title>WarShadow</title>
+  <script>
+    navigator.plugins.refresh(false);
+  </script>
+</head>
 
-				<img src="../../IconMouseNormal.png" class="draggable" id="resize" alt="logo">
-				<button class="smallbutton" id="minimize" tabindex="-1">-</button>
-				<button class="smallbutton" id="info" title="Info" tabindex="-1">i</button>
-				<button class="smallbutton" id="close" tabindex="-1">x</button>
-				<button class="smallbutton" id="settingsWin" title="Settings" tabindex="-1"></button>
+<body>
+  <div id="contentWrapper" class="draggable">
+    <div id="progress">
+      <div class="progress-label"></div>
+    </div>
+    <div id="content" class="draggable">
+      <div id="dialog" title="Tutorial">
+        <br>
+        <div id="page1">Would you like to go over the basics?</div>
+        <div id="page2">To collapse the main menu, simply double click on the Warface Logo.</div>
+        <div id="page3">Auto-Record takes care of saving your gameplay, so you can just play the game.</div>
+        <div id="page4">There is a secondary UI theme in the Settings page.</div>
+        <div id="page5">Warshadow has some HUD features to track statistics. Open via checkboxes.</div>
+        <div id="page6">Don't forget to check out the Smoke Timer hotkey!</div>
+        <div id="page7">You can use custom crosshairs in the Crosshair feature!</div>
+        <div id="page8">If you have any problems or would like to learn more, please visit the info page.</div>
+      </div>
 
-				<img src="../images/WarShadow.png" id="WarLogo" class="draggable" alt="settings">
-				<br> <br>  <br><br>
-				<span class="normalCheckbox" id="KPMP"><input type="checkbox" class="checkbox" id="KPM" tabindex="-1"><label for="KPM"></label></span><label for="KPM"> &nbsp;Kills/Minute </label><br>
-				<span class="normalCheckbox" id="HSNumP"><input type="checkbox" class="checkbox" id="HSNum" tabindex="-1"><label for="HSNum"></label></span><label for="HSNum"> &nbsp;Headshot&nbsp;# </label><br>
-				<span class="normalCheckbox" id="HSPercP"><input type="checkbox" class="checkbox" id="HSPerc" tabindex="-1"><label for="HSPerc"></label></span><label for="HSPerc"> &nbsp;Headshot&nbsp;% </label><br>
-				<span class="normalCheckbox" id="HSChainP"><input type="checkbox" class="checkbox" id="HSChain" tabindex="-1"><label for="HSChain"></label></span><label for="HSChain"> &nbsp;Hs Streak Avg </label><br>
-				<!--span class="normalCheckbox" id="KDRateP"><input type="checkbox" class="checkbox" id="KDRate" tabindex="-1"><label for="KDRate"></label></span><label for="KDRate"> &nbsp;KDR tracker </label><br-->
-				<span class="normalCheckbox" id="recCountP"><input type="checkbox" class="checkbox" id="recCount" tabindex="-1"><label for="recCount"></label></span><label for="recCount"> &nbsp;Recording&nbsp;# </label><br>
-				<span class="normalCheckbox" id="crosshairP"><input type="checkbox" class="checkbox" id="crosshair" tabindex="-1"><label for="crosshair"></label></span><label for="crosshair"> &nbsp;Crosshair </label><br>
-				<span class="normalCheckbox" id="autoonP"><input type="checkbox" class="checkbox" id="autoon" tabindex="-1"><label for="autoon"></label></span><label for="autoon"> &nbsp;Auto-Record </label><br>
-				<span id="colorContainer">
-					<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="colorVis" tabindex="-1"><label for="colorVis"></label></span> 
-					<span id="colorText"><label for="colorVis">Colors</label></span>
-					<span id="colorbuttons">
-						<input type='text' class="sp-dark" id="cpicker1" tabindex="-1"/>
-						<input type='text' class="sp-dark" id="cpicker2" tabindex="-1"/>
-					</span>
-				</span>
+      <div id="autoCapConflict" title="Warning">
+        <br>
+        <div>You cannot use AutoCapture and manual recording at the same time.</div>
+      </div>
 
-				<button id="Stats" class="button" tabindex="-1"> StatCrack </button>
-				<button id="record" class="button" tabindex="-1"> Recording</button>
-				<button id="showcontent" class="button" tabindex="-1">My Guides</button>
-				<div id="contentbuttons">	
-					<button id="cold" class="subbutton" tabindex="-1">Cold Peak</button> 
-					<button id="tower" class="subbutton" tabindex="-1">Tower & Basics</button>
-				</div>
-				<!--button id="popup" class="button" tabindex="-1"> Pop-up </button-->
-			</div>
-		</div>
-		<script>
-			require(["requireConfig"], function(){
-				require(["main"], function(){});
-			});
-		</script>
-	</body>
+      <div id="closeDialog" title="Warning">
+        <br>
+        <div>
+          You have one pending recording, are you sure you want to quit?
+          <br><br> Learn about pending recordings on the info page.
+        </div>
+      </div>
+
+      <img src="../../IconMouseNormal.png" class="draggable" id="resize" alt="logo">
+      <button class="smallbutton" id="minimize" tabindex="-1">-</button>
+      <button class="smallbutton" id="info" title="Info" tabindex="-1">i</button>
+      <button class="smallbutton" id="close" tabindex="-1">x</button>
+      <button class="smallbutton" id="settingsWin" title="Settings" tabindex="-1"></button>
+
+      <img src="../images/WarShadow.png" id="WarLogo" class="draggable" alt="settings">
+      <br> <br> <br><br>
+      <span class="normalCheckbox" id="KPMP"><input type="checkbox" class="checkbox" id="KPM" tabindex="-1"><label for="KPM"></label></span><label for="KPM"> &nbsp;Kills/Minute </label><br>
+      <span class="normalCheckbox" id="HSNumP"><input type="checkbox" class="checkbox" id="HSNum" tabindex="-1"><label for="HSNum"></label></span><label for="HSNum"> &nbsp;Headshot&nbsp;# </label><br>
+      <span class="normalCheckbox" id="HSPercP"><input type="checkbox" class="checkbox" id="HSPerc" tabindex="-1"><label for="HSPerc"></label></span><label for="HSPerc"> &nbsp;Headshot&nbsp;% </label><br>
+      <span class="normalCheckbox" id="HSChainP"><input type="checkbox" class="checkbox" id="HSChain" tabindex="-1"><label for="HSChain"></label></span><label for="HSChain"> &nbsp;Hs Streak Avg </label><br>
+      <span class="normalCheckbox" id="recCountP"><input type="checkbox" class="checkbox" id="recCount" tabindex="-1"><label for="recCount"></label></span><label for="recCount"> &nbsp;Recording&nbsp;# </label><br>
+      <span class="normalCheckbox" id="crosshairP"><input type="checkbox" class="checkbox" id="crosshair" tabindex="-1"><label for="crosshair"></label></span><label for="crosshair"> &nbsp;Crosshair </label><br>
+      <span class="normalCheckbox" id="autoonP"><input type="checkbox" class="checkbox" id="autoon" tabindex="-1"><label for="autoon"></label></span><label for="autoon"> &nbsp;Auto-Record </label><br>
+      <span id="colorContainer">
+		<span class="normalCheckbox"><input type="checkbox" class="checkbox" id="colorVis" tabindex="-1"><label for="colorVis"></label></span>
+        <span id="colorText"><label for="colorVis">Colors</label></span>
+        <span id="colorbuttons">
+		  <input type='text' class="sp-dark" id="cpicker1" tabindex="-1"/>
+		  <input type='text' class="sp-dark" id="cpicker2" tabindex="-1"/>
+	    </span>
+      </span>
+      <br>
+      <button id="Stats" class="button" tabindex="-1"> StatCrack </button>
+      <button id="record" class="button" tabindex="-1"> Recording</button>
+      <button id="showcontent" class="button" tabindex="-1">My Guides</button>
+      <div id="contentbuttons">
+        <button id="cold" class="subbutton" tabindex="-1">Cold Peak</button>
+        <button id="tower" class="subbutton" tabindex="-1">Tower & Basics</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    require(["requireConfig"], function() {
+      require(["main"], function() {});
+    });
+  </script>
+</body>
 </html>

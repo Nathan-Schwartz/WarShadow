@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
-	<head> 
-		<link rel="stylesheet" href="../css/popup.css" />
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
-		<title>Pop-up</title>
-	</head>
-	<body>
-		<div id="content">
-			<div id="message"></div>
-		</div>
-		<script>
-		require(["requireConfig"], function(){
-					require(["popup"]);
-				});
-		</script>
-	</body>
+<head>
+  <link rel="stylesheet" href="../css/style.css" />
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
+  <title>Pop-up</title>
+</head>
+<body>
+  <div id="PopupContainer">
+    <div id="message"></div>
+  </div>
+  <script>
+  require(["requireConfig"], function() {
+    require(["popup"]);
+  });
+  </script>
+</body>
 </html>

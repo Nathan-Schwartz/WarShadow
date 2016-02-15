@@ -1,25 +1,20 @@
 ﻿<!DOCTYPE html>
 <html>
-	<head> 
-		<link rel="stylesheet" href="../css/HUD.css" />
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
-		<title>HS #</title>
-	</head>
-
-	<body>
-		<div id="content">
-		<!--button id="close"></button-->
-		
-		<img src="../images/headshot.png" id="HNimage" class="icon" alt="Headshot">
-		<div id="HSperc" class="result"></div>
-
-		</div>
-		<script>
-		require(["requireConfig"], function(){
-					require(["HSpercent"]);
-				});
-			
-		</script>
-	</body>
+<head>
+  <link rel="stylesheet" href="../css/style.css" />
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <script data-main="../scripts/requireConfig" src="../scripts/lib/require.js"></script>
+  <title>HS #</title>
+</head>
+<body>
+  <div id="HUDcontainer">
+    <img src="../images/headshot.png" class="icon" alt="Headshot">
+    <div id="HSperc" class="result"></div>
+  </div>
+  <script>
+  require(["requireConfig"], function() {
+    require(["HSpercent"]);
+  });
+  </script>
+</body>
 </html>
