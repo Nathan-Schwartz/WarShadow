@@ -1,47 +1,5 @@
 require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunctions', 'refreshHUD', 'recording', "launchManager", "spectrum", 'counters'], function($, jqueryUI, localStorageInit, gEvent, wCore, rHUD, rec, launcher, spectrum, counters) {
 
-  function setTheme() {
-    if (JSON.parse(localStorage.getItem("updateTheme")) === false) {
-      console.log("init theme");
-      if (!JSON.parse(localStorage.getItem("Settings")).useLP) {
-        document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
-        document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom," + localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
-        document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-      } else {
-        document.getElementById("content").style.backgroundColor = "rgba(5, 5, 5, 0.5)";
-        $('#KPMP, #HSNumP, #HSPercP, #HSChainP, #recCountP, #crosshairP, #autoonP').toggleClass("orangeCheckbox normalCheckbox");
-        $('#Stats, #record, #showcontent').toggleClass("orangeButton button");
-        $('#tower, #cold').toggleClass("subOrangeButton subbutton");
-        $('#minimize, #info, #close, #settingsWin').toggleClass("orangeSmallButton smallbutton");
-        document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsTrans.png)";
-        $("#colorContainer").hide();
-      }
-    } else {
-      console.log("updating theme");
-      $('#KPMP, #HSNumP, #HSPercP, #HSChainP, #recCountP, #crosshairP, #autoonP').toggleClass("orangeCheckbox normalCheckbox");
-      $('#Stats, #record, #showcontent').toggleClass("orangeButton button");
-      $('#tower, #cold').toggleClass("subOrangeButton subbutton");
-      $('#minimize, #info, #close, #settingsWin').toggleClass("orangeSmallButton smallbutton");
-
-      if (!JSON.parse(localStorage.getItem("Settings")).useLP) {
-        document.getElementById("content").style.backgroundColor = "transparent";
-        document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
-        document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom," + localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
-        document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
-
-        document.getElementById("settingsWin").style.backgroundImage = "url(../images/options.png)";
-        $("#colorContainer").show();
-      } else {
-        document.getElementById("content").style.background = "rgba(5, 5, 5, 0.5)";
-        document.getElementById("contentWrapper").style.background = "transparent";
-        document.getElementById("contentWrapper").style.border = "10px solid transparent";
-
-        document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsTrans.png)";
-        $("#colorContainer").hide();
-      }
-      localStorage.setItem("updateTheme", false);
-    }
-  }
   setTheme();
 
   $("#content").fadeIn();
@@ -460,4 +418,47 @@ require(['jquery', 'jqueryUI', 'localStorageInit', 'gameEvent', 'windowCoreFunct
       }
     }
   );
+  
+   function setTheme() {
+    if (JSON.parse(localStorage.getItem("updateTheme")) === false) {
+      console.log("init theme");
+      if (!JSON.parse(localStorage.getItem("Settings")).useLP) {
+        document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+        document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom," + localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
+        document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+      } else {
+        document.getElementById("content").style.backgroundColor = "rgba(5, 5, 5, 0.5)";
+        $('#KPMP, #HSNumP, #HSPercP, #HSChainP, #recCountP, #crosshairP, #autoonP').toggleClass("orangeCheckbox normalCheckbox");
+        $('#Stats, #record, #showcontent').toggleClass("orangeButton button");
+        $('#tower, #cold').toggleClass("subOrangeButton subbutton");
+        $('#minimize, #info, #close, #settingsWin').toggleClass("orangeSmallButton smallbutton");
+        document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsTrans.png)";
+        $("#colorContainer").hide();
+      }
+    } else {
+      console.log("updating theme");
+      $('#KPMP, #HSNumP, #HSPercP, #HSChainP, #recCountP, #crosshairP, #autoonP').toggleClass("orangeCheckbox normalCheckbox");
+      $('#Stats, #record, #showcontent').toggleClass("orangeButton button");
+      $('#tower, #cold').toggleClass("subOrangeButton subbutton");
+      $('#minimize, #info, #close, #settingsWin').toggleClass("orangeSmallButton smallbutton");
+
+      if (!JSON.parse(localStorage.getItem("Settings")).useLP) {
+        document.getElementById("content").style.backgroundColor = "transparent";
+        document.getElementById("contentWrapper").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+        document.getElementById("contentWrapper").style.background = "-webkit-linear-gradient(right bottom," + localStorage.getItem('color1') + "," + localStorage.getItem('color2') + ")";
+        document.getElementById("contentWrapper").style.backgroundClip = "padding-box";
+
+        document.getElementById("settingsWin").style.backgroundImage = "url(../images/options.png)";
+        $("#colorContainer").show();
+      } else {
+        document.getElementById("content").style.background = "rgba(5, 5, 5, 0.5)";
+        document.getElementById("contentWrapper").style.background = "transparent";
+        document.getElementById("contentWrapper").style.border = "10px solid transparent";
+
+        document.getElementById("settingsWin").style.backgroundImage = "url(../images/optionsTrans.png)";
+        $("#colorContainer").hide();
+      }
+      localStorage.setItem("updateTheme", false);
+    }
+  };
 });
