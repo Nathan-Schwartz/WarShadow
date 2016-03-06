@@ -6,26 +6,7 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 		recenter();
 	}
 		
-	function setTheme(){
-		if(JSON.parse(localStorage.getItem("updateTheme")) === false){
-			console.log("init theme");
-			if(!JSON.parse(localStorage.getItem("Settings")).useLP){
-				document.getElementById("CrosshairContainer").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
-			}else{
-				$('#recenter, #hide').toggleClass("orangeButton button");
-			}
-		}else{
-			console.log("updating theme");
-			$('#recenter, #hide').toggleClass("orangeButton button");
-				
-			if(!JSON.parse(localStorage.getItem("Settings")).useLP){
-				document.getElementById("CrosshairContainer").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
-				//	document.getElementById("CrosshairContainer").style.backgroundClip = "padding-box";
-			}else{
-				document.getElementById("CrosshairContainer").style.border = "5px solid transparent";
-			}
-		}
-	}
+
 	setTheme();
 	
 	window.addEventListener("storage", function(e){
@@ -205,4 +186,26 @@ require(['jquery', 'windowCoreFunctions'], function($, wCore){
 			overwolf.windows.changePosition(localStorage.getItem("CrosshairID"), (result.logicalWidth/2)-101, (result.logicalHeight/2)-133);
 		});
 	});
+	
+	function setTheme(){
+		if(JSON.parse(localStorage.getItem("updateTheme")) === false){
+			console.log("init theme");
+			if(!JSON.parse(localStorage.getItem("Settings")).useLP){
+				document.getElementById("CrosshairContainer").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+			}else{
+				$('#recenter, #hide').toggleClass("orangeButton button");
+			}
+		}else{
+			console.log("updating theme");
+			$('#recenter, #hide').toggleClass("orangeButton button");
+				
+			if(!JSON.parse(localStorage.getItem("Settings")).useLP){
+				document.getElementById("CrosshairContainer").style.borderImage = "url('../images/box.png') 40% 15% 50% 15% stretch round";
+				//	document.getElementById("CrosshairContainer").style.backgroundClip = "padding-box";
+			}else{
+				document.getElementById("CrosshairContainer").style.border = "5px solid transparent";
+			}
+		}
+	}
+	
 });
